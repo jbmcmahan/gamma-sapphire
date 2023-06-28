@@ -247,6 +247,11 @@ Route103_EventScript_Andrew::
 	msgbox Route103_Text_AndrewPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+Route103_EventScript_Hannar::
+	trainerbattle_single TRAINER_GRUNT_AQUA_HIDEOUT_1, Route103_Text_HannarIntro, Route103_Text_HannarDefeated
+	msgbox Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE
+	end
+
 Route103_EventScript_Miguel::
 	trainerbattle_single TRAINER_MIGUEL_1, Route103_Text_MiguelIntro, Route103_Text_MiguelDefeated, Route102_EventScript_MiguelRegisterMatchCallAfterBattle
 	specialvar VAR_RESULT, ShouldTryRematchBattle
@@ -352,4 +357,3 @@ Route103_Text_ShortcutToOldale:
 Route103_Text_RouteSign:
 	.string "ROUTE 103\n"
 	.string "{DOWN_ARROW} OLDALE TOWN$"
-

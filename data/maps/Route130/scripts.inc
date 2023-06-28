@@ -4,23 +4,6 @@ Route130_MapScripts::
 
 Route130_OnTransition:
 	call_if_ge VAR_SOOTOPOLIS_CITY_STATE, 4, Route130_EventScript_CheckSetAbnormalWeather
-	specialvar VAR_RESULT, IsMirageIslandPresent
-	goto_if_eq VAR_RESULT, TRUE, Route130_EventScript_SetMirageIslandLayout
-	setflag FLAG_TEMP_11
-	setflag FLAG_TEMP_12
-	setflag FLAG_TEMP_13
-	setflag FLAG_TEMP_14
-	setflag FLAG_TEMP_15
-	setflag FLAG_TEMP_16
-	setflag FLAG_TEMP_17
-	setflag FLAG_TEMP_18
-	setflag FLAG_TEMP_19
-	setflag FLAG_TEMP_1A
-	setflag FLAG_TEMP_1B
-	setflag FLAG_TEMP_1C
-	setflag FLAG_TEMP_1D
-	setflag FLAG_TEMP_1E
-	setflag FLAG_TEMP_1F
 	setmaplayoutindex LAYOUT_ROUTE130
 	end
 
@@ -46,4 +29,3 @@ Route130_EventScript_Santiago::
 	trainerbattle_single TRAINER_SANTIAGO, Route130_Text_SantiagoIntro, Route130_Text_SantiagoDefeat
 	msgbox Route130_Text_SantiagoPostBattle, MSGBOX_AUTOCLOSE
 	end
-

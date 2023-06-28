@@ -15,25 +15,25 @@
   "connections": [
     {
       "map": "MAP_ROUTE121",
-      "offset": -20,
-      "direction": "up"
+      "offset": 0,
+      "direction": "down"
     },
     {
       "map": "MAP_ROUTE123",
-      "offset": -100,
-      "direction": "down"
+      "offset": 0,
+      "direction": "up"
     }
   ],
-  "object_events": [],
+  "object_events": [
+
+  ],
   "warp_events": [
-    {
-      "x": 22,
-      "y": 29,
-      "elevation": 0,
-      "dest_map": "MAP_MT_PYRE_1F",
-      "dest_warp_id": "0"
-    }
+
   ],
-  "coord_events": [],
-  "bg_events": []
+  "coord_events": [
+
+  ],
+  "bg_events": [
+
+  ]
 }
