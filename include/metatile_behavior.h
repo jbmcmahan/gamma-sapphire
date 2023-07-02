@@ -83,6 +83,7 @@ bool8 MetatileBehavior_IsFootprints(u8);
 bool8 MetatileBehavior_IsBridgeOverWater(u8);
 u8 MetatileBehavior_GetBridgeType(u8);
 bool8 MetatileBehavior_IsBridgeOverWaterNoEdge(u8);
+bool8 MetatileBehavior_IsSecondaryWildEncounter(u8);
 bool8 MetatileBehavior_IsLandWildEncounter(u8);
 bool8 MetatileBehavior_IsWaterWildEncounter(u8);
 bool8 MetatileBehavior_IsIndoorEncounter(u8);

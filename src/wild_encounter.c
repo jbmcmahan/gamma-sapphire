@@ -711,6 +711,52 @@ bool8 StandardWildEncounter(u16 curMetatileBehavior, u16 prevMetatileBehavior)
                 return FALSE;
             }
         }
+        else if (MetatileBehavior_IsSecondaryWildEncounter(curMetatileBehavior) == TRUE)
+        {
+            if (gWildMonHeaders[headerId].secondaryMonsInfo == NULL)
+                return FALSE;
+            else if (prevMetatileBehavior != curMetatileBehavior && !AllowWildCheckOnNewMetatile())
+                return FALSE;
+            else if (WildEncounterCheck(gWildMonHeaders[headerId].secondaryMonsInfo->encounterRate, FALSE) != TRUE)
+                return FALSE;
+
+            if (TryStartRoamerEncounter() == TRUE)
+            {
+                roamer = &gSaveBlock1Ptr->roamer;
+                if (!IsWildLevelAllowedByRepel(roamer->level))
+                    return FALSE;
+
+                BattleSetup_StartRoamerBattle();
+                return TRUE;
+            }
+            else
+            {
+                if (DoMassOutbreakEncounterTest() == TRUE && SetUpMassOutbreakEncounter(WILD_CHECK_REPEL | WILD_CHECK_KEEN_EYE) == TRUE)
+                {
+                    BattleSetup_StartWildBattle();
+                    return TRUE;
+                }
+
+                // try a regular wild land encounter
+                if (TryGenerateWildMon(gWildMonHeaders[headerId].secondaryMonsInfo, WILD_AREA_LAND, WILD_CHECK_REPEL | WILD_CHECK_KEEN_EYE) == TRUE)
+                {
+                    if (TryDoDoubleWildBattle())
+                    {
+                        struct Pokemon mon1 = gEnemyParty[0];
+                        TryGenerateWildMon(gWildMonHeaders[headerId].secondaryMonsInfo, WILD_AREA_LAND, WILD_CHECK_KEEN_EYE);
+                        gEnemyParty[1] = mon1;
+                        BattleSetup_StartDoubleWildBattle();
+                    }
+                    else
+                    {
+                        BattleSetup_StartWildBattle();
+                    }
+                    return TRUE;
+                }
+
+                return FALSE;
+            }
+        }
         else if (MetatileBehavior_IsWaterWildEncounter(curMetatileBehavior) == TRUE
                  || (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_SURFING) && MetatileBehavior_IsBridgeOverWater(curMetatileBehavior) == TRUE))
         {
@@ -835,6 +881,25 @@ bool8 SweetScentWildEncounter(void)
                 SetUpMassOutbreakEncounter(0);
             else
                 TryGenerateWildMon(gWildMonHeaders[headerId].landMonsInfo, WILD_AREA_LAND, 0);
+
+            BattleSetup_StartWildBattle();
+            return TRUE;
+        }
+        else if (MetatileBehavior_IsSecondaryWildEncounter(MapGridGetMetatileBehaviorAt(x, y)) == TRUE)
+        {
+            if (gWildMonHeaders[headerId].secondaryMonsInfo == NULL)
+                return FALSE;
+
+            if (TryStartRoamerEncounter() == TRUE)
+            {
+                BattleSetup_StartRoamerBattle();
+                return TRUE;
+            }
+
+            if (DoMassOutbreakEncounterTest() == TRUE)
+                SetUpMassOutbreakEncounter(0);
+            else
+                TryGenerateWildMon(gWildMonHeaders[headerId].secondaryMonsInfo, WILD_AREA_LAND, 0);
 
             BattleSetup_StartWildBattle();
             return TRUE;
