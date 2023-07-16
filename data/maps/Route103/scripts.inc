@@ -247,8 +247,13 @@ Route103_EventScript_Andrew::
 	msgbox Route103_Text_AndrewPostBattle, MSGBOX_AUTOCLOSE
 	end
 
-Route103_EventScript_Hannar::
-	trainerbattle_single TRAINER_GRUNT_AQUA_HIDEOUT_1, Route103_Text_HannarIntro, Route103_Text_HannarDefeated
+Route103_EventScript_Custom_Alex::
+	trainerbattle_single TRAINER_CUSTOM_ALEX, Route103_Text_HannarIntro, Route103_Text_HannarDefeated
+	msgbox Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route103_EventScript_Custom_Bonnie::
+	trainerbattle_single TRAINER_CUSTOM_BONNIE, Route103_Text_HannarIntro, Route103_Text_HannarDefeated
 	msgbox Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE
 	end
 

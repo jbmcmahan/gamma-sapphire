@@ -294,6 +294,16 @@ Route104_EventScript_Girl1::
 	msgbox Route104_Text_BrineyLivesInSeasideCottage, MSGBOX_NPC
 	end
 
+Route103_EventScript_Custom_Colin::
+	trainerbattle_single TRAINER_CUSTOM_COLIN, Route103_Text_HannarIntro, Route103_Text_HannarDefeated
+	msgbox Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route103_EventScript_Custom_Danielle::
+	trainerbattle_single TRAINER_CUSTOM_DANIELLE, Route103_Text_HannarIntro, Route103_Text_HannarDefeated
+	msgbox Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE
+	end
+
 Route104_EventScript_BugCatcher::
 	msgbox Route104_Text_WhatsItLikeAtBottomOfSea, MSGBOX_SIGN
 	end

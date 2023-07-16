@@ -40,11 +40,6 @@ AquaHideout_1F_EventScript_SlateportHint2::
 	release
 	end
 
-AquaHideout_1F_EventScript_Grunt1::
-	trainerbattle_single TRAINER_GRUNT_AQUA_HIDEOUT_1, AquaHideout_1F_Text_Grunt1Intro, AquaHideout_1F_Text_Grunt1Defeat, AquaHideout_1F_EventScript_Grunt1Defeated
-	msgbox AquaHideout_1F_Text_Grunt1PostBattle, MSGBOX_AUTOCLOSE
-	end
-
 AquaHideout_1F_EventScript_Grunt1Defeated::
 	msgbox AquaHideout_1F_Text_Grunt1PostBattle, MSGBOX_DEFAULT
 	release
@@ -116,4 +111,3 @@ AquaHideout_1F_Text_Grunt1Defeat:
 AquaHideout_1F_Text_Grunt1PostBattle:
 	.string "I took the loss for the TEAM,\n"
 	.string "but I did my job…$"
-

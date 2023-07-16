@@ -169,6 +169,19 @@ Route103_Text_AndrewPostBattle:
 	.string "Gah, I'm still boiling mad…\n"
 	.string "Grrrrr…$"
 
+Route103_Text_HannarIntro:
+	.string "Gah! My fishing line's all snarled up!\n"
+	.string "I'm getting frustrated and mean!\l"
+	.string "That's it! Battle me!$"
+
+Route103_Text_HannarDefeated:
+	.string "Gah! Lost it!\n"
+	.string "I'm even more annoyed now!$"
+
+Route103_Text_HannarPostBattle:
+	.string "Gah, I'm still boiling mad…\n"
+	.string "Grrrrr…$"
+
 Route103_Text_MiguelIntro:
 	.string "My POKéMON is delightfully adorable!\n"
 	.string "Don't be shy--I'll show you!$"
