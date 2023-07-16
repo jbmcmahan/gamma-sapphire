@@ -244,6 +244,8 @@ Route101_EventScript_BirchsBag::
 	setflag FLAG_RECEIVED_POKEDEX_FROM_BIRCH
 	setvar VAR_CABLE_CLUB_TUTORIAL_STATE, 1
 	giveitem ITEM_POKE_BALL, 5
+	giveitem ITEM_SUPER_CANDY
+	special EnableNationalPokedex
 	clearflag FLAG_HIDE_MAP_NAME_POPUP
 	checkplayergender
 	call_if_eq VAR_RESULT, MALE, Route101_EventScript_HideMayInBedroom
