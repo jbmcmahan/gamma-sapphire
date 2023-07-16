@@ -157,6 +157,13 @@
 #define DIR_NORTHWEST   7
 #define DIR_NORTHEAST   8
 
+#define EV_NORMAL           0
+#define EV_TRAINER          1
+#define EV_NONE             2
+
+#define LEVEL_CAPS_NONE     0
+#define LEVEL_CAPS_DEFAULT  1
+
 #define CONNECTION_INVALID -1
 #define CONNECTION_NONE     0
 #define CONNECTION_SOUTH    1

@@ -4347,6 +4347,15 @@ static void Cmd_getexp(void)
                 MonGainEVs(&gPlayerParty[gBattleStruct->expGetterMonId], gBattleMons[gBattlerFainted].species);
             #endif
             }
+            else if (GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_LEVEL) >= GetLevelCap())
+            {
+                gBattleMoveDamage = 0; // If mon is above level cap, it gets 0 exp, but still gains EVs
+                gBattleStruct->sentInPokes >>= 1;
+                gBattleScripting.getexpState = 5;
+            #if B_MAX_LEVEL_EV_GAINS >= GEN_5
+                MonGainEVs(&gPlayerParty[gBattleStruct->expGetterMonId], gBattleMons[gBattlerFainted].species);
+            #endif
+            }
             else
             {
                 // Music change in a wild battle after fainting opposing pokemon.
@@ -4440,7 +4449,15 @@ static void Cmd_getexp(void)
                     PREPARE_WORD_NUMBER_BUFFER(gBattleTextBuff3, 6, gBattleMoveDamage);
 
                     PrepareStringBattle(STRINGID_PKMNGAINEDEXP, gBattleStruct->expGetterBattlerId);
-                    MonGainEVs(&gPlayerParty[gBattleStruct->expGetterMonId], gBattleMons[gBattlerFainted].species);
+
+                    if (gSaveBlock2Ptr->gameEV == EV_NORMAL)
+                    {
+                        MonGainEVs(&gPlayerParty[gBattleStruct->expGetterMonId], gBattleMons[gBattlerFainted].species);
+                    }
+                    if ((gBattleTypeFlags & BATTLE_TYPE_TRAINER) && (gSaveBlock2Ptr->gameEV == EV_TRAINER))
+                    {
+                        MonGainEVs(&gPlayerParty[gBattleStruct->expGetterMonId], gBattleMons[gBattlerFainted].species);
+                    }
                 }
                 gBattleStruct->sentInPokes >>= 1;
                 gBattleScripting.getexpState++;
@@ -12084,15 +12101,15 @@ static u32 ChangeStatBuffs(s8 statValue, u32 statId, u32 flags, const u8 *BS_ptr
         {
             gBattleCommunication[MULTISTRING_CHOOSER] = (gBattlerTarget == gActiveBattler);
             gProtectStructs[gActiveBattler].statRaised = TRUE;
-            
+
             // check mirror herb
             for (index = 0; index < gBattlersCount; index++)
             {
                 if (GetBattlerSide(index) == GetBattlerSide(gActiveBattler))
-                    continue; // Only triggers on opposing side 
+                    continue; // Only triggers on opposing side
                 if (GetBattlerHoldEffect(index, TRUE) == HOLD_EFFECT_MIRROR_HERB
                         && gBattleMons[index].statStages[statId] < MAX_STAT_STAGE)
-                {                    
+                {
                     gProtectStructs[index].eatMirrorHerb = 1;
                     gTotemBoosts[index].stats |= (1 << (statId - 1));    // -1 to start at atk
                     gTotemBoosts[index].statChanges[statId - 1] = statValue;
@@ -16300,7 +16317,7 @@ void BS_CheckParentalBondCounter(void)
 void BS_GetBattlerSide(void)
 {
     NATIVE_ARGS(u8 battler);
-    gBattleCommunication[0] = GetBattlerSide(GetBattlerForBattleScript(cmd->battler));   
+    gBattleCommunication[0] = GetBattlerSide(GetBattlerForBattleScript(cmd->battler));
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
@@ -16326,7 +16343,7 @@ void BS_TrySymbiosis(void)
         gBattlescriptCurrInstr = BattleScript_SymbiosisActivates;
         return;
     }
-    
+
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
