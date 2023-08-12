@@ -703,7 +703,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         // check ground immunities
         if (moveType == TYPE_GROUND
           && !IsBattlerGrounded(battlerDef)
-          && ((AI_DATA->abilities[battlerDef] == ABILITY_LEVITATE
+          && (((AI_DATA->abilities[battlerDef] == ABILITY_LEVITATE || BattlerHasInnate(battlerDef, ABILITY_LEVITATE))
           && DoesBattlerIgnoreAbilityChecks(AI_DATA->abilities[battlerAtk], move))
           || AI_DATA->holdEffects[battlerDef] == HOLD_EFFECT_AIR_BALLOON
           || (gStatuses3[battlerDef] & (STATUS3_MAGNET_RISE | STATUS3_TELEKINESIS)))
@@ -891,6 +891,22 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                 }
             } // def partner ability checks
         } // ignore def ability check
+
+
+        //Volt Absorb, Motor Drive and Lighting Rod
+        if(BattlerHasInnate(battlerDef, ABILITY_VOLT_ABSORB) && 
+            moveType == TYPE_ELECTRIC)
+            RETURN_SCORE_MINUS(20);
+
+        //Water Absorb, Dry skin and Storm Drain
+        if(BattlerHasInnate(battlerDef, ABILITY_WATER_ABSORB) && 
+            moveType == TYPE_WATER)
+            RETURN_SCORE_MINUS(20);
+
+        //Flash Fire
+        if(BattlerHasInnate(battlerDef, ABILITY_FLASH_FIRE) && 
+            moveType == TYPE_FIRE)
+            RETURN_SCORE_MINUS(20);
 
         // gen7+ dark type mons immune to priority->elevated moves from prankster
         #if B_PRANKSTER_DARK_TYPES >= GEN_7
@@ -1597,7 +1613,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                 score -= 10;
             break;
         case EFFECT_MAGNITUDE:
-            if (AI_DATA->abilities[battlerDef] == ABILITY_LEVITATE)
+            if (AI_DATA->abilities[battlerDef] == ABILITY_LEVITATE || BattlerHasInnate(battlerDef, ABILITY_LEVITATE))
                 score -= 10;
             break;
         case EFFECT_PARTING_SHOT:
@@ -5327,4 +5343,23 @@ static s16 AI_FirstBattle(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         AI_Flee();
 
     return score;
+}
+
+bool8 BattlerHasInnate(u8 battlerId, u16 ability){
+    return SpeciesHasInnate(gBattleMons[battlerId].species, ability, gBattleMons[battlerId].level, gBattleMons[battlerId].personality);
+}
+
+bool8 BattlerHasAbilityOrInnate(u8 battlerId, u16 ability){
+    return (BattlerHasInnate(battlerId, ability) || (GetBattlerAbility(battlerId) == ability));
+}
+
+bool8 GetBattlerInnateNum(u8 battlerId, u16 ability){
+    return GetSpeciesInnateNum(gBattleMons[battlerId].species, ability, gBattleMons[battlerId].level, gBattleMons[battlerId].personality);
+}
+
+bool8 GetBattlerAbilityOrInnateNum(u8 battlerId, u16 ability){
+    if (GetBattlerAbility(battlerId) == ability)
+        return 0;
+    else
+        return 1 + GetSpeciesInnateNum(gBattleMons[battlerId].species, ability, gBattleMons[battlerId].level, gBattleMons[battlerId].personality);
 }

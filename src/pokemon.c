@@ -8642,3 +8642,51 @@ void UpdateMonPersonality(struct BoxPokemon *boxMon, u32 personality)
     boxMon->checksum = CalculateBoxMonChecksum(boxMon);
     EncryptBoxMon(boxMon);
 }
+
+bool8 SpeciesHasInnate(u16 species, u16 ability, u8 level, u32 personality){
+	u8 i;
+    u16 innate1 = gSpeciesInfo[species].innates[0];
+    u16 innate2 = gSpeciesInfo[species].innates[1];
+    u16 innate3 = gSpeciesInfo[species].innates[2];
+
+    // if(innate1 == ability      && (level >= INNATE_1_LEVEL || gSaveBlock2Ptr->gameDifficulty != DIFFICULTY_ELITE))
+    //     return TRUE;
+    // else if(innate2 == ability && (level >= INNATE_2_LEVEL || gSaveBlock2Ptr->gameDifficulty != DIFFICULTY_ELITE))
+    //     return TRUE;
+    // else if(innate3 == ability && (level >= INNATE_3_LEVEL || gSaveBlock2Ptr->gameDifficulty != DIFFICULTY_ELITE))
+    //     return TRUE;
+	// else
+	//     return FALSE;
+    if(innate1 == ability)
+        return TRUE;
+    else if(innate2 == ability)
+        return TRUE;
+    else if(innate3 == ability)
+        return TRUE;
+	else
+	    return FALSE;
+}
+
+bool8 MonHasInnate(struct Pokemon *mon, u16 ability){
+    u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
+    u32 personality = GetMonData(mon, MON_DATA_PERSONALITY, NULL);
+    u8 level = GetMonData(mon, MON_DATA_LEVEL, NULL);
+
+    return SpeciesHasInnate(species, ability, level, personality);
+}
+
+u8 GetSpeciesInnateNum(u16 species, u16 ability, u8 level, u32 personality){
+	u8 i;
+    u16 innate1 = gSpeciesInfo[species].innates[0];
+    u16 innate2 = gSpeciesInfo[species].innates[1];
+    u16 innate3 = gSpeciesInfo[species].innates[2];
+
+    if(innate1 == ability)
+        return 0;
+    else if (innate2 == ability)
+        return 1;
+    else if(innate3 == ability)
+        return 2;
+    else
+        return 3;
+}

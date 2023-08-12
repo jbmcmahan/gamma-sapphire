@@ -1314,6 +1314,8 @@ bool32 AI_IsBattlerGrounded(u8 battlerId)
         return FALSE;
     else if (AI_DATA->abilities[battlerId] == ABILITY_LEVITATE)
         return FALSE;
+    else if (BattlerHasInnate(battlerId, ABILITY_LEVITATE))
+        return FALSE;
     else if (IS_BATTLER_OF_TYPE(battlerId, TYPE_FLYING))
         return FALSE;
     else
@@ -1560,7 +1562,7 @@ bool32 ShouldSetSandstorm(u8 battler, u16 ability, u16 holdEffect)
     else if (gBattleWeather & B_WEATHER_SANDSTORM)
         return FALSE;
 
-    if (ability == ABILITY_SAND_VEIL
+    if (BattlerHasAbilityOrInnate(battler, ABILITY_SAND_VEIL)
       || ability == ABILITY_SAND_RUSH
       || ability == ABILITY_SAND_FORCE
       || ability == ABILITY_OVERCOAT
@@ -2396,7 +2398,7 @@ static bool32 BattlerAffectedBySandstorm(u8 battlerId, u16 ability)
     if (!IS_BATTLER_OF_TYPE(battlerId, TYPE_ROCK)
       && !IS_BATTLER_OF_TYPE(battlerId, TYPE_GROUND)
       && !IS_BATTLER_OF_TYPE(battlerId, TYPE_STEEL)
-      && ability != ABILITY_SAND_VEIL
+      && !BattlerHasAbilityOrInnate(battlerId, ABILITY_SAND_VEIL)
       && ability != ABILITY_SAND_FORCE
       && ability != ABILITY_SAND_RUSH
       && ability != ABILITY_OVERCOAT)
@@ -2546,7 +2548,7 @@ static bool32 PartyBattlerShouldAvoidHazards(u8 currBattler, u8 switchBattler)
         hazardDamage += GetStealthHazardDamageByTypesAndHP(gBattleMoves[MOVE_STEALTH_ROCK].type, type1, type2, maxHp);
 
     if (flags & SIDE_STATUS_SPIKES && ((type1 != TYPE_FLYING && type2 != TYPE_FLYING
-        && ability != ABILITY_LEVITATE && holdEffect != HOLD_EFFECT_AIR_BALLOON)
+        && ability != ABILITY_LEVITATE && !MonHasInnate(mon, ABILITY_LEVITATE) && holdEffect != HOLD_EFFECT_AIR_BALLOON)
         || holdEffect == HOLD_EFFECT_IRON_BALL || gFieldStatuses & STATUS_FIELD_GRAVITY))
     {
         u8 spikesDmg = maxHp / ((5 - gSideTimers[GetBattlerSide(currBattler)].spikesAmount) * 2);
@@ -2786,7 +2788,7 @@ bool32 IsBattlerIncapacitated(u8 battler, u16 ability)
 
 bool32 AI_CanSleep(u8 battler, u16 ability)
 {
-    if (ability == ABILITY_INSOMNIA
+    if (BattlerHasAbilityOrInnate(battler, ABILITY_INSOMNIA)
       || ability == ABILITY_VITAL_SPIRIT
       || ability == ABILITY_COMATOSE
       || gBattleMons[battler].status1 & STATUS1_ANY
@@ -2819,7 +2821,7 @@ static bool32 AI_CanBePoisoned(u8 battlerAtk, u8 battlerDef)
     if (!(AI_CanPoisonType(battlerAtk, battlerDef))
      || gSideStatuses[GetBattlerSide(battlerDef)] & SIDE_STATUS_SAFEGUARD
      || gBattleMons[battlerDef].status1 & STATUS1_ANY
-     || ability == ABILITY_IMMUNITY
+     || BattlerHasAbilityOrInnate(battlerDef, ABILITY_IMMUNITY)
      || ability == ABILITY_COMATOSE
      || AI_IsAbilityOnSide(battlerDef, ABILITY_PASTEL_VEIL)
      || gBattleMons[battlerDef].status1 & STATUS1_ANY
@@ -2861,7 +2863,7 @@ bool32 AI_CanPoison(u8 battlerAtk, u8 battlerDef, u16 defAbility, u16 move, u16 
 
 static bool32 AI_CanBeParalyzed(u8 battler, u16 ability)
 {
-    if (ability == ABILITY_LIMBER
+    if (BattlerHasAbilityOrInnate(battler, ABILITY_LIMBER)
       || ability == ABILITY_COMATOSE
       || IS_BATTLER_OF_TYPE(battler, TYPE_ELECTRIC)
       || gBattleMons[battler].status1 & STATUS1_ANY
@@ -2884,7 +2886,7 @@ bool32 AI_CanParalyze(u8 battlerAtk, u8 battlerDef, u16 defAbility, u16 move, u1
 bool32 AI_CanBeConfused(u8 battler, u16 ability)
 {
     if ((gBattleMons[battler].status2 & STATUS2_CONFUSION)
-      || (ability == ABILITY_OWN_TEMPO)
+      || (BattlerHasAbilityOrInnate(battler, ABILITY_OWN_TEMPO))
       || (IsBattlerGrounded(battler) && (gFieldStatuses & STATUS_FIELD_MISTY_TERRAIN)))
         return FALSE;
     return TRUE;
@@ -2971,7 +2973,7 @@ bool32 AI_CanBeInfatuated(u8 battlerAtk, u8 battlerDef, u16 defAbility)
 {
     if ((gBattleMons[battlerDef].status2 & STATUS2_INFATUATION)
       || AI_GetMoveEffectiveness(AI_THINKING_STRUCT->moveConsidered, battlerAtk, battlerDef) == AI_EFFECTIVENESS_x0
-      || defAbility == ABILITY_OBLIVIOUS
+      || BattlerHasAbilityOrInnate(battlerDef, ABILITY_OBLIVIOUS)
       || !AreBattlersOfOppositeGender(battlerAtk, battlerDef)
       || AI_IsAbilityOnSide(battlerDef, ABILITY_AROMA_VEIL))
         return FALSE;

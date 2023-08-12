@@ -331,6 +331,7 @@ struct SpeciesInfo /*0x24*/
  /* 0x1E */ u8 safariZoneFleeRate;
  /* 0x1F */ u8 bodyColor : 7;
             u8 noFlip : 1;
+            u16 innates[NUM_INNATE_PER_SPECIES];
  /* 0x20 */ u16 flags;
 };
 
@@ -576,5 +577,8 @@ void TryToSetBattleFormChangeMoves(struct Pokemon *mon, u16 method);
 u32 GetMonFriendshipScore(struct Pokemon *pokemon);
 void UpdateMonPersonality(struct BoxPokemon *boxMon, u32 personality);
 u8 GetLevelCap(void);
+bool8 SpeciesHasInnate(u16 species, u16 ability, u8 level, u32 personality);
+bool8 MonHasInnate(struct Pokemon *mon, u16 ability);
+u8 GetSpeciesInnateNum(u16 species, u16 ability, u8 level, u32 personality);
 
 #endif // GUARD_POKEMON_H

@@ -29,6 +29,11 @@ void Ai_UpdateSwitchInData(u32 battler);
 void Ai_UpdateFaintData(u32 battler);
 void GetAiLogicData(void);
 
+bool8 BattlerHasInnate(u8 battlerId, u16 ability);
+bool8 GetBattlerInnateNum(u8 battlerId, u16 ability);
+bool8 GetBattlerAbilityOrInnateNum(u8 battlerId, u16 ability);
+bool8 BattlerHasAbilityOrInnate(u8 battlerId, u16 ability);
+
 extern u8 sBattler_AI;
 
 #endif // GUARD_BATTLE_AI_MAIN_H
