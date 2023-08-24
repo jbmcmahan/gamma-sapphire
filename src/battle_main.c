@@ -4638,24 +4638,33 @@ u32 GetBattlerTotalSpeedStat(u8 battlerId)
     {
         if (BattlerHasAbilityOrInnate(battlerId, ABILITY_SWIFT_SWIM)       && holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA && gBattleWeather & B_WEATHER_RAIN)
             speed *= 2;
-        else if (BattlerHasAbilityOrInnate(battlerId, ABILITY_CHLOROPHYLL) && holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA && gBattleWeather & B_WEATHER_SUN)
+        if (BattlerHasAbilityOrInnate(battlerId, ABILITY_CHLOROPHYLL) && holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA && gBattleWeather & B_WEATHER_SUN)
             speed *= 2;
-        else if (BattlerHasAbilityOrInnate(battlerId, ABILITY_SAND_RUSH)   && gBattleWeather & B_WEATHER_SANDSTORM)
+        // Big Leaves - Elite Redux
+        if (BattlerHasAbilityOrInnate(battlerId, ABILITY_BIG_LEAVES) && holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA && gBattleWeather & B_WEATHER_SUN)
             speed *= 2;
-        else if (BattlerHasAbilityOrInnate(battlerId, ABILITY_SLUSH_RUSH)  && (gBattleWeather & (B_WEATHER_HAIL | B_WEATHER_SNOW)))
+        if (BattlerHasAbilityOrInnate(battlerId, ABILITY_SAND_RUSH)   && gBattleWeather & B_WEATHER_SANDSTORM)
+            speed *= 2;
+        if (BattlerHasAbilityOrInnate(battlerId, ABILITY_SLUSH_RUSH)  && (gBattleWeather & (B_WEATHER_HAIL | B_WEATHER_SNOW)))
             speed *= 2;
     }
 
     // other abilities
     if (BattlerHasAbilityOrInnate(battlerId, ABILITY_QUICK_FEET) && gBattleMons[battlerId].status1 & STATUS1_ANY)
         speed = (speed * 150) / 100;
-    else if (BattlerHasAbilityOrInnate(battlerId, ABILITY_SURGE_SURFER) && gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN)
+    if (BattlerHasAbilityOrInnate(battlerId, ABILITY_SURGE_SURFER) && gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN)
         speed *= 2;
-    else if (BattlerHasAbilityOrInnate(battlerId, ABILITY_SLOW_START) && gDisableStructs[battlerId].slowStartTimer != 0)
+    if (BattlerHasAbilityOrInnate(battlerId, ABILITY_SLOW_START) && gDisableStructs[battlerId].slowStartTimer != 0)
         speed /= 2;
-    else if (BattlerHasAbilityOrInnate(battlerId, ABILITY_PROTOSYNTHESIS) && gBattleWeather & B_WEATHER_SUN && highestStat == STAT_SPEED)
+    if (BattlerHasAbilityOrInnate(battlerId, ABILITY_PROTOSYNTHESIS) && gBattleWeather & B_WEATHER_SUN && highestStat == STAT_SPEED)
         speed = (speed * 150) / 100;
-    else if (BattlerHasAbilityOrInnate(battlerId, ABILITY_QUARK_DRIVE) && gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN && highestStat == STAT_SPEED)
+    if (BattlerHasAbilityOrInnate(battlerId, ABILITY_QUARK_DRIVE) && gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN && highestStat == STAT_SPEED)
+        speed = (speed * 150) / 100;
+    // Lead Coat - Elite Redux
+    if (BattlerHasAbilityOrInnate(battlerId, ABILITY_LEAD_COAT))
+        speed *= 0.9;
+    // Violent Rush - Elite Redux
+    if (BattlerHasAbilityOrInnate(battlerId, ABILITY_VIOLENT_RUSH) && gDisableStructs[battlerId].isFirstTurn)
         speed = (speed * 150) / 100;
 
     // stat stages
@@ -4724,16 +4733,21 @@ s8 GetMovePriority(u32 battlerId, u16 move)
     {
         priority++;
     }
-    else if (BattlerHasAbilityOrInnate(battlerId, ABILITY_PRANKSTER) && IS_MOVE_STATUS(move))
+    // Prankster
+    if (BattlerHasAbilityOrInnate(battlerId, ABILITY_PRANKSTER) && IS_MOVE_STATUS(move))
     {
         gProtectStructs[battlerId].pranksterElevated = 1;
         priority++;
     }
-    else if (gBattleMoves[move].effect == EFFECT_GRASSY_GLIDE && gFieldStatuses & STATUS_FIELD_GRASSY_TERRAIN && IsBattlerGrounded(battlerId))
+
+    // Grassy Glide
+    if (gBattleMoves[move].effect == EFFECT_GRASSY_GLIDE && gFieldStatuses & STATUS_FIELD_GRASSY_TERRAIN && IsBattlerGrounded(battlerId))
     {
         priority++;
     }
-    else if (BattlerHasAbilityOrInnate(battlerId, ABILITY_TRIAGE))
+
+    // Triage
+    if (BattlerHasAbilityOrInnate(battlerId, ABILITY_TRIAGE))
     {
         switch (gBattleMoves[move].effect)
         {
@@ -4752,6 +4766,44 @@ s8 GetMovePriority(u32 battlerId, u16 move)
             priority += 3;
             break;
         }
+    }
+    // Blitz Boxer - Elite Redux
+    if (BattlerHasAbilityOrInnate(battlerId, ABILITY_BLITZ_BOXER)
+         && (gBattleMoves[move].flags & FLAG_IRON_FIST_BOOST)){
+        priority++;
+    }
+
+    // Perfectionist - Elite Redux
+    if(BattlerHasAbilityOrInnate(battlerId, ABILITY_PERFECTIONIST)
+       && gBattleMoves[move].power <= 25)
+		priority++;
+
+    // Coiled - Elite Redux
+    if((gStatuses4[battlerId] & STATUS4_COILED) && (gBattleMoves[move].flags & FLAG_STRONG_JAW_BOOST)){
+        priority++;
+	}
+
+	// Flaming Soul - Elite Redux
+	if (BattlerHasAbilityOrInnate(battlerId, ABILITY_FLAMING_SOUL)
+        && gBattleMoves[move].type == TYPE_FIRE
+        && (B_GALE_WINGS <= GEN_6 || BATTLER_MAX_HP(battlerId)))
+    {
+        priority++;
+    }
+
+	// Frozen Soul - Elite Redux
+	if (BattlerHasAbilityOrInnate(battlerId, ABILITY_FROZEN_SOUL)
+        && gBattleMoves[move].type == TYPE_ICE
+        && (B_GALE_WINGS <= GEN_6 || BATTLER_MAX_HP(battlerId)))
+    {
+        priority++;
+    }
+
+    // Sighting System - Elite Redux
+	if ((BattlerHasAbilityOrInnate(battlerId, ABILITY_SIGHTING_SYSTEM))
+        && gBattleMoves[move].accuracy <= 75)
+    { 
+        priority = priority - 3;
     }
 
     if (gProtectStructs[battlerId].quash)
@@ -4774,6 +4826,13 @@ u8 GetWhoStrikesFirst(u8 battler1, u8 battler2, bool8 ignoreChosenMoves)
     // Quick Draw
     if (!ignoreChosenMoves && BattlerHasAbilityOrInnate(battler1, ABILITY_QUICK_DRAW) && !IS_MOVE_STATUS(gChosenMoveByBattler[battler1]) && Random() % 100 < 30)
         gProtectStructs[battler1].quickDraw = TRUE;
+
+    // Opportunist - Elite Redux
+    if (!ignoreChosenMoves && (BattlerHasAbilityOrInnate(battler1, ABILITY_OPPORTUNIST_ER)) && !(gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
+        && gBattleMons[battler2].hp <= gBattleMons[battler2].maxHP / 2 && gBattleMoves[gBattleMons[battler1].moves[*(gBattleStruct->chosenMovePositions + battler1)]].target == MOVE_TARGET_SELECTED){
+            gProtectStructs[battler1].quickDraw = TRUE;
+    }
+
     // Quick Claw and Custap Berry
     if (!gProtectStructs[battler1].quickDraw
      && ((holdEffectBattler1 == HOLD_EFFECT_QUICK_CLAW && gRandomTurnNumber < (0xFFFF * GetBattlerHoldEffectParam(battler1)) / 100)
@@ -4786,6 +4845,12 @@ u8 GetWhoStrikesFirst(u8 battler1, u8 battler2, bool8 ignoreChosenMoves)
     // Quick Draw
     if (!ignoreChosenMoves && BattlerHasAbilityOrInnate(battler2, ABILITY_QUICK_DRAW) && !IS_MOVE_STATUS(gChosenMoveByBattler[battler2]) && Random() % 100 < 30)
         gProtectStructs[battler2].quickDraw = TRUE;
+
+    // Opportunist - Elite Redux
+    if (!ignoreChosenMoves && (BattlerHasAbilityOrInnate(battler2, ABILITY_OPPORTUNIST_ER)) && !(gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
+        && gBattleMons[battler1].hp <= gBattleMons[battler1].maxHP / 2 && gBattleMoves[gBattleMons[battler2].moves[*(gBattleStruct->chosenMovePositions + battler2)]].target == MOVE_TARGET_SELECTED)
+        gProtectStructs[battler2].quickDraw = TRUE;
+
     // Quick Claw and Custap Berry
     if (!gProtectStructs[battler2].quickDraw
      && ((holdEffectBattler2 == HOLD_EFFECT_QUICK_CLAW && gRandomTurnNumber < (0xFFFF * GetBattlerHoldEffectParam(battler2)) / 100)
@@ -5149,12 +5214,23 @@ static void CheckQuickClaw_CustapBerryActivation(void)
                 }
                 else if (gProtectStructs[gActiveBattler].quickDraw)
                 {
-                    gBattlerAbility = gActiveBattler;
-                    gProtectStructs[gActiveBattler].quickDraw = FALSE;
-                    gLastUsedAbility = gBattleMons[gActiveBattler].ability;
-                    PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
-                    RecordAbilityBattle(gActiveBattler, gLastUsedAbility);
-                    BattleScriptExecute(BattleScript_QuickDrawActivation);
+                    if(BattlerHasAbilityOrInnate(gActiveBattler, ABILITY_QUICK_DRAW)){
+                        gProtectStructs[gActiveBattler].quickDraw = FALSE;
+                        gLastUsedAbility = gBattleScripting.abilityPopupOverwrite = ABILITY_QUICK_DRAW;
+                        PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
+                        //gBattlerAbility = gActiveBattler;
+                        RecordAbilityBattle(gActiveBattler, gLastUsedAbility);
+                        BattleScriptExecute(BattleScript_QuickDrawActivation);
+                    }
+                    // Opportunist - Elite Redux
+                    else if(BattlerHasAbilityOrInnate(gActiveBattler, ABILITY_OPPORTUNIST_ER)){
+                        gProtectStructs[gActiveBattler].quickDraw = FALSE;
+                        gLastUsedAbility = gBattleScripting.abilityPopupOverwrite = ABILITY_OPPORTUNIST_ER;
+                        PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
+                        gBattlerAbility = gActiveBattler;
+                        //RecordAbilityBattle(gActiveBattler, gLastUsedAbility);
+                        BattleScriptExecute(BattleScript_QuickDrawActivation);
+                    }
                 }
                 return;
             }
@@ -5684,7 +5760,13 @@ void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
              && ((BattlerHasAbilityOrInnate(battlerAtk, ABILITY_PIXILATE) && (ateType = TYPE_FAIRY))
                  || (BattlerHasAbilityOrInnate(battlerAtk, ABILITY_REFRIGERATE) && (ateType = TYPE_ICE))
                  || (BattlerHasAbilityOrInnate(battlerAtk, ABILITY_AERILATE) && (ateType = TYPE_FLYING))
-                 || ((BattlerHasAbilityOrInnate(battlerAtk, ABILITY_GALVANIZE)) && (ateType = TYPE_ELECTRIC))
+                 || (BattlerHasAbilityOrInnate(battlerAtk, ABILITY_GALVANIZE) && (ateType = TYPE_ELECTRIC))
+                 || (BattlerHasAbilityOrInnate(battlerAtk, ABILITY_BURNATE) && (ateType = TYPE_FIRE)) // Burnate - Elite Redux
+                 || (BattlerHasAbilityOrInnate(battlerAtk, ABILITY_GROUNDATE) && (ateType = TYPE_GROUND)) // Groundate - Elite Redux
+                 || (BattlerHasAbilityOrInnate(battlerAtk, ABILITY_FIGHT_SPIRIT) && (ateType = TYPE_FIGHTING)) // Fighting Spirit - Elite Redux
+                 || (BattlerHasAbilityOrInnate(battlerAtk, ABILITY_POISONATE) && (ateType = TYPE_POISON)) // Poisonate - Elite Redux
+                 || (BattlerHasAbilityOrInnate(battlerAtk, ABILITY_HYDRATE) && (ateType = TYPE_WATER)) // Hydrate - Elite Redux
+                 || (BattlerHasAbilityOrInnate(battlerAtk, ABILITY_BUGINIZE) && (ateType = TYPE_BUG)) // Buginize - Elite Redux
                 )
              )
     {
@@ -5699,6 +5781,12 @@ void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
         gBattleStruct->dynamicMoveType = TYPE_NORMAL | F_DYNAMIC_TYPE_2;
         gBattleStruct->ateBoost[battlerAtk] = 1;
     }
+    // Crystallize - Elite Redux
+    else if (gBattleMoves[move].type == TYPE_ROCK
+             && BattlerHasAbilityOrInnate(battlerAtk, ABILITY_CRYSTALLIZE)){
+        gBattleStruct->dynamicMoveType = TYPE_ICE | F_DYNAMIC_TYPE_2;
+        gBattleStruct->ateBoost[battlerAtk] = 1;
+    }
     else if (gBattleMoves[move].flags & FLAG_SOUND
              && BattlerHasAbilityOrInnate(battlerAtk, ABILITY_LIQUID_VOICE))
     {
@@ -5711,6 +5799,11 @@ void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
     else if (move == MOVE_AURA_WHEEL && gBattleMons[battlerAtk].species == SPECIES_MORPEKO_HANGRY)
     {
         gBattleStruct->dynamicMoveType = TYPE_DARK | F_DYNAMIC_TYPE_2;
+    }
+    // Sand Song - Elite Redux
+    else if (gBattleMoves[move].flags & FLAG_SOUND
+             && BattlerHasAbilityOrInnate(battlerAtk, ABILITY_SAND_SONG)) {
+        gBattleStruct->dynamicMoveType = TYPE_GROUND | F_DYNAMIC_TYPE_2;
     }
 
     // Check if a gem should activate.

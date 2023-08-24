@@ -6431,6 +6431,7 @@ BattleScript_FaintTarget::
 	tryactivatesoulheart
 	tryactivatereceiver BS_TARGET
 	tryactivatemoxie BS_ATTACKER        @ and chilling neigh, as one ice rider
+	tryactivatesouleater BS_ATTACKER    @ Soul Eater - Elite Redux
 	tryactivatebeastboost BS_ATTACKER
 	tryactivategrimneigh BS_ATTACKER    @ and as one shadow rider
 	tryactivatebattlebond BS_ATTACKER
@@ -8529,6 +8530,59 @@ BattleScript_SpeedBoostActivates::
 BattleScript_SpeedBoostActivatesEnd:
 	end3
 
+BattleScript_AttackBoostActivates::
+	call BattleScript_AbilityPopUp
+	playanimation BS_ATTACKER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
+	printstring STRINGID_PKMNRAISEDATTACK
+	waitmessage B_WAIT_TIME_LONG
+	end3
+
+BattleScript_InflatableActivates::
+	call BattleScript_AbilityPopUp
+	playanimation BS_TARGET, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
+	printstring STRINGID_INFLATABLEPKMNRAISEDDEFENSE
+	waitmessage B_WAIT_TIME_LONG
+	end3
+	
+BattleScript_BattlerAddedTheType::
+	copybyte gBattlerAbility, gBattlerAttacker
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_BATTLERADDEDTHETYPE
+	waitmessage B_WAIT_TIME_LONG
+	end3
+
+BattleScript_BattlerCoiledUp::
+	copybyte gBattlerAbility, gBattlerAttacker
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_BATTLERCOILEDUP
+	waitmessage B_WAIT_TIME_LONG
+	end3
+
+BattleScript_AirBlowerActivated::
+	copybyte gBattlerAbility, gBattlerAttacker
+	sethword sABILITY_OVERWRITE, ABILITY_AIR_BLOWER
+	showabilitypopup BS_ABILITY_BATTLER
+	printstring STRINGID_AIRBLOWERACTIVATED
+	waitmessage B_WAIT_TIME_LONG
+	sethword sABILITY_OVERWRITE, 0
+	end3
+
+BattleScript_AttackerBecameTheType::
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_ATTACKERTYPECHANGEDTO
+	waitmessage B_WAIT_TIME_LONG
+	return
+
+BattleScript_SelfSufficientActivates::
+	copybyte gBattlerAbility, gBattlerAttacker
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_PKMNSABILITYRESTOREDHPALITTLE
+	waitmessage B_WAIT_TIME_LONG
+	orword gHitMarker, HITMARKER_SKIP_DMG_TRACK | HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_IGNORE_DISGUISE | HITMARKER_PASSIVE_DAMAGE
+	healthbarupdate BS_ATTACKER
+	datahpupdate BS_ATTACKER
+	end2
+
 @ Can't compare directly to a value, have to compare to value at pointer
 sZero:
 .byte 0
@@ -9353,6 +9407,11 @@ BattleScript_FellStingerRaisesAtkEnd:
 	return
 
 BattleScript_AttackerAbilityStatRaiseEnd3::
+	call BattleScript_AttackerAbilityStatRaise
+	end3
+
+BattleScript_AttackerAbilityStatRaiseEnd3FromMajesticMoth::
+	sethword sABILITY_OVERWRITE, ABILITY_MAJESTIC_MOTH
 	call BattleScript_AttackerAbilityStatRaise
 	end3
 
@@ -10447,6 +10506,76 @@ BattleScript_NeutralizingGasExitsLoop:
 	jumpifbytenotequal gBattlerTarget, sByteFour, BattleScript_NeutralizingGasExitsLoop	@ SOMEHOW, comparing to gBattlersCount is problematic.
 	restoretarget
 	return
+
+BattleScript_HandleSoulEaterEffect::
+	copybyte gBattlerAbility, gBattlerAttacker
+	call BattleScript_AbilityPopUp
+	tryhealquarterhealth BS_ATTACKER, BattleScript_HandleSoulEaterEffect_NothingToHeal
+	healthbarupdate BS_ATTACKER
+	datahpupdate BS_ATTACKER
+	printstring STRINGID_ATTACKERREGAINEDHEALTH
+	waitmessage B_WAIT_TIME_LONG
+BattleScript_HandleSoulEaterEffect_NothingToHeal:
+    return
+
+BattleScript_AttackerSoulLinker::
+	call BattleScript_AbilityPopUp
+    orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_PASSIVE_DAMAGE | HITMARKER_IGNORE_DISGUISE
+	healthbarupdate BS_ATTACKER
+	datahpupdate BS_ATTACKER
+	tryfaintmon BS_ATTACKER
+	return
+
+BattleScript_SweetDreamsActivates::
+	printstring STRINGID_SWEETDREAMSHPUP
+	waitmessage B_WAIT_TIME_LONG
+	recordability BS_ATTACKER
+	statusanimation BS_ATTACKER
+	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_PASSIVE_DAMAGE
+	healthbarupdate BS_ATTACKER
+	datahpupdate BS_ATTACKER
+	end2
+	
+BattleScript_HauntedSpiritActivated::
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_PKMNBECAMECURSED
+	waitmessage B_WAIT_TIME_LONG
+	return
+	
+BattleScript_UserGetsReckoilDamaged::
+	call BattleScript_AbilityPopUp
+	call BattleScript_HurtsUser
+	return
+	
+BattleScript_HurtsUser:
+	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_PASSIVE_DAMAGE | HITMARKER_IGNORE_DISGUISE
+	healthbarupdate BS_ATTACKER
+	datahpupdate BS_ATTACKER
+	printstring STRINGID_PKMNHITWITHRECOIL
+	waitmessage B_WAIT_TIME_LONG
+	tryfaintmon BS_ATTACKER
+	return
+	
+BattleScript_SpiderLairActivated::
+	copybyte gBattlerAbility, gBattlerAttacker
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_SPIDERLAIRACTIVATED
+	waitmessage B_WAIT_TIME_LONG
+	end3
+	
+BattleScript_TwistedDimensionActivated::
+	copybyte gBattlerAbility, gBattlerAttacker
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_TWISTEDDIMENSIONACTIVATED
+	waitmessage B_WAIT_TIME_LONG
+	end3
+
+BattleScript_GripPincerActivated::
+	copybyte gBattlerAbility, gBattlerAttacker
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_GRIPPINCERACTIVATED
+	waitmessage B_WAIT_TIME_LONG
+	end3
 
 BattleScript_MagicianActivates::
 	call BattleScript_AbilityPopUp

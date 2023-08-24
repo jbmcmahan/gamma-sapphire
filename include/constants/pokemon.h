@@ -246,6 +246,14 @@
 #define FLAG_WIND_MOVE                            (1 << 29)
 #define FLAG_SLICING_MOVE                         (1 << 30)
 
+// Flags 2 - Elite Redux
+#define FLAG_KEEN_EDGE_BOOST                      (1 << 0) // Elite Redux
+#define FLAG_STRIKER_BOOST                        (1 << 1) // For Striker - Elite Redux
+#define FLAG_WEATHER_BASED                        (1 << 2) // For Weather Control
+#define FLAG_FIELD_BASED                          (1 << 3) // For Field Explorer
+#define FLAG_BONE_BASED                           (1 << 4) // For Bone Zone
+#define FLAG_AIR_BASED                           (1 << 4) // For Bone Zone
+
 // Split defines.
 #define SPLIT_PHYSICAL  0x0
 #define SPLIT_SPECIAL   0x1

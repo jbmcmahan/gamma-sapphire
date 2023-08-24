@@ -712,6 +712,37 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             RETURN_SCORE_MINUS(20);
         }
 
+        // Sand Song - Elite Redux
+        if(gBattleMoves[move].flags & FLAG_SOUND
+         && (AI_DATA->abilities[battlerAtk] == ABILITY_SAND_SONG
+          || BattlerHasInnate(battlerAtk, ABILITY_SAND_SONG)))
+        {
+            if(IS_BATTLER_OF_TYPE(battlerDef, TYPE_FLYING) || (AI_DATA->abilities[battlerDef] == ABILITY_LEVITATE || BattlerHasInnate(battlerDef, ABILITY_LEVITATE)))
+                RETURN_SCORE_MINUS(20);
+        }
+
+        // Aerodynamics - Elite Redux
+        if (moveType == TYPE_FLYING
+          && (AI_DATA->abilities[battlerDef] == ABILITY_AERODYNAMICS || BattlerHasInnate(battlerDef, ABILITY_AERODYNAMICS)))
+        {
+            RETURN_SCORE_MINUS(30);
+        }
+
+        // Inflatable - Elite Redux
+        if ((moveType == TYPE_FLYING || moveType == TYPE_FIRE)
+          && (AI_DATA->abilities[battlerDef] == ABILITY_INFLATABLE || BattlerHasInnate(battlerDef, ABILITY_INFLATABLE)))
+        {
+            RETURN_SCORE_MINUS(20);
+        }
+
+        // Ground Shock - Elite Redux
+        if (moveType == TYPE_ELECTRIC
+          && IS_BATTLER_OF_TYPE(battlerDef, TYPE_GROUND)
+          && (AI_DATA->abilities[battlerAtk] == ABILITY_GROUND_SHOCK || BattlerHasInnate(battlerAtk, ABILITY_GROUND_SHOCK)))
+        {
+            score += 2;
+        }
+
         // check off screen
         if (IsSemiInvulnerable(battlerDef, move) && moveEffect != EFFECT_SEMI_INVULNERABLE && AI_WhoStrikesFirst(battlerAtk, battlerDef, move) == AI_IS_FASTER)
             RETURN_SCORE_MINUS(20);    // if target off screen and we go first, don't use move
@@ -851,6 +882,10 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                   && AI_DATA->holdEffects[battlerDef] != HOLD_EFFECT_UTILITY_UMBRELLA
                   && IsNonVolatileStatusMoveEffect(moveEffect))
                     RETURN_SCORE_MINUS(10);
+                break;
+            case ABILITY_AERODYNAMICS:
+                if (moveType == TYPE_FLYING)
+                    RETURN_SCORE_MINUS(20);
                 break;
             } // def ability checks
 
@@ -4874,6 +4909,11 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         {
             score++;
         }
+        break;
+    // Rampage - Elite Redux
+    case EFFECT_RECHARGE:
+        if ((AI_DATA->abilities[battlerAtk] == ABILITY_RAMPAGE || BattlerHasInnate(battlerAtk, ABILITY_RAMPAGE)) && CanIndexMoveFaintTarget(battlerAtk, battlerDef, AI_THINKING_STRUCT->movesetIndex, 0))
+            score += 4; // No recharge if Rampage attacker KOs the target
         break;
     case EFFECT_REVIVAL_BLESSING:
         if (GetFirstFaintedPartyIndex(battlerAtk) != PARTY_SIZE)

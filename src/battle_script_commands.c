@@ -1552,6 +1552,51 @@ static void Cmd_attackcanceler(void)
         return;
     }
 
+    // Raging Boxer - Elite Redux
+    if (gSpecialStatuses[gBattlerAttacker].parentalBondState == PARENTAL_BOND_OFF
+    && BattlerHasAbilityOrInnate(gBattlerAttacker, ABILITY_RAGING_BOXER)
+    && (gBattleMoves[gCurrentMove].flags & FLAG_IRON_FIST_BOOST)
+    && IsMoveAffectedByParentalBond(gCurrentMove, gBattlerAttacker)
+    && !(gAbsentBattlerFlags & gBitTable[gBattlerTarget]))
+    {
+        gSpecialStatuses[gBattlerAttacker].parentalBondState = PARENTAL_BOND_1ST_HIT;
+        gMultiHitCounter = 2;
+        PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
+        return;
+    }
+
+    // Multi Headed - Elite Redux
+    if (!gSpecialStatuses[gBattlerAttacker].parentalBondState
+    && BattlerHasAbilityOrInnate(gBattlerAttacker, ABILITY_MULTI_HEADED)
+    && IsMoveAffectedByParentalBond(gCurrentMove, gBattlerAttacker)
+    && ((gSpeciesInfo[gBattleMons[gBattlerAttacker].species].flags & F_TWO_HEADED) || (gSpeciesInfo[gBattleMons[gBattlerAttacker].species].flags & F_THREE_HEADED))
+    && !(gAbsentBattlerFlags & gBitTable[gBattlerTarget]))
+    {
+        if(gSpeciesInfo[gBattleMons[gBattlerAttacker].species].flags & F_TWO_HEADED){
+            gMultiHitCounter = 2;
+            gSpecialStatuses[gBattlerAttacker].parentalBondState = 2;
+        }
+        else{
+            gMultiHitCounter = 3;
+            gSpecialStatuses[gBattlerAttacker].parentalBondState = 3;
+        }
+		
+        PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
+        return;
+    }
+
+	// Hyper Aggressive - Elite Redux
+	if (!gSpecialStatuses[gBattlerAttacker].parentalBondState
+    && (BattlerHasAbilityOrInnate(gBattlerAttacker, ABILITY_HYPER_AGGRESSIVE))
+    && IsMoveAffectedByParentalBond(gCurrentMove, gBattlerAttacker)
+    && !(gAbsentBattlerFlags & gBitTable[gBattlerTarget]))
+    {
+        gSpecialStatuses[gBattlerAttacker].parentalBondState = 2;
+        gMultiHitCounter = 2;
+        PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
+        return;
+    }
+
     // Check Protean activation.
     if (ProteanTryChangeType(gBattlerAttacker, attackerAbility, gCurrentMove, moveType))
     {
@@ -1787,6 +1832,24 @@ static bool32 AccuracyCalcHelper(u16 move)
         return TRUE;
     }
 
+    // Fatal Precision - Elite Redux
+    if (BattlerHasAbilityOrInnate(gBattlerAttacker, ABILITY_FATAL_PRECISION) &&
+         CalcTypeEffectivenessMultiplier(move, gBattleMoves[move].type, gBattlerAttacker, gBattlerTarget, TRUE) >= UQ_4_12(2.0))
+    {
+        if (!JumpIfMoveFailed(7, move))
+            RecordAbilityBattle(gBattlerTarget, ABILITY_FATAL_PRECISION);
+        return TRUE;
+    }
+
+    // Grip Pincer - Elite Redux
+    if(BattlerHasAbilityOrInnate(gBattlerAttacker, ABILITY_GRIP_PINCER) &&
+        gBattleMons[gBattlerTarget].status2 & STATUS2_WRAPPED)
+    {
+        if (!JumpIfMoveFailed(7, move))
+            RecordAbilityBattle(gBattlerAttacker, ABILITY_GRIP_PINCER);
+        return TRUE;
+    }
+
     if (gBattleStruct->zmove.active && !(gStatuses3[gBattlerTarget] & STATUS3_SEMI_INVULNERABLE))
     {
         JumpIfMoveFailed(7, move);
@@ -1872,6 +1935,22 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move, u32 atkAbility, u
         buff = MAX_STAT_STAGE;
 
     moveAcc = gBattleMoves[move].accuracy;
+
+    // Hypnotist - Elite Redux
+    if(move == MOVE_HYPNOSIS && BattlerHasAbilityOrInnate(battlerAtk, ABILITY_HYPNOTIST))
+        moveAcc = moveAcc * 1.5;
+
+    // Bad Luck Ability lowers accuracy by 5% - Elite Redux
+    if (BattlerHasAbilityOrInnate(battlerDef, ABILITY_BAD_LUCK)
+        || BattlerHasAbilityOrInnate(BATTLE_PARTNER(battlerDef), ABILITY_BAD_LUCK))
+        moveAcc = (moveAcc * 95) / 100;
+
+    // Lunar Eclipse - Elite Redux
+    if(move == MOVE_HYPNOSIS && BattlerHasAbilityOrInnate(battlerAtk, ABILITY_LUNAR_ECLIPSE))
+		moveAcc = moveAcc * 1.5;
+
+
+
     // Check Thunder and Hurricane on sunny weather.
     if (IsBattlerWeatherAffected(battlerDef, B_WEATHER_SUN)
       && (gBattleMoves[move].effect == EFFECT_THUNDER || gBattleMoves[move].effect == EFFECT_HURRICANE))
@@ -1879,6 +1958,19 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move, u32 atkAbility, u
     // Check Wonder Skin.
     if (defAbility == ABILITY_WONDER_SKIN && IS_MOVE_STATUS(move) && moveAcc > 50)
         moveAcc = 50;
+
+    // Sighting System - Elite Redux
+    if (BattlerHasAbilityOrInnate(battlerAtk, ABILITY_SIGHTING_SYSTEM))
+        moveAcc = 100;
+
+    // Deadeye - Elite Redux
+    if (BattlerHasAbilityOrInnate(battlerAtk, ABILITY_DEADEYE))
+        moveAcc = 100;
+
+    // Artillery - Elite Redux
+    if (BattlerHasAbilityOrInnate(battlerAtk, ABILITY_ARTILLERY)
+        && (gBattleMoves[move].flags & FLAG_MEGA_LAUNCHER_BOOST))
+        moveAcc = 100;
 
     calc = gAccuracyStageRatios[buff].dividend * moveAcc;
     calc /= gAccuracyStageRatios[buff].divisor;
@@ -2092,6 +2184,7 @@ s32 CalcCritChanceStage(u8 battlerAtk, u8 battlerDef, u32 move, bool32 recordAbi
     s32 critChance = 0;
     u32 abilityAtk = GetBattlerAbility(gBattlerAttacker);
     u32 abilityDef = GetBattlerAbility(gBattlerTarget);
+    u32 abilityDefPartner = GetBattlerAbility(BATTLE_PARTNER(gBattlerTarget));
     u32 holdEffectAtk = GetBattlerHoldEffect(battlerAtk, TRUE);
 
     if (gSideStatuses[battlerDef] & SIDE_STATUS_LUCKY_CHANT
@@ -2099,7 +2192,10 @@ s32 CalcCritChanceStage(u8 battlerAtk, u8 battlerDef, u32 move, bool32 recordAbi
     {
         critChance = -1;
     }
-    else if (abilityDef == ABILITY_BATTLE_ARMOR || abilityDef == ABILITY_SHELL_ARMOR || BattlerHasInnate(battlerDef, ABILITY_BATTLE_ARMOR) || BattlerHasInnate(battlerDef, ABILITY_SHELL_ARMOR))
+    else if (abilityDefPartner == ABILITY_BAD_LUCK
+             || BattlerHasAbilityOrInnate(battlerDef, ABILITY_BAD_LUCK) // Bad Luck - Elite Redux
+             || BattlerHasAbilityOrInnate(battlerDef, ABILITY_BATTLE_ARMOR)
+             || BattlerHasAbilityOrInnate(battlerDef, ABILITY_SHELL_ARMOR))
     {
         if (recordAbility)
             RecordAbilityBattle(battlerDef, abilityDef);
@@ -2107,7 +2203,7 @@ s32 CalcCritChanceStage(u8 battlerAtk, u8 battlerDef, u32 move, bool32 recordAbi
     }
     else if (gStatuses3[battlerAtk] & STATUS3_LASER_FOCUS
              || gBattleMoves[move].effect == EFFECT_ALWAYS_CRIT
-             || (abilityAtk == ABILITY_MERCILESS && gBattleMons[battlerDef].status1 & STATUS1_PSN_ANY)
+             || (BattlerHasAbilityOrInnate(gBattlerAttacker, ABILITY_MERCILESS) && gBattleMons[battlerDef].status1 & STATUS1_PSN_ANY)
              || move == MOVE_SURGING_STRIKES)
     {
         critChance = -2;
@@ -2122,7 +2218,10 @@ s32 CalcCritChanceStage(u8 battlerAtk, u8 battlerDef, u32 move, bool32 recordAbi
                 #if B_AFFECTION_MECHANICS == TRUE
                     + 2 * (GetBattlerFriendshipScore(gBattlerAttacker) >= FRIENDSHIP_200_TO_254)
                 #endif
-                    + (abilityAtk == ABILITY_SUPER_LUCK);
+                    + (BattlerHasAbilityOrInnate(gBattlerAttacker, ABILITY_SUPER_LUCK))
+                    + 2 * (BattlerHasAbilityOrInnate(battlerAtk, ABILITY_PRECISE_FIST) && (gBattleMoves[move].flags & FLAG_IRON_FIST_BOOST)) // Precise Fist - Elite Redux
+                    + (BattlerHasAbilityOrInnate(gBattlerAttacker, ABILITY_PERFECTIONIST) && gBattleMoves[move].power <= 50); // Perfectionist - Elite Redux
+
 
         if (critChance >= ARRAY_COUNT(sCriticalHitChance))
             critChance = ARRAY_COUNT(sCriticalHitChance) - 1;
@@ -3610,7 +3709,8 @@ void SetMoveEffect(bool32 primary, u32 certain)
                 }
                 break;
             case MOVE_EFFECT_DEF_SPDEF_DOWN: // Close Combat
-                if (!NoAliveMonsForEitherParty())
+                if (!NoAliveMonsForEitherParty()
+                    && !BattlerHasAbilityOrInnate(gBattlerAttacker, ABILITY_BAD_COMPANY))
                 {
                     BattleScriptPush(gBattlescriptCurrInstr + 1);
                     gBattlescriptCurrInstr = BattleScript_DefSpDefDown;
@@ -3639,7 +3739,8 @@ void SetMoveEffect(bool32 primary, u32 certain)
                 }
                 break;
             case MOVE_EFFECT_SP_ATK_TWO_DOWN: // Overheat
-                if (!NoAliveMonsForEitherParty())
+                if (!NoAliveMonsForEitherParty()
+                    && !BattlerHasAbilityOrInnate(gBattlerAttacker, ABILITY_BAD_COMPANY)) // Bad Company - Elite Redux
                 {
                     BattleScriptPush(gBattlescriptCurrInstr + 1);
                     gBattlescriptCurrInstr = BattleScript_SAtkDown2;
@@ -3662,7 +3763,8 @@ void SetMoveEffect(bool32 primary, u32 certain)
             case MOVE_EFFECT_FLAME_BURST:
                 if (IsBattlerAlive(BATTLE_PARTNER(gBattlerTarget))
                         && !(gStatuses3[BATTLE_PARTNER(gBattlerTarget)] & STATUS3_SEMI_INVULNERABLE)
-                        && GetBattlerAbility(BATTLE_PARTNER(gBattlerTarget)) != ABILITY_MAGIC_GUARD)
+                        && !BattlerHasAbilityOrInnate(BATTLE_PARTNER(gBattlerTarget), ABILITY_MAGIC_GUARD)
+                        && !BattlerHasAbilityOrInnate(BATTLE_PARTNER(gBattlerTarget), ABILITY_IMPENETRABLE)) // Elite Redux - Impenetrable
                 {
                     gBattleScripting.savedBattler = BATTLE_PARTNER(gBattlerTarget);
                     gBattleMoveDamage = gBattleMons[BATTLE_PARTNER(gBattlerTarget)].hp / 16;
@@ -3873,12 +3975,26 @@ static void Cmd_seteffectwithchance(void)
 {
     CMD_ARGS();
 
-    u32 percentChance;
+    u32 percentChance = gBattleMoves[gCurrentMove].secondaryEffectChance;
+    u8 moveType = gBattleMoves[gCurrentMove].type;
+    u8 moveEffect = gBattleMoves[gCurrentMove].effect;
 
-    if (GetBattlerAbility(gBattlerAttacker) == ABILITY_SERENE_GRACE)
-        percentChance = gBattleMoves[gCurrentMove].secondaryEffectChance * 2;
-    else
-        percentChance = gBattleMoves[gCurrentMove].secondaryEffectChance;
+    // Serene Grace
+    if (BattlerHasAbilityOrInnate(gBattlerAttacker, ABILITY_SERENE_GRACE))
+        percentChance = percentChance * 2;
+
+    // Pyromancy - Elite Redux
+    if (BattlerHasAbilityOrInnate(gBattlerAttacker, ABILITY_PYROMANCY)
+         && moveType == TYPE_FIRE
+         && moveEffect == EFFECT_BURN_HIT){
+        percentChance = percentChance * 5;
+    }
+
+    //Precise Fist - Elite Redux
+    if (BattlerHasAbilityOrInnate(gBattlerAttacker, ABILITY_PRECISE_FIST)
+         && (gBattleMoves[gCurrentMove].flags & FLAG_IRON_FIST_BOOST))
+        percentChance = percentChance * 2;
+
 
     if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
      && gBattleScripting.moveEffect)
@@ -5516,7 +5632,9 @@ static void Cmd_moveend(void)
         case MOVEEND_PROTECT_LIKE_EFFECT:
             if (gProtectStructs[gBattlerAttacker].touchedProtectLike)
             {
-                if (gProtectStructs[gBattlerTarget].spikyShielded && GetBattlerAbility(gBattlerAttacker) != ABILITY_MAGIC_GUARD)
+                if (gProtectStructs[gBattlerTarget].spikyShielded
+                    && !BattlerHasAbilityOrInnate(gBattlerAttacker, ABILITY_MAGIC_GUARD)
+                    && !BattlerHasAbilityOrInnate(gBattlerAttacker, ABILITY_IMPENETRABLE)) // Impenetrable - Elite Redux
                 {
                     gProtectStructs[gBattlerAttacker].touchedProtectLike = FALSE;
                     gBattleMoveDamage = gBattleMons[gBattlerAttacker].maxHP / 8;
@@ -5706,7 +5824,9 @@ static void Cmd_moveend(void)
             break;
         case MOVEEND_CHOICE_MOVE: // update choice band move
             if (gHitMarker & HITMARKER_OBEYS
-             && (HOLD_EFFECT_CHOICE(holdEffectAtk) || GetBattlerAbility(gBattlerAttacker) == ABILITY_GORILLA_TACTICS)
+             && (HOLD_EFFECT_CHOICE(holdEffectAtk)
+              || GetBattlerAbility(gBattlerAttacker) == ABILITY_GORILLA_TACTICS
+              || GetBattlerAbility(gBattlerAttacker) == ABILITY_SAGE_POWER) // Sage Power - Elite Redux
              && gChosenMove != MOVE_STRUGGLE
              && (*choicedMoveAtk == MOVE_NONE || *choicedMoveAtk == MOVE_UNAVAILABLE))
             {
@@ -7130,7 +7250,8 @@ static void Cmd_switchineffects(void)
     }
     else if (!(gSideStatuses[GetBattlerSide(gActiveBattler)] & SIDE_STATUS_SPIKES_DAMAGED)
         && (gSideStatuses[GetBattlerSide(gActiveBattler)] & SIDE_STATUS_SPIKES)
-        && GetBattlerAbility(gActiveBattler) != ABILITY_MAGIC_GUARD
+        && !BattlerHasAbilityOrInnate(gActiveBattler, ABILITY_MAGIC_GUARD)
+        && !BattlerHasAbilityOrInnate(gActiveBattler, ABILITY_IMPENETRABLE) // Impenetrable - Elite Redux
         && IsBattlerAffectedByHazards(gActiveBattler, FALSE)
         && IsBattlerGrounded(gActiveBattler))
     {
@@ -7145,7 +7266,8 @@ static void Cmd_switchineffects(void)
     else if (!(gSideStatuses[GetBattlerSide(gActiveBattler)] & SIDE_STATUS_STEALTH_ROCK_DAMAGED)
         && (gSideStatuses[GetBattlerSide(gActiveBattler)] & SIDE_STATUS_STEALTH_ROCK)
         && IsBattlerAffectedByHazards(gActiveBattler, FALSE)
-        && GetBattlerAbility(gActiveBattler) != ABILITY_MAGIC_GUARD)
+        && !BattlerHasAbilityOrInnate(gActiveBattler, ABILITY_MAGIC_GUARD)
+        && !BattlerHasAbilityOrInnate(gActiveBattler, ABILITY_IMPENETRABLE)) // Impenetrable - Elite Redux
     {
         gSideStatuses[GetBattlerSide(gActiveBattler)] |= SIDE_STATUS_STEALTH_ROCK_DAMAGED;
         gBattleMoveDamage = GetStealthHazardDamage(gBattleMoves[MOVE_STEALTH_ROCK].type, gActiveBattler);
@@ -8509,7 +8631,17 @@ bool32 CanPoisonType(u8 battlerAttacker, u8 battlerTarget)
 
 bool32 CanParalyzeType(u8 battlerAttacker, u8 battlerTarget)
 {
-    return !(B_PARALYZE_ELECTRIC >= GEN_6 && IS_BATTLER_OF_TYPE(battlerTarget, TYPE_ELECTRIC));
+    //return !(B_PARALYZE_ELECTRIC >= GEN_6 && IS_BATTLER_OF_TYPE(battlerTarget, TYPE_ELECTRIC));
+
+	// New Code added for Ability Overcharge - Elite Redux
+	if (IS_BATTLER_OF_TYPE(battlerTarget, TYPE_ELECTRIC))
+	{
+		if (BattlerHasAbilityOrInnate(battlerAttacker, ABILITY_OVERCHARGE))
+			return TRUE;
+		if (B_PARALYZE_ELECTRIC >= GEN_6)
+			return FALSE;
+	}
+	return TRUE;
 }
 
 bool32 CanUseLastResort(u8 battlerId)
@@ -8614,10 +8746,12 @@ u32 IsFlowerVeilProtected(u32 battler)
 
 u32 IsLeafGuardProtected(u32 battler)
 {
-    if (IsBattlerWeatherAffected(battler, B_WEATHER_SUN))
-        return GetBattlerAbility(battler) == ABILITY_LEAF_GUARD;
+    if (IsBattlerWeatherAffected(battler, B_WEATHER_SUN) 
+        && (BattlerHasAbilityOrInnate(battler, ABILITY_LEAF_GUARD) || 
+        BattlerHasAbilityOrInnate(battler, ABILITY_BIG_LEAVES))) // Big Leaves - Elite Redux
+        return TRUE;
     else
-        return 0;
+        return FALSE;
 }
 
 bool32 IsShieldsDownProtected(u32 battler)
@@ -9499,6 +9633,16 @@ static void Cmd_various(void)
         MarkBattlerForControllerExec(gActiveBattler);
         break;
     }
+    // Rampage - Elite Redux
+    case VARIOUS_TRY_ACTIVATE_RAMPAGE:
+        if (BattlerHasAbilityOrInnate(gActiveBattler, ABILITY_RAMPAGE)
+          && HasAttackerFaintedTarget()
+          && !NoAliveMonsForEitherParty())
+        {
+            gDisableStructs[gActiveBattler].rechargeTimer = 0;
+            gBattleMons[gActiveBattler].status2 &= ~(STATUS2_RECHARGE);
+        }
+        break;
     case VARIOUS_TRY_ACTIVATE_MOXIE:    // and chilling neigh + as one ice rider
     {
         VARIOUS_ARGS();
@@ -9526,6 +9670,41 @@ static void Cmd_various(void)
         }
         break;
     }
+    case VARIOUS_TRY_ACTIVATE_SOUL_EATER:
+        if (BattlerHasAbilityOrInnate(gActiveBattler, ABILITY_SOUL_EATER) || 
+            BattlerHasAbilityOrInnate(gActiveBattler, ABILITY_SCAVENGER) || 
+            BattlerHasAbilityOrInnate(gActiveBattler, ABILITY_PREDATOR) || 
+		    BattlerHasAbilityOrInnate(gActiveBattler, ABILITY_LOOTER)) {
+            if (!HasAttackerFaintedTarget() && NoAliveMonsForEitherParty())
+                break;
+            
+            // Only run script if there is something to do and the attacker is alive
+            if (BATTLER_MAX_HP(gBattlerAttacker) || !IsBattlerAlive(gBattlerAttacker))
+                break;
+
+            if (BattlerHasAbilityOrInnate(gActiveBattler, ABILITY_SOUL_EATER)){
+                gBattleScripting.abilityPopupOverwrite = ABILITY_SOUL_EATER;
+				gLastUsedAbility = ABILITY_SOUL_EATER;
+            }
+            else if (BattlerHasAbilityOrInnate(gActiveBattler, ABILITY_SCAVENGER)){
+                gBattleScripting.abilityPopupOverwrite = ABILITY_SCAVENGER;
+				gLastUsedAbility = ABILITY_SCAVENGER;
+            }
+            else if (BattlerHasAbilityOrInnate(gActiveBattler, ABILITY_PREDATOR)){
+                gBattleScripting.abilityPopupOverwrite = ABILITY_PREDATOR;
+				gLastUsedAbility = ABILITY_PREDATOR;
+            }
+            else if (BattlerHasAbilityOrInnate(gActiveBattler, ABILITY_LOOTER)){
+                gBattleScripting.abilityPopupOverwrite = ABILITY_LOOTER;
+				gLastUsedAbility = ABILITY_LOOTER;
+            }
+
+            // Let the battle script handler decide the stat changes
+            BattleScriptPush(gBattlescriptCurrInstr + 3);
+            gBattlescriptCurrInstr = BattleScript_HandleSoulEaterEffect;
+            return;
+        }
+        break;
     case VARIOUS_TRY_ACTIVATE_GRIM_NEIGH:   // and as one shadow rider
     {
         VARIOUS_ARGS();
@@ -12710,7 +12889,9 @@ static void Cmd_weatherdamage(void)
     u32 ability = GetBattlerAbility(gBattlerAttacker);
 
     gBattleMoveDamage = 0;
-    if (IsBattlerAlive(gBattlerAttacker) && WEATHER_HAS_EFFECT && BattlerHasAbilityOrInnate(gBattlerAttacker, ABILITY_MAGIC_GUARD))
+    if (IsBattlerAlive(gBattlerAttacker) && WEATHER_HAS_EFFECT
+        && !BattlerHasAbilityOrInnate(gBattlerAttacker, ABILITY_MAGIC_GUARD)
+        && !BattlerHasAbilityOrInnate(gBattlerAttacker, ABILITY_IMPENETRABLE)) // Impenetrable - Elite Redux
     {
         if (gBattleWeather & B_WEATHER_SANDSTORM)
         {
@@ -12746,6 +12927,8 @@ static void Cmd_weatherdamage(void)
                 && !BattlerHasAbilityOrInnate(gBattlerAttacker, ABILITY_SNOW_CLOAK)
                 && !BattlerHasAbilityOrInnate(gBattlerAttacker, ABILITY_OVERCOAT)
                 && !BattlerHasAbilityOrInnate(gBattlerAttacker, ABILITY_ICE_BODY)
+                && !BattlerHasAbilityOrInnate(gBattlerAttacker, ABILITY_AURORA_BOREALIS) // Aurora Borealis - Elite Redux
+                && !BattlerHasAbilityOrInnate(gBattlerAttacker, ABILITY_NORTH_WIND) // North Wind - Elite Redux
                 && !(gStatuses3[gBattlerAttacker] & (STATUS3_UNDERGROUND | STATUS3_UNDERWATER))
                 && GetBattlerHoldEffect(gBattlerAttacker, TRUE) != HOLD_EFFECT_SAFETY_GOGGLES)
             {
@@ -13335,8 +13518,12 @@ static u8 AttacksThisTurn(u8 battlerId, u16 move) // Note: returns 1 if it's a c
 {
     // first argument is unused
     if (gBattleMoves[move].effect == EFFECT_SOLAR_BEAM
-        && IsBattlerWeatherAffected(battlerId, B_WEATHER_SUN))
+         && (IsBattlerWeatherAffected(battlerId, B_WEATHER_SUN)
+          || BattlerHasAbilityOrInnate(battlerId, ABILITY_CHLOROPLAST) // Chloroplast - Elite Redux
+          || BattlerHasAbilityOrInnate(battlerId, ABILITY_SOLAR_FLARE) // Solar Flare - Elite Redux
+          || BattlerHasAbilityOrInnate(battlerId, ABILITY_BIG_LEAVES))) // Big Leaves - Elite Redux
         return 2;
+        // Chloroplast - Elite Redux
 
     if (gBattleMoves[move].effect == EFFECT_SKULL_BASH
      || gBattleMoves[move].effect == EFFECT_TWO_TURNS_ATTACK
@@ -14055,10 +14242,18 @@ static void Cmd_recoverbasedonsunlight(void)
         }
         else
         {
-            if (!(gBattleWeather & B_WEATHER_ANY) || !WEATHER_HAS_EFFECT || GetBattlerHoldEffect(gBattlerAttacker, TRUE) == HOLD_EFFECT_UTILITY_UMBRELLA)
+            if ((!(gBattleWeather & B_WEATHER_ANY) || !WEATHER_HAS_EFFECT || GetBattlerHoldEffect(gBattlerAttacker, TRUE) == HOLD_EFFECT_UTILITY_UMBRELLA)
+                 && !BattlerHasAbilityOrInnate(gBattlerAttacker, ABILITY_CHLOROPLAST) // Chloroplast - Elite Redux
+                 && !BattlerHasAbilityOrInnate(gBattlerAttacker, ABILITY_SOLAR_FLARE) // Solar Flare - Elite Redux
+                 && !BattlerHasAbilityOrInnate(gBattlerAttacker, ABILITY_BIG_LEAVES)) // Big Leaves - Elite Redux
                 gBattleMoveDamage = gBattleMons[gBattlerAttacker].maxHP / 2;
-            else if (gBattleWeather & B_WEATHER_SUN)
+                // Chloroplast - Elite Redux
+            else if (gBattleWeather & B_WEATHER_SUN
+                 || BattlerHasAbilityOrInnate(gBattlerAttacker, ABILITY_CHLOROPLAST) // Chloroplast - Elite Redux
+                 || BattlerHasAbilityOrInnate(gBattlerAttacker, ABILITY_SOLAR_FLARE) // Solar Flare - Elite Redux
+                 || BattlerHasAbilityOrInnate(gBattlerAttacker, ABILITY_BIG_LEAVES)) // Big Leaves - Elite Redux
                 gBattleMoveDamage = 20 * gBattleMons[gBattlerAttacker].maxHP / 30;
+                // Chloroplast - Elite Redux
             else // not sunny weather
                 gBattleMoveDamage = gBattleMons[gBattlerAttacker].maxHP / 4;
         }

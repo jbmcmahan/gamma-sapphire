@@ -471,6 +471,33 @@ extern const u8 BattleScript_SpikesActivates[];
 extern const u8 BattleScript_BerserkGeneRet[];
 extern const u8 BattleScript_TargetFormChangeWithStringNoPopup[];
 
+extern const u8 BattleScript_AttackBoostActivates[];
+extern const u8 BattleScript_InflatableActivates[];
+extern const u8 BattleScript_AngerPointsLightBoostActivates[];
+extern const u8 BattleScript_BattlerInnateStatRaiseOnSwitchIn[];
+extern const u8 BattleScript_BattlerAddedTheType[];
+extern const u8 BattleScript_BattlerCoiledUp[];
+extern const u8 BattleScript_AttackerBecameTheType[];
+extern const u8 BattleScript_SelfSufficientActivates[];
+extern const u8 BattleScript_BattlerEnvelopedItselfInAVeil[];
+extern const u8 BattleScript_AirBlowerActivated[];
+extern const u8 BattleScript_AttackerRoughSkinActivates[];
+extern const u8 BattleScript_ScareActivates[];
+extern const u8 BattleScript_ScareActivatesEnd3[];
+extern const u8 BattleScript_HandleSoulEaterEffect[];
+extern const u8 BattleScript_AttackerSoulLinker[];
+extern const u8 BattleScript_SweetDreamsActivates[];
+extern const u8 BattleScript_HauntedSpiritActivated[];
+extern const u8 BattleScript_UserGetsReckoilDamaged[];
+extern const u8 BattleScript_SpiderLairActivated[];
+extern const u8 BattleScript_TwistedDimensionActivated[];
+extern const u8 BattleScript_NorthWindActivated[];
+extern const u8 BattleScript_GripPincerActivated[];
+extern const u8 BattleScript_PrintDamageDoneString[];
+extern const u8 BattleScript_BeakBlastSetUp[];
+extern const u8 BattleScript_BeakBlastBurn[];
+extern const u8 BattleScript_AttackerAbilityStatRaiseEnd3FromMajesticMoth[];
+
 // zmoves
 extern const u8 BattleScript_ZMoveActivateDamaging[];
 extern const u8 BattleScript_ZMoveActivateStatus[];

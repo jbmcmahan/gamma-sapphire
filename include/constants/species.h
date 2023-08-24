@@ -1,6 +1,13 @@
 #ifndef GUARD_CONSTANTS_SPECIES_H
 #define GUARD_CONSTANTS_SPECIES_H
 
+// species flags
+#define F_ULTRA_BEAST   (1 << 0)
+#define F_ALOLAN_FORM   (1 << 1)
+#define F_GALARIAN_FORM (1 << 2)
+#define F_TWO_HEADED    (1 << 3)
+#define F_THREE_HEADED  (1 << 4)
+
 #define SPECIES_NONE 0
 #define SPECIES_BULBASAUR 1
 #define SPECIES_IVYSAUR 2
@@ -1371,8 +1378,18 @@
 // Basculegion
 #define SPECIES_BASCULEGION_FEMALE           FORMS_START + 329
 
+// Custom Megas
+#define SPECIES_MILOTIC_MEGA                FORMS_START + 330
+#define SPECIES_BUTTERFREE_MEGA             FORMS_START + 331
+#define SPECIES_MACHAMP_MEGA                FORMS_START + 332
+#define SPECIES_KINGLER_MEGA                FORMS_START + 333
+#define SPECIES_LAPRAS_MEGA                 FORMS_START + 334
+#define SPECIES_FLYGON_MEGA                 FORMS_START + 335
+#define SPECIES_KINGDRA_MEGA                FORMS_START + 336
+
+
 #define FORMS_START SPECIES_ENAMORUS
-#define SPECIES_EGG SPECIES_BASCULEGION_FEMALE + 1
+#define SPECIES_EGG SPECIES_KINGDRA_MEGA + 1
 
 #define NUM_SPECIES SPECIES_EGG
 

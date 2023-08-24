@@ -1527,6 +1527,10 @@
 	various \battler, VARIOUS_TRY_ACTIVATE_MOXIE
 	.endm
 
+	.macro tryactivaterampage battler:req
+	various \battler, VARIOUS_TRY_ACTIVATE_RAMPAGE
+	.endm
+
 	.macro tryactivatebeastboost battler:req
 	various \battler, VARIOUS_TRY_ACTIVATE_BEAST_BOOST
 	.endm
@@ -1537,6 +1541,10 @@
 
 	.macro tryactivatesoulheart
 	various BS_ATTACKER, VARIOUS_TRY_ACTIVATE_SOULHEART
+	.endm
+
+	.macro tryactivatesouleater battler:req
+	various \battler, VARIOUS_TRY_ACTIVATE_SOUL_EATER
 	.endm
 
 	.macro tryactivatefellstinger battler:req
