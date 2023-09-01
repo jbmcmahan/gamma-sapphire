@@ -207,7 +207,7 @@
       "width": 20,
       "height": 10,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Pacifidlog",
+      "secondary_tileset": "gTileset_Rustboro",
       "border_filepath": "data/layouts/Route105/border.bin",
       "blockdata_filepath": "data/layouts/Route105/map.bin"
     },
@@ -217,7 +217,7 @@
       "width": 20,
       "height": 10,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Dewford",
+      "secondary_tileset": "gTileset_Rustboro",
       "border_filepath": "data/layouts/Route106/border.bin",
       "blockdata_filepath": "data/layouts/Route106/map.bin"
     },
@@ -227,7 +227,7 @@
       "width": 20,
       "height": 10,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Dewford",
+      "secondary_tileset": "gTileset_Rustboro",
       "border_filepath": "data/layouts/Route107/border.bin",
       "blockdata_filepath": "data/layouts/Route107/map.bin"
     },
@@ -337,7 +337,7 @@
       "width": 20,
       "height": 10,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Mauville",
+      "secondary_tileset": "gTileset_Rustboro",
       "border_filepath": "data/layouts/Route118/border.bin",
       "blockdata_filepath": "data/layouts/Route118/map.bin"
     },
