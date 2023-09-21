@@ -95,11 +95,6 @@ Route121_EventScript_RematchWalter::
 	msgbox Route121_Text_WalterPostRematch, MSGBOX_AUTOCLOSE
 	end
 
-Route121_EventScript_Tammy::
-	trainerbattle_single TRAINER_TAMMY, Route121_Text_TammyIntro, Route121_Text_TammyDefeat
-	msgbox Route121_Text_TammyPostBattle, MSGBOX_AUTOCLOSE
-	end
-
 Route121_EventScript_Kate::
 	trainerbattle_double TRAINER_KATE_AND_JOY, Route121_Text_KateIntro, Route121_Text_KateDefeat, Route121_Text_KateNotEnoughMons
 	msgbox Route121_Text_KatePostBattle, MSGBOX_AUTOCLOSE
@@ -146,11 +141,6 @@ Route121_EventScript_Pat::
 	msgbox Route121_Text_PatPostBattle, MSGBOX_AUTOCLOSE
 	end
 
-Route121_EventScript_Marcel::
-	trainerbattle_single TRAINER_MARCEL, Route121_Text_MarcelIntro, Route121_Text_MarcelDefeat
-	msgbox Route121_Text_MarcelPostBattle, MSGBOX_AUTOCLOSE
-	end
-
 Route121_EventScript_Cristin::
 	trainerbattle_single TRAINER_CRISTIN_1, Route121_Text_CristinIntro, Route121_Text_CristinDefeat, Route121_EventScript_RegisterCristin
 	specialvar VAR_RESULT, ShouldTryRematchBattle
@@ -189,4 +179,3 @@ Route121_Text_MtPyrePierSign:
 Route121_Text_SafariZoneSign:
 	.string "“Filled with rare POKéMON!”\n"
 	.string "SAFARI ZONE$"
-

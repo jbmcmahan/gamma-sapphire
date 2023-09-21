@@ -12,11 +12,6 @@ SootopolisCity_Gym_B1F_EventScript_Crissy::
 	msgbox SootopolisCity_Gym_B1F_Text_CrissyPostBattle, MSGBOX_AUTOCLOSE
 	end
 
-SootopolisCity_Gym_B1F_EventScript_Brianna::
-	trainerbattle_single TRAINER_BRIANNA, SootopolisCity_Gym_B1F_Text_BriannaIntro, SootopolisCity_Gym_B1F_Text_BriannaDefeat
-	msgbox SootopolisCity_Gym_B1F_Text_BriannaPostBattle, MSGBOX_AUTOCLOSE
-	end
-
 SootopolisCity_Gym_B1F_EventScript_Connie::
 	trainerbattle_single TRAINER_CONNIE, SootopolisCity_Gym_B1F_Text_ConnieIntro, SootopolisCity_Gym_B1F_Text_ConnieDefeat
 	msgbox SootopolisCity_Gym_B1F_Text_ConniePostBattle, MSGBOX_AUTOCLOSE
@@ -45,11 +40,6 @@ SootopolisCity_Gym_B1F_EventScript_Bethany::
 SootopolisCity_Gym_B1F_EventScript_Annika::
 	trainerbattle_single TRAINER_ANNIKA, SootopolisCity_Gym_B1F_Text_AnnikaIntro, SootopolisCity_Gym_B1F_Text_AnnikaDefeat
 	msgbox SootopolisCity_Gym_B1F_Text_AnnikaPostBattle, MSGBOX_AUTOCLOSE
-	end
-
-SootopolisCity_Gym_B1F_EventScript_Daphne::
-	trainerbattle_single TRAINER_DAPHNE, SootopolisCity_Gym_B1F_Text_DaphneIntro, SootopolisCity_Gym_B1F_Text_DaphneDefeat
-	msgbox SootopolisCity_Gym_B1F_Text_DaphnePostBattle, MSGBOX_AUTOCLOSE
 	end
 
 SootopolisCity_Gym_B1F_Text_AndreaIntro:

@@ -25,11 +25,6 @@ Route105_OnFrame:
 	map_script_2 VAR_SHOULD_END_ABNORMAL_WEATHER, 1, AbnormalWeather_EventScript_EndEventAndCleanup_1
 	.2byte 0
 
-Route105_EventScript_Foster::
-	trainerbattle_single TRAINER_FOSTER, Route105_Text_FosterIntro, Route105_Text_FosterDefeated
-	msgbox Route105_Text_FosterPostBattle, MSGBOX_AUTOCLOSE
-	end
-
 Route105_EventScript_Luis::
 	trainerbattle_single TRAINER_LUIS, Route105_Text_LuisIntro, Route105_Text_LuisDefeated
 	msgbox Route105_Text_LuisPostBattle, MSGBOX_AUTOCLOSE
@@ -95,3 +90,85 @@ Route104_Text_DadPokenavCall:
 Route104_Text_RegisteredDadInPokenav:
 	.string "Registered DAD NORMAN\n"
 	.string "in the POKéNAV.$"
+
+Route105_EventScript_Custom_Julia::
+	trainerbattle_single TRAINER_CUSTOM_JULIA, Route103_Text_HannarIntro, Route103_Text_HannarDefeated
+	msgbox Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route105_EventScript_Custom_Karl::
+	trainerbattle_single TRAINER_CUSTOM_KARL, Route103_Text_HannarIntro, Route103_Text_HannarDefeated
+	msgbox Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route105_EventScript_Custom_Lisa::
+	trainerbattle_single TRAINER_CUSTOM_LISA, Route103_Text_HannarIntro, Route103_Text_HannarDefeated
+	msgbox Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route105_EventScript_EggWoman::
+	lock
+	faceplayer
+	goto_if_set FLAG_RECEIVED_LAVARIDGE_EGG, Route105_EventScript_ReceivedEgg
+	msgbox Route105_Text_HaveEggWillYouTakeIt, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, Route105_EventScript_DeclineEgg
+	getpartysize
+	goto_if_eq VAR_RESULT, PARTY_SIZE, Route105_EventScript_NoRoomForEgg
+	msgbox Route105_Text_HopeYoullWalkPlentyWithEgg, MSGBOX_DEFAULT
+	setflag FLAG_RECEIVED_LAVARIDGE_EGG
+	playfanfare MUS_OBTAIN_ITEM
+	message Route105_Text_ReceivedTheEgg
+	waitfanfare
+	giveegg SPECIES_TOGEPI
+	release
+	end
+
+Route105_EventScript_ReceivedEgg::
+	msgbox Route105_Text_EverySoOftenEggFoundAtDayCare, MSGBOX_DEFAULT
+	release
+	end
+
+Route105_EventScript_NoRoomForEgg::
+	msgbox Route105_Text_NoRoomForThisEgg, MSGBOX_DEFAULT
+	release
+	end
+
+Route105_EventScript_DeclineEgg::
+	msgbox Route105_Text_AsYouWishThen, MSGBOX_DEFAULT
+	release
+	end
+
+
+Route105_Text_HaveEggWillYouTakeIt:
+	.string "I have here an EGG.\p"
+	.string "I'd hoped to hatch it by covering it in\n"
+	.string "hot sand by the hot springs.\l"
+	.string "But that doesn't seem to be enough…\p"
+	.string "I've heard it would be best if it were\n"
+	.string "kept together with POKéMON and\l"
+	.string "carried about.\p"
+	.string "You are a TRAINER, yes?\n"
+	.string "And your POKéMON radiate vitality.\p"
+	.string "So, what say you?\n"
+	.string "Will you take this EGG to hatch?$"
+
+Route105_Text_HopeYoullWalkPlentyWithEgg:
+	.string "Good! I hope you'll walk plenty with\n"
+	.string "this here EGG!$"
+
+Route105_Text_ReceivedTheEgg:
+	.string "{PLAYER} received the EGG.$"
+
+Route105_Text_NoRoomForThisEgg:
+	.string "Oh? You've too many POKéMON.\n"
+	.string "There's no room for this EGG…$"
+
+Route105_Text_AsYouWishThen:
+	.string "As you wish, then…\p"
+	.string "If you have a change of heart about\n"
+	.string "hatching this EGG, I will be here.$"
+
+Route105_Text_EverySoOftenEggFoundAtDayCare:
+	.string "Every so often, an EGG will be found at\n"
+	.string "the POKéMON DAY CARE.\p"
+	.string "Or at least that's how the rumor goes.$"

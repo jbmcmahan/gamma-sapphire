@@ -294,16 +294,6 @@ Route104_EventScript_Girl1::
 	msgbox Route104_Text_BrineyLivesInSeasideCottage, MSGBOX_NPC
 	end
 
-Route103_EventScript_Custom_Colin::
-	trainerbattle_single TRAINER_CUSTOM_COLIN, Route103_Text_HannarIntro, Route103_Text_HannarDefeated
-	msgbox Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE
-	end
-
-Route103_EventScript_Custom_Danielle::
-	trainerbattle_single TRAINER_CUSTOM_DANIELLE, Route103_Text_HannarIntro, Route103_Text_HannarDefeated
-	msgbox Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE
-	end
-
 Route104_EventScript_BugCatcher::
 	msgbox Route104_Text_WhatsItLikeAtBottomOfSea, MSGBOX_SIGN
 	end
@@ -948,47 +938,6 @@ Route104_EventScript_RematchWinston::
 	msgbox Route104_Text_WinstonPostRematch, MSGBOX_AUTOCLOSE
 	end
 
-Route104_EventScript_Cindy::
-	trainerbattle_single TRAINER_CINDY_1, Route104_Text_CindyIntro, Route104_Text_CindyDefeat, Route104_EventScript_TryRegisterCindyAfterBattle
-	specialvar VAR_RESULT, ShouldTryRematchBattle
-	goto_if_eq VAR_RESULT, TRUE, Route104_EventScript_RematchCindy
-	setvar VAR_0x8004, TRAINER_CINDY_1
-	specialvar VAR_RESULT, IsTrainerRegistered
-	goto_if_eq VAR_RESULT, FALSE, Route104_EventScript_TryRegisterCindy
-	msgbox Route104_Text_CindyPostBattle, MSGBOX_DEFAULT
-	release
-	end
-
-Route104_EventScript_TryRegisterCindyAfterBattle::
-	special PlayerFaceTrainerAfterBattle
-	waitmovement 0
-	goto_if_set FLAG_HAS_MATCH_CALL, Route104_EventScript_RegisterCindyAfterBattle
-	release
-	end
-
-Route104_EventScript_RegisterCindyAfterBattle::
-	msgbox Route104_Text_CindyRegister2, MSGBOX_DEFAULT
-	register_matchcall TRAINER_CINDY_1
-	release
-	end
-
-Route104_EventScript_TryRegisterCindy::
-	goto_if_set FLAG_HAS_MATCH_CALL, Route104_EventScript_RegisterCindy
-	msgbox Route104_Text_CindyPostBattle, MSGBOX_DEFAULT
-	release
-	end
-
-Route104_EventScript_RegisterCindy::
-	msgbox Route104_Text_CindyRegister1, MSGBOX_DEFAULT
-	register_matchcall TRAINER_CINDY_1
-	release
-	end
-
-Route104_EventScript_RematchCindy::
-	trainerbattle_rematch TRAINER_CINDY_1, Route104_Text_CindyRematchIntro, Route104_Text_CindyRematchDefeat
-	msgbox Route104_Text_CindyPostRematch, MSGBOX_AUTOCLOSE
-	end
-
 Route104_EventScript_Gina::
 	trainerbattle_double TRAINER_GINA_AND_MIA_1, Route104_Text_GinaIntro, Route104_Text_GinaDefeat, Route104_Text_GinaNotEnoughMons
 	special GetPlayerBigGuyGirlString
@@ -1180,3 +1129,19 @@ Route104_Text_BrendanPostBattle:
 	.string "making POKéMON battle.\p"
 	.string "Like MR. BRINEY, it's important to\n"
 	.string "become friends with your POKéMON.$"
+
+
+Route104_EventScript_Custom_Gaston::
+	trainerbattle_single TRAINER_CUSTOM_GASTON, Route103_Text_HannarIntro, Route103_Text_HannarDefeated
+	msgbox Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route104_EventScript_Custom_Hermine::
+	trainerbattle_single TRAINER_CUSTOM_HERMINE, Route103_Text_HannarIntro, Route103_Text_HannarDefeated
+	msgbox Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route104_EventScript_Custom_Ian::
+	trainerbattle_single TRAINER_CUSTOM_IAN, Route103_Text_HannarIntro, Route103_Text_HannarDefeated
+	msgbox Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE
+	end

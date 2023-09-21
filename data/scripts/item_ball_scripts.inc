@@ -657,3 +657,43 @@ MagmaHideout_4F_EventScript_ItemMaxRevive::
 MagmaHideout_3F_3R_EventScript_ItemEscapeRope::
 	finditem ITEM_ESCAPE_ROPE
 	end
+
+Route103_EventScript_ItemOranBerry::
+	finditem ITEM_ORAN_BERRY
+	end
+
+Route103_EventScript_ItemQuickClaw::
+	finditem ITEM_QUICK_CLAW
+	end
+
+Route103_EventScript_ItemSilkScarf::
+	finditem ITEM_SILK_SCARF
+	end
+
+Route104_EventScript_ItemAmuletCoin::
+	finditem ITEM_AMULET_COIN
+	end
+
+Route104_EventScript_ItemCheriBerry::
+	finditem ITEM_CHERI_BERRY
+	end
+
+Route104_EventScript_ItemChestoBerry::
+	finditem ITEM_CHESTO_BERRY
+	end
+
+Route105_EventScript_ItemCellBattery::
+	finditem ITEM_CELL_BATTERY
+	end
+
+Route105_EventScript_ItemEviolite::
+	finditem ITEM_EVIOLITE
+	end
+
+Route105_EventScript_ItemLaggingTail::
+	finditem ITEM_LAGGING_TAIL
+	end
+
+Route105_EventScript_ItemMentalHerb::
+	finditem ITEM_MENTAL_HERB
+	end
