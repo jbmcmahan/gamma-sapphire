@@ -5759,204 +5759,60 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             // Volt Absorb
 			if(BattlerHasAbilityOrInnate(battler, ABILITY_VOLT_ABSORB)){
 				if (move != MOVE_NONE && moveType == TYPE_ELECTRIC){
+                    effect = 1;
                     gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_VOLT_ABSORB;
-
-                #if B_HEAL_BLOCKING >= GEN_5
-                    if (BATTLER_MAX_HP(battler) || gStatuses3[battler] & STATUS3_HEAL_BLOCK)
-                #else
-                    if (BATTLER_MAX_HP(battler))
-                #endif
-                    {
-                        if ((gProtectStructs[gBattlerAttacker].notFirstStrike))
-                            gBattlescriptCurrInstr = BattleScript_MonMadeMoveUseless;
-                        else
-                            gBattlescriptCurrInstr = BattleScript_MonMadeMoveUseless_PPLoss;
-                    }
-                    else
-                    {
-                        if (gProtectStructs[gBattlerAttacker].notFirstStrike)
-                            gBattlescriptCurrInstr = BattleScript_MoveHPDrain;
-                        else
-                            gBattlescriptCurrInstr = BattleScript_MoveHPDrain_PPLoss;
-
-                        gBattleMoveDamage = gBattleMons[battler].maxHP / 4;
-                        if (gBattleMoveDamage == 0)
-                            gBattleMoveDamage = 1;
-                        gBattleMoveDamage *= -1;
-                    }
 				}
 			}
 
             // Water Absorb
 			if(BattlerHasAbilityOrInnate(battler, ABILITY_WATER_ABSORB)){
 				if (move != MOVE_NONE && moveType == TYPE_WATER){
+                    effect = 1;
                     gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_WATER_ABSORB;
-
-                #if B_HEAL_BLOCKING >= GEN_5
-                    if (BATTLER_MAX_HP(battler) || gStatuses3[battler] & STATUS3_HEAL_BLOCK)
-                #else
-                    if (BATTLER_MAX_HP(battler))
-                #endif
-                    {
-                        if ((gProtectStructs[gBattlerAttacker].notFirstStrike))
-                            gBattlescriptCurrInstr = BattleScript_MonMadeMoveUseless;
-                        else
-                            gBattlescriptCurrInstr = BattleScript_MonMadeMoveUseless_PPLoss;
-                    }
-                    else
-                    {
-                        if (gProtectStructs[gBattlerAttacker].notFirstStrike)
-                            gBattlescriptCurrInstr = BattleScript_MoveHPDrain;
-                        else
-                            gBattlescriptCurrInstr = BattleScript_MoveHPDrain_PPLoss;
-
-                        gBattleMoveDamage = gBattleMons[battler].maxHP / 4;
-                        if (gBattleMoveDamage == 0)
-                            gBattleMoveDamage = 1;
-                        gBattleMoveDamage *= -1;
-                    }
 				}
 			}
 
             // Dry Skin
 			if(BattlerHasAbilityOrInnate(battler, ABILITY_DRY_SKIN)){
 				if (move != MOVE_NONE && moveType == TYPE_WATER){
+                    effect = 1;
                     gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_DRY_SKIN;
-                #if B_HEAL_BLOCKING >= GEN_5
-                    if (BATTLER_MAX_HP(battler) || gStatuses3[battler] & STATUS3_HEAL_BLOCK)
-                #else
-                    if (BATTLER_MAX_HP(battler))
-                #endif
-                    {
-                        if ((gProtectStructs[gBattlerAttacker].notFirstStrike))
-                            gBattlescriptCurrInstr = BattleScript_MonMadeMoveUseless;
-                        else
-                            gBattlescriptCurrInstr = BattleScript_MonMadeMoveUseless_PPLoss;
-                    }
-                    else
-                    {
-                        if (gProtectStructs[gBattlerAttacker].notFirstStrike)
-                            gBattlescriptCurrInstr = BattleScript_MoveHPDrain;
-                        else
-                            gBattlescriptCurrInstr = BattleScript_MoveHPDrain_PPLoss;
-
-                        gBattleMoveDamage = gBattleMons[battler].maxHP / 4;
-                        if (gBattleMoveDamage == 0)
-                            gBattleMoveDamage = 1;
-                        gBattleMoveDamage *= -1;
-                    }
 				}
 			}
 
             //Motor Drive
 			if(BattlerHasAbilityOrInnate(battler, ABILITY_MOTOR_DRIVE)){
                 if (moveType == TYPE_ELECTRIC){
+                    effect = 2;
                     gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_MOTOR_DRIVE;
                     statId = STAT_SPEED, statAmount = 1;
-
-                    if (!CompareStat(battler, statId, MAX_STAT_STAGE, CMP_LESS_THAN))
-                    {
-                        if ((gProtectStructs[gBattlerAttacker].notFirstStrike))
-                            gBattlescriptCurrInstr = BattleScript_MonMadeMoveUseless;
-                        else
-                            gBattlescriptCurrInstr = BattleScript_MonMadeMoveUseless_PPLoss;
-                    }
-                    else
-                    {
-                        if (gProtectStructs[gBattlerAttacker].notFirstStrike)
-                            gBattlescriptCurrInstr = BattleScript_MoveStatDrain;
-                        else
-                            gBattlescriptCurrInstr = BattleScript_MoveStatDrain_PPLoss;
-
-                        SET_STATCHANGER(statId, statAmount, FALSE);
-                    #if B_ABSORBING_ABILITY_STRING < GEN_5
-                        PREPARE_STAT_BUFFER(gBattleTextBuff1, statId);
-                    #endif
-                    }
                 }
 			}
 
             // Lighting Rod
 			if(BattlerHasAbilityOrInnate(battler, ABILITY_LIGHTNING_ROD)){
 				if (moveType == TYPE_ELECTRIC){
+                    effect = 2;
                     gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_LIGHTNING_ROD;
                     statId = STAT_SPATK, statAmount = 1;
-                    
-                    if (!CompareStat(battler, statId, MAX_STAT_STAGE, CMP_LESS_THAN))
-                    {
-                        if ((gProtectStructs[gBattlerAttacker].notFirstStrike))
-                            gBattlescriptCurrInstr = BattleScript_MonMadeMoveUseless;
-                        else
-                            gBattlescriptCurrInstr = BattleScript_MonMadeMoveUseless_PPLoss;
-                    }
-                    else
-                    {
-                        if (gProtectStructs[gBattlerAttacker].notFirstStrike)
-                            gBattlescriptCurrInstr = BattleScript_MoveStatDrain;
-                        else
-                            gBattlescriptCurrInstr = BattleScript_MoveStatDrain_PPLoss;
-
-                        SET_STATCHANGER(statId, statAmount, FALSE);
-                    #if B_ABSORBING_ABILITY_STRING < GEN_5
-                        PREPARE_STAT_BUFFER(gBattleTextBuff1, statId);
-                    #endif
-                    }
 				}
 			}
 
             // Storm Drain
 			if(BattlerHasAbilityOrInnate(battler, ABILITY_STORM_DRAIN)){
 				if (moveType == TYPE_WATER){
+                    effect = 2;
                     gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_STORM_DRAIN;
                     statId = STAT_SPATK, statAmount = 1;
-
-                    if (!CompareStat(battler, statId, MAX_STAT_STAGE, CMP_LESS_THAN))
-                    {
-                        if ((gProtectStructs[gBattlerAttacker].notFirstStrike))
-                            gBattlescriptCurrInstr = BattleScript_MonMadeMoveUseless;
-                        else
-                            gBattlescriptCurrInstr = BattleScript_MonMadeMoveUseless_PPLoss;
-                    }
-                    else
-                    {
-                        if (gProtectStructs[gBattlerAttacker].notFirstStrike)
-                            gBattlescriptCurrInstr = BattleScript_MoveStatDrain;
-                        else
-                            gBattlescriptCurrInstr = BattleScript_MoveStatDrain_PPLoss;
-
-                        SET_STATCHANGER(statId, statAmount, FALSE);
-                    #if B_ABSORBING_ABILITY_STRING < GEN_5
-                        PREPARE_STAT_BUFFER(gBattleTextBuff1, statId);
-                    #endif
-                    }
 				}
 			}
 
             // Sap Sipper
 			if(BattlerHasAbilityOrInnate(battler, ABILITY_SAP_SIPPER)){
 				if (moveType == TYPE_GRASS){
+                    effect = 2;
                     gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_SAP_SIPPER;
                     statId = STAT_ATK, statAmount = 1;
-					
-                    if (!CompareStat(battler, statId, MAX_STAT_STAGE, CMP_LESS_THAN))
-                    {
-                        if ((gProtectStructs[gBattlerAttacker].notFirstStrike))
-                            gBattlescriptCurrInstr = BattleScript_MonMadeMoveUseless;
-                        else
-                            gBattlescriptCurrInstr = BattleScript_MonMadeMoveUseless_PPLoss;
-                    }
-                    else
-                    {
-                        if (gProtectStructs[gBattlerAttacker].notFirstStrike)
-                            gBattlescriptCurrInstr = BattleScript_MoveStatDrain;
-                        else
-                            gBattlescriptCurrInstr = BattleScript_MoveStatDrain_PPLoss;
-
-                        SET_STATCHANGER(statId, statAmount, FALSE);
-                    #if B_ABSORBING_ABILITY_STRING < GEN_5
-                        PREPARE_STAT_BUFFER(gBattleTextBuff1, statId);
-                    #endif
-                    }
 				}
 			}
 
@@ -5994,28 +5850,9 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             // Well Baked Body
 			if(BattlerHasAbilityOrInnate(battler, ABILITY_WELL_BAKED_BODY)){
 				if (moveType == TYPE_FIRE){
+                    effect = 2;
                     gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_WELL_BAKED_BODY;
 					statId = STAT_DEF, statAmount = 2;
-
-                    if (!CompareStat(battler, statId, MAX_STAT_STAGE, CMP_LESS_THAN))
-                    {
-                        if ((gProtectStructs[gBattlerAttacker].notFirstStrike))
-                            gBattlescriptCurrInstr = BattleScript_MonMadeMoveUseless;
-                        else
-                            gBattlescriptCurrInstr = BattleScript_MonMadeMoveUseless_PPLoss;
-                    }
-                    else
-                    {
-                        if (gProtectStructs[gBattlerAttacker].notFirstStrike)
-                            gBattlescriptCurrInstr = BattleScript_MoveStatDrain;
-                        else
-                            gBattlescriptCurrInstr = BattleScript_MoveStatDrain_PPLoss;
-
-                        SET_STATCHANGER(statId, statAmount, FALSE);
-                    #if B_ABSORBING_ABILITY_STRING < GEN_5
-                        PREPARE_STAT_BUFFER(gBattleTextBuff1, statId);
-                    #endif
-                    }
 				}
 			}
 
@@ -6024,27 +5861,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				if (gBattleMoves[gCurrentMove].flags & FLAG_WIND_MOVE && !(GetBattlerMoveTargetType(gBattlerAttacker, gCurrentMove) & MOVE_TARGET_USER)){
                     gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_WIND_RIDER;
                     statId = STAT_ATK, statAmount = 1;
-
-                    if (!CompareStat(battler, statId, MAX_STAT_STAGE, CMP_LESS_THAN))
-                    {
-                        if ((gProtectStructs[gBattlerAttacker].notFirstStrike))
-                            gBattlescriptCurrInstr = BattleScript_MonMadeMoveUseless;
-                        else
-                            gBattlescriptCurrInstr = BattleScript_MonMadeMoveUseless_PPLoss;
-                    }
-                    else
-                    {
-                        if (gProtectStructs[gBattlerAttacker].notFirstStrike)
-                            gBattlescriptCurrInstr = BattleScript_MoveStatDrain;
-                        else
-                            gBattlescriptCurrInstr = BattleScript_MoveStatDrain_PPLoss;
-
-                        SET_STATCHANGER(statId, statAmount, FALSE);
-                    #if B_ABSORBING_ABILITY_STRING < GEN_5
-                        PREPARE_STAT_BUFFER(gBattleTextBuff1, statId);
-                    #endif
-                    }
-
+                    effect = 2;
 				}
 			}
 
@@ -6052,29 +5869,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 			if(BattlerHasAbilityOrInnate(battler, ABILITY_EARTH_EATER)){
 				if (moveType == TYPE_GROUND){
                     gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_EARTH_EATER;
-				#if B_HEAL_BLOCKING >= GEN_5
-                    if (BATTLER_MAX_HP(battler) || gStatuses3[battler] & STATUS3_HEAL_BLOCK)
-                #else
-                    if (BATTLER_MAX_HP(battler))
-                #endif
-                    {
-                        if ((gProtectStructs[gBattlerAttacker].notFirstStrike))
-                            gBattlescriptCurrInstr = BattleScript_MonMadeMoveUseless;
-                        else
-                            gBattlescriptCurrInstr = BattleScript_MonMadeMoveUseless_PPLoss;
-                    }
-                    else
-                    {
-                        if (gProtectStructs[gBattlerAttacker].notFirstStrike)
-                            gBattlescriptCurrInstr = BattleScript_MoveHPDrain;
-                        else
-                            gBattlescriptCurrInstr = BattleScript_MoveHPDrain_PPLoss;
-
-                        gBattleMoveDamage = gBattleMons[battler].maxHP / 4;
-                        if (gBattleMoveDamage == 0)
-                            gBattleMoveDamage = 1;
-                        gBattleMoveDamage *= -1;
-                    }
+                    effect = 1;
 				}
 			}
 
@@ -6082,26 +5877,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 			if(BattlerHasAbilityOrInnate(battler, ABILITY_AERODYNAMICS)){
 				if (moveType == TYPE_FLYING){
                     statId = STAT_SPEED, statAmount = 1;
-
-                    if (!CompareStat(battler, statId, MAX_STAT_STAGE, CMP_LESS_THAN))
-                    {
-                        if ((gProtectStructs[gBattlerAttacker].notFirstStrike))
-                            gBattlescriptCurrInstr = BattleScript_MonMadeMoveUseless;
-                        else
-                            gBattlescriptCurrInstr = BattleScript_MonMadeMoveUseless_PPLoss;
-                    }
-                    else
-                    {
-                        if (gProtectStructs[gBattlerAttacker].notFirstStrike)
-                            gBattlescriptCurrInstr = BattleScript_MoveStatDrain;
-                        else
-                            gBattlescriptCurrInstr = BattleScript_MoveStatDrain_PPLoss;
-
-                        SET_STATCHANGER(statId, statAmount, FALSE);
-                    #if B_ABSORBING_ABILITY_STRING < GEN_5
-                        PREPARE_STAT_BUFFER(gBattleTextBuff1, statId);
-                    #endif
-                    }
+                    effect = 2;
 				}
 			}
 
@@ -6110,29 +5886,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				if (move != MOVE_NONE && moveType == TYPE_POISON){
                     effect = 1;
                     gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_POISON_ABSORB;
-				#if B_HEAL_BLOCKING >= GEN_5
-                    if (BATTLER_MAX_HP(battler) || gStatuses3[battler] & STATUS3_HEAL_BLOCK)
-                #else
-                    if (BATTLER_MAX_HP(battler))
-                #endif
-                    {
-                        if ((gProtectStructs[gBattlerAttacker].notFirstStrike))
-                            gBattlescriptCurrInstr = BattleScript_MonMadeMoveUseless;
-                        else
-                            gBattlescriptCurrInstr = BattleScript_MonMadeMoveUseless_PPLoss;
-                    }
-                    else
-                    {
-                        if (gProtectStructs[gBattlerAttacker].notFirstStrike)
-                            gBattlescriptCurrInstr = BattleScript_MoveHPDrain;
-                        else
-                            gBattlescriptCurrInstr = BattleScript_MoveHPDrain_PPLoss;
-
-                        gBattleMoveDamage = gBattleMons[battler].maxHP / 4;
-                        if (gBattleMoveDamage == 0)
-                            gBattleMoveDamage = 1;
-                        gBattleMoveDamage *= -1;
-                    }
 				}
 			}
 
@@ -6142,8 +5895,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 					u16 userAttack = 0;					
 					u16 userSpAttack = 0;
                     effect = 2;
-                    gBattleScripting.abilityPopupOverwrite = ABILITY_ICE_DEW;
-				    gLastUsedAbility = ABILITY_ICE_DEW;
+                    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_ICE_DEW;
 					
                     userAttack   += gBattleMons[battler].attack * gStatStageRatios[gBattleMons[battler].statStages[STAT_ATK]][0] / gStatStageRatios[gBattleMons[battler].statStages[STAT_ATK]][1];
                     userSpAttack += gBattleMons[battler].spAttack * gStatStageRatios[gBattleMons[battler].statStages[STAT_SPATK]][0] / gStatStageRatios[gBattleMons[battler].statStages[STAT_SPATK]][1];
@@ -6154,6 +5906,54 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                         statId = STAT_SPATK;
 				}
 			}
+
+            
+            if (effect == 1) // Drain Hp ability.
+            {
+                if (BATTLER_MAX_HP(battler) || gStatuses3[battler] & STATUS3_HEAL_BLOCK)
+                {
+                    if ((gProtectStructs[gBattlerAttacker].notFirstStrike))
+                        gBattlescriptCurrInstr = BattleScript_MonMadeMoveUseless;
+                    else
+                        gBattlescriptCurrInstr = BattleScript_MonMadeMoveUseless_PPLoss;
+                }
+                else
+                {
+                    if (gProtectStructs[gBattlerAttacker].notFirstStrike)
+                        gBattlescriptCurrInstr = BattleScript_MoveHPDrain;
+                    else
+                        gBattlescriptCurrInstr = BattleScript_MoveHPDrain_PPLoss;
+
+                    gBattleMoveDamage = gBattleMons[battler].maxHP / 4;
+                    if (gBattleMoveDamage == 0)
+                        gBattleMoveDamage = 1;
+                    gBattleMoveDamage *= -1;
+                    gMultiHitCounter = 0;
+                }
+            }
+
+            if (effect == 2) // Boost Stat ability.
+            {
+                if (!CompareStat(battler, statId, MAX_STAT_STAGE, CMP_LESS_THAN))
+                {
+                    if ((gProtectStructs[gBattlerAttacker].notFirstStrike))
+                        gBattlescriptCurrInstr = BattleScript_MonMadeMoveUseless;
+                    else
+                        gBattlescriptCurrInstr = BattleScript_MonMadeMoveUseless_PPLoss;
+                }
+                else
+                {
+                    if (gProtectStructs[gBattlerAttacker].notFirstStrike)
+                        gBattlescriptCurrInstr = BattleScript_MoveStatDrain;
+                    else
+                        gBattlescriptCurrInstr = BattleScript_MoveStatDrain_PPLoss;
+
+                    SET_STATCHANGER(statId, statAmount, FALSE);
+                #if B_ABSORBING_ABILITY_STRING < GEN_5
+                    PREPARE_STAT_BUFFER(gBattleTextBuff1, statId);
+                #endif
+                }
+            }
 			
 
         }
