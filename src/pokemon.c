@@ -3623,6 +3623,26 @@ void CreateMonWithNature(struct Pokemon *mon, u16 species, u8 level, u8 fixedIV,
     CreateMon(mon, species, level, fixedIV, TRUE, personality, OT_ID_PLAYER_ID, 0);
 }
 
+void CreateMonWithNatureIVs(struct Pokemon *mon, u16 species, u8 level, u8 *ivs, u8 nature)
+{
+    u32 personality;
+
+    do
+    {
+        personality = Random32();
+    }
+    while (nature != GetNatureFromPersonality(personality));
+
+    CreateMon(mon, species, level, USE_RANDOM_IVS, TRUE, personality, OT_ID_PLAYER_ID, 0);
+    SetMonData(mon, MON_DATA_HP_IV, &ivs[STAT_HP]);
+    SetMonData(mon, MON_DATA_ATK_IV, &ivs[STAT_ATK]);
+    SetMonData(mon, MON_DATA_DEF_IV, &ivs[STAT_DEF]);
+    SetMonData(mon, MON_DATA_SPEED_IV, &ivs[STAT_SPEED]);
+    SetMonData(mon, MON_DATA_SPATK_IV, &ivs[STAT_SPATK]);
+    SetMonData(mon, MON_DATA_SPDEF_IV, &ivs[STAT_SPDEF]);
+    CalculateMonStats(mon);
+}
+
 void CreateMonWithGenderNatureLetter(struct Pokemon *mon, u16 species, u8 level, u8 fixedIV, u8 gender, u8 nature, u8 unownLetter)
 {
     u32 personality;
@@ -8347,7 +8367,7 @@ u8 GetLevelCap(void)
     u16 currentBadge = getHighestBadge();
 
     static const u8 levelCapsStandard[] = {101, 101, 101, 101, 101, 101, 101, 101, 101, 101};
-    static const u8 levelCapsMore[] =     {16, 25, 38, 50,  54,  70,  85,  92,  95, 101};
+    static const u8 levelCapsMore[] =     {9, 25, 38, 50,  54,  70,  85,  92,  95, 101};
 
     switch (levelCapSetting)
     {
