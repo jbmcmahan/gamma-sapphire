@@ -53,4 +53,3 @@ Route110_TrickHousePuzzle8_Text_LeroyDefeat:
 Route110_TrickHousePuzzle8_Text_LeroyPostBattle:
 	.string "Seeing someone like you should please\n"
 	.string "the TRICK MASTER.$"
-

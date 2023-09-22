@@ -4,6 +4,7 @@ Route131_MapScripts::
 
 Route131_OnTransition:
 	call_if_ge VAR_SOOTOPOLIS_CITY_STATE, 4, Route131_EventScript_CheckSetAbnormalWeather
+	call Route131_EventScript_SetLayout
 	end
 
 Route131_EventScript_SetLayout::
