@@ -2021,12 +2021,6 @@ static u32 CopyPlayerMonData(u8 monId, u8 *dst)
         dst[3] = (data32 & 0xFF000000) >> 24;
         size = 4;
         break;
-    case REQUEST_CHECKSUM_BATTLE:
-        data16 = GetMonData(&gPlayerParty[monId], MON_DATA_CHECKSUM);
-        dst[0] = data16;
-        dst[1] = data16 >> 8;
-        size = 2;
-        break;
     case REQUEST_STATUS_BATTLE:
         data32 = GetMonData(&gPlayerParty[monId], MON_DATA_STATUS);
         dst[0] = (data32 & 0x000000FF);
@@ -2315,9 +2309,6 @@ static void SetPlayerMonData(u8 monId)
         break;
     case REQUEST_PERSONALITY_BATTLE:
         SetMonData(&gPlayerParty[monId], MON_DATA_PERSONALITY, &gBattleResources->bufferA[gActiveBattler][3]);
-        break;
-    case REQUEST_CHECKSUM_BATTLE:
-        SetMonData(&gPlayerParty[monId], MON_DATA_CHECKSUM, &gBattleResources->bufferA[gActiveBattler][3]);
         break;
     case REQUEST_STATUS_BATTLE:
         SetMonData(&gPlayerParty[monId], MON_DATA_STATUS, &gBattleResources->bufferA[gActiveBattler][3]);
@@ -2706,7 +2697,7 @@ static void PlayerHandleMoveAnimation(void)
         gWeatherMoveAnim = gBattleResources->bufferA[gActiveBattler][12] | (gBattleResources->bufferA[gActiveBattler][13] << 8);
         gAnimDisableStructPtr = (struct DisableStruct *)&gBattleResources->bufferA[gActiveBattler][16];
         gTransformedPersonalities[gActiveBattler] = gAnimDisableStructPtr->transformedMonPersonality;
-        gTransformedOtIds[gActiveBattler] = gAnimDisableStructPtr->transformedMonOtId;
+        gTransformedShininess[gActiveBattler] = gAnimDisableStructPtr->transformedMonShininess;
         gBattleSpritesDataPtr->healthBoxesData[gActiveBattler].animationState = 0;
         gBattlerControllerFuncs[gActiveBattler] = PlayerDoMoveAnimation;
         BattleTv_SetDataBasedOnMove(move, gWeatherMoveAnim, gAnimDisableStructPtr);

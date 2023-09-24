@@ -3018,8 +3018,8 @@ static void FillPartnerParty(u16 trainerId)
             do
             {
                 j = Random32();
-            } while (IsShinyOtIdPersonality(STEVEN_OTID, j) || sStevenMons[i].nature != GetNatureFromPersonality(j));
-            CreateMon(&gPlayerParty[MULTI_PARTY_SIZE + i],
+            } while (sStevenMons[i].nature != GetNatureFromPersonality(j));
+                        CreateMon(&gPlayerParty[MULTI_PARTY_SIZE + i],
                       sStevenMons[i].species,
                       sStevenMons[i].level,
                       sStevenMons[i].fixedIV,
@@ -3037,11 +3037,15 @@ static void FillPartnerParty(u16 trainerId)
             SetMonData(&gPlayerParty[MULTI_PARTY_SIZE + i], MON_DATA_OT_NAME, gTrainers[TRAINER_STEVEN].trainerName);
             j = MALE;
             SetMonData(&gPlayerParty[MULTI_PARTY_SIZE + i], MON_DATA_OT_GENDER, &j);
+            j = FALSE;
+            SetMonData(&gPlayerParty[MULTI_PARTY_SIZE + i], MON_DATA_IS_SHINY, &j);
             CalculateMonStats(&gPlayerParty[MULTI_PARTY_SIZE + i]);
         }
     }
     else if (trainerId >= TRAINER_CUSTOM_PARTNER)
     {
+        const struct TrainerMon *partyData = gTrainers[trainerId - TRAINER_CUSTOM_PARTNER].party;
+        u32 otIdType = OT_ID_RANDOM_NO_SHINY;
         otID = Random32();
 
         for (i = 0; i < 3; i++)
@@ -3049,10 +3053,7 @@ static void FillPartnerParty(u16 trainerId)
 
         for (i = 0; i < 3 && i < gTrainers[trainerId - TRAINER_CUSTOM_PARTNER].partySize; i++)
         {
-            do
-            {
-                j = Random32();
-            } while (IsShinyOtIdPersonality(otID, j));
+            j = Random32();
 
             switch (gTrainers[trainerId - TRAINER_CUSTOM_PARTNER].partyFlags)
             {
@@ -3163,7 +3164,9 @@ static void FillPartnerParty(u16 trainerId)
             }
 
             StringCopy(trainerName, gTrainers[trainerId - TRAINER_CUSTOM_PARTNER].trainerName);
-            SetMonData(&gPlayerParty[i + 3], MON_DATA_OT_NAME, trainerName);
+            SetMonData(&gPlayerParty[i + 3], MON_DATA_OT_GENDER, &j);
+            j = FALSE;
+            SetMonData(&gPlayerParty[i + 3], MON_DATA_IS_SHINY, &j);
         }
     }
     else if (trainerId == TRAINER_EREADER)
