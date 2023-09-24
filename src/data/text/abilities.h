@@ -407,6 +407,12 @@ static const u8 sAmplifierDescription[] =  _("Sound based single-target now\nhit
 static const u8 sIceDewDescription[] = _("Ice ups Atk\nor SpAtk by +1.");
 static const u8 sSunWorshipDescription[] = _("Ups highest stat by +1\non entry when sunny.");
 static const u8 sBuginizeDescription[] = _("Normal moves become Bug\nand get a 20% boost.");
+static const u8 sHPIVDescription[] = _("Field ability - search \nfor high HP wild mons.");
+static const u8 sATKIVDescription[] = _("Field ability - search \nfor high ATK wild mons.");
+static const u8 sDEFIVDescription[] = _("Field ability - search \nfor high DEF wild mons.");
+static const u8 sSPEEDIVDescription[] = _("Field ability - search \nfor high SPEED wild mons.");
+static const u8 sSPATKIVDescription[] = _("Field ability - search \nfor high SPATK wild mons.");
+static const u8 sSPDEFIVDescription[] = _("Field ability - search \nfor high SPDEF wild mons.");
 
 #if B_EXPANDED_ABILITY_NAMES == TRUE
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
@@ -825,6 +831,12 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_ICE_DEW] = _("Ice Dew"),
 	[ABILITY_SUN_WORSHIP] = _("Sun Worship"),
     [ABILITY_BUGINIZE] = _("Buginize"),
+    [ABILITY_HP_IV] = _("HP IV"),
+    [ABILITY_ATK_IV] = _("ATK IV"),
+    [ABILITY_DEF_IV] = _("DEF IV"),
+    [ABILITY_SPEED_IV] = _("SPEED IV"),
+    [ABILITY_SPATK_IV] = _("SPATK IV"),
+    [ABILITY_SPDEF_IV] = _("SPDEF IV"),
 };
 #else   // 12 characters
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
@@ -1243,6 +1255,12 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_ICE_DEW] = _("Ice Dew"),
 	[ABILITY_SUN_WORSHIP] = _("Sun Worship"),
     [ABILITY_BUGINIZE] = _("Buginize"),
+    [ABILITY_HP_IV] = _("HP IV"),
+    [ABILITY_ATK_IV] = _("ATK IV"),
+    [ABILITY_DEF_IV] = _("DEF IV"),
+    [ABILITY_SPEED_IV] = _("SPEED IV"),
+    [ABILITY_SPATK_IV] = _("SPATK IV"),
+    [ABILITY_SPDEF_IV] = _("SPDEF IV"),
 };
 #endif
 
@@ -1662,4 +1680,10 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     [ABILITY_ICE_DEW] = sIceDewDescription,
 	[ABILITY_SUN_WORSHIP] = sSunWorshipDescription,
     [ABILITY_BUGINIZE] = sBuginizeDescription,
+    [ABILITY_HP_IV] = sHPIVDescription,
+    [ABILITY_ATK_IV] = sATKIVDescription,
+    [ABILITY_DEF_IV] = sDEFIVDescription,
+    [ABILITY_SPEED_IV] = sSPEEDIVDescription,
+    [ABILITY_SPATK_IV] = sSPATKIVDescription,
+    [ABILITY_SPDEF_IV] = sSPDEFIVDescription,
 };

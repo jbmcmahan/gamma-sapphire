@@ -6,6 +6,30 @@ ASSUMPTIONS
     ASSUME(gBattleMoves[MOVE_TACKLE].split == SPLIT_PHYSICAL);
 }
 
+SINGLE_BATTLE_TEST("Intimidate (opponent) lowers player's attack on the first turn", s16 damage)
+{
+    u32 ability;
+    PARAMETRIZE { ability = ABILITY_INTIMIDATE; }
+    PARAMETRIZE { ability = ABILITY_SHED_SKIN; }
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ARBOK) { Ability(ability); };
+    } WHEN {
+        TURN { MOVE(player, MOVE_TACKLE); }
+    } SCENE {
+        if (ability == ABILITY_INTIMIDATE)
+        {
+            ABILITY_POPUP(opponent, ABILITY_INTIMIDATE);
+            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
+            MESSAGE("Foe Arbok's Intimidate cuts Wobbuffet's attack!");
+        }
+        HP_BAR(opponent, captureDamage: &results[i].damage);
+    } FINALLY {
+        EXPECT_MUL_EQ(results[0].damage, Q_4_12(1.5), results[1].damage);
+    }
+}
+
+
 SINGLE_BATTLE_TEST("Intimidate (opponent) lowers player's attack after switch out", s16 damage)
 {
     u32 ability;

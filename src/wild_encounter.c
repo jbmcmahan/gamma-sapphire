@@ -478,12 +478,55 @@ static void CreateWildMon(u16 species, u8 level)
     ivs[STAT_SPATK] = (value & (MAX_IV_MASK << 5)) >> 5;
     ivs[STAT_SPDEF] = (value & (MAX_IV_MASK << 10)) >> 10;
 
-    // check synchronize for a pokemon with the same ability
+    // Abilities that influence wild pokemon IVs
     if (!GetMonData(&gPlayerParty[0], MON_DATA_SANITY_IS_EGG)
-        && GetMonAbility(&gPlayerParty[0]) == ABILITY_STATIC)
+        && (GetMonAbility(&gPlayerParty[0]) == ABILITY_HP_IV
+         || MonHasInnate(&gPlayerParty[0], ABILITY_HP_IV))
+        && Random() % 3 != 0)
+    {
+        ivs[STAT_HP] = MAX_PER_STAT_IVS;
+    }
+
+    if (!GetMonData(&gPlayerParty[0], MON_DATA_SANITY_IS_EGG)
+        && (GetMonAbility(&gPlayerParty[0]) == ABILITY_ATK_IV
+         || MonHasInnate(&gPlayerParty[0], ABILITY_ATK_IV))
+        && Random() % 3 != 0)
     {
         ivs[STAT_ATK] = MAX_PER_STAT_IVS;
     }
+
+    if (!GetMonData(&gPlayerParty[0], MON_DATA_SANITY_IS_EGG)
+        && (GetMonAbility(&gPlayerParty[0]) == ABILITY_DEF_IV
+         || MonHasInnate(&gPlayerParty[0], ABILITY_DEF_IV))
+        && Random() % 3 != 0)
+    {
+        ivs[STAT_DEF] = MAX_PER_STAT_IVS;
+    }
+
+    if (!GetMonData(&gPlayerParty[0], MON_DATA_SANITY_IS_EGG)
+        && (GetMonAbility(&gPlayerParty[0]) == ABILITY_SPEED_IV
+         || MonHasInnate(&gPlayerParty[0], ABILITY_SPEED_IV))
+        && Random() % 3 != 0)
+    {
+        ivs[STAT_SPEED] = MAX_PER_STAT_IVS;
+    }
+
+    if (!GetMonData(&gPlayerParty[0], MON_DATA_SANITY_IS_EGG)
+        && (GetMonAbility(&gPlayerParty[0]) == ABILITY_SPATK_IV
+         || MonHasInnate(&gPlayerParty[0], ABILITY_SPATK_IV))
+        && Random() % 3 != 0)
+    {
+        ivs[STAT_SPATK] = MAX_PER_STAT_IVS;
+    }
+
+    if (!GetMonData(&gPlayerParty[0], MON_DATA_SANITY_IS_EGG)
+        && (GetMonAbility(&gPlayerParty[0]) == ABILITY_SPDEF_IV
+         || MonHasInnate(&gPlayerParty[0], ABILITY_SPDEF_IV))
+        && Random() % 3 != 0)
+    {
+        ivs[STAT_SPDEF] = MAX_PER_STAT_IVS;
+    }
+
 
 
     CreateMonWithNatureIVs(&gEnemyParty[0], species, level, ivs, PickWildMonNature());

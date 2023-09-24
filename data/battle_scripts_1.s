@@ -10577,6 +10577,13 @@ BattleScript_GripPincerActivated::
 	waitmessage B_WAIT_TIME_LONG
 	end3
 
+BattleScript_NorthWindActivated::
+	copybyte gBattlerAbility, gBattlerAttacker
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_NORTHWINDACTIVATED
+	waitmessage B_WAIT_TIME_LONG
+	end3
+
 BattleScript_MagicianActivates::
 	call BattleScript_AbilityPopUp
 	call BattleScript_ItemSteal

@@ -3837,9 +3837,10 @@ static void TryDoEventsBeforeFirstTurn(void)
         return;
 
     // Check all switch in abilities happening from the fastest mon to slowest.
-    while (gBattleStruct->switchInAbilitiesCounter < gBattlersCount)
+    while (gBattleStruct->switchInAbilitiesCounter < gBattlersCount * 4)
     {
-        gBattlerAttacker = gBattlerByTurnOrder[gBattleStruct->switchInAbilitiesCounter++];
+        gBattleStruct->switchInAbilitiesCounter++;
+        gBattlerAttacker = gBattlerByTurnOrder[((gBattleStruct->switchInAbilitiesCounter - 1) / (NUM_INNATE_PER_SPECIES + 1))];
 
         // Primal Reversion
         if (GetBattlerHoldEffect(gBattlerAttacker, TRUE) == HOLD_EFFECT_PRIMAL_ORB
@@ -3848,7 +3849,7 @@ static void TryDoEventsBeforeFirstTurn(void)
             BattleScriptExecute(BattleScript_PrimalReversion);
             return;
         }
-        if (AbilityBattleEffects(ABILITYEFFECT_ON_SWITCHIN, gBattlerAttacker, 0, 0, 0) != 0)
+        if (AbilityBattleEffects(ABILITYEFFECT_ON_SWITCHIN, gBattlerAttacker, ((gBattleStruct->switchInAbilitiesCounter - 1) % (NUM_INNATE_PER_SPECIES +1)), 0, 0) != 0)
             return;
     }
     if (AbilityBattleEffects(ABILITYEFFECT_TRACE1, 0, 0, 0, 0) != 0)

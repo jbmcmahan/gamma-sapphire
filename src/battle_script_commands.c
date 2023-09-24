@@ -7179,7 +7179,10 @@ static void SetDmgHazardsBattlescript(u8 battlerId, u8 multistringId)
 
 bool32 DoSwitchInAbilitiesItems(u32 battlerId)
 {
-    return (AbilityBattleEffects(ABILITYEFFECT_ON_SWITCHIN, battlerId, 0, 0, 0)
+    return ((AbilityBattleEffects(ABILITYEFFECT_ON_SWITCHIN, battlerId, 0, 0, 0))
+             || (AbilityBattleEffects(ABILITYEFFECT_ON_SWITCHIN, battlerId, 1, 0, 0))
+             || (AbilityBattleEffects(ABILITYEFFECT_ON_SWITCHIN, battlerId, 2, 0, 0))
+             || (AbilityBattleEffects(ABILITYEFFECT_ON_SWITCHIN, battlerId, 3, 0, 0))
              || (gBattleWeather & B_WEATHER_ANY && WEATHER_HAS_EFFECT && AbilityBattleEffects(ABILITYEFFECT_ON_WEATHER, battlerId, 0, 0, 0))
              || (gFieldStatuses & STATUS_FIELD_TERRAIN_ANY && AbilityBattleEffects(ABILITYEFFECT_ON_TERRAIN, battlerId, 0, 0, 0))
              || ItemBattleEffects(ITEMEFFECT_ON_SWITCH_IN, battlerId, FALSE)
@@ -9359,6 +9362,10 @@ static void Cmd_various(void)
         VARIOUS_ARGS();
         gSpecialStatuses[gActiveBattler].traced = FALSE;
         gSpecialStatuses[gActiveBattler].switchInAbilityDone = FALSE;
+        gSpecialStatuses[gActiveBattler].switchInAbilityOrInnateDone[0] = FALSE;
+        gSpecialStatuses[gActiveBattler].switchInAbilityOrInnateDone[1] = FALSE;
+        gSpecialStatuses[gActiveBattler].switchInAbilityOrInnateDone[2] = FALSE;
+        gSpecialStatuses[gActiveBattler].switchInAbilityOrInnateDone[3] = FALSE;
         break;
     }
     case VARIOUS_UPDATE_CHOICE_MOVE_ON_LVL_UP:
@@ -12180,6 +12187,12 @@ static u32 ChangeStatBuffs(s8 statValue, u32 statId, u32 flags, const u8 *BS_ptr
                 gBattlerAbility = gActiveBattler;
                 gBattlescriptCurrInstr = BattleScript_AbilityNoSpecificStatLoss;
                 gLastUsedAbility = activeBattlerAbility;
+                if (BattlerHasAbilityOrInnate(gActiveBattler, ABILITY_KEEN_EYE) && statId == STAT_ACC)
+                    gLastUsedAbility = ABILITY_KEEN_EYE;
+                if (BattlerHasAbilityOrInnate(gActiveBattler, ABILITY_HYPER_CUTTER) && statId == STAT_ATK)
+                    gLastUsedAbility = ABILITY_HYPER_CUTTER;
+                if (BattlerHasAbilityOrInnate(gActiveBattler, ABILITY_BIG_PECKS) && statId == STAT_DEF)
+                    gLastUsedAbility = ABILITY_BIG_PECKS;
                 RecordAbilityBattle(gActiveBattler, gLastUsedAbility);
             }
             return STAT_CHANGE_DIDNT_WORK;
