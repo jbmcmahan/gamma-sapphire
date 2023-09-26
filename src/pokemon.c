@@ -3429,7 +3429,7 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
     u8 i;
     u8 availableIVs[NUM_STATS];
     u8 selectedIvs[LEGENDARY_PERFECT_IV_COUNT];
-    bool8 shiny;
+    bool8 shiny = FALSE;
 
     ZeroBoxMonData(boxMon);
 
@@ -3474,7 +3474,7 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
     #endif
     #if P_FLAG_FORCE_SHINY != 0
         if (FlagGet(P_FLAG_FORCE_SHINY))
-            shiny = TRUE;
+            shiny = FALSE;
     #endif
     }
 
@@ -3591,6 +3591,7 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
         SetBoxMonData(boxMon, MON_DATA_TERA_TYPE, &gSpeciesInfo[species].types[0]);
     else
         SetBoxMonData(boxMon, MON_DATA_TERA_TYPE, &gSpeciesInfo[species].types[1]);
+
     SetBoxMonData(boxMon, MON_DATA_IS_SHINY, &shiny);
 
     GiveBoxMonInitialMoveset(boxMon);

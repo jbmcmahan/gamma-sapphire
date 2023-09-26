@@ -2053,11 +2053,11 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
                     personalityValue = (personalityValue & 0xFFFFFF00) | GeneratePersonalityForGender(MON_FEMALE, partyData[i].species);
                 if (partyData[i].nature != 0)
                     ModifyPersonalityForNature(&personalityValue, partyData[i].nature - 1);
-                if (partyData[i].isShiny)
-                {
-                    otIdType = OT_ID_PRESET;
-                    fixedOtId = HIHALF(personalityValue) ^ LOHALF(personalityValue);
-                }
+                // if (partyData[i].isShiny)
+                // {
+                //     otIdType = OT_ID_PRESET;
+                //     fixedOtId = HIHALF(personalityValue) ^ LOHALF(personalityValue);
+                // }
                 CreateMon(&party[i], partyData[i].species, partyData[i].lvl, 0, TRUE, personalityValue, otIdType, fixedOtId);
                 SetMonData(&party[i], MON_DATA_HELD_ITEM, &partyData[i].heldItem);
 
