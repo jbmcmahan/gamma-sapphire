@@ -944,7 +944,7 @@ static void ResetSpritesAndDrawMonFrontPic(struct Pokenav_RibbonsSummaryMenu *me
     u32 personality;
     bool8 isShiny;
 
-    GetMonSpeciesPersonalityOtId(&species, &personality, &isShiny);
+    GetMonSpeciesPersonalityShiny(&species, &personality, &isShiny);
     ResetAllPicSprites();
     menu->monSpriteId = DrawRibbonsMonFrontPic(MON_SPRITE_X_ON, MON_SPRITE_Y);
     PokenavFillPalette(15, 0);
@@ -964,7 +964,7 @@ static u16 DrawRibbonsMonFrontPic(s32 x, s32 y)
     u32 personality;
     bool8 isShiny;
 
-    GetMonSpeciesPersonalityOtId(&species, &personality, &isShiny);
+    GetMonSpeciesPersonalityShiny(&species, &personality, &isShiny);
     spriteId = CreateMonPicSprite(species, isShiny, personality, TRUE, MON_SPRITE_X_ON, MON_SPRITE_Y, 15, TAG_NONE);
     gSprites[spriteId].oam.priority = 0;
     return spriteId;

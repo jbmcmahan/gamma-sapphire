@@ -96,16 +96,6 @@ enum {
     MON_DATA_IS_SHINY,
 };
 
-struct PokemonSubstruct0
-{
-    /*0x00*/ u16 species;
-    /*0x02*/ u16 heldItem;
-    /*0x04*/ u32 experience;
-    /*0x08*/ u8 ppBonuses;
-    /*0x09*/ u8 friendship;
-    /*0x0A*/ u16 pokeball:5; //31 balls
-             u16 filler:11;
-}; /* size = 12 */
 
 struct BoxPokemon
 {
@@ -216,7 +206,7 @@ struct BoxPokemon
 
     // Word 20: Filler
     u32 filler2;
-}
+};
 
 
 struct Pokemon

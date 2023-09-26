@@ -4059,7 +4059,7 @@ static void Task_ExitCaughtMonPage(u8 taskId)
             Free(buffer);
 
         species = NationalPokedexNumToSpecies(gTasks[taskId].tDexNum);
-        isShiny = ((bool8)gTasks[taskId].tIsShiny;
+        isShiny = (bool8)gTasks[taskId].tIsShiny;
         personality = ((u16)gTasks[taskId].tPersonalityHi << 16) | (u16)gTasks[taskId].tPersonalityLo;
         paletteNum = gSprites[gTasks[taskId].tMonSpriteId].oam.paletteNum;
         lzPaletteData = GetMonSpritePalFromSpeciesAndPersonality(species, isShiny, personality);

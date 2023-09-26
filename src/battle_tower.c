@@ -3044,8 +3044,6 @@ static void FillPartnerParty(u16 trainerId)
     }
     else if (trainerId >= TRAINER_CUSTOM_PARTNER)
     {
-        const struct TrainerMon *partyData = gTrainers[trainerId - TRAINER_CUSTOM_PARTNER].party;
-        u32 otIdType = OT_ID_RANDOM_NO_SHINY;
         otID = Random32();
 
         for (i = 0; i < 3; i++)

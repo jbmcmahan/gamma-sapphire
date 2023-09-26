@@ -4108,7 +4108,7 @@ static void Task_UpdateBonus(u8 taskId)
 struct MonInfoPacket
 {
     u8 id;
-    u16: isShiny:1;
+    u16 isShiny:1;
     u16 species:15;
     u32 personality;
     u32 otId;
