@@ -686,8 +686,9 @@
 #define STRINGID_GRIPPINCERACTIVATED                  683
 #define STRINGID_BATTLERABILITYLOWEREDTARGETSTAT      684
 #define STRINGID_CANACTFASTERTHANKSTOITEM             685
+#define STRINGID_PKMNTERASTALLIZEDINTO                686
 
-#define BATTLESTRINGS_COUNT                           686
+#define BATTLESTRINGS_COUNT                           687
 
 // This is the string id that gBattleStringsTable starts with.
 // String ids before this (e.g. STRINGID_INTROMSG) are not in the table,

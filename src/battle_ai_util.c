@@ -664,7 +664,7 @@ bool32 IsBattlerTrapped(u8 battler, bool8 checkSwitch)
     u8 holdEffect = AI_DATA->holdEffects[battler];
 
 #if B_GHOSTS_ESCAPE >= GEN_6
-    if (IS_BATTLER_OF_TYPE(battler, TYPE_GHOST))
+    if (IsBattlerOfType(battler, TYPE_GHOST))
         return FALSE;
 #endif
     if (checkSwitch && holdEffect == HOLD_EFFECT_SHED_SHELL)
@@ -715,7 +715,7 @@ bool32 IsAffectedByPowder(u8 battler, u16 ability, u16 holdEffect)
 {
     if (ability == ABILITY_OVERCOAT
     #if B_POWDER_GRASS >= GEN_6
-        || IS_BATTLER_OF_TYPE(battler, TYPE_GRASS)
+        || IsBattlerOfType(battler, TYPE_GRASS)
     #endif
         || holdEffect == HOLD_EFFECT_SAFETY_GOGGLES)
         return FALSE;
@@ -1316,7 +1316,7 @@ bool32 AI_IsBattlerGrounded(u8 battlerId)
         return FALSE;
     else if (BattlerHasInnate(battlerId, ABILITY_LEVITATE))
         return FALSE;
-    else if (IS_BATTLER_OF_TYPE(battlerId, TYPE_FLYING))
+    else if (IsBattlerOfType(battlerId, TYPE_FLYING))
         return FALSE;
     else
         return TRUE;
@@ -1496,7 +1496,7 @@ bool32 IsMoveEncouragedToHit(u8 battlerAtk, u8 battlerDef, u16 move)
         return TRUE;
 
 #if B_TOXIC_NEVER_MISS >= GEN_6
-    if (gBattleMoves[move].effect == EFFECT_TOXIC && IS_BATTLER_OF_TYPE(battlerAtk, TYPE_POISON))
+    if (gBattleMoves[move].effect == EFFECT_TOXIC && IsBattlerOfType(battlerAtk, TYPE_POISON))
         return TRUE;
 #endif
 
@@ -1546,7 +1546,7 @@ bool32 ShouldTryOHKO(u8 battlerAtk, u8 battlerDef, u16 atkAbility, u16 defAbilit
     {
         u16 odds = accuracy + (gBattleMons[battlerAtk].level - gBattleMons[battlerDef].level);
     #if B_SHEER_COLD_ACC >= GEN_7
-        if (gCurrentMove == MOVE_SHEER_COLD && !IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_ICE))
+        if (gCurrentMove == MOVE_SHEER_COLD && !IsBattlerOfType(gBattlerAttacker, TYPE_ICE))
             odds -= 10;
     #endif
         if (Random() % 100 + 1 < odds && gBattleMons[battlerAtk].level >= gBattleMons[battlerDef].level)
@@ -1568,9 +1568,9 @@ bool32 ShouldSetSandstorm(u8 battler, u16 ability, u16 holdEffect)
       || ability == ABILITY_OVERCOAT
       || ability == ABILITY_MAGIC_GUARD
       || holdEffect == HOLD_EFFECT_SAFETY_GOGGLES
-      || IS_BATTLER_OF_TYPE(battler, TYPE_ROCK)
-      || IS_BATTLER_OF_TYPE(battler, TYPE_STEEL)
-      || IS_BATTLER_OF_TYPE(battler, TYPE_GROUND)
+      || IsBattlerOfType(battler, TYPE_ROCK)
+      || IsBattlerOfType(battler, TYPE_STEEL)
+      || IsBattlerOfType(battler, TYPE_GROUND)
       || HasMoveEffect(battler, EFFECT_SHORE_UP)
       || HasMoveEffect(battler, EFFECT_WEATHER_BALL))
     {
@@ -1593,7 +1593,7 @@ bool32 ShouldSetHail(u8 battler, u16 ability, u16 holdEffect)
       || ability == ABILITY_MAGIC_GUARD
       || ability == ABILITY_OVERCOAT
       || holdEffect == HOLD_EFFECT_SAFETY_GOGGLES
-      || IS_BATTLER_OF_TYPE(battler, TYPE_ICE)
+      || IsBattlerOfType(battler, TYPE_ICE)
       || HasMove(battler, MOVE_BLIZZARD)
       || HasMoveEffect(battler, EFFECT_AURORA_VEIL)
       || HasMoveEffect(battler, EFFECT_WEATHER_BALL))
@@ -1664,7 +1664,7 @@ bool32 ShouldSetSnow(u8 battler, u16 ability, u16 holdEffect)
       || ability == ABILITY_ICE_BODY
       || ability == ABILITY_FORECAST
       || ability == ABILITY_SLUSH_RUSH
-      || IS_BATTLER_OF_TYPE(battler, TYPE_ICE)
+      || IsBattlerOfType(battler, TYPE_ICE)
       || HasMove(battler, MOVE_BLIZZARD)
       || HasMoveEffect(battler, EFFECT_AURORA_VEIL)
       || HasMoveEffect(battler, EFFECT_WEATHER_BALL))
@@ -2395,9 +2395,9 @@ static u32 GetPoisonDamage(u8 battlerId)
 
 static bool32 BattlerAffectedBySandstorm(u8 battlerId, u16 ability)
 {
-    if (!IS_BATTLER_OF_TYPE(battlerId, TYPE_ROCK)
-      && !IS_BATTLER_OF_TYPE(battlerId, TYPE_GROUND)
-      && !IS_BATTLER_OF_TYPE(battlerId, TYPE_STEEL)
+    if (!IsBattlerOfType(battlerId, TYPE_ROCK)
+      && !IsBattlerOfType(battlerId, TYPE_GROUND)
+      && !IsBattlerOfType(battlerId, TYPE_STEEL)
       && !BattlerHasAbilityOrInnate(battlerId, ABILITY_SAND_VEIL)
       && ability != ABILITY_SAND_FORCE
       && ability != ABILITY_SAND_RUSH
@@ -2408,7 +2408,7 @@ static bool32 BattlerAffectedBySandstorm(u8 battlerId, u16 ability)
 
 static bool32 BattlerAffectedByHail(u8 battlerId, u16 ability)
 {
-    if (!IS_BATTLER_OF_TYPE(battlerId, TYPE_ICE)
+    if (!IsBattlerOfType(battlerId, TYPE_ICE)
       && ability != ABILITY_SNOW_CLOAK
       && ability != ABILITY_OVERCOAT
       && ability != ABILITY_ICE_BODY)
@@ -2811,7 +2811,7 @@ bool32 AI_CanPutToSleep(u8 battlerAtk, u8 battlerDef, u16 defAbility, u16 move, 
 static bool32 AI_CanPoisonType(u8 battlerAttacker, u8 battlerTarget)
 {
     return ((AI_DATA->abilities[battlerAttacker] == ABILITY_CORROSION && gBattleMoves[gCurrentMove].split == SPLIT_STATUS)
-            || !(IS_BATTLER_OF_TYPE(battlerTarget, TYPE_POISON) || IS_BATTLER_OF_TYPE(battlerTarget, TYPE_STEEL)));
+            || !(IsBattlerOfType(battlerTarget, TYPE_POISON) || IsBattlerOfType(battlerTarget, TYPE_STEEL)));
 }
 
 static bool32 AI_CanBePoisoned(u8 battlerAtk, u8 battlerDef)
@@ -2853,7 +2853,7 @@ bool32 AI_CanPoison(u8 battlerAtk, u8 battlerDef, u16 defAbility, u16 move, u16 
       || DoesSubstituteBlockMove(battlerAtk, battlerDef, move)
       || PartnerMoveEffectIsStatusSameTarget(BATTLE_PARTNER(battlerAtk), battlerDef, partnerMove))
         return FALSE;
-    else if (defAbility != ABILITY_CORROSION && (IS_BATTLER_OF_TYPE(battlerDef, TYPE_POISON) || IS_BATTLER_OF_TYPE(battlerDef, TYPE_STEEL)))
+    else if (defAbility != ABILITY_CORROSION && (IsBattlerOfType(battlerDef, TYPE_POISON) || IsBattlerOfType(battlerDef, TYPE_STEEL)))
         return FALSE;
     else if (IsValidDoubleBattle(battlerAtk) && AI_DATA->abilities[BATTLE_PARTNER(battlerDef)] == ABILITY_PASTEL_VEIL)
         return FALSE;
@@ -2865,7 +2865,7 @@ static bool32 AI_CanBeParalyzed(u8 battler, u16 ability)
 {
     if (BattlerHasAbilityOrInnate(battler, ABILITY_LIMBER)
       || ability == ABILITY_COMATOSE
-      || IS_BATTLER_OF_TYPE(battler, TYPE_ELECTRIC)
+      || IsBattlerOfType(battler, TYPE_ELECTRIC)
       || gBattleMons[battler].status1 & STATUS1_ANY
       || IsAbilityStatusProtected(battler))
         return FALSE;
@@ -2911,7 +2911,7 @@ bool32 AI_CanBeBurned(u8 battler, u16 ability)
     if (ability == ABILITY_WATER_VEIL
       || ability == ABILITY_WATER_BUBBLE
       || ability == ABILITY_COMATOSE
-      || IS_BATTLER_OF_TYPE(battler, TYPE_FIRE)
+      || IsBattlerOfType(battler, TYPE_FIRE)
       || gBattleMons[battler].status1 & STATUS1_ANY
       || IsAbilityStatusProtected(battler)
       || gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_SAFEGUARD)
@@ -2923,7 +2923,7 @@ bool32 AI_CanGetFrostbite(u8 battler, u16 ability)
 {
     if (ability == ABILITY_MAGMA_ARMOR
       || ability == ABILITY_COMATOSE
-      || IS_BATTLER_OF_TYPE(battler, TYPE_ICE)
+      || IsBattlerOfType(battler, TYPE_ICE)
       || gBattleMons[battler].status1 & STATUS1_ANY
       || IsAbilityStatusProtected(battler)
       || gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_SAFEGUARD)

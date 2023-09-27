@@ -1489,7 +1489,8 @@ bool32 ProteanTryChangeType(u32 battler, u32 ability, u32 move, u32 moveType)
       if ((ability == ABILITY_PROTEAN || ability == ABILITY_LIBERO)
          && (gBattleMons[battler].type1 != moveType || gBattleMons[battler].type2 != moveType
              || (gBattleMons[battler].type3 != moveType && gBattleMons[battler].type3 != TYPE_MYSTERY))
-         && move != MOVE_STRUGGLE)
+         && move != MOVE_STRUGGLE
+         && !IsTerastallized(battler))
     {
         SET_BATTLER_TYPE(gBattlerAttacker, moveType);
         return TRUE;
@@ -1724,7 +1725,7 @@ static void Cmd_attackcanceler(void)
         RecordAbilityBattle(gBattlerTarget, gLastUsedAbility);
     }
     else if (IsBattlerProtected(gBattlerTarget, gCurrentMove)
-     && (gCurrentMove != MOVE_CURSE || IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_GHOST))
+     && (gCurrentMove != MOVE_CURSE || IsBattlerOfType(gBattlerAttacker, TYPE_GHOST))
      && ((!IsTwoTurnsMove(gCurrentMove) || (gBattleMons[gBattlerAttacker].status2 & STATUS2_MULTIPLETURNS)))
      && gBattleMoves[gCurrentMove].effect != EFFECT_SUCKER_PUNCH)
     {
@@ -1811,7 +1812,7 @@ static bool32 AccuracyCalcHelper(u16 move)
         return TRUE;
     }
 #if B_TOXIC_NEVER_MISS >= GEN_6
-    else if (gBattleMoves[move].effect == EFFECT_TOXIC && IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_POISON))
+    else if (gBattleMoves[move].effect == EFFECT_TOXIC && IsBattlerOfType(gBattlerAttacker, TYPE_POISON))
     {
         JumpIfMoveFailed(7, move);
         return TRUE;
@@ -3200,7 +3201,7 @@ void SetMoveEffect(bool32 primary, u32 certain)
                 }
                 RESET_RETURN
             }
-            if (IS_BATTLER_OF_TYPE(gEffectBattler, TYPE_FIRE)
+            if (IsBattlerOfType(gEffectBattler, TYPE_FIRE)
                 && (gHitMarker & HITMARKER_IGNORE_SAFEGUARD)
                 && (primary == TRUE || certain == MOVE_EFFECT_CERTAIN))
             {
@@ -4328,7 +4329,7 @@ static void Cmd_jumpbasedontype(void)
     // jumpiftype
     if (cmd->jumpIfType)
     {
-        if (IS_BATTLER_OF_TYPE(battlerId, type))
+        if (IsBattlerOfType(battlerId, type))
             gBattlescriptCurrInstr = jumpInstr;
         else
             gBattlescriptCurrInstr = cmd->nextInstr;
@@ -4336,7 +4337,7 @@ static void Cmd_jumpbasedontype(void)
     // jumpifnottype
     else
     {
-        if (!IS_BATTLER_OF_TYPE(battlerId, type))
+        if (!IsBattlerOfType(battlerId, type))
             gBattlescriptCurrInstr = jumpInstr;
         else
             gBattlescriptCurrInstr = cmd->nextInstr;
@@ -5231,7 +5232,8 @@ static void Cmd_setroost(void)
     gBattleResources->flags->flags[gBattlerAttacker] |= RESOURCE_FLAG_ROOST;
 
     // Pure flying type.
-    if (gBattleMons[gBattlerAttacker].type1 == TYPE_FLYING && gBattleMons[gBattlerAttacker].type2 == TYPE_FLYING)
+    if (gBattleMons[gBattlerAttacker].type1 == TYPE_FLYING && gBattleMons[gBattlerAttacker].type2 == TYPE_FLYING
+        && !IsTerastallized(gBattlerAttacker))
     {
         gBattleStruct->roostTypes[gBattlerAttacker][0] = TYPE_FLYING;
         gBattleStruct->roostTypes[gBattlerAttacker][1] = TYPE_FLYING;
@@ -5242,7 +5244,8 @@ static void Cmd_setroost(void)
 #endif
     }
     // Dual type with flying type.
-    else if (gBattleMons[gBattlerAttacker].type1 == TYPE_FLYING || gBattleMons[gBattlerAttacker].type2 == TYPE_FLYING)
+    else if ((gBattleMons[gBattlerAttacker].type1 == TYPE_FLYING || gBattleMons[gBattlerAttacker].type2 == TYPE_FLYING)
+             && !IsTerastallized(gBattlerAttacker))
     {
         gBattleStruct->roostTypes[gBattlerAttacker][0] = gBattleMons[gBattlerAttacker].type1;
         gBattleStruct->roostTypes[gBattlerAttacker][1] = gBattleMons[gBattlerAttacker].type2;
@@ -7283,7 +7286,7 @@ static void Cmd_switchineffects(void)
         && IsBattlerGrounded(gActiveBattler))
     {
         gSideStatuses[GetBattlerSide(gActiveBattler)] |= SIDE_STATUS_TOXIC_SPIKES_DAMAGED;
-        if (IS_BATTLER_OF_TYPE(gActiveBattler, TYPE_POISON)) // Absorb the toxic spikes.
+        if (IsBattlerOfType(gActiveBattler, TYPE_POISON)) // Absorb the toxic spikes.
         {
             gSideStatuses[GetBattlerSide(gActiveBattler)] &= ~SIDE_STATUS_TOXIC_SPIKES;
             gSideTimers[GetBattlerSide(gActiveBattler)].toxicSpikesAmount = 0;
@@ -7294,7 +7297,7 @@ static void Cmd_switchineffects(void)
         else if (IsBattlerAffectedByHazards(gActiveBattler, TRUE))
         {
             if (!(gBattleMons[gActiveBattler].status1 & STATUS1_ANY)
-                && !IS_BATTLER_OF_TYPE(gActiveBattler, TYPE_STEEL)
+                && !IsBattlerOfType(gActiveBattler, TYPE_STEEL)
                 && GetBattlerAbility(gActiveBattler) != ABILITY_IMMUNITY
                 && !IsAbilityOnSide(gActiveBattler, ABILITY_PASTEL_VEIL)
                 && !(gSideStatuses[GetBattlerSide(gActiveBattler)] & SIDE_STATUS_SAFEGUARD)
@@ -8629,15 +8632,15 @@ static void HandleTerrainMove(u16 move)
 bool32 CanPoisonType(u8 battlerAttacker, u8 battlerTarget)
 {
     return ((GetBattlerAbility(battlerAttacker) == ABILITY_CORROSION && gBattleMoves[gCurrentMove].split == SPLIT_STATUS)
-            || !(IS_BATTLER_OF_TYPE(battlerTarget, TYPE_POISON) || IS_BATTLER_OF_TYPE(battlerTarget, TYPE_STEEL)));
+            || !(IsBattlerOfType(battlerTarget, TYPE_POISON) || IsBattlerOfType(battlerTarget, TYPE_STEEL)));
 }
 
 bool32 CanParalyzeType(u8 battlerAttacker, u8 battlerTarget)
 {
-    //return !(B_PARALYZE_ELECTRIC >= GEN_6 && IS_BATTLER_OF_TYPE(battlerTarget, TYPE_ELECTRIC));
+    //return !(B_PARALYZE_ELECTRIC >= GEN_6 && IsBattlerOfType(battlerTarget, TYPE_ELECTRIC));
 
 	// New Code added for Ability Overcharge - Elite Redux
-	if (IS_BATTLER_OF_TYPE(battlerTarget, TYPE_ELECTRIC))
+	if (IsBattlerOfType(battlerTarget, TYPE_ELECTRIC))
 	{
 		if (BattlerHasAbilityOrInnate(battlerAttacker, ABILITY_OVERCHARGE))
 			return TRUE;
@@ -8741,7 +8744,7 @@ static bool32 TryDefogClear(u8 battlerAtk, bool32 clear)
 
 u32 IsFlowerVeilProtected(u32 battler)
 {
-    if (IS_BATTLER_OF_TYPE(battler, TYPE_GRASS))
+    if (IsBattlerOfType(battler, TYPE_GRASS))
         return IsAbilityOnSide(battler, ABILITY_FLOWER_VEIL);
     else
         return 0;
@@ -8792,7 +8795,7 @@ static bool32 IsRototillerAffected(u32 battlerId)
         return FALSE;
     if (!IsBattlerGrounded(battlerId))
         return FALSE;   // Only grounded battlers affected
-    if (!IS_BATTLER_OF_TYPE(battlerId, TYPE_GRASS))
+    if (!IsBattlerOfType(battlerId, TYPE_GRASS))
         return FALSE;   // Only grass types affected
     if (gStatuses3[battlerId] & STATUS3_SEMI_INVULNERABLE)
         return FALSE;   // Rototiller doesn't affected semi-invulnerable battlers
@@ -10031,9 +10034,17 @@ static void Cmd_various(void)
     case VARIOUS_TRY_REFLECT_TYPE:
     {
         VARIOUS_ARGS(const u8 *failInstr);
-        if (gBattleMons[gBattlerTarget].species == SPECIES_ARCEUS || gBattleMons[gBattlerTarget].species == SPECIES_SILVALLY)
+        if (gBattleMons[gBattlerTarget].species == SPECIES_ARCEUS || gBattleMons[gBattlerTarget].species == SPECIES_SILVALLY
+            || IsTerastallized(gBattlerAttacker))
         {
             gBattlescriptCurrInstr = cmd->failInstr;
+        }
+        else if (IsTerastallized(gBattlerTarget))
+        {
+            u32 teraType = GetTeraType(gBattlerTarget);
+            gBattleMons[gBattlerAttacker].type1 = teraType;
+            gBattleMons[gBattlerAttacker].type2 = teraType;
+            gBattlescriptCurrInstr = cmd->nextInstr;
         }
         else if (gBattleMons[gBattlerTarget].type1 == TYPE_MYSTERY && gBattleMons[gBattlerTarget].type2 != TYPE_MYSTERY)
         {
@@ -10062,8 +10073,9 @@ static void Cmd_various(void)
     case VARIOUS_TRY_SOAK:
     {
         VARIOUS_ARGS(const u8 *failInstr);
-        if (gBattleMons[gBattlerTarget].type1 == gBattleMoves[gCurrentMove].type
+        if ((gBattleMons[gBattlerTarget].type1 == gBattleMoves[gCurrentMove].type
             && gBattleMons[gBattlerTarget].type2 == gBattleMoves[gCurrentMove].type)
+            || IsTerastallized(gBattlerTarget))
         {
             gBattlescriptCurrInstr = cmd->failInstr;
         }
@@ -10299,10 +10311,13 @@ static void Cmd_various(void)
     case VARIOUS_LOSE_TYPE:
     {
         VARIOUS_ARGS(u8 type);
-        for (i = 0; i < 3; i++)
+        if (!IsTerastallized(gActiveBattler))
         {
-            if (*(u8 *)(&gBattleMons[gActiveBattler].type1 + i) == cmd->type)
-                *(u8 *)(&gBattleMons[gActiveBattler].type1 + i) = TYPE_MYSTERY;
+            for (i = 0; i < 3; i++)
+            {
+                if (*(u8 *)(&gBattleMons[gActiveBattler].type1 + i) == cmd->type)
+                    *(u8 *)(&gBattleMons[gActiveBattler].type1 + i) = TYPE_MYSTERY;
+            }
         }
         gBattlescriptCurrInstr = cmd->nextInstr;
         return;
@@ -10481,7 +10496,8 @@ static void Cmd_various(void)
     case VARIOUS_TRY_THIRD_TYPE:
     {
         VARIOUS_ARGS(const u8 *failInstr);
-        if (IS_BATTLER_OF_TYPE(gActiveBattler, gBattleMoves[gCurrentMove].argument))
+        if (IsBattlerOfType(gActiveBattler, gBattleMoves[gCurrentMove].argument)
+            || IsTerastallized(gActiveBattler))
         {
             gBattlescriptCurrInstr = cmd->failInstr;
         }
@@ -11714,7 +11730,7 @@ static void Cmd_setseeded(void)
         gMoveResultFlags |= MOVE_RESULT_MISSED;
         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_LEECH_SEED_MISS;
     }
-    else if (IS_BATTLER_OF_TYPE(gBattlerTarget, TYPE_GRASS))
+    else if (IsBattlerOfType(gBattlerTarget, TYPE_GRASS))
     {
         gMoveResultFlags |= MOVE_RESULT_MISSED;
         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_LEECH_SEED_FAIL;
@@ -12663,7 +12679,7 @@ static void Cmd_tryconversiontypechange(void)
             break;
         }
     }
-    if (IS_BATTLER_OF_TYPE(gBattlerAttacker, moveType))
+    if (IsBattlerOfType(gBattlerAttacker, moveType) || IsTerastallized(gBattlerAttacker))
     {
         gBattlescriptCurrInstr = cmd->failInstr;
     }
@@ -12689,7 +12705,7 @@ static void Cmd_tryconversiontypechange(void)
 
         if (moveType == TYPE_MYSTERY)
         {
-            if (IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_GHOST))
+            if (IsBattlerOfType(gBattlerAttacker, TYPE_GHOST))
                 moveType = TYPE_GHOST;
             else
                 moveType = TYPE_NORMAL;
@@ -12702,7 +12718,7 @@ static void Cmd_tryconversiontypechange(void)
         }
     }
 
-    if (moveChecked == validMoves)
+    if (moveChecked == validMoves || IsTerastallized(gBattlerAttacker))
     {
         gBattlescriptCurrInstr = cmd->failInstr;
     }
@@ -12716,7 +12732,7 @@ static void Cmd_tryconversiontypechange(void)
 
             if (moveType == TYPE_MYSTERY)
             {
-                if (IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_GHOST))
+                if (IsBattlerOfType(gBattlerAttacker, TYPE_GHOST))
                     moveType = TYPE_GHOST;
                 else
                     moveType = TYPE_NORMAL;
@@ -12821,7 +12837,7 @@ static void Cmd_tryKO(void)
         {
             u16 odds = gBattleMoves[gCurrentMove].accuracy + (gBattleMons[gBattlerAttacker].level - gBattleMons[gBattlerTarget].level);
         #if B_SHEER_COLD_ACC >= GEN_7
-            if (gCurrentMove == MOVE_SHEER_COLD && !IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_ICE))
+            if (gCurrentMove == MOVE_SHEER_COLD && !IsBattlerOfType(gBattlerAttacker, TYPE_ICE))
                 odds -= 10;
         #endif
             if (RandomPercentage(RNG_ACCURACY, odds) && gBattleMons[gBattlerAttacker].level >= gBattleMons[gBattlerTarget].level)
@@ -12908,9 +12924,9 @@ static void Cmd_weatherdamage(void)
     {
         if (gBattleWeather & B_WEATHER_SANDSTORM)
         {
-            if (!IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_ROCK)
-                && !IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_GROUND)
-                && !IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_STEEL)
+            if (!IsBattlerOfType(gBattlerAttacker, TYPE_ROCK)
+                && !IsBattlerOfType(gBattlerAttacker, TYPE_GROUND)
+                && !IsBattlerOfType(gBattlerAttacker, TYPE_STEEL)
                 && !BattlerHasAbilityOrInnate(gBattlerAttacker, ABILITY_SAND_VEIL)
                 && !BattlerHasAbilityOrInnate(gBattlerAttacker, ABILITY_SAND_FORCE)
                 && !BattlerHasAbilityOrInnate(gBattlerAttacker, ABILITY_SAND_RUSH)
@@ -12936,7 +12952,7 @@ static void Cmd_weatherdamage(void)
                     gBattleMoveDamage = 1;
                 gBattleMoveDamage *= -1;
             }
-            else if (!IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_ICE)
+            else if (!IsBattlerOfType(gBattlerAttacker, TYPE_ICE)
                 && !BattlerHasAbilityOrInnate(gBattlerAttacker, ABILITY_SNOW_CLOAK)
                 && !BattlerHasAbilityOrInnate(gBattlerAttacker, ABILITY_OVERCOAT)
                 && !BattlerHasAbilityOrInnate(gBattlerAttacker, ABILITY_ICE_BODY)
@@ -13399,7 +13415,8 @@ static void Cmd_settypetorandomresistance(void)
     CMD_ARGS(const u8 *failInstr);
 
     if (gLastLandedMoves[gBattlerAttacker] == MOVE_NONE
-     || gLastLandedMoves[gBattlerAttacker] == MOVE_UNAVAILABLE)
+     || gLastLandedMoves[gBattlerAttacker] == MOVE_UNAVAILABLE
+     || IsTerastallized(gBattlerAttacker))
     {
         gBattlescriptCurrInstr = cmd->failInstr;
     }
@@ -13429,7 +13446,7 @@ static void Cmd_settypetorandomresistance(void)
             i = Random() % NUMBER_OF_MON_TYPES;
             if (resistTypes & gBitTable[i])
             {
-                if (IS_BATTLER_OF_TYPE(gBattlerAttacker, i))
+                if (IsBattlerOfType(gBattlerAttacker, i))
                 {
                     resistTypes &= ~(gBitTable[i]); // Type resists, but the user is already of this type.
                 }
@@ -15488,7 +15505,7 @@ static void Cmd_tryrecycleitem(void)
 
 bool32 CanCamouflage(u8 battlerId)
 {
-    if (IS_BATTLER_OF_TYPE(battlerId, sTerrainToType[gBattleTerrain]))
+    if (IsBattlerOfType(battlerId, sTerrainToType[gBattleTerrain]))
         return FALSE;
     return TRUE;
 }
@@ -15517,7 +15534,7 @@ static void Cmd_settypetoterrain(void)
         break;
     }
 
-    if (!IS_BATTLER_OF_TYPE(gBattlerAttacker, terrainType))
+    if (!IsBattlerOfType(gBattlerAttacker, terrainType) || IsTerastallized(gBattlerAttacker))
     {
         SET_BATTLER_TYPE(gBattlerAttacker, terrainType);
         PREPARE_TYPE_BUFFER(gBattleTextBuff1, terrainType);
@@ -15680,7 +15697,7 @@ static void Cmd_handleballthrow(void)
                 ballMultiplier = 150;
                 break;
             case ITEM_NET_BALL:
-                if (IS_BATTLER_OF_TYPE(gBattlerTarget, TYPE_WATER) || IS_BATTLER_OF_TYPE(gBattlerTarget, TYPE_BUG))
+                if (IsBattlerOfType(gBattlerTarget, TYPE_WATER) || IsBattlerOfType(gBattlerTarget, TYPE_BUG))
                 #if B_NET_BALL_MODIFIER >= GEN_7
                     ballMultiplier = 350;
                 #else

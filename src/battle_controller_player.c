@@ -376,6 +376,8 @@ static void HandleInputChooseTarget(void)
         gSprites[gBattlerSpriteIds[gMultiUsePlayerCursor]].callback = SpriteCB_HideAsMoveTarget;
         if (gBattleStruct->mega.playerSelect)
             BtlController_EmitTwoReturnValues(BUFFER_B, 10, gMoveSelectionCursor[gActiveBattler] | RET_MEGA_EVOLUTION | (gMultiUsePlayerCursor << 8));
+        else if (gBattleStruct->tera.playerSelect)
+            BtlController_EmitTwoReturnValues(BUFFER_B, 10, gMoveSelectionCursor[gActiveBattler] | RET_TERASTAL | (gMultiUsePlayerCursor << 8));
         else
             BtlController_EmitTwoReturnValues(BUFFER_B, 10, gMoveSelectionCursor[gActiveBattler] | (gMultiUsePlayerCursor << 8));
         EndBounceEffect(gMultiUsePlayerCursor, BOUNCE_HEALTHBOX);
@@ -534,9 +536,11 @@ static void HandleInputShowEntireFieldTargets(void)
         HideAllTargets();
         if (gBattleStruct->mega.playerSelect)
             BtlController_EmitTwoReturnValues(BUFFER_B, 10, gMoveSelectionCursor[gActiveBattler] | RET_MEGA_EVOLUTION | (gMultiUsePlayerCursor << 8));
+        else if (gBattleStruct->tera.playerSelect)
+            BtlController_EmitTwoReturnValues(BUFFER_B, 10, gMoveSelectionCursor[gActiveBattler] | RET_TERASTAL | (gMultiUsePlayerCursor << 8));
         else
             BtlController_EmitTwoReturnValues(BUFFER_B, 10, gMoveSelectionCursor[gActiveBattler] | (gMultiUsePlayerCursor << 8));
-        HideMegaTriggerSprite();
+        HideTriggerSprites();
         PlayerBufferExecCompleted();
     }
     else if (JOY_NEW(B_BUTTON) || gPlayerDpadHoldFrames > 59)
@@ -562,6 +566,8 @@ static void HandleInputShowTargets(void)
         HideShownTargets();
         if (gBattleStruct->mega.playerSelect)
             BtlController_EmitTwoReturnValues(BUFFER_B, 10, gMoveSelectionCursor[gActiveBattler] | RET_MEGA_EVOLUTION | (gMultiUsePlayerCursor << 8));
+        else if (gBattleStruct->tera.playerSelect)
+            BtlController_EmitTwoReturnValues(BUFFER_B, 10, gMoveSelectionCursor[gActiveBattler] | RET_TERASTAL | (gMultiUsePlayerCursor << 8));
         else
             BtlController_EmitTwoReturnValues(BUFFER_B, 10, gMoveSelectionCursor[gActiveBattler] | (gMultiUsePlayerCursor << 8));
         HideTriggerSprites();
@@ -677,6 +683,8 @@ static void HandleInputChooseMove(void)
         default:
             if (gBattleStruct->mega.playerSelect)
                 BtlController_EmitTwoReturnValues(BUFFER_B, 10, gMoveSelectionCursor[gActiveBattler] | RET_MEGA_EVOLUTION | (gMultiUsePlayerCursor << 8));
+            else if (gBattleStruct->tera.playerSelect)
+                BtlController_EmitTwoReturnValues(BUFFER_B, 10, gMoveSelectionCursor[gActiveBattler] | RET_TERASTAL | (gMultiUsePlayerCursor << 8));
             else
                 BtlController_EmitTwoReturnValues(BUFFER_B, 10, gMoveSelectionCursor[gActiveBattler] | (gMultiUsePlayerCursor << 8));
             HideTriggerSprites();
@@ -714,6 +722,7 @@ static void HandleInputChooseMove(void)
         {
             gBattleStruct->mega.playerSelect = FALSE;
             gBattleStruct->zmove.viable = FALSE;
+            gBattleStruct->tera.playerSelect = FALSE;
             BtlController_EmitTwoReturnValues(BUFFER_B, 10, 0xFFFF);
             HideTriggerSprites();
             PlayerBufferExecCompleted();
@@ -807,6 +816,12 @@ static void HandleInputChooseMove(void)
             else
                 ReloadMoveNames();
         }
+        else if (CanTerastallize(gActiveBattler))
+        {
+            gBattleStruct->tera.playerSelect ^= 1;
+            ChangeTeraTriggerSprite(gBattleStruct->tera.triggerSpriteId, gBattleStruct->tera.playerSelect);
+            PlaySE(SE_SELECT);
+        }
     }
 }
 
@@ -814,6 +829,7 @@ static void ReloadMoveNames(void)
 {
     gBattleStruct->mega.playerSelect = FALSE;
     gBattleStruct->zmove.viewing = FALSE;
+    gBattleStruct->tera.playerSelect = FALSE;
     MoveSelectionDestroyCursorAt(0);
     MoveSelectionDisplayMoveNames();
     MoveSelectionCreateCursorAt(gMoveSelectionCursor[gActiveBattler], 0);
@@ -2853,12 +2869,17 @@ static void PlayerHandleChooseMove(void)
 
         InitMoveSelectionsVarsAndStrings();
         gBattleStruct->mega.playerSelect = FALSE;
+        gBattleStruct->tera.playerSelect = FALSE;
         if (!IsMegaTriggerSpriteActive())
             gBattleStruct->mega.triggerSpriteId = 0xFF;
         if (CanMegaEvolve(gActiveBattler))
             CreateMegaTriggerSprite(gActiveBattler, 0);
         if (!IsZMoveTriggerSpriteActive())
             gBattleStruct->zmove.triggerSpriteId = 0xFF;
+        if (!IsTeraTriggerSpriteActive())
+            gBattleStruct->tera.triggerSpriteId = 0xFF;
+        if (CanTerastallize(gActiveBattler))
+            CreateTeraTriggerSprite(gActiveBattler, 0);
 
         GetUsableZMoves(gActiveBattler, moveInfo->moves);
         gBattleStruct->zmove.viable = IsZMoveUsable(gActiveBattler, gMoveSelectionCursor[gActiveBattler]);

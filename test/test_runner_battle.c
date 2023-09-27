@@ -1042,7 +1042,6 @@ void ClosePokemon(u32 sourceLine)
             INVALID_IF(GetMonData(DATA.currentMon, MON_DATA_HP) == 0, "Battlers cannot be fainted");
         }
     }
-    UpdateMonPersonality(&DATA.currentMon->box, GenerateNature(DATA.nature, DATA.gender % NUM_NATURES) | DATA.gender);
     DATA.currentMon = NULL;
 }
 
@@ -1204,6 +1203,13 @@ void Status1_(u32 sourceLine, u32 status1)
     INVALID_IF(!DATA.currentMon, "Status1 outside of PLAYER/OPPONENT");
     INVALID_IF(status1 & STATUS1_TOXIC_COUNTER, "Illegal status1: has TOXIC_TURN");
     SetMonData(DATA.currentMon, MON_DATA_STATUS, &status1);
+}
+
+void TeraType_(u32 sourceLine, u32 type)
+{
+    INVALID_IF(!DATA.currentMon, "TeraType outside of PLAYER/OPPONENT");
+    INVALID_IF(type >= NUMBER_OF_MON_TYPES, "Illegal TeraType: %d", type);
+    SetMonData(DATA.currentMon, MON_DATA_TERA_TYPE, &type);
 }
 
 static const char *const sBattlerIdentifiersSingles[] =
@@ -1418,6 +1424,9 @@ void Move(u32 sourceLine, struct BattlePokemon *battler, struct MoveContext ctx)
     if (ctx.explicitMegaEvolve && ctx.megaEvolve)
         moveSlot |= RET_MEGA_EVOLUTION;
 
+    if (ctx.explicitTera && ctx.tera)
+        moveSlot |= RET_TERASTAL;
+    
     if (ctx.explicitTarget)
     {
         target = ctx.target - gBattleMons;

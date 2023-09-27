@@ -103,7 +103,6 @@ static void UpdateBattlerPartyOrdersOnSwitch(void);
 static bool8 AllAtActionConfirmed(void);
 static void TryChangeTurnOrder(void);
 static void CheckChosenMoveForEffectsBeforeTurnStarts(void);
-static void CheckMegaEvolutionBeforeTurn(void);
 static void CheckQuickClaw_CustapBerryActivation(void);
 static void FreeResetData_ReturnToOvOrDoEvolutions(void);
 static void ReturnFromBattleToOverworld(void);
@@ -4039,7 +4038,7 @@ u8 IsRunningFromBattleImpossible(void)
     if (holdEffect == HOLD_EFFECT_CAN_ALWAYS_RUN)
         return BATTLE_RUN_SUCCESS;
     #if B_GHOSTS_ESCAPE >= GEN_6
-        if (IS_BATTLER_OF_TYPE(gActiveBattler, TYPE_GHOST))
+        if (IsBattlerOfType(gActiveBattler, TYPE_GHOST))
             return BATTLE_RUN_SUCCESS;
     #endif
     if (gBattleTypeFlags & BATTLE_TYPE_LINK)
@@ -4410,11 +4409,16 @@ static void HandleTurnActionSelectionState(void)
                                 RecordedBattle_SetBattlerAction(gActiveBattler, gBattleResources->bufferB[gActiveBattler][2]);
                                 RecordedBattle_SetBattlerAction(gActiveBattler, gBattleResources->bufferB[gActiveBattler][3]);
                             }
-                            *(gBattleStruct->chosenMovePositions + gActiveBattler) = gBattleResources->bufferB[gActiveBattler][2] & ~RET_MEGA_EVOLUTION;
-                            gChosenMoveByBattler[gActiveBattler] = gBattleMons[gActiveBattler].moves[*(gBattleStruct->chosenMovePositions + gActiveBattler)];
-                            *(gBattleStruct->moveTarget + gActiveBattler) = gBattleResources->bufferB[gActiveBattler][3];
+                            // Get the chosen move position (and thus the chosen move) and target from the returned buffer.
+                            gBattleStruct->chosenMovePositions[gActiveBattler] = gBattleResources->bufferB[gActiveBattler][2] & ~(RET_MEGA_EVOLUTION | RET_TERASTAL);
+                            gChosenMoveByBattler[gActiveBattler] = gBattleMons[gActiveBattler].moves[gBattleStruct->chosenMovePositions[gActiveBattler]];
+                            gBattleStruct->moveTarget[gActiveBattler] = gBattleResources->bufferB[gActiveBattler][3];
+
+                            // Check to see if any gimmicks need to be queued.
                             if (gBattleResources->bufferB[gActiveBattler][2] & RET_MEGA_EVOLUTION)
                                 gBattleStruct->mega.toEvolve |= gBitTable[gActiveBattler];
+                            else if (gBattleResources->bufferB[gActiveBattler][2] & RET_TERASTAL)
+                                gBattleStruct->tera.toTera |= gBitTable[gActiveBattler];
                             gBattleCommunication[gActiveBattler]++;
                         }
                         break;
@@ -5090,23 +5094,25 @@ static void PopulateArrayWithBattlers(u8 *battlers)
         battlers[i] = i;
 }
 
-static bool32 TryDoMegaEvosBeforeMoves(void)
+static bool32 TryDoGimmicksBeforeMoves(void)
 {
-    if (!(gHitMarker & HITMARKER_RUN) && gBattleStruct->mega.toEvolve)
+    if (!(gHitMarker & HITMARKER_RUN)
+        && (gBattleStruct->mega.toEvolve || gBattleStruct->tera.toTera))
     {
         u32 i;
         struct Pokemon *party;
         struct Pokemon *mon;
-        u8 megaOrder[MAX_BATTLERS_COUNT];
+        u8 order[MAX_BATTLERS_COUNT];
 
-        PopulateArrayWithBattlers(megaOrder);
-        SortBattlersBySpeed(megaOrder, FALSE);
+        PopulateArrayWithBattlers(order);
+        SortBattlersBySpeed(order, FALSE);
         for (i = 0; i < gBattlersCount; i++)
         {
-            if (gBattleStruct->mega.toEvolve & gBitTable[megaOrder[i]]
-                && !(gProtectStructs[megaOrder[i]].noValidMoves))
+            // Check Mega Evolution.
+            if (gBattleStruct->mega.toEvolve & gBitTable[order[i]]
+                && !(gProtectStructs[gActiveBattler].noValidMoves))
             {
-                gActiveBattler = gBattlerAttacker = megaOrder[i];
+                gActiveBattler = gBattlerAttacker = order[i];
                 gBattleStruct->mega.toEvolve &= ~(gBitTable[gActiveBattler]);
                 gLastUsedItem = gBattleMons[gActiveBattler].item;
                 party = GetBattlerParty(gActiveBattler);
@@ -5115,6 +5121,16 @@ static bool32 TryDoMegaEvosBeforeMoves(void)
                     BattleScriptExecute(BattleScript_WishMegaEvolution);
                 else
                     BattleScriptExecute(BattleScript_MegaEvolution);
+                return TRUE;
+            }
+            // Check Terastallization.
+            if (gBattleStruct->tera.toTera & gBitTable[order[i]])
+            {
+                gActiveBattler = gBattlerAttacker = order[i];
+                gBattleStruct->tera.toTera &= ~(gBitTable[gActiveBattler]);
+                PrepareBattlerForTerastallization(gActiveBattler);
+                PREPARE_TYPE_BUFFER(gBattleTextBuff1, GetTeraType(gActiveBattler));
+                BattleScriptExecute(BattleScript_Terastallization);
                 return TRUE;
             }
         }
@@ -5271,7 +5287,7 @@ static void RunTurnActionsFunctions(void)
     // Mega Evolve / Focus Punch-like moves after switching, items, running, but before using a move.
     if (gCurrentActionFuncId == B_ACTION_USE_MOVE && !gBattleStruct->effectsBeforeUsingMoveDone)
     {
-        if (TryDoMegaEvosBeforeMoves())
+        if (TryDoGimmicksBeforeMoves())
             return;
         else if (TryDoMoveEffectsBeforeMoves())
             return;
@@ -5722,7 +5738,9 @@ void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
     }
     else if (gBattleMoves[move].effect == EFFECT_REVELATION_DANCE)
     {
-        if (gBattleMons[battlerAtk].type1 != TYPE_MYSTERY)
+        if (IsTerastallized(battlerAtk))
+            gBattleStruct->dynamicMoveType = GetTeraType(battlerAtk) | F_DYNAMIC_TYPE_2;
+        else if (gBattleMons[battlerAtk].type1 != TYPE_MYSTERY)
             gBattleStruct->dynamicMoveType = gBattleMons[battlerAtk].type1 | F_DYNAMIC_TYPE_2;
         else if (gBattleMons[battlerAtk].type2 != TYPE_MYSTERY)
             gBattleStruct->dynamicMoveType = gBattleMons[battlerAtk].type2 | F_DYNAMIC_TYPE_2;

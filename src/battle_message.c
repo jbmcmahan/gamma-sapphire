@@ -823,10 +823,12 @@ static const u8 sText_BattlerAbilitySetUpAuroraVeil[] = _("{B_ACTIVE_NAME_WITH_P
 static const u8 sText_BattlerGripPincerActivated[] = _("{B_DEF_NAME_WITH_PREFIX} was trapped by\n{B_ACTIVE_NAME_WITH_PREFIX}'s Grip Pincer!");
 static const u8 sText_BattlerAbilityLoweredEnemyStat[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s ability\nlowered the enemy {B_BUFF1}!");
 static const u8 sText_CanActFasterItem[] = _("{B_ATK_NAME_WITH_PREFIX} can act faster,\nthanks to its {B_BUFF1}!");
+static const u8 sText_PkmnTerastallizedInto[] = _("{B_ATK_NAME_WITH_PREFIX} terastallized\ninto the {B_BUFF1} type!");
 
 
 const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
 {
+    [STRINGID_PKMNTERASTALLIZEDINTO - BATTLESTRINGS_TABLE_START] = sText_PkmnTerastallizedInto,
     [STRINGID_MIRRORHERBCOPIED - BATTLESTRINGS_TABLE_START] = sText_MirrorHerbCopied,
     [STRINGID_THUNDERCAGETRAPPED - BATTLESTRINGS_TABLE_START] = sText_AtkTrappedDef,
     [STRINGID_ITEMRESTOREDSPECIESHEALTH - BATTLESTRINGS_TABLE_START] = sText_ItemRestoredSpeciesHealth,

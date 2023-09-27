@@ -470,6 +470,7 @@ extern const u8 BattleScript_StealthRockActivates[];
 extern const u8 BattleScript_SpikesActivates[];
 extern const u8 BattleScript_BerserkGeneRet[];
 extern const u8 BattleScript_TargetFormChangeWithStringNoPopup[];
+extern const u8 BattleScript_Terastallization[];
 
 extern const u8 BattleScript_AttackBoostActivates[];
 extern const u8 BattleScript_InflatableActivates[];
