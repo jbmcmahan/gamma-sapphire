@@ -1675,7 +1675,7 @@ static bool32 IsBelchPreventingMove(u32 battler, u32 move)
 u8 TrySetCantSelectMoveBattleScript(void)
 {
     u32 limitations = 0;
-    u8 moveId = gBattleResources->bufferB[gActiveBattler][2] & ~RET_MEGA_EVOLUTION;
+    u8 moveId = gBattleResources->bufferB[gActiveBattler][2] & ~(RET_MEGA_EVOLUTION | RET_TERASTAL);
     u32 move = gBattleMons[gActiveBattler].moves[moveId];
     u32 holdEffect = GetBattlerHoldEffect(gActiveBattler, TRUE);
     u16 *choicedMove = &gBattleStruct->choicedMove[gActiveBattler];
@@ -12870,4 +12870,13 @@ bool8 AreBattlersOfOppositeGender(u8 battler1, u8 battler2)
     u8 gender2 = GetBattlerGender(battler2);
 
     return (gender1 != MON_GENDERLESS && gender2 != MON_GENDERLESS && gender1 != gender2);
+}
+
+// Returns whether the battler is of the given type, checking Terastallization.
+bool32 IsBattlerOfType(u32 battlerId, u32 type)
+{
+    if (IsTerastallized(battlerId))
+        return GetTeraType(battlerId) == type;
+    else
+        return IS_BATTLER_OF_TYPE(battlerId, type);
 }

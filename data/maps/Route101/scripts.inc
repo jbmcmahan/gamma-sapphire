@@ -245,6 +245,7 @@ Route101_EventScript_BirchsBag::
 	setvar VAR_CABLE_CLUB_TUTORIAL_STATE, 1
 	giveitem ITEM_POKE_BALL, 90
 	giveitem ITEM_SUPER_CANDY
+	giveitem ITEM_TERA_ORB
 	special EnableNationalPokedex
 	clearflag FLAG_HIDE_MAP_NAME_POPUP
 	checkplayergender

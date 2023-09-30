@@ -12,6 +12,7 @@
 #include "constants/abilities.h"
 #include "constants/hold_effects.h"
 #include "constants/rgb.h"
+#include "item.h"
 
 // Sets flags and variables upon a battler's Terastallization.
 void PrepareBattlerForTerastallization(u32 battlerId)
@@ -46,11 +47,11 @@ bool32 CanTerastallize(u32 battlerId)
     u32 holdEffect = GetBattlerHoldEffect(battlerId, FALSE);
 
     // Check if Player has Tera Orb and has charge.
-#if B_FLAG_TERA_ORB_CHARGE != 0
-    if ((battlerId == B_POSITION_PLAYER_LEFT || (!(gBattleTypeFlags & BATTLE_TYPE_MULTI) && battlerId == B_POSITION_PLAYER_RIGHT))
-        && !(CheckBagHasItem(ITEM_TERA_ORB, 1) && FlagGet(B_FLAG_TERA_ORB_CHARGE)))
-#endif
-        return FALSE;
+// #if B_FLAG_TERA_ORB_CHARGE != 0
+//     if ((battlerId == B_POSITION_PLAYER_LEFT || (!(gBattleTypeFlags & BATTLE_TYPE_MULTI) && battlerId == B_POSITION_PLAYER_RIGHT))
+//         && !(CheckBagHasItem(ITEM_TERA_ORB, 1) && FlagGet(B_FLAG_TERA_ORB_CHARGE)))
+//         return FALSE;
+// #endif
 
     // Check if Trainer has already Terastallized.
     if (gBattleStruct->tera.alreadyTerastallized[battlerId])
