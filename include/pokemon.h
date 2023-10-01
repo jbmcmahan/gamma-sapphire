@@ -340,6 +340,23 @@ struct BattleMove
     u32 flags2;
 };
 
+struct TeraMove
+{
+    bool8 requiresTerastalization;
+    u8 split;
+    u8 type;
+    u16 effect;
+    u16 power;  //higher than 255 for z moves
+    u8 accuracy;
+    u8 pp;
+    u8 secondaryEffectChance;
+    u16 target;
+    s8 priority;
+    u16 argument;
+    u32 flags;
+    u32 flags2;
+};
+
 #define SPINDA_SPOT_WIDTH 16
 #define SPINDA_SPOT_HEIGHT 16
 

@@ -47,6 +47,7 @@
 #include "constants/trainers.h"
 #include "constants/weather.h"
 #include "constants/pokemon.h"
+#include "data/tera_moves.h"
 
 extern struct Evolution gEvolutionTable[][EVOS_PER_MON];
 
