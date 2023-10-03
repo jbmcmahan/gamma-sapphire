@@ -288,6 +288,7 @@ struct BattlePokemon
     /*0x55*/ u32 otId;
     /*0x59*/ u8 metLevel;
     /*0x5A*/ u8 isShiny;
+             u8 teraType;
 };
 
 struct SpeciesInfo /*0x24*/

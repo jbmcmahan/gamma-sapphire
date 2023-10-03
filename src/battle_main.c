@@ -65,6 +65,7 @@
 #include "cable_club.h"
 
 extern struct Evolution gEvolutionTable[][EVOS_PER_MON];
+extern struct TeraMove gTeraMoveTable[][NUMBER_OF_MON_TYPES];
 
 extern const struct BgTemplate gBattleBgTemplates[];
 extern const struct WindowTemplate *const gBattleWindowTemplates[];
@@ -4733,8 +4734,15 @@ s8 GetMovePriority(u32 battlerId, u16 move)
 {
     s8 priority;
     u16 ability = GetBattlerAbility(battlerId);
+    u8 tera = gBattleMons[battlerId].teraType;
 
+    // adjustedMove = GetTeraAdjustments(move, tera);
     priority = gBattleMoves[move].priority;
+
+    if (gTeraMoveTable[move][tera].priority)
+        priority = gTeraMoveTable[move][tera].priority;
+        // priority = gTeraMoveTable[move][tera].priority;
+
     if (BattlerHasAbilityOrInnate(battlerId, ABILITY_GALE_WINGS)
     #if B_GALE_WINGS >= GEN_7
         && BATTLER_MAX_HP(battlerId)

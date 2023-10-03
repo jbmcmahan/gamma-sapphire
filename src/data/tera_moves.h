@@ -9,7 +9,8 @@ const struct TeraMove gTeraMoveTable[MOVES_COUNT_Z][NUMBER_OF_MON_TYPES] =
     [MOVE_LEAFAGE] = {
         [TYPE_FLYING] = {
         .requiresTerastalization = FALSE,
-        .type = TYPE_FLYING
+        .type = TYPE_FLYING,
+        .priority = 2
         },
     }
 };
