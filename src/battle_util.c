@@ -9880,13 +9880,31 @@ const struct TypePower gNaturalGiftTable[] =
 static u16 CalcMoveBasePower(u16 move, u8 battlerAtk, u8 battlerDef)
 {
     u32 i;
-    u16 basePower = gBattleMoves[move].power;
+    u16 basePower;
     u32 weight, hpFraction, speed;
+    u8 tera = gBattleMons[battlerAtk].teraType;
+    struct BattleMove tempMove;
+    
+    tempMove = gBattleMoves[move];
+    if (gTeraMoveTable[move][tera].priority)
+        tempMove.priority = gTeraMoveTable[move][tera].priority;
+    if (gTeraMoveTable[move][tera].type)
+        tempMove.type = gTeraMoveTable[move][tera].type;
+    if (gTeraMoveTable[move][tera].effect)
+        tempMove.effect = gTeraMoveTable[move][tera].effect;
+    if (gTeraMoveTable[move][tera].power)
+        tempMove.power = gTeraMoveTable[move][tera].power;
+    if (gTeraMoveTable[move][tera].flags)
+        tempMove.flags = gTeraMoveTable[move][tera].flags;
+    if (gTeraMoveTable[move][tera].accuracy)
+        tempMove.accuracy = gTeraMoveTable[move][tera].accuracy;
+
+    basePower = tempMove.power;
 
     if (gBattleStruct->zmove.active)
         return GetZMovePower(gBattleStruct->zmove.baseMoves[battlerAtk]);
 
-    switch (gBattleMoves[move].effect)
+    switch (tempMove.effect)
     {
     case EFFECT_PLEDGE:
         // todo
@@ -10147,6 +10165,22 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
     u16 atkAbility = GetBattlerAbility(battlerAtk);
     u16 defAbility = GetBattlerAbility(battlerDef);
     u8 numsleepmons = 0;
+    u8 tera = gBattleMons[battlerAtk].teraType;
+    struct BattleMove tempMove;
+    
+    tempMove = gBattleMoves[move];
+    if (gTeraMoveTable[move][tera].priority)
+        tempMove.priority = gTeraMoveTable[move][tera].priority;
+    if (gTeraMoveTable[move][tera].type)
+        tempMove.type = gTeraMoveTable[move][tera].type;
+    if (gTeraMoveTable[move][tera].effect)
+        tempMove.effect = gTeraMoveTable[move][tera].effect;
+    if (gTeraMoveTable[move][tera].power)
+        tempMove.power = gTeraMoveTable[move][tera].power;
+    if (gTeraMoveTable[move][tera].flags)
+        tempMove.flags = gTeraMoveTable[move][tera].flags;
+    if (gTeraMoveTable[move][tera].accuracy)
+        tempMove.accuracy = gTeraMoveTable[move][tera].accuracy;
         
     for (i = 0; i < gBattlersCount; i++)
     {
@@ -10170,15 +10204,15 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
            MulModifier(&modifier, UQ_4_12(1.5));
 
     if (BattlerHasAbilityOrInnate(battlerAtk, ABILITY_RECKLESS))
-        if (gBattleMoves[move].flags & FLAG_RECKLESS_BOOST)
+        if (tempMove.flags & FLAG_RECKLESS_BOOST)
            MulModifier(&modifier, UQ_4_12(1.2));
 
     if (BattlerHasAbilityOrInnate(battlerAtk, ABILITY_IRON_FIST))
-        if (gBattleMoves[move].flags & FLAG_IRON_FIST_BOOST)
+        if (tempMove.flags & FLAG_IRON_FIST_BOOST)
            MulModifier(&modifier, UQ_4_12(1.2));
 
     if (BattlerHasAbilityOrInnate(battlerAtk, ABILITY_SHEER_FORCE))
-        if (gBattleMoves[move].flags & FLAG_SHEER_FORCE_BOOST)
+        if (tempMove.flags & FLAG_SHEER_FORCE_BOOST)
            MulModifier(&modifier, UQ_4_12(1.3));
 
     if (BattlerHasAbilityOrInnate(battlerAtk, ABILITY_SAND_FORCE))
@@ -10203,11 +10237,11 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
            MulModifier(&modifier, UQ_4_12(1.3));
 
     if (BattlerHasAbilityOrInnate(battlerAtk, ABILITY_STRONG_JAW))
-        if (gBattleMoves[move].flags & FLAG_STRONG_JAW_BOOST)
+        if (tempMove.flags & FLAG_STRONG_JAW_BOOST)
            MulModifier(&modifier, UQ_4_12(1.5));
 
     if (BattlerHasAbilityOrInnate(battlerAtk, ABILITY_MEGA_LAUNCHER))
-        if (gBattleMoves[move].flags & FLAG_MEGA_LAUNCHER_BOOST)
+        if (tempMove.flags & FLAG_MEGA_LAUNCHER_BOOST)
            MulModifier(&modifier, UQ_4_12(1.5));
 
     if (BattlerHasAbilityOrInnate(battlerAtk, ABILITY_WATER_BUBBLE))
@@ -10250,17 +10284,17 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
 
 	// Field Explorer - Elite Redux
 	if(BattlerHasAbilityOrInnate(battlerAtk, ABILITY_FIELD_EXPLORER))
-		if (gBattleMoves[move].flags2 & FLAG_FIELD_BASED)
+		if (tempMove.flags2 & FLAG_FIELD_BASED)
            MulModifier(&modifier, UQ_4_12(1.25));
 
 	// Striker - Elite Redux
 	if(BattlerHasAbilityOrInnate(battlerAtk, ABILITY_STRIKER))
-		if (gBattleMoves[move].flags2 & FLAG_STRIKER_BOOST)
+		if (tempMove.flags2 & FLAG_STRIKER_BOOST)
            MulModifier(&modifier, UQ_4_12(1.3));
 
     // Giant Wings - Elite Redux
     if(BattlerHasAbilityOrInnate(battlerAtk, ABILITY_GIANT_WINGS))
-        if (gBattleMoves[move].flags2 & FLAG_AIR_BASED)
+        if (tempMove.flags2 & FLAG_AIR_BASED)
            MulModifier(&modifier, UQ_4_12(1.25));
 
     if (BattlerHasAbilityOrInnate(battlerAtk, ABILITY_PIXILATE))
@@ -10321,7 +10355,7 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
 
 
     if (BattlerHasAbilityOrInnate(battlerAtk, ABILITY_PUNK_ROCK))
-        if (gBattleMoves[move].flags & FLAG_SOUND)
+        if (tempMove.flags & FLAG_SOUND)
             MulModifier(&modifier, UQ_4_12(1.3));
 
     if (BattlerHasAbilityOrInnate(battlerAtk, ABILITY_STEELY_SPIRIT))
@@ -10367,7 +10401,7 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
             MulModifier(&modifier, UQ_4_12(1.3));
 
     if (BattlerHasAbilityOrInnate(battlerAtk, ABILITY_SHARPNESS))
-        if (gBattleMoves[move].flags & FLAG_SLICING_MOVE)
+        if (tempMove.flags & FLAG_SLICING_MOVE)
             MulModifier(&modifier, UQ_4_12(1.5));
 
     if (BattlerHasAbilityOrInnate(battlerAtk, ABILITY_SUPREME_OVERLORD))
@@ -10375,7 +10409,7 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
 
     // Power Fists - Elite Redux
     if (BattlerHasAbilityOrInnate(battlerAtk, ABILITY_POWER_FISTS)){
-        if (gBattleMoves[move].flags & FLAG_IRON_FIST_BOOST)
+        if (tempMove.flags & FLAG_IRON_FIST_BOOST)
             MulModifier(&modifier, UQ_4_12(1.3));
     }
 
@@ -10619,13 +10653,13 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
             MulModifier(&modifier, holdEffectModifier);
         break;
     case HOLD_EFFECT_PUNCHING_GLOVE:
-        if (gBattleMoves[move].flags & FLAG_IRON_FIST_BOOST)
+        if (tempMove.flags & FLAG_IRON_FIST_BOOST)
            MulModifier(&modifier, UQ_4_12(1.1));
         break;
     }
 
     // move effect
-    switch (gBattleMoves[move].effect)
+    switch (tempMove.effect)
     {
     case EFFECT_FACADE:
         if (gBattleMons[battlerAtk].status1 & (STATUS1_BURN | STATUS1_PSN_ANY | STATUS1_PARALYSIS | STATUS1_FROSTBITE))
@@ -10709,9 +10743,9 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
     if (IsTerastallized(battlerAtk)
         && moveType == GetTeraType(battlerAtk)
         && ApplyModifier(modifier, basePower) < 60
-        && !(gBattleMoves[move].flags & (FLAG_TWO_STRIKES | FLAG_THREE_STRIKES))
-        && gBattleMoves[move].effect != EFFECT_MULTI_HIT
-        && gBattleMoves[move].priority == 0)
+        && !(tempMove.flags & (FLAG_TWO_STRIKES | FLAG_THREE_STRIKES))
+        && tempMove.effect != EFFECT_MULTI_HIT
+        && tempMove.priority == 0)
     {
         return 60;
     }
@@ -10727,10 +10761,26 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
     u16 modifier;
     u16 atkBaseSpeciesId;
     u8 defStage;
+    u8 tera = gBattleMons[battlerAtk].teraType;
+    struct BattleMove tempMove;
+    
+    tempMove = gBattleMoves[move];
+    if (gTeraMoveTable[move][tera].priority)
+        tempMove.priority = gTeraMoveTable[move][tera].priority;
+    if (gTeraMoveTable[move][tera].type)
+        tempMove.type = gTeraMoveTable[move][tera].type;
+    if (gTeraMoveTable[move][tera].effect)
+        tempMove.effect = gTeraMoveTable[move][tera].effect;
+    if (gTeraMoveTable[move][tera].power)
+        tempMove.power = gTeraMoveTable[move][tera].power;
+    if (gTeraMoveTable[move][tera].flags)
+        tempMove.flags = gTeraMoveTable[move][tera].flags;
+    if (gTeraMoveTable[move][tera].accuracy)
+        tempMove.accuracy = gTeraMoveTable[move][tera].accuracy;
 
     atkBaseSpeciesId = GET_BASE_SPECIES_ID(gBattleMons[battlerAtk].species);
 
-    if (gBattleMoves[move].effect == EFFECT_FOUL_PLAY)
+    if (tempMove.effect == EFFECT_FOUL_PLAY)
     {
         if (IS_MOVE_PHYSICAL(move))
         {
@@ -10743,7 +10793,7 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
             atkStage = gBattleMons[battlerDef].statStages[STAT_SPATK];
         }
     }
-    else if (gBattleMoves[move].effect == EFFECT_BODY_PRESS)
+    else if (tempMove.effect == EFFECT_BODY_PRESS)
     {
         atkStat = gBattleMons[battlerAtk].defense;
         atkStage = gBattleMons[battlerAtk].statStages[STAT_DEF];
@@ -10766,7 +10816,7 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
 
     // Juggernaut - Elite Redux
     else if (BattlerHasAbilityOrInnate(battlerAtk, ABILITY_JUGGERNAUT) && 
-             (gBattleMoves[move].flags & FLAG_MAKES_CONTACT)){
+             (tempMove.flags & FLAG_MAKES_CONTACT)){
         atkStat = gBattleMons[battlerAtk].attack + (gBattleMons[battlerAtk].defense * 0.2);
         atkStage = gBattleMons[battlerAtk].statStages[STAT_ATK];
     }
@@ -10774,19 +10824,19 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
     // Momentum + Speed Force - Elite Redux
 	else if ((BattlerHasAbilityOrInnate(battlerAtk, ABILITY_MOMENTUM)) && 
              (BattlerHasAbilityOrInnate(battlerAtk, ABILITY_SPEED_FORCE)) &&
-			 (gBattleMoves[move].flags & FLAG_MAKES_CONTACT)){
+			 (tempMove.flags & FLAG_MAKES_CONTACT)){
 		atkStat = gBattleMons[battlerAtk].speed + (gBattleMons[battlerAtk].speed * 0.2);
         atkStage = gBattleMons[battlerAtk].statStages[STAT_SPEED];
     }
     // Momentum - Elite Redux
 	else if ((BattlerHasAbilityOrInnate(battlerAtk, ABILITY_MOMENTUM)) && 
-			 (gBattleMoves[move].flags & FLAG_MAKES_CONTACT)){
+			 (tempMove.flags & FLAG_MAKES_CONTACT)){
 		atkStat = gBattleMons[battlerAtk].speed;
         atkStage = gBattleMons[battlerAtk].statStages[STAT_SPEED];
     }
 	// Speed Force - Elite Redux
 	else if ((BattlerHasAbilityOrInnate(battlerAtk, ABILITY_SPEED_FORCE)) && 
-			 (gBattleMoves[move].flags & FLAG_MAKES_CONTACT)){
+			 (tempMove.flags & FLAG_MAKES_CONTACT)){
         u32 speedStat;
         u8 speedStage = gBattleMons[battlerAtk].statStages[STAT_SPEED];
         if(speedStage >= DEFAULT_STAT_STAGE){
@@ -10954,7 +11004,7 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
 
     // Keen Edge - Elite Redux
     if (BattlerHasAbilityOrInnate(battlerAtk, ABILITY_KEEN_EDGE)){
-        if (gBattleMoves[move].flags & FLAG_KEEN_EDGE_BOOST)
+        if (tempMove.flags & FLAG_KEEN_EDGE_BOOST)
            MulModifier(&modifier, UQ_4_12(1.3));
     }
 
@@ -11100,6 +11150,22 @@ static u32 CalcDefenseStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, 
     u8 defStage;
     u32 defStat, def, spDef;
     u16 modifier;
+    u8 tera = gBattleMons[battlerAtk].teraType;
+    struct BattleMove tempMove;
+    
+    tempMove = gBattleMoves[move];
+    if (gTeraMoveTable[move][tera].priority)
+        tempMove.priority = gTeraMoveTable[move][tera].priority;
+    if (gTeraMoveTable[move][tera].type)
+        tempMove.type = gTeraMoveTable[move][tera].type;
+    if (gTeraMoveTable[move][tera].effect)
+        tempMove.effect = gTeraMoveTable[move][tera].effect;
+    if (gTeraMoveTable[move][tera].power)
+        tempMove.power = gTeraMoveTable[move][tera].power;
+    if (gTeraMoveTable[move][tera].flags)
+        tempMove.flags = gTeraMoveTable[move][tera].flags;
+    if (gTeraMoveTable[move][tera].accuracy)
+        tempMove.accuracy = gTeraMoveTable[move][tera].accuracy;
 
     if (gFieldStatuses & STATUS_FIELD_WONDER_ROOM) // the defense stats are swapped
     {
@@ -11109,7 +11175,7 @@ static u32 CalcDefenseStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, 
 
     // Power Fists makes punching moves do special damage - Elite Redux
     else if ((BattlerHasAbilityOrInnate(battlerAtk, ABILITY_POWER_FISTS))
-              && gBattleMoves[move].flags & FLAG_IRON_FIST_BOOST) 
+              && tempMove.flags & FLAG_IRON_FIST_BOOST) 
     {
         defStat = gBattleMons[battlerDef].spDefense;
         defStage = gBattleMons[battlerDef].statStages[STAT_SPDEF];
@@ -11122,7 +11188,7 @@ static u32 CalcDefenseStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, 
         spDef = gBattleMons[battlerDef].spDefense;
     }
 
-    if (gBattleMoves[move].effect == EFFECT_PSYSHOCK || IS_MOVE_PHYSICAL(move)) // uses defense stat instead of sp.def
+    if (tempMove.effect == EFFECT_PSYSHOCK || IS_MOVE_PHYSICAL(move)) // uses defense stat instead of sp.def
     {
         defStat = def;
         defStage = gBattleMons[battlerDef].statStages[STAT_DEF];
@@ -11137,7 +11203,7 @@ static u32 CalcDefenseStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, 
 
     #if B_EXPLOSION_DEFENSE <= GEN_4
     // Self-destruct / Explosion cut defense in half
-    if (gBattleMoves[gCurrentMove].effect == EFFECT_EXPLOSION)
+    if (tempMove.effect == EFFECT_EXPLOSION)
         defStat /= 2;
     #endif
 
@@ -11148,7 +11214,7 @@ static u32 CalcDefenseStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, 
     if (BattlerHasAbilityOrInnate(battlerAtk, ABILITY_UNAWARE))
         defStage = DEFAULT_STAT_STAGE;
     // certain moves also ignore stat changes
-    if (gBattleMoves[move].flags & FLAG_STAT_STAGES_IGNORED)
+    if (tempMove.flags & FLAG_STAT_STAGES_IGNORED)
         defStage = DEFAULT_STAT_STAGE;
 
     defStat *= gStatStageRatios[defStage][0];
@@ -11187,11 +11253,11 @@ static u32 CalcDefenseStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, 
             MulModifier(&modifier, UQ_4_12(1.5));
 
     if (BattlerHasAbilityOrInnate(battlerDef, ABILITY_PUNK_ROCK))
-        if (gBattleMoves[move].flags & FLAG_SOUND)
+        if (tempMove.flags & FLAG_SOUND)
             MulModifier(&modifier, UQ_4_12(2.0));
 
     if (BattlerHasAbilityOrInnate(battlerDef, ABILITY_PURIFYING_SALT))
-        if (gBattleMoves[move].type == TYPE_GHOST)
+        if (tempMove.type == TYPE_GHOST)
             MulModifier(&modifier, UQ_4_12(2.0));
 
 
@@ -11258,6 +11324,22 @@ static u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 move
     u32 defSide = GET_BATTLER_SIDE(battlerDef);
     u16 finalModifier = UQ_4_12(1.0);
     u16 itemDef = gBattleMons[battlerDef].item;
+    u8 tera = gBattleMons[battlerAtk].teraType;
+    struct BattleMove tempMove;
+    
+    tempMove = gBattleMoves[move];
+    if (gTeraMoveTable[move][tera].priority)
+        tempMove.priority = gTeraMoveTable[move][tera].priority;
+    if (gTeraMoveTable[move][tera].type)
+        tempMove.type = gTeraMoveTable[move][tera].type;
+    if (gTeraMoveTable[move][tera].effect)
+        tempMove.effect = gTeraMoveTable[move][tera].effect;
+    if (gTeraMoveTable[move][tera].power)
+        tempMove.power = gTeraMoveTable[move][tera].power;
+    if (gTeraMoveTable[move][tera].flags)
+        tempMove.flags = gTeraMoveTable[move][tera].flags;
+    if (gTeraMoveTable[move][tera].accuracy)
+        tempMove.accuracy = gTeraMoveTable[move][tera].accuracy;
 
     // check multiple targets in double battle
     if (GetMoveTargetCount(move, battlerAtk, battlerDef) >= 2)
@@ -11281,7 +11363,7 @@ static u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 move
     // check burn
     if (gBattleMons[battlerAtk].status1 & STATUS1_BURN && IS_MOVE_PHYSICAL(move)
     #if B_BURN_FACADE_DMG >= GEN_6
-        && gBattleMoves[move].effect != EFFECT_FACADE
+        && tempMove.effect != EFFECT_FACADE
     #endif
         && !BattlerHasAbilityOrInnate(battlerAtk, ABILITY_GUTS))
         dmg = ApplyModifier(UQ_4_12(0.5), dmg);
@@ -11289,7 +11371,7 @@ static u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 move
     // check frostbite
     if (gBattleMons[battlerAtk].status1 & STATUS1_FROSTBITE && !IS_MOVE_PHYSICAL(move)
     #if B_BURN_FACADE_DMG >= GEN_6
-        && gBattleMoves[move].effect != EFFECT_FACADE
+        && tempMove.effect != EFFECT_FACADE
     #endif
         && !BattlerHasAbilityOrInnate(battlerAtk, ABILITY_GUTS))
         dmg = ApplyModifier(UQ_4_12(0.5), dmg);
@@ -11304,7 +11386,7 @@ static u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 move
     }
     else if (IsBattlerWeatherAffected(battlerAtk, B_WEATHER_SUN))
     {
-        if (moveType == TYPE_FIRE || gBattleMoves[move].effect == EFFECT_HYDRO_STEAM)
+        if (moveType == TYPE_FIRE || tempMove.effect == EFFECT_HYDRO_STEAM)
             dmg = ApplyModifier(UQ_4_12(1.5), dmg);
         else if (moveType == TYPE_WATER)
             dmg = ApplyModifier(UQ_4_12(0.5), dmg);
@@ -11408,7 +11490,7 @@ static u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 move
 
     // Bone Zone - Elite Redux
     if(BattlerHasAbilityOrInnate(battlerAtk, ABILITY_BONE_ZONE))
-        if (typeEffectivenessModifier <= UQ_4_12(0.5) && (gBattleMoves[move].flags & FLAG_BONE_BASED))
+        if (typeEffectivenessModifier <= UQ_4_12(0.5) && (tempMove.flags & FLAG_BONE_BASED))
             MulModifier(&finalModifier, UQ_4_12(2.0));
 
     // target's abilities
@@ -11488,13 +11570,13 @@ static u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 move
         break;
     }
 
-    if (gBattleMoves[move].flags & FLAG_DMG_MINIMIZE    && gStatuses3[battlerDef] & STATUS3_MINIMIZED)
+    if (tempMove.flags & FLAG_DMG_MINIMIZE    && gStatuses3[battlerDef] & STATUS3_MINIMIZED)
         MulModifier(&finalModifier, UQ_4_12(2.0));
-    if (gBattleMoves[move].flags & FLAG_DMG_UNDERGROUND && gStatuses3[battlerDef] & STATUS3_UNDERGROUND)
+    if (tempMove.flags & FLAG_DMG_UNDERGROUND && gStatuses3[battlerDef] & STATUS3_UNDERGROUND)
         MulModifier(&finalModifier, UQ_4_12(2.0));
-    if (gBattleMoves[move].flags & FLAG_DMG_UNDERWATER  && gStatuses3[battlerDef] & STATUS3_UNDERWATER)
+    if (tempMove.flags & FLAG_DMG_UNDERWATER  && gStatuses3[battlerDef] & STATUS3_UNDERWATER)
         MulModifier(&finalModifier, UQ_4_12(2.0));
-    if (gBattleMoves[move].flags & FLAG_DMG_2X_IN_AIR   && gStatuses3[battlerDef] & STATUS3_ON_AIR)
+    if (tempMove.flags & FLAG_DMG_2X_IN_AIR   && gStatuses3[battlerDef] & STATUS3_ON_AIR)
         MulModifier(&finalModifier, UQ_4_12(2.0));
 
     dmg = ApplyModifier(finalModifier, dmg);
@@ -11557,6 +11639,22 @@ s32 CalculateMoveDamageAndEffectiveness(u16 move, u8 battlerAtk, u8 battlerDef, 
 static void MulByTypeEffectiveness(u16 *modifier, u16 move, u8 moveType, u8 battlerDef, u8 defType, u8 battlerAtk, bool32 recordAbilities)
 {
     u16 mod = GetTypeModifier(moveType, defType);
+    u8 tera = gBattleMons[battlerAtk].teraType;
+    struct BattleMove tempMove;
+    
+    tempMove = gBattleMoves[move];
+    if (gTeraMoveTable[move][tera].priority)
+        tempMove.priority = gTeraMoveTable[move][tera].priority;
+    if (gTeraMoveTable[move][tera].type)
+        tempMove.type = gTeraMoveTable[move][tera].type;
+    if (gTeraMoveTable[move][tera].effect)
+        tempMove.effect = gTeraMoveTable[move][tera].effect;
+    if (gTeraMoveTable[move][tera].power)
+        tempMove.power = gTeraMoveTable[move][tera].power;
+    if (gTeraMoveTable[move][tera].flags)
+        tempMove.flags = gTeraMoveTable[move][tera].flags;
+    if (gTeraMoveTable[move][tera].accuracy)
+        tempMove.accuracy = gTeraMoveTable[move][tera].accuracy;
 
     if (mod == UQ_4_12(0.0) && GetBattlerHoldEffect(battlerDef, TRUE) == HOLD_EFFECT_RING_TARGET)
     {
@@ -11618,7 +11716,7 @@ static void MulByTypeEffectiveness(u16 *modifier, u16 move, u8 moveType, u8 batt
 
     if (moveType == TYPE_PSYCHIC && defType == TYPE_DARK && gStatuses3[battlerDef] & STATUS3_MIRACLE_EYED && mod == UQ_4_12(0.0))
         mod = UQ_4_12(1.0);
-    if (gBattleMoves[move].effect == EFFECT_FREEZE_DRY && defType == TYPE_WATER)
+    if (tempMove.effect == EFFECT_FREEZE_DRY && defType == TYPE_WATER)
         mod = UQ_4_12(2.0);
     if (moveType == TYPE_GROUND && defType == TYPE_FLYING && IsBattlerGrounded(battlerDef) && mod == UQ_4_12(0.0))
         mod = UQ_4_12(1.0);
@@ -11675,6 +11773,22 @@ static u16 CalcTypeEffectivenessMultiplierInternal(u16 move, u8 moveType, u8 bat
 {
     u32 illusionSpecies, type1, type2, type3;
     u16 defAbility = GetBattlerAbility(battlerDef);
+    u8 tera = gBattleMons[battlerAtk].teraType;
+    struct BattleMove tempMove;
+    
+    tempMove = gBattleMoves[move];
+    if (gTeraMoveTable[move][tera].priority)
+        tempMove.priority = gTeraMoveTable[move][tera].priority;
+    if (gTeraMoveTable[move][tera].type)
+        tempMove.type = gTeraMoveTable[move][tera].type;
+    if (gTeraMoveTable[move][tera].effect)
+        tempMove.effect = gTeraMoveTable[move][tera].effect;
+    if (gTeraMoveTable[move][tera].power)
+        tempMove.power = gTeraMoveTable[move][tera].power;
+    if (gTeraMoveTable[move][tera].flags)
+        tempMove.flags = gTeraMoveTable[move][tera].flags;
+    if (gTeraMoveTable[move][tera].accuracy)
+        tempMove.accuracy = gTeraMoveTable[move][tera].accuracy;
 
    // Terastallization overrides typing.
     if (IsTerastallized(battlerDef))
@@ -11699,7 +11813,7 @@ static u16 CalcTypeEffectivenessMultiplierInternal(u16 move, u8 moveType, u8 bat
     if (recordAbilities && (illusionSpecies = GetIllusionMonSpecies(battlerDef)))
         TryNoticeIllusionInTypeEffectiveness(move, moveType, battlerAtk, battlerDef, modifier, illusionSpecies);
 
-    if (gBattleMoves[move].split == SPLIT_STATUS && move != MOVE_THUNDER_WAVE)
+    if (tempMove.split == SPLIT_STATUS && move != MOVE_THUNDER_WAVE)
     {
         modifier = UQ_4_12(1.0);
     #if B_GLARE_GHOST <= GEN_3
@@ -11709,7 +11823,7 @@ static u16 CalcTypeEffectivenessMultiplierInternal(u16 move, u8 moveType, u8 bat
         }
     #endif
     }
-    else if (moveType == TYPE_GROUND && !IsBattlerGrounded2(battlerDef, TRUE) && !(gBattleMoves[move].flags & FLAG_DMG_UNGROUNDED_IGNORE_TYPE_IF_FLYING))
+    else if (moveType == TYPE_GROUND && !IsBattlerGrounded2(battlerDef, TRUE) && !(tempMove.flags & FLAG_DMG_UNGROUNDED_IGNORE_TYPE_IF_FLYING))
     {
         modifier = UQ_4_12(0.0);
         if (recordAbilities && BattlerHasAbilityOrInnate(battlerDef, ABILITY_LEVITATE))
@@ -11730,7 +11844,7 @@ static u16 CalcTypeEffectivenessMultiplierInternal(u16 move, u8 moveType, u8 bat
 
     // Bone Zone - Elite Redux
     if (!IsBattlerGrounded(battlerDef) && 
-       (gBattleMoves[move].flags & FLAG_BONE_BASED) && 
+       (tempMove.flags & FLAG_BONE_BASED) && 
        (BattlerHasAbilityOrInnate(battlerAtk, ABILITY_BONE_ZONE)) &&
        moveType == TYPE_GROUND){
         if(gBattleMons[battlerDef].type1 == TYPE_FLYING && gBattleMons[battlerDef].type2 != TYPE_FLYING){
@@ -11761,14 +11875,14 @@ static u16 CalcTypeEffectivenessMultiplierInternal(u16 move, u8 moveType, u8 bat
     }
 
     // Thousand Arrows ignores type modifiers for flying mons
-    if (!IsBattlerGrounded(battlerDef) && (gBattleMoves[move].flags & FLAG_DMG_UNGROUNDED_IGNORE_TYPE_IF_FLYING)
+    if (!IsBattlerGrounded(battlerDef) && (tempMove.flags & FLAG_DMG_UNGROUNDED_IGNORE_TYPE_IF_FLYING)
         && (type1 == TYPE_FLYING || type2 == TYPE_FLYING || type3 == TYPE_FLYING))    {
         modifier = UQ_4_12(1.0);
     }
 
     if (((BattlerHasAbilityOrInnate(battlerDef, ABILITY_WONDER_GUARD) && modifier <= UQ_4_12(1.0))
         || (BattlerHasAbilityOrInnate(battlerDef, ABILITY_TELEPATHY) && battlerDef == BATTLE_PARTNER(battlerAtk)))
-        && gBattleMoves[move].power)
+        && tempMove.power)
     {
         modifier = UQ_4_12(0.0);
         if (recordAbilities)
@@ -11799,7 +11913,7 @@ static u16 CalcTypeEffectivenessMultiplierInternal(u16 move, u8 moveType, u8 bat
 
     // Weather Control - Elite Redux
 	if (BattlerHasAbilityOrInnate(battlerDef, ABILITY_WEATHER_CONTROL)   && 
-         (gBattleMoves[move].flags & FLAG_WEATHER_BASED))
+         (tempMove.flags & FLAG_WEATHER_BASED))
     {
         modifier = UQ_4_12(0.0);
         if (recordAbilities)
@@ -11822,12 +11936,30 @@ static u16 CalcTypeEffectivenessMultiplierInternal(u16 move, u8 moveType, u8 bat
 u16 CalcTypeEffectivenessMultiplier(u16 move, u8 moveType, u8 battlerAtk, u8 battlerDef, bool32 recordAbilities)
 {
     u16 modifier = UQ_4_12(1.0);
+    u8 tera = gBattleMons[battlerAtk].teraType;
+    struct BattleMove tempMove;
+    
+    tempMove = gBattleMoves[move];
+    if (gTeraMoveTable[move][tera].priority)
+        tempMove.priority = gTeraMoveTable[move][tera].priority;
+    if (gTeraMoveTable[move][tera].type)
+        tempMove.type = gTeraMoveTable[move][tera].type;
+    if (gTeraMoveTable[move][tera].effect)
+        tempMove.effect = gTeraMoveTable[move][tera].effect;
+    if (gTeraMoveTable[move][tera].power)
+        tempMove.power = gTeraMoveTable[move][tera].power;
+    if (gTeraMoveTable[move][tera].flags)
+        tempMove.flags = gTeraMoveTable[move][tera].flags;
+    if (gTeraMoveTable[move][tera].accuracy)
+        tempMove.accuracy = gTeraMoveTable[move][tera].accuracy;
+    if (gTeraMoveTable[move][tera].argument)
+        tempMove.argument = gTeraMoveTable[move][tera].argument;
 
     if (move != MOVE_STRUGGLE && moveType != TYPE_MYSTERY)
     {
         modifier = CalcTypeEffectivenessMultiplierInternal(move, moveType, battlerAtk, battlerDef, recordAbilities, modifier);
-        if (gBattleMoves[move].effect == EFFECT_TWO_TYPED_MOVE)
-            modifier = CalcTypeEffectivenessMultiplierInternal(move, gBattleMoves[move].argument, battlerAtk, battlerDef, recordAbilities, modifier);
+        if (tempMove.effect == EFFECT_TWO_TYPED_MOVE)
+            modifier = CalcTypeEffectivenessMultiplierInternal(move, tempMove.argument, battlerAtk, battlerDef, recordAbilities, modifier);
     }
 
     if (recordAbilities)

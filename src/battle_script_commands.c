@@ -95,6 +95,7 @@
 #define MEMBERS_8(a, b, c, d, e, f, g, h) a; b; c; d; e; f; g; h;
 
 extern struct Evolution gEvolutionTable[][EVOS_PER_MON];
+extern struct TeraMove gTeraMoveTable[][NUMBER_OF_MON_TYPES];
 
 extern const u8 *const gBattleScriptsForMoveEffects[];
 
@@ -1914,13 +1915,30 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move, u32 atkAbility, u
     s8 buff, accStage, evasionStage;
     u8 atkParam = GetBattlerHoldEffectParam(battlerAtk);
     u8 defParam = GetBattlerHoldEffectParam(battlerDef);
+    u8 tera = gBattleMons[battlerAtk].teraType;
+    struct BattleMove tempMove;
+    
+    tempMove = gBattleMoves[move];
+    if (gTeraMoveTable[move][tera].priority)
+        tempMove.priority = gTeraMoveTable[move][tera].priority;
+    if (gTeraMoveTable[move][tera].type)
+        tempMove.type = gTeraMoveTable[move][tera].type;
+    if (gTeraMoveTable[move][tera].effect)
+        tempMove.effect = gTeraMoveTable[move][tera].effect;
+    if (gTeraMoveTable[move][tera].power)
+        tempMove.power = gTeraMoveTable[move][tera].power;
+    if (gTeraMoveTable[move][tera].flags)
+        tempMove.flags = gTeraMoveTable[move][tera].flags;
+    if (gTeraMoveTable[move][tera].accuracy)
+        tempMove.accuracy = gTeraMoveTable[move][tera].accuracy;
+
 
     gPotentialItemEffectBattler = battlerDef;
     accStage = gBattleMons[battlerAtk].statStages[STAT_ACC];
     evasionStage = gBattleMons[battlerDef].statStages[STAT_EVASION];
     if (atkAbility == ABILITY_UNAWARE || atkAbility == ABILITY_KEEN_EYE)
         evasionStage = DEFAULT_STAT_STAGE;
-    if (gBattleMoves[move].flags & FLAG_STAT_STAGES_IGNORED)
+    if (tempMove.flags & FLAG_STAT_STAGES_IGNORED)
         evasionStage = DEFAULT_STAT_STAGE;
     if (defAbility == ABILITY_UNAWARE)
         accStage = DEFAULT_STAT_STAGE;
@@ -1935,7 +1953,7 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move, u32 atkAbility, u
     if (buff > MAX_STAT_STAGE)
         buff = MAX_STAT_STAGE;
 
-    moveAcc = gBattleMoves[move].accuracy;
+    moveAcc = tempMove.accuracy;
 
     // Hypnotist - Elite Redux
     if(move == MOVE_HYPNOSIS && BattlerHasAbilityOrInnate(battlerAtk, ABILITY_HYPNOTIST))
@@ -1954,7 +1972,7 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move, u32 atkAbility, u
 
     // Check Thunder and Hurricane on sunny weather.
     if (IsBattlerWeatherAffected(battlerDef, B_WEATHER_SUN)
-      && (gBattleMoves[move].effect == EFFECT_THUNDER || gBattleMoves[move].effect == EFFECT_HURRICANE))
+      && (tempMove.effect == EFFECT_THUNDER || tempMove.effect == EFFECT_HURRICANE))
         moveAcc = 50;
     // Check Wonder Skin.
     if (defAbility == ABILITY_WONDER_SKIN && IS_MOVE_STATUS(move) && moveAcc > 50)
@@ -1970,7 +1988,7 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move, u32 atkAbility, u
 
     // Artillery - Elite Redux
     if (BattlerHasAbilityOrInnate(battlerAtk, ABILITY_ARTILLERY)
-        && (gBattleMoves[move].flags & FLAG_MEGA_LAUNCHER_BOOST))
+        && (tempMove.flags & FLAG_MEGA_LAUNCHER_BOOST))
         moveAcc = 100;
 
     calc = gAccuracyStageRatios[buff].dividend * moveAcc;
@@ -2187,6 +2205,23 @@ s32 CalcCritChanceStage(u8 battlerAtk, u8 battlerDef, u32 move, bool32 recordAbi
     u32 abilityDef = GetBattlerAbility(gBattlerTarget);
     u32 abilityDefPartner = GetBattlerAbility(BATTLE_PARTNER(gBattlerTarget));
     u32 holdEffectAtk = GetBattlerHoldEffect(battlerAtk, TRUE);
+    u8 tera = gBattleMons[battlerAtk].teraType;
+    struct BattleMove tempMove;
+    
+    tempMove = gBattleMoves[move];
+    if (gTeraMoveTable[move][tera].priority)
+        tempMove.priority = gTeraMoveTable[move][tera].priority;
+    if (gTeraMoveTable[move][tera].type)
+        tempMove.type = gTeraMoveTable[move][tera].type;
+    if (gTeraMoveTable[move][tera].effect)
+        tempMove.effect = gTeraMoveTable[move][tera].effect;
+    if (gTeraMoveTable[move][tera].power)
+        tempMove.power = gTeraMoveTable[move][tera].power;
+    if (gTeraMoveTable[move][tera].flags)
+        tempMove.flags = gTeraMoveTable[move][tera].flags;
+    if (gTeraMoveTable[move][tera].accuracy)
+        tempMove.accuracy = gTeraMoveTable[move][tera].accuracy;
+
 
     if (gSideStatuses[battlerDef] & SIDE_STATUS_LUCKY_CHANT
         || gStatuses3[gBattlerAttacker] & STATUS3_CANT_SCORE_A_CRIT)
@@ -2203,7 +2238,7 @@ s32 CalcCritChanceStage(u8 battlerAtk, u8 battlerDef, u32 move, bool32 recordAbi
         critChance = -1;
     }
     else if (gStatuses3[battlerAtk] & STATUS3_LASER_FOCUS
-             || gBattleMoves[move].effect == EFFECT_ALWAYS_CRIT
+             || tempMove.effect == EFFECT_ALWAYS_CRIT
              || (BattlerHasAbilityOrInnate(gBattlerAttacker, ABILITY_MERCILESS) && gBattleMons[battlerDef].status1 & STATUS1_PSN_ANY)
              || move == MOVE_SURGING_STRIKES)
     {
@@ -2212,7 +2247,7 @@ s32 CalcCritChanceStage(u8 battlerAtk, u8 battlerDef, u32 move, bool32 recordAbi
     else
     {
         critChance  = 2 * ((gBattleMons[gBattlerAttacker].status2 & STATUS2_FOCUS_ENERGY) != 0)
-                    + ((gBattleMoves[gCurrentMove].flags & FLAG_HIGH_CRIT) != 0)
+                    + ((tempMove.flags & FLAG_HIGH_CRIT) != 0)
                     + (holdEffectAtk == HOLD_EFFECT_SCOPE_LENS)
                     + 2 * (holdEffectAtk == HOLD_EFFECT_LUCKY_PUNCH && gBattleMons[gBattlerAttacker].species == SPECIES_CHANSEY)
                     + 2 * BENEFITS_FROM_LEEK(battlerAtk, holdEffectAtk)
@@ -2220,8 +2255,8 @@ s32 CalcCritChanceStage(u8 battlerAtk, u8 battlerDef, u32 move, bool32 recordAbi
                     + 2 * (GetBattlerFriendshipScore(gBattlerAttacker) >= FRIENDSHIP_200_TO_254)
                 #endif
                     + (BattlerHasAbilityOrInnate(gBattlerAttacker, ABILITY_SUPER_LUCK))
-                    + 2 * (BattlerHasAbilityOrInnate(battlerAtk, ABILITY_PRECISE_FIST) && (gBattleMoves[move].flags & FLAG_IRON_FIST_BOOST)) // Precise Fist - Elite Redux
-                    + (BattlerHasAbilityOrInnate(gBattlerAttacker, ABILITY_PERFECTIONIST) && gBattleMoves[move].power <= 50); // Perfectionist - Elite Redux
+                    + 2 * (BattlerHasAbilityOrInnate(battlerAtk, ABILITY_PRECISE_FIST) && (tempMove.flags & FLAG_IRON_FIST_BOOST)) // Precise Fist - Elite Redux
+                    + (BattlerHasAbilityOrInnate(gBattlerAttacker, ABILITY_PERFECTIONIST) && tempMove.power <= 50); // Perfectionist - Elite Redux
 
 
         if (critChance >= ARRAY_COUNT(sCriticalHitChance))
@@ -2272,8 +2307,18 @@ static void Cmd_damagecalc(void)
     CMD_ARGS();
 
     u8 moveType;
+    u8 tera = gBattleMons[gBattlerAttacker].teraType;
+    struct BattleMove tempMove;
+    
+    tempMove = gBattleMoves[gCurrentMove];
+    if (gTeraMoveTable[gCurrentMove][tera].type)
+        tempMove.type = gTeraMoveTable[gCurrentMove][tera].type;
 
-    GET_MOVE_TYPE(gCurrentMove, moveType);
+    if (gBattleStruct->dynamicMoveType)                               
+        moveType = gBattleStruct->dynamicMoveType & DYNAMIC_TYPE_MASK; 
+    else                                                              
+        moveType = tempMove.type;
+
     gBattleMoveDamage = CalculateMoveDamage(gCurrentMove, gBattlerAttacker, gBattlerTarget, moveType, 0, gIsCriticalHit, TRUE, TRUE);
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
@@ -2283,8 +2328,17 @@ static void Cmd_typecalc(void)
     CMD_ARGS();
 
     u8 moveType;
+    u8 tera = gBattleMons[gBattlerAttacker].teraType;
+    struct BattleMove tempMove;
+    
+    tempMove = gBattleMoves[gCurrentMove];
+    if (gTeraMoveTable[gCurrentMove][tera].type)
+        tempMove.type = gTeraMoveTable[gCurrentMove][tera].type;
 
-    GET_MOVE_TYPE(gCurrentMove, moveType);
+    if (gBattleStruct->dynamicMoveType)                               
+        moveType = gBattleStruct->dynamicMoveType & DYNAMIC_TYPE_MASK; 
+    else                                                              
+        moveType = tempMove.type;
     CalcTypeEffectivenessMultiplier(gCurrentMove, moveType, gBattlerAttacker, gBattlerTarget, TRUE);
 
     gBattlescriptCurrInstr = cmd->nextInstr;
@@ -3979,6 +4033,23 @@ static void Cmd_seteffectwithchance(void)
     u32 percentChance = gBattleMoves[gCurrentMove].secondaryEffectChance;
     u8 moveType = gBattleMoves[gCurrentMove].type;
     u8 moveEffect = gBattleMoves[gCurrentMove].effect;
+    u8 tera = gBattleMons[gBattlerAttacker].teraType;
+    struct BattleMove tempMove;
+    
+    tempMove = gBattleMoves[gCurrentMove];
+    if (gTeraMoveTable[gCurrentMove][tera].priority)
+        tempMove.priority = gTeraMoveTable[gCurrentMove][tera].priority;
+    if (gTeraMoveTable[gCurrentMove][tera].type)
+        tempMove.type = gTeraMoveTable[gCurrentMove][tera].type;
+    if (gTeraMoveTable[gCurrentMove][tera].effect)
+        tempMove.effect = gTeraMoveTable[gCurrentMove][tera].effect;
+    if (gTeraMoveTable[gCurrentMove][tera].power)
+        tempMove.power = gTeraMoveTable[gCurrentMove][tera].power;
+    if (gTeraMoveTable[gCurrentMove][tera].flags)
+        tempMove.flags = gTeraMoveTable[gCurrentMove][tera].flags;
+    if (gTeraMoveTable[gCurrentMove][tera].accuracy)
+        tempMove.accuracy = gTeraMoveTable[gCurrentMove][tera].accuracy;
+
 
     // Serene Grace
     if (BattlerHasAbilityOrInnate(gBattlerAttacker, ABILITY_SERENE_GRACE))
@@ -3993,7 +4064,7 @@ static void Cmd_seteffectwithchance(void)
 
     //Precise Fist - Elite Redux
     if (BattlerHasAbilityOrInnate(gBattlerAttacker, ABILITY_PRECISE_FIST)
-         && (gBattleMoves[gCurrentMove].flags & FLAG_IRON_FIST_BOOST))
+         && (tempMove.flags & FLAG_IRON_FIST_BOOST))
         percentChance = percentChance * 2;
 
 
@@ -5611,6 +5682,23 @@ static void Cmd_moveend(void)
     u16 *choicedMoveAtk = NULL;
     u32 endMode, endState;
     u32 originallyUsedMove;
+    u8 tera = gBattleMons[gBattlerAttacker].teraType;
+    struct BattleMove tempMove;
+    
+    tempMove = gBattleMoves[gCurrentMove];
+    if (gTeraMoveTable[gCurrentMove][tera].priority)
+        tempMove.priority = gTeraMoveTable[gCurrentMove][tera].priority;
+    if (gTeraMoveTable[gCurrentMove][tera].type)
+        tempMove.type = gTeraMoveTable[gCurrentMove][tera].type;
+    if (gTeraMoveTable[gCurrentMove][tera].effect)
+        tempMove.effect = gTeraMoveTable[gCurrentMove][tera].effect;
+    if (gTeraMoveTable[gCurrentMove][tera].power)
+        tempMove.power = gTeraMoveTable[gCurrentMove][tera].power;
+    if (gTeraMoveTable[gCurrentMove][tera].flags)
+        tempMove.flags = gTeraMoveTable[gCurrentMove][tera].flags;
+    if (gTeraMoveTable[gCurrentMove][tera].accuracy)
+        tempMove.accuracy = gTeraMoveTable[gCurrentMove][tera].accuracy;
+
 
     if (gChosenMove == MOVE_UNAVAILABLE)
         originallyUsedMove = MOVE_NONE;
@@ -5718,7 +5806,7 @@ static void Cmd_moveend(void)
                 && GetBattlerSide(gBattlerAttacker) != GetBattlerSide(gBattlerTarget)
                 && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
                 && TARGET_TURN_DAMAGED
-                && gBattleMoves[gCurrentMove].power != 0
+                && tempMove.power != 0
                 && CompareStat(gBattlerTarget, STAT_ATK, MAX_STAT_STAGE, CMP_LESS_THAN))
             {
                 SET_STATCHANGER(STAT_ATK, 1, FALSE);
@@ -5734,7 +5822,7 @@ static void Cmd_moveend(void)
                 && gBattlerAttacker != gBattlerTarget
                 && (moveType == TYPE_FIRE
             #if B_BURN_HIT_THAW >= GEN_6
-                    || gBattleMoves[gCurrentMove].effect == EFFECT_BURN_HIT
+                    || tempMove.effect == EFFECT_BURN_HIT
             #endif
                 )
                 && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT))
@@ -5769,7 +5857,7 @@ static void Cmd_moveend(void)
                 && IsBattlerAlive(gBattlerAttacker)
                 && gBattleScripting.savedDmg != 0) // Some checks may be redundant alongside this one
             {
-                switch (gBattleMoves[gCurrentMove].effect)
+                switch (tempMove.effect)
                 {
                 case EFFECT_RECOIL_25: // Take Down, 25% recoil
                     gBattleMoveDamage = max(1, gBattleScripting.savedDmg / 4);
@@ -5918,16 +6006,16 @@ static void Cmd_moveend(void)
                 }
                 break;
             case MOVE_EFFECT_REMOVE_STATUS: // Smelling salts, Wake-Up Slap, Sparkling Aria
-                if ((gBattleMons[gBattlerTarget].status1 & gBattleMoves[gCurrentMove].argument) && IsBattlerAlive(gBattlerTarget))
+                if ((gBattleMons[gBattlerTarget].status1 & tempMove.argument) && IsBattlerAlive(gBattlerTarget))
                 {
-                    gBattleMons[gBattlerTarget].status1 &= ~(gBattleMoves[gCurrentMove].argument);
+                    gBattleMons[gBattlerTarget].status1 &= ~(tempMove.argument);
 
                     gActiveBattler = gBattlerTarget;
                     BtlController_EmitSetMonData(0, REQUEST_STATUS_BATTLE, 0, 4, &gBattleMons[gActiveBattler].status1);
                     MarkBattlerForControllerExec(gActiveBattler);
                     effect = TRUE;
                     BattleScriptPush(gBattlescriptCurrInstr);
-                    switch (gBattleMoves[gCurrentMove].argument)
+                    switch (tempMove.argument)
                     {
                     case STATUS1_PARALYSIS:
                         gBattlescriptCurrInstr = BattleScript_TargetPRLZHeal;
@@ -6175,7 +6263,7 @@ static void Cmd_moveend(void)
                     gBattleScripting.moveendState = 0;
                     MoveValuesCleanUp();
                     gBattleScripting.moveEffect = gBattleScripting.savedMoveEffect;
-                    BattleScriptPush(gBattleScriptsForMoveEffects[gBattleMoves[gCurrentMove].effect]);
+                    BattleScriptPush(gBattleScriptsForMoveEffects[tempMove.effect]);
                     gBattlescriptCurrInstr = BattleScript_FlushMessageBox;
                     return;
                 }
@@ -6196,7 +6284,7 @@ static void Cmd_moveend(void)
                         gBattleScripting.animTurn = 0;
                         gBattleScripting.animTargetsHit = 0;
                         MoveValuesCleanUp();
-                        BattleScriptPush(gBattleScriptsForMoveEffects[gBattleMoves[gCurrentMove].effect]);
+                        BattleScriptPush(gBattleScriptsForMoveEffects[tempMove.effect]);
                         gBattlescriptCurrInstr = BattleScript_FlushMessageBox;
                         return;
                     }
@@ -6246,7 +6334,7 @@ static void Cmd_moveend(void)
                         gSpecialStatuses[gBattlerTarget].focusSashed = 0; // Delete this line to make Focus Sash last for the duration of the whole move turn.
                         gSpecialStatuses[gBattlerAttacker].multiHitOn = TRUE;
                         MoveValuesCleanUp();
-                        BattleScriptPush(gBattleScriptsForMoveEffects[gBattleMoves[gCurrentMove].effect]);
+                        BattleScriptPush(gBattleScriptsForMoveEffects[tempMove.effect]);
                         gBattlescriptCurrInstr = BattleScript_FlushMessageBox;
                         return;
                     }
@@ -6265,7 +6353,7 @@ static void Cmd_moveend(void)
             break;
         }
         case MOVEEND_EJECT_BUTTON:
-            if (gBattleMoves[gCurrentMove].effect != EFFECT_HIT_SWITCH_TARGET
+            if (tempMove.effect != EFFECT_HIT_SWITCH_TARGET
               && IsBattlerAlive(gBattlerAttacker)
               && !TestSheerForceFlag(gBattlerAttacker, gCurrentMove)
               && (GetBattlerSide(gBattlerAttacker) == B_SIDE_PLAYER || (gBattleTypeFlags & BATTLE_TYPE_TRAINER)))
@@ -6286,7 +6374,7 @@ static void Cmd_moveend(void)
                     {
                         gActiveBattler = gBattleScripting.battler = battler;
                         gLastUsedItem = gBattleMons[battler].item;
-                        if (gBattleMoves[gCurrentMove].effect == EFFECT_HIT_ESCAPE)
+                        if (tempMove.effect == EFFECT_HIT_ESCAPE)
                             gBattlescriptCurrInstr = BattleScript_MoveEnd;  // Prevent user switch-in selection
                         BattleScriptPushCursor();
                         gBattlescriptCurrInstr = BattleScript_EjectButtonActivates;
@@ -6298,7 +6386,7 @@ static void Cmd_moveend(void)
             gBattleScripting.moveendState++;
             break;
         case MOVEEND_RED_CARD:
-            if ((gBattleMoves[gCurrentMove].effect != EFFECT_HIT_SWITCH_TARGET || gBattleStruct->hitSwitchTargetFailed)
+            if ((tempMove.effect != EFFECT_HIT_SWITCH_TARGET || gBattleStruct->hitSwitchTargetFailed)
               && IsBattlerAlive(gBattlerAttacker)
               && !TestSheerForceFlag(gBattlerAttacker, gCurrentMove)
               && GetBattlerAbility(gBattlerAttacker) != ABILITY_GUARD_DOG)
@@ -6322,7 +6410,7 @@ static void Cmd_moveend(void)
                         gLastUsedItem = gBattleMons[battler].item;
                         gActiveBattler = gBattleStruct->savedBattlerTarget = gBattleScripting.battler = battler;  // Battler with red card
                         gEffectBattler = gBattlerAttacker;
-                        if (gBattleMoves[gCurrentMove].effect == EFFECT_HIT_ESCAPE)
+                        if (tempMove.effect == EFFECT_HIT_ESCAPE)
                             gBattlescriptCurrInstr = BattleScript_MoveEnd;  // Prevent user switch-in selection
                         BattleScriptPushCursor();
                         gBattlescriptCurrInstr = BattleScript_RedCardActivates;
@@ -6402,7 +6490,7 @@ static void Cmd_moveend(void)
             gBattleScripting.moveendState++;
             break;
         case MOVEEND_DANCER: // Special case because it's so annoying
-            if (gBattleMoves[gCurrentMove].flags & FLAG_DANCE)
+            if (tempMove.flags & FLAG_DANCE)
             {
                 u8 battler, nextDancer = 0;
 
@@ -6488,7 +6576,7 @@ static void Cmd_moveend(void)
                 *(gBattleStruct->moveTarget + gBattlerAttacker) = gSpecialStatuses[gBattlerAttacker].dancerOriginalTarget & 0x3;
 
         #if B_RAMPAGE_CANCELLING >= GEN_5
-            if (gBattleMoves[gCurrentMove].effect == EFFECT_RAMPAGE // If we're rampaging
+            if (tempMove.effect == EFFECT_RAMPAGE // If we're rampaging
               && (gMoveResultFlags & MOVE_RESULT_NO_EFFECT)         // And it is unusable
               && (gBattleMons[gBattlerAttacker].status2 & STATUS2_LOCK_CONFUSE) != STATUS2_LOCK_CONFUSE_TURN(1))  // And won't end this turn
                 CancelMultiTurnMoves(gBattlerAttacker); // Cancel it
@@ -6581,6 +6669,23 @@ static void Cmd_switchindataupdate(void)
     struct BattlePokemon oldData;
     s32 i;
     u8 *monData;
+    u8 tera = gBattleMons[gBattlerAttacker].teraType;
+    struct BattleMove tempMove;
+    
+    tempMove = gBattleMoves[gCurrentMove];
+    if (gTeraMoveTable[gCurrentMove][tera].priority)
+        tempMove.priority = gTeraMoveTable[gCurrentMove][tera].priority;
+    if (gTeraMoveTable[gCurrentMove][tera].type)
+        tempMove.type = gTeraMoveTable[gCurrentMove][tera].type;
+    if (gTeraMoveTable[gCurrentMove][tera].effect)
+        tempMove.effect = gTeraMoveTable[gCurrentMove][tera].effect;
+    if (gTeraMoveTable[gCurrentMove][tera].power)
+        tempMove.power = gTeraMoveTable[gCurrentMove][tera].power;
+    if (gTeraMoveTable[gCurrentMove][tera].flags)
+        tempMove.flags = gTeraMoveTable[gCurrentMove][tera].flags;
+    if (gTeraMoveTable[gCurrentMove][tera].accuracy)
+        tempMove.accuracy = gTeraMoveTable[gCurrentMove][tera].accuracy;
+
 
     if (gBattleControllerExecFlags)
         return;
@@ -6604,7 +6709,7 @@ static void Cmd_switchindataupdate(void)
         gBattleMons[gActiveBattler].item = ITEM_NONE;
     }
 
-    if (gBattleMoves[gCurrentMove].effect == EFFECT_BATON_PASS)
+    if (tempMove.effect == EFFECT_BATON_PASS)
     {
         for (i = 0; i < NUM_BATTLE_STATS; i++)
         {

@@ -4735,19 +4735,29 @@ s8 GetMovePriority(u32 battlerId, u16 move)
     s8 priority;
     u16 ability = GetBattlerAbility(battlerId);
     u8 tera = gBattleMons[battlerId].teraType;
-
-    // adjustedMove = GetTeraAdjustments(move, tera);
-    priority = gBattleMoves[move].priority;
-
+    struct BattleMove tempMove;
+    
+    tempMove = gBattleMoves[move];
     if (gTeraMoveTable[move][tera].priority)
-        priority = gTeraMoveTable[move][tera].priority;
-        // priority = gTeraMoveTable[move][tera].priority;
+        tempMove.priority = gTeraMoveTable[move][tera].priority;
+    if (gTeraMoveTable[move][tera].type)
+        tempMove.type = gTeraMoveTable[move][tera].type;
+    if (gTeraMoveTable[move][tera].effect)
+        tempMove.effect = gTeraMoveTable[move][tera].effect;
+    if (gTeraMoveTable[move][tera].power)
+        tempMove.power = gTeraMoveTable[move][tera].power;
+    if (gTeraMoveTable[move][tera].flags)
+        tempMove.flags = gTeraMoveTable[move][tera].flags;
+    if (gTeraMoveTable[move][tera].accuracy)
+        tempMove.accuracy = gTeraMoveTable[move][tera].accuracy;
+
+    priority = tempMove.priority;
 
     if (BattlerHasAbilityOrInnate(battlerId, ABILITY_GALE_WINGS)
     #if B_GALE_WINGS >= GEN_7
         && BATTLER_MAX_HP(battlerId)
     #endif
-        && gBattleMoves[move].type == TYPE_FLYING)
+        && tempMove.type == TYPE_FLYING)
     {
         priority++;
     }
@@ -4759,7 +4769,7 @@ s8 GetMovePriority(u32 battlerId, u16 move)
     }
 
     // Grassy Glide
-    if (gBattleMoves[move].effect == EFFECT_GRASSY_GLIDE && gFieldStatuses & STATUS_FIELD_GRASSY_TERRAIN && IsBattlerGrounded(battlerId))
+    if (tempMove.effect == EFFECT_GRASSY_GLIDE && gFieldStatuses & STATUS_FIELD_GRASSY_TERRAIN && IsBattlerGrounded(battlerId))
     {
         priority++;
     }
@@ -4767,7 +4777,7 @@ s8 GetMovePriority(u32 battlerId, u16 move)
     // Triage
     if (BattlerHasAbilityOrInnate(battlerId, ABILITY_TRIAGE))
     {
-        switch (gBattleMoves[move].effect)
+        switch (tempMove.effect)
         {
         case EFFECT_RESTORE_HP:
         case EFFECT_REST:
@@ -4787,23 +4797,23 @@ s8 GetMovePriority(u32 battlerId, u16 move)
     }
     // Blitz Boxer - Elite Redux
     if (BattlerHasAbilityOrInnate(battlerId, ABILITY_BLITZ_BOXER)
-         && (gBattleMoves[move].flags & FLAG_IRON_FIST_BOOST)){
+         && (tempMove.flags & FLAG_IRON_FIST_BOOST)){
         priority++;
     }
 
     // Perfectionist - Elite Redux
     if(BattlerHasAbilityOrInnate(battlerId, ABILITY_PERFECTIONIST)
-       && gBattleMoves[move].power <= 25)
+       && tempMove.power <= 25)
 		priority++;
 
     // Coiled - Elite Redux
-    if((gStatuses4[battlerId] & STATUS4_COILED) && (gBattleMoves[move].flags & FLAG_STRONG_JAW_BOOST)){
+    if((gStatuses4[battlerId] & STATUS4_COILED) && (tempMove.flags & FLAG_STRONG_JAW_BOOST)){
         priority++;
 	}
 
 	// Flaming Soul - Elite Redux
 	if (BattlerHasAbilityOrInnate(battlerId, ABILITY_FLAMING_SOUL)
-        && gBattleMoves[move].type == TYPE_FIRE
+        && tempMove.type == TYPE_FIRE
         && (B_GALE_WINGS <= GEN_6 || BATTLER_MAX_HP(battlerId)))
     {
         priority++;
@@ -4811,7 +4821,7 @@ s8 GetMovePriority(u32 battlerId, u16 move)
 
 	// Frozen Soul - Elite Redux
 	if (BattlerHasAbilityOrInnate(battlerId, ABILITY_FROZEN_SOUL)
-        && gBattleMoves[move].type == TYPE_ICE
+        && tempMove.type == TYPE_ICE
         && (B_GALE_WINGS <= GEN_6 || BATTLER_MAX_HP(battlerId)))
     {
         priority++;
@@ -4819,7 +4829,7 @@ s8 GetMovePriority(u32 battlerId, u16 move)
 
     // Sighting System - Elite Redux
 	if ((BattlerHasAbilityOrInnate(battlerId, ABILITY_SIGHTING_SYSTEM))
-        && gBattleMoves[move].accuracy <= 75)
+        && tempMove.accuracy <= 75)
     { 
         priority = priority - 3;
     }
@@ -5699,15 +5709,32 @@ void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
 {
     u32 moveType, ateType, attackerAbility;
     u16 holdEffect = GetBattlerHoldEffect(battlerAtk, TRUE);
+    u8 tera = gBattleMons[battlerAtk].teraType;
+    struct BattleMove tempMove;
+
 
     if (move == MOVE_STRUGGLE)
         return;
+
+    tempMove = gBattleMoves[move];
+    if (gTeraMoveTable[move][tera].priority)
+        tempMove.priority = gTeraMoveTable[move][tera].priority;
+    if (gTeraMoveTable[move][tera].type)
+        tempMove.type = gTeraMoveTable[move][tera].type;
+    if (gTeraMoveTable[move][tera].effect)
+        tempMove.effect = gTeraMoveTable[move][tera].effect;
+    if (gTeraMoveTable[move][tera].power)
+        tempMove.power = gTeraMoveTable[move][tera].power;
+    if (gTeraMoveTable[move][tera].flags)
+        tempMove.flags = gTeraMoveTable[move][tera].flags;
+    if (gTeraMoveTable[move][tera].accuracy)
+        tempMove.accuracy = gTeraMoveTable[move][tera].accuracy;
 
     gBattleStruct->dynamicMoveType = 0;
     gBattleStruct->ateBoost[battlerAtk] = 0;
     gSpecialStatuses[battlerAtk].gemBoost = FALSE;
 
-    if (gBattleMoves[move].effect == EFFECT_WEATHER_BALL)
+    if (tempMove.effect == EFFECT_WEATHER_BALL)
     {
         if (WEATHER_HAS_EFFECT)
         {
@@ -5723,7 +5750,7 @@ void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
                 gBattleStruct->dynamicMoveType = TYPE_NORMAL | F_DYNAMIC_TYPE_2;
         }
     }
-    else if (gBattleMoves[move].effect == EFFECT_HIDDEN_POWER)
+    else if (tempMove.effect == EFFECT_HIDDEN_POWER)
     {
         u8 typeBits  = ((gBattleMons[battlerAtk].hpIV & 1) << 0)
                      | ((gBattleMons[battlerAtk].attackIV & 1) << 1)
@@ -5739,12 +5766,12 @@ void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
             gBattleStruct->dynamicMoveType++;
         gBattleStruct->dynamicMoveType |= F_DYNAMIC_TYPE_1 | F_DYNAMIC_TYPE_2;
     }
-    else if (gBattleMoves[move].effect == EFFECT_CHANGE_TYPE_ON_ITEM)
+    else if (tempMove.effect == EFFECT_CHANGE_TYPE_ON_ITEM)
     {
         if (holdEffect == gBattleMoves[move].argument)
             gBattleStruct->dynamicMoveType = ItemId_GetSecondaryId(gBattleMons[battlerAtk].item) | F_DYNAMIC_TYPE_2;
     }
-    else if (gBattleMoves[move].effect == EFFECT_REVELATION_DANCE)
+    else if (tempMove.effect == EFFECT_REVELATION_DANCE)
     {
         if (IsTerastallized(battlerAtk))
             gBattleStruct->dynamicMoveType = GetTeraType(battlerAtk) | F_DYNAMIC_TYPE_2;
@@ -5755,12 +5782,12 @@ void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
         else if (gBattleMons[battlerAtk].type3 != TYPE_MYSTERY)
             gBattleStruct->dynamicMoveType = gBattleMons[battlerAtk].type3 | F_DYNAMIC_TYPE_2;
     }
-    else if (gBattleMoves[move].effect == EFFECT_NATURAL_GIFT)
+    else if (tempMove.effect == EFFECT_NATURAL_GIFT)
     {
         if (ItemId_GetPocket(gBattleMons[battlerAtk].item) == POCKET_BERRIES)
             gBattleStruct->dynamicMoveType = gNaturalGiftTable[ITEM_TO_BERRY(gBattleMons[battlerAtk].item)].type;
     }
-    else if (gBattleMoves[move].effect == EFFECT_TERRAIN_PULSE)
+    else if (tempMove.effect == EFFECT_TERRAIN_PULSE)
     {
         if (IsBattlerTerrainAffected(battlerAtk, STATUS_FIELD_TERRAIN_ANY))
         {
@@ -5778,17 +5805,21 @@ void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
     }
 
     attackerAbility = GetBattlerAbility(battlerAtk);
-    GET_MOVE_TYPE(move, moveType);
+    if (gBattleStruct->dynamicMoveType)                               
+        moveType = gBattleStruct->dynamicMoveType & DYNAMIC_TYPE_MASK; 
+    else                                                              
+        moveType = tempMove.type; 
+
     if ((gFieldStatuses & STATUS_FIELD_ION_DELUGE && moveType == TYPE_NORMAL)
         || gStatuses4[battlerAtk] & STATUS4_ELECTRIFIED)
     {
         gBattleStruct->dynamicMoveType = TYPE_ELECTRIC | F_DYNAMIC_TYPE_2;
     }
-    else if (gBattleMoves[move].type == TYPE_NORMAL
-             && gBattleMoves[move].effect != EFFECT_HIDDEN_POWER
-             && gBattleMoves[move].effect != EFFECT_WEATHER_BALL
-             && gBattleMoves[move].effect != EFFECT_CHANGE_TYPE_ON_ITEM
-             && gBattleMoves[move].effect != EFFECT_NATURAL_GIFT
+    else if (tempMove.type == TYPE_NORMAL
+             && tempMove.effect != EFFECT_HIDDEN_POWER
+             && tempMove.effect != EFFECT_WEATHER_BALL
+             && tempMove.effect != EFFECT_CHANGE_TYPE_ON_ITEM
+             && tempMove.effect != EFFECT_NATURAL_GIFT
              && ((BattlerHasAbilityOrInnate(battlerAtk, ABILITY_PIXILATE) && (ateType = TYPE_FAIRY))
                  || (BattlerHasAbilityOrInnate(battlerAtk, ABILITY_REFRIGERATE) && (ateType = TYPE_ICE))
                  || (BattlerHasAbilityOrInnate(battlerAtk, ABILITY_AERILATE) && (ateType = TYPE_FLYING))
@@ -5805,21 +5836,21 @@ void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
         gBattleStruct->dynamicMoveType = ateType | F_DYNAMIC_TYPE_2;
         gBattleStruct->ateBoost[battlerAtk] = 1;
     }
-    else if (gBattleMoves[move].type != TYPE_NORMAL
-             && gBattleMoves[move].effect != EFFECT_HIDDEN_POWER
-             && gBattleMoves[move].effect != EFFECT_WEATHER_BALL
+    else if (tempMove.type != TYPE_NORMAL
+             && tempMove.effect != EFFECT_HIDDEN_POWER
+             && tempMove.effect != EFFECT_WEATHER_BALL
              && BattlerHasAbilityOrInnate(battlerAtk, ABILITY_NORMALIZE))
     {
         gBattleStruct->dynamicMoveType = TYPE_NORMAL | F_DYNAMIC_TYPE_2;
         gBattleStruct->ateBoost[battlerAtk] = 1;
     }
     // Crystallize - Elite Redux
-    else if (gBattleMoves[move].type == TYPE_ROCK
+    else if (tempMove.type == TYPE_ROCK
              && BattlerHasAbilityOrInnate(battlerAtk, ABILITY_CRYSTALLIZE)){
         gBattleStruct->dynamicMoveType = TYPE_ICE | F_DYNAMIC_TYPE_2;
         gBattleStruct->ateBoost[battlerAtk] = 1;
     }
-    else if (gBattleMoves[move].flags & FLAG_SOUND
+    else if (tempMove.flags & FLAG_SOUND
              && BattlerHasAbilityOrInnate(battlerAtk, ABILITY_LIQUID_VOICE))
     {
         gBattleStruct->dynamicMoveType = TYPE_WATER | F_DYNAMIC_TYPE_2;
@@ -5839,7 +5870,11 @@ void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
     }
 
     // Check if a gem should activate.
-    GET_MOVE_TYPE(move, moveType);
+    if (gBattleStruct->dynamicMoveType)                               
+        moveType = gBattleStruct->dynamicMoveType & DYNAMIC_TYPE_MASK; 
+    else                                                              
+        moveType = tempMove.type;
+
     if (holdEffect == HOLD_EFFECT_GEMS
         && moveType == ItemId_GetSecondaryId(gBattleMons[battlerAtk].item))
     {
