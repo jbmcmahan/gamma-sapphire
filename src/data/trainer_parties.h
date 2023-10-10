@@ -1,32 +1,46 @@
 static const struct TrainerMonCustomized sParty_Custom_Alex[] =
 {
     {
-        .species = SPECIES_RUFFLET,
+        .species = SPECIES_CUTIEFLY,
         .ball = ITEM_POKE_BALL,
-        .ability = ABILITY_SHEER_FORCE,
+        .teraType = TYPE_FAIRY,
+        .ability = ABILITY_COMPOUND_EYES,
         .friendship = 0,
-        .gender = TRAINER_MON_FEMALE,
-        .heldItem = ITEM_ORAN_BERRY,
+        .gender = TRAINER_MON_MALE,
         .isShiny = FALSE,
         .iv = TRAINER_PARTY_IVS(31,31,31,31,31,31),
         .ev = TRAINER_PARTY_EVS(0,0,0,0,0,0),
-        .lvl = 8,
-        .moves = {MOVE_PECK, MOVE_LEER, MOVE_FURY_ATTACK, MOVE_HONE_CLAWS},
+        .lvl = 6,
+        .moves = {MOVE_ABSORB, MOVE_FAIRY_WIND, MOVE_STUN_SPORE, MOVE_PROTECT},
         .nature = NATURE_JOLLY,
     },
     {
-        .species = SPECIES_NATU,
+        .species = SPECIES_CUTIEFLY,
         .ball = ITEM_POKE_BALL,
-        .ability = ABILITY_EARLY_BIRD,
+        .teraType = TYPE_BUG,
+        .ability = ABILITY_SWARM,
         .friendship = 0,
-        .gender = TRAINER_MON_FEMALE,
-        .heldItem = ITEM_ORAN_BERRY,
+        .gender = TRAINER_MON_MALE,
         .isShiny = FALSE,
         .iv = TRAINER_PARTY_IVS(31,31,31,31,31,31),
         .ev = TRAINER_PARTY_EVS(0,0,0,0,0,0),
-        .lvl = 8,
-        .moves = {MOVE_PECK, MOVE_NIGHT_SHADE, MOVE_LEER, MOVE_QUICK_ATTACK},
-        .nature = NATURE_MODEST,
+        .lvl = 6,
+        .moves = {MOVE_ABSORB, MOVE_FAIRY_WIND, MOVE_STUN_SPORE, MOVE_PROTECT},
+        .nature = NATURE_JOLLY,
+    },
+    {
+        .species = SPECIES_YANMA,
+        .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_FLYING,
+        .ability = ABILITY_AERODYNAMICS,
+        .friendship = 0,
+        .gender = TRAINER_MON_FEMALE,
+        .isShiny = FALSE,
+        .iv = TRAINER_PARTY_IVS(31,31,31,31,31,31),
+        .ev = TRAINER_PARTY_EVS(0,0,0,0,0,0),
+        .lvl = 7,
+        .moves = {MOVE_TACKLE, MOVE_FORESIGHT, MOVE_BUG_BITE, MOVE_GUST},
+        .nature = NATURE_JOLLY,
     },
 };
 
@@ -35,6 +49,7 @@ static const struct TrainerMonCustomized sParty_Custom_Bonnie[] =
     {
         .species = SPECIES_CUTIEFLY,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CUTE_CHARM,
         .friendship = 0,
         .gender = TRAINER_MON_FEMALE,
@@ -49,6 +64,7 @@ static const struct TrainerMonCustomized sParty_Custom_Bonnie[] =
     {
         .species = SPECIES_MORELULL,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_NATURAL_CURE,
         .friendship = 0,
         .gender = TRAINER_MON_FEMALE,
@@ -63,6 +79,7 @@ static const struct TrainerMonCustomized sParty_Custom_Bonnie[] =
     {
         .species = SPECIES_FLABEBE,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_FLOWER_VEIL,
         .friendship = 0,
         .gender = TRAINER_MON_FEMALE,
@@ -81,6 +98,7 @@ static const struct TrainerMonCustomized sParty_Custom_Colin[] =
     {
         .species = SPECIES_SKITTY,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_NORMALIZE,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -95,6 +113,7 @@ static const struct TrainerMonCustomized sParty_Custom_Colin[] =
     {
         .species = SPECIES_RUFFLET,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_SHEER_FORCE,
         .friendship = 0,
         .gender = TRAINER_MON_FEMALE,
@@ -109,6 +128,7 @@ static const struct TrainerMonCustomized sParty_Custom_Colin[] =
     {
         .species = SPECIES_FERROSEED,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_BULLETPROOF,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -127,6 +147,7 @@ static const struct TrainerMonCustomized sParty_Custom_Danielle[] =
     {
         .species = SPECIES_CROAGUNK,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_POISON_TOUCH,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -141,6 +162,7 @@ static const struct TrainerMonCustomized sParty_Custom_Danielle[] =
     {
         .species = SPECIES_SNUBBULL,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_INTIMIDATE,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -159,6 +181,7 @@ static const struct TrainerMonCustomized sParty_Custom_Earl[] =
     {
         .species = SPECIES_MURKROW,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_SUPER_LUCK,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -173,6 +196,7 @@ static const struct TrainerMonCustomized sParty_Custom_Earl[] =
     {
         .species = SPECIES_AIPOM,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_SUPER_LUCK,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -187,6 +211,7 @@ static const struct TrainerMonCustomized sParty_Custom_Earl[] =
     {
         .species = SPECIES_GOOMY,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_SAP_SIPPER,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -201,6 +226,7 @@ static const struct TrainerMonCustomized sParty_Custom_Earl[] =
     {
         .species = SPECIES_ROCKRUFF,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_STEADFAST,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -219,6 +245,7 @@ static const struct TrainerMonCustomized sParty_Custom_Fiona[] =
     {
         .species = SPECIES_JOLTIK,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_MINUS,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -233,6 +260,7 @@ static const struct TrainerMonCustomized sParty_Custom_Fiona[] =
     {
         .species = SPECIES_YANMA,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_INFILTRATOR,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -247,6 +275,7 @@ static const struct TrainerMonCustomized sParty_Custom_Fiona[] =
     {
         .species = SPECIES_WOOPER,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_OBLIVIOUS,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -265,6 +294,7 @@ static const struct TrainerMonCustomized sParty_Custom_Gaston[] =
     {
         .species = SPECIES_PHANTUMP,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_GRASSY_SURGE,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -279,6 +309,7 @@ static const struct TrainerMonCustomized sParty_Custom_Gaston[] =
     {
         .species = SPECIES_FERROSEED,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_BULLETPROOF,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -293,6 +324,7 @@ static const struct TrainerMonCustomized sParty_Custom_Gaston[] =
     {
         .species = SPECIES_MORELULL,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_NATURAL_CURE,
         .friendship = 0,
         .gender = TRAINER_MON_FEMALE,
@@ -311,6 +343,7 @@ static const struct TrainerMonCustomized sParty_Custom_Hermine[] =
     {
         .species = SPECIES_PETILIL,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_SOLAR_POWER,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -325,6 +358,7 @@ static const struct TrainerMonCustomized sParty_Custom_Hermine[] =
     {
         .species = SPECIES_AIPOM,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_SUPER_LUCK,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -339,6 +373,7 @@ static const struct TrainerMonCustomized sParty_Custom_Hermine[] =
     {
         .species = SPECIES_CUTIEFLY,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CUTE_CHARM,
         .friendship = 0,
         .gender = TRAINER_MON_FEMALE,
@@ -357,6 +392,7 @@ static const struct TrainerMonCustomized sParty_Custom_Ian[] =
     {
         .species = SPECIES_ROCKRUFF,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_STEADFAST,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -371,6 +407,7 @@ static const struct TrainerMonCustomized sParty_Custom_Ian[] =
     {
         .species = SPECIES_MURKROW,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_SUPER_LUCK,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -385,6 +422,7 @@ static const struct TrainerMonCustomized sParty_Custom_Ian[] =
     {
         .species = SPECIES_SKITTY,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_NORMALIZE,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -399,6 +437,7 @@ static const struct TrainerMonCustomized sParty_Custom_Ian[] =
     {
         .species = SPECIES_AIPOM,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_SUPER_LUCK,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -417,6 +456,7 @@ static const struct TrainerMonCustomized sParty_Custom_Julia[] =
     {
         .species = SPECIES_CROAGUNK,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_POISON_TOUCH,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -431,6 +471,7 @@ static const struct TrainerMonCustomized sParty_Custom_Julia[] =
     {
         .species = SPECIES_YANMA,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_INFILTRATOR,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -445,6 +486,7 @@ static const struct TrainerMonCustomized sParty_Custom_Julia[] =
     {
         .species = SPECIES_RUFFLET,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_SHEER_FORCE,
         .friendship = 0,
         .gender = TRAINER_MON_FEMALE,
@@ -459,6 +501,7 @@ static const struct TrainerMonCustomized sParty_Custom_Julia[] =
     {
         .species = SPECIES_VULPIX_ALOLAN,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_ICE_BODY,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -477,6 +520,7 @@ static const struct TrainerMonCustomized sParty_Custom_Karl[] =
     {
         .species = SPECIES_SNUBBULL,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_INTIMIDATE,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -491,6 +535,7 @@ static const struct TrainerMonCustomized sParty_Custom_Karl[] =
     {
         .species = SPECIES_FLABEBE,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_FLOWER_VEIL,
         .friendship = 0,
         .gender = TRAINER_MON_FEMALE,
@@ -505,6 +550,7 @@ static const struct TrainerMonCustomized sParty_Custom_Karl[] =
     {
         .species = SPECIES_SKITTY,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_NORMALIZE,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -523,6 +569,7 @@ static const struct TrainerMonCustomized sParty_Custom_Lisa[] =
     {
         .species = SPECIES_JOLTIK,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_MINUS,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -537,6 +584,7 @@ static const struct TrainerMonCustomized sParty_Custom_Lisa[] =
     {
         .species = SPECIES_CROAGUNK,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_POISON_TOUCH,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -551,6 +599,7 @@ static const struct TrainerMonCustomized sParty_Custom_Lisa[] =
     {
         .species = SPECIES_SNUBBULL,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_INTIMIDATE,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -565,6 +614,7 @@ static const struct TrainerMonCustomized sParty_Custom_Lisa[] =
     {
         .species = SPECIES_MURKROW,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_SUPER_LUCK,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -579,6 +629,7 @@ static const struct TrainerMonCustomized sParty_Custom_Lisa[] =
     {
         .species = SPECIES_PHANTUMP,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_GRASSY_SURGE,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -597,6 +648,7 @@ static const struct TrainerMonCustomized sParty_Custom_Martin[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -615,6 +667,7 @@ static const struct TrainerMonCustomized sParty_Custom_Nicole[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -633,6 +686,7 @@ static const struct TrainerMonCustomized sParty_Custom_Owen[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -651,6 +705,7 @@ static const struct TrainerMonCustomized sParty_Custom_Paula[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -669,6 +724,7 @@ static const struct TrainerMonCustomized sParty_Custom_Richard[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -687,6 +743,7 @@ static const struct TrainerMonCustomized sParty_Custom_Shary[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -705,6 +762,7 @@ static const struct TrainerMonCustomized sParty_Custom_Tobias[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -723,6 +781,7 @@ static const struct TrainerMonCustomized sParty_Custom_Virginie[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -741,6 +800,7 @@ static const struct TrainerMonCustomized sParty_Custom_Walter[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -759,6 +819,7 @@ static const struct TrainerMonCustomized sParty_Custom_Ana[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -777,6 +838,7 @@ static const struct TrainerMonCustomized sParty_Custom_Bill[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -795,6 +857,7 @@ static const struct TrainerMonCustomized sParty_Custom_Claudette[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -813,6 +876,7 @@ static const struct TrainerMonCustomized sParty_Custom_Danny[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -831,6 +895,7 @@ static const struct TrainerMonCustomized sParty_Custom_Elsa[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -849,6 +914,7 @@ static const struct TrainerMonCustomized sParty_Custom_Fred[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -867,6 +933,7 @@ static const struct TrainerMonCustomized sParty_Custom_Grace[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -885,6 +952,7 @@ static const struct TrainerMonCustomized sParty_Custom_Henri[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -903,6 +971,7 @@ static const struct TrainerMonCustomized sParty_Custom_Ida[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -921,6 +990,7 @@ static const struct TrainerMonCustomized sParty_Custom_Julian[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -939,6 +1009,7 @@ static const struct TrainerMonCustomized sParty_Custom_Kate[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -957,6 +1028,7 @@ static const struct TrainerMonCustomized sParty_Custom_Larry[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -975,6 +1047,7 @@ static const struct TrainerMonCustomized sParty_Custom_Mindy[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -993,6 +1066,7 @@ static const struct TrainerMonCustomized sParty_Custom_Nicholas[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -1011,6 +1085,7 @@ static const struct TrainerMonCustomized sParty_Custom_Odette[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -1029,6 +1104,7 @@ static const struct TrainerMonCustomized sParty_Custom_Peter[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -1047,6 +1123,7 @@ static const struct TrainerMonCustomized sParty_Custom_Rose[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -1065,6 +1142,7 @@ static const struct TrainerMonCustomized sParty_Custom_Sam[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -1083,6 +1161,7 @@ static const struct TrainerMonCustomized sParty_Custom_Teresa[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -1101,6 +1180,7 @@ static const struct TrainerMonCustomized sParty_Custom_Victor[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -1119,6 +1199,7 @@ static const struct TrainerMonCustomized sParty_Custom_Wanda[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -1137,6 +1218,7 @@ static const struct TrainerMonCustomized sParty_Custom_Arthur[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -1155,6 +1237,7 @@ static const struct TrainerMonCustomized sParty_Custom_Bertha[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -1173,6 +1256,7 @@ static const struct TrainerMonCustomized sParty_Custom_Cristobal[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -1191,6 +1275,7 @@ static const struct TrainerMonCustomized sParty_Custom_Dolly[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -1209,6 +1294,7 @@ static const struct TrainerMonCustomized sParty_Custom_Edouard[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -1227,6 +1313,7 @@ static const struct TrainerMonCustomized sParty_Custom_Fay[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -1245,6 +1332,7 @@ static const struct TrainerMonCustomized sParty_Custom_Gonzalo[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -1263,6 +1351,7 @@ static const struct TrainerMonCustomized sParty_Custom_Hanna[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -1281,6 +1370,7 @@ static const struct TrainerMonCustomized sParty_Custom_Isaias[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -1299,6 +1389,7 @@ static const struct TrainerMonCustomized sParty_Custom_Josephine[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -1317,6 +1408,7 @@ static const struct TrainerMonCustomized sParty_Custom_Kyle[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -1335,6 +1427,7 @@ static const struct TrainerMonCustomized sParty_Custom_Laura[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -1353,6 +1446,7 @@ static const struct TrainerMonCustomized sParty_Custom_Marco[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -1371,6 +1465,7 @@ static const struct TrainerMonCustomized sParty_Custom_Nana[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -1389,6 +1484,7 @@ static const struct TrainerMonCustomized sParty_Custom_Omar[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -1407,6 +1503,7 @@ static const struct TrainerMonCustomized sParty_Custom_Paulette[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -1425,6 +1522,7 @@ static const struct TrainerMonCustomized sParty_Custom_Rene[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -1443,6 +1541,7 @@ static const struct TrainerMonCustomized sParty_Custom_Sally[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -1461,6 +1560,7 @@ static const struct TrainerMonCustomized sParty_Custom_Teddy[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -1479,6 +1579,7 @@ static const struct TrainerMonCustomized sParty_Custom_Vicky[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -1497,6 +1598,7 @@ static const struct TrainerMonCustomized sParty_Custom_Wilfred[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -1515,6 +1617,7 @@ static const struct TrainerMonCustomized sParty_Custom_Andrea[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -1533,6 +1636,7 @@ static const struct TrainerMonCustomized sParty_Custom_Barry[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -1551,6 +1655,7 @@ static const struct TrainerMonCustomized sParty_Custom_Chantal[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -1569,6 +1674,7 @@ static const struct TrainerMonCustomized sParty_Custom_Dorain[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -1587,6 +1693,7 @@ static const struct TrainerMonCustomized sParty_Custom_Erin[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -1605,6 +1712,7 @@ static const struct TrainerMonCustomized sParty_Custom_Fernand[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -1623,6 +1731,7 @@ static const struct TrainerMonCustomized sParty_Custom_Gabrielle[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -1641,6 +1750,7 @@ static const struct TrainerMonCustomized sParty_Custom_Humberto[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -1659,6 +1769,7 @@ static const struct TrainerMonCustomized sParty_Custom_Imelda[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -1677,6 +1788,7 @@ static const struct TrainerMonCustomized sParty_Custom_Jerry[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -1695,6 +1807,7 @@ static const struct TrainerMonCustomized sParty_Custom_Karen[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -1713,6 +1826,7 @@ static const struct TrainerMonCustomized sParty_Custom_Lorenzo[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -1731,6 +1845,7 @@ static const struct TrainerMonCustomized sParty_Custom_Melissa[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -1749,6 +1864,7 @@ static const struct TrainerMonCustomized sParty_Custom_Nestor[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -1767,6 +1883,7 @@ static const struct TrainerMonCustomized sParty_Custom_Olga[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -1785,6 +1902,7 @@ static const struct TrainerMonCustomized sParty_Custom_Pablo[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -1803,6 +1921,7 @@ static const struct TrainerMonCustomized sParty_Custom_Rebekah[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -1821,6 +1940,7 @@ static const struct TrainerMonCustomized sParty_Custom_Sebastien[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -1839,6 +1959,7 @@ static const struct TrainerMonCustomized sParty_Custom_Tanya[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -1857,6 +1978,7 @@ static const struct TrainerMonCustomized sParty_Custom_Van[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -1875,6 +1997,7 @@ static const struct TrainerMonCustomized sParty_Custom_Wendy[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -1893,6 +2016,7 @@ static const struct TrainerMonCustomized sParty_Custom_Alberto[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -1911,6 +2035,7 @@ static const struct TrainerMonCustomized sParty_Custom_Beryl[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -1929,6 +2054,7 @@ static const struct TrainerMonCustomized sParty_Custom_Chris[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -1947,6 +2073,7 @@ static const struct TrainerMonCustomized sParty_Custom_Debby[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -1965,6 +2092,7 @@ static const struct TrainerMonCustomized sParty_Custom_Ernesto[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -1983,6 +2111,7 @@ static const struct TrainerMonCustomized sParty_Custom_Francine[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -2001,6 +2130,7 @@ static const struct TrainerMonCustomized sParty_Custom_Gordon[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -2019,6 +2149,7 @@ static const struct TrainerMonCustomized sParty_Custom_Helene[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -2037,6 +2168,7 @@ static const struct TrainerMonCustomized sParty_Custom_Isaac[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -2055,6 +2187,7 @@ static const struct TrainerMonCustomized sParty_Custom_Joyce[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -2073,6 +2206,7 @@ static const struct TrainerMonCustomized sParty_Custom_Kirk[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -2091,6 +2225,7 @@ static const struct TrainerMonCustomized sParty_Custom_Leslie[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -2109,6 +2244,7 @@ static const struct TrainerMonCustomized sParty_Custom_Milton[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -2127,6 +2263,7 @@ static const struct TrainerMonCustomized sParty_Custom_Nadine[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -2145,6 +2282,7 @@ static const struct TrainerMonCustomized sParty_Custom_Oscar[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -2163,6 +2301,7 @@ static const struct TrainerMonCustomized sParty_Custom_Patty[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -2181,6 +2320,7 @@ static const struct TrainerMonCustomized sParty_Custom_Rafael[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -2199,6 +2339,7 @@ static const struct TrainerMonCustomized sParty_Custom_Sara[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -2217,6 +2358,7 @@ static const struct TrainerMonCustomized sParty_Custom_Tony[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -2235,6 +2377,7 @@ static const struct TrainerMonCustomized sParty_Custom_Valerie[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -2253,6 +2396,7 @@ static const struct TrainerMonCustomized sParty_Custom_William[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -2271,6 +2415,7 @@ static const struct TrainerMonCustomized sParty_Custom_Arlene[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -2289,6 +2434,7 @@ static const struct TrainerMonCustomized sParty_Custom_Bret[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -2307,6 +2453,7 @@ static const struct TrainerMonCustomized sParty_Custom_Cindy[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -2325,6 +2472,7 @@ static const struct TrainerMonCustomized sParty_Custom_Don[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -2343,6 +2491,7 @@ static const struct TrainerMonCustomized sParty_Custom_Emily[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -2361,6 +2510,7 @@ static const struct TrainerMonCustomized sParty_Custom_Franklin[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -2379,6 +2529,7 @@ static const struct TrainerMonCustomized sParty_Custom_Gert[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -2397,6 +2548,7 @@ static const struct TrainerMonCustomized sParty_Custom_Harold[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -2415,6 +2567,7 @@ static const struct TrainerMonCustomized sParty_Custom_Idalia[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -2433,6 +2586,7 @@ static const struct TrainerMonCustomized sParty_Custom_Jose[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -2451,6 +2605,7 @@ static const struct TrainerMonCustomized sParty_Custom_Katia[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -2469,6 +2624,7 @@ static const struct TrainerMonCustomized sParty_Custom_Lee[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -2487,6 +2643,7 @@ static const struct TrainerMonCustomized sParty_Custom_Margot[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -2505,6 +2662,7 @@ static const struct TrainerMonCustomized sParty_Custom_Nigel[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -2523,6 +2681,7 @@ static const struct TrainerMonCustomized sParty_Custom_Ophelia[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -2541,6 +2700,7 @@ static const struct TrainerMonCustomized sParty_Custom_Philippe[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -2559,6 +2719,7 @@ static const struct TrainerMonCustomized sParty_Custom_Rina[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -2577,6 +2738,7 @@ static const struct TrainerMonCustomized sParty_Custom_Sean[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -2595,6 +2757,7 @@ static const struct TrainerMonCustomized sParty_Custom_Tammy[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -2613,6 +2776,7 @@ static const struct TrainerMonCustomized sParty_Custom_Vince[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -2631,6 +2795,7 @@ static const struct TrainerMonCustomized sParty_Custom_Whitney[] =
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,

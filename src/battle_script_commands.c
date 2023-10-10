@@ -4030,9 +4030,9 @@ static void Cmd_seteffectwithchance(void)
 {
     CMD_ARGS();
 
-    u32 percentChance = gBattleMoves[gCurrentMove].secondaryEffectChance;
-    u8 moveType = gBattleMoves[gCurrentMove].type;
-    u8 moveEffect = gBattleMoves[gCurrentMove].effect;
+    u32 percentChance;
+    u8 moveType;
+    u8 moveEffect;
     u8 tera = gBattleMons[gBattlerAttacker].teraType;
     struct BattleMove tempMove;
     
@@ -4049,7 +4049,12 @@ static void Cmd_seteffectwithchance(void)
         tempMove.flags = gTeraMoveTable[gCurrentMove][tera].flags;
     if (gTeraMoveTable[gCurrentMove][tera].accuracy)
         tempMove.accuracy = gTeraMoveTable[gCurrentMove][tera].accuracy;
+    if (gTeraMoveTable[gCurrentMove][tera].secondaryEffectChance)
+        tempMove.secondaryEffectChance = gTeraMoveTable[gCurrentMove][tera].secondaryEffectChance;
 
+    percentChance = tempMove.secondaryEffectChance;
+    moveType = tempMove.type;
+    moveEffect = tempMove.effect;
 
     // Serene Grace
     if (BattlerHasAbilityOrInnate(gBattlerAttacker, ABILITY_SERENE_GRACE))
@@ -4524,6 +4529,12 @@ static void Cmd_getexp(void)
                 *(&gBattleStruct->sentInPokes) >>= 1;
                 gBattleScripting.getexpState = 5;
                 gBattleMoveDamage = 0; // used for exp
+
+                if ((gBattleTypeFlags & BATTLE_TYPE_TRAINER) && (gSaveBlock2Ptr->gameEV == EV_TRAINER))
+                {
+                    MonGainEVs(&gPlayerParty[gBattleStruct->expGetterMonId], gBattleMons[gBattlerFainted].species);
+                }
+
             }
             else if ((gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER && gBattleStruct->expGetterMonId >= 3)
                   || GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_LEVEL) == MAX_LEVEL)
@@ -4531,18 +4542,29 @@ static void Cmd_getexp(void)
                 *(&gBattleStruct->sentInPokes) >>= 1;
                 gBattleScripting.getexpState = 5;
                 gBattleMoveDamage = 0; // used for exp
-            #if B_MAX_LEVEL_EV_GAINS >= GEN_5
-                MonGainEVs(&gPlayerParty[gBattleStruct->expGetterMonId], gBattleMons[gBattlerFainted].species);
-            #endif
+
+                if (gSaveBlock2Ptr->gameEV == EV_NORMAL)
+                {
+                    MonGainEVs(&gPlayerParty[gBattleStruct->expGetterMonId], gBattleMons[gBattlerFainted].species);
+                }
+                if ((gBattleTypeFlags & BATTLE_TYPE_TRAINER) && (gSaveBlock2Ptr->gameEV == EV_TRAINER))
+                {
+                    MonGainEVs(&gPlayerParty[gBattleStruct->expGetterMonId], gBattleMons[gBattlerFainted].species);
+                }
             }
             else if (GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_LEVEL) >= GetLevelCap())
             {
                 gBattleMoveDamage = 0; // If mon is above level cap, it gets 0 exp, but still gains EVs
                 gBattleStruct->sentInPokes >>= 1;
                 gBattleScripting.getexpState = 5;
-            #if B_MAX_LEVEL_EV_GAINS >= GEN_5
-                MonGainEVs(&gPlayerParty[gBattleStruct->expGetterMonId], gBattleMons[gBattlerFainted].species);
-            #endif
+                if (gSaveBlock2Ptr->gameEV == EV_NORMAL)
+                {
+                    MonGainEVs(&gPlayerParty[gBattleStruct->expGetterMonId], gBattleMons[gBattlerFainted].species);
+                }
+                if ((gBattleTypeFlags & BATTLE_TYPE_TRAINER) && (gSaveBlock2Ptr->gameEV == EV_TRAINER))
+                {
+                    MonGainEVs(&gPlayerParty[gBattleStruct->expGetterMonId], gBattleMons[gBattlerFainted].species);
+                }
             }
             else
             {

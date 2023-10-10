@@ -2060,6 +2060,7 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
                 // }
                 CreateMon(&party[i], partyData[i].species, partyData[i].lvl, 0, TRUE, personalityValue, otIdType, fixedOtId);
                 SetMonData(&party[i], MON_DATA_HELD_ITEM, &partyData[i].heldItem);
+                SetMonData(&party[i], MON_DATA_TERA_TYPE, &partyData[i].teraType);
 
                 CustomTrainerPartyAssignMoves(&party[i], &partyData[i]);
                 SetMonData(&party[i], MON_DATA_IVS, &(partyData[i].iv));
