@@ -9114,6 +9114,7 @@ extern const u32 gSummaryScreen_Gfx[];
 extern const u32 gSummaryScreen_Pal[];
 extern const u32 gSummaryPage_Info_Tilemap[];
 extern const u32 gSummaryPage_InfoEgg_Tilemap[];
+extern const u32 gSummaryPage_Abilities_Tilemap[];
 extern const u32 gSummaryPage_Skills_Tilemap[];
 extern const u32 gSummaryPage_BattleMoves_Tilemap[];
 extern const u32 gSummaryPage_ContestMoves_Tilemap[];
