@@ -16167,6 +16167,8 @@ static void Cmd_displaydexinfo(void)
     CMD_ARGS();
 
     u16 species = GetMonData(&gEnemyParty[gBattlerPartyIndexes[GetCatchingBattler()]], MON_DATA_SPECIES, NULL);
+    u8 isShiny = GetMonData(&gEnemyParty[gBattlerPartyIndexes[GetCatchingBattler()]], MON_DATA_IS_SHINY, NULL);
+
 
     switch (gBattleCommunication[0])
     {
@@ -16178,8 +16180,9 @@ static void Cmd_displaydexinfo(void)
         if (!gPaletteFade.active)
         {
             FreeAllWindowBuffers();
+            // pokedex entry
             gBattleCommunication[TASK_ID] = DisplayCaughtMonDexPage(SpeciesToNationalPokedexNum(species),
-                                                                        gBattleMons[GetCatchingBattler()].isShiny,
+                                                                        isShiny,
                                                                         gBattleMons[GetCatchingBattler()].personality);
             gBattleCommunication[0]++;
         }

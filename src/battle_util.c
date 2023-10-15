@@ -5196,6 +5196,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u32 ability, u8 special, u16 move
               && !(gSideStatuses[BATTLE_OPPOSITE(battler)] & SIDE_STATUS_STICKY_WEB))
             {
                 gSpecialStatuses[battler].switchInAbilityOrInnateDone[GetBattlerAbilityOrInnateNum(battler, battlerAbility)] = TRUE;
+                gBattlerAttacker = battler;
                 gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_SPIDER_LAIR;
                 gSideStatuses[BATTLE_OPPOSITE(battler)] |= SIDE_STATUS_STICKY_WEB;
                 gSideTimers[BATTLE_OPPOSITE(battler)].spiderWebTimer = 6;// 5 - 1 for the ability
