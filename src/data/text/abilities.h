@@ -413,6 +413,7 @@ static const u8 sDEFIVDescription[] = _("Field ability - search \nfor high DEF w
 static const u8 sSPEEDIVDescription[] = _("Field ability - search \nfor high SPEED wild mons.");
 static const u8 sSPATKIVDescription[] = _("Field ability - search \nfor high SPATK wild mons.");
 static const u8 sSPDEFIVDescription[] = _("Field ability - search \nfor high SPDEF wild mons.");
+static const u8 sBugTeraDescription[] = _("Field ability - search \nfor Bug Tera wild mons.");
 
 #if B_EXPANDED_ABILITY_NAMES == TRUE
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
@@ -837,6 +838,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_SPEED_IV] = _("SPEED IV"),
     [ABILITY_SPATK_IV] = _("SPATK IV"),
     [ABILITY_SPDEF_IV] = _("SPDEF IV"),
+    [ABILITY_BUG_TERA] = _("BUG TERA"),
 };
 #else   // 12 characters
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
@@ -1261,6 +1263,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_SPEED_IV] = _("SPEED IV"),
     [ABILITY_SPATK_IV] = _("SPATK IV"),
     [ABILITY_SPDEF_IV] = _("SPDEF IV"),
+    [ABILITY_BUG_TERA] = _("BUG TERA"),
 };
 #endif
 
@@ -1686,4 +1689,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     [ABILITY_SPEED_IV] = sSPEEDIVDescription,
     [ABILITY_SPATK_IV] = sSPATKIVDescription,
     [ABILITY_SPDEF_IV] = sSPDEFIVDescription,
+    [ABILITY_BUG_TERA] = sBugTeraDescription,
 };

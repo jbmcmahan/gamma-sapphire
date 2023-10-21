@@ -431,6 +431,7 @@ static void CreateWildMon(u16 species, u8 level)
     bool32 checkCuteCharm;
     u8 ivs[NUM_STATS];
     u16 value = Random();
+    u8 type;
     
     ZeroEnemyPartyMons();
     checkCuteCharm = TRUE;
@@ -530,6 +531,17 @@ static void CreateWildMon(u16 species, u8 level)
 
 
     CreateMonWithNatureIVs(&gEnemyParty[0], species, level, ivs, PickWildMonNature());
+
+
+    if (!GetMonData(&gPlayerParty[0], MON_DATA_SANITY_IS_EGG)
+        && (GetMonAbility(&gPlayerParty[0]) == ABILITY_BUG_TERA
+         || MonHasInnate(&gPlayerParty[0], ABILITY_BUG_TERA)))
+    {
+        type = TYPE_BUG;
+        SetMonData(&gEnemyParty[0], MON_DATA_TERA_TYPE, &type);
+    }
+
+
 }
 
 static bool8 TryGenerateWildMon(const struct WildPokemonInfo *wildMonInfo, u8 area, u8 flags)

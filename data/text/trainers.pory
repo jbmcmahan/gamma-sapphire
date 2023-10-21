@@ -1,74 +1,89 @@
-Route106_EventScript_Custom_Martin::
-	trainerbattle_single TRAINER_CUSTOM_MARTIN, Route103_Text_HannarIntro, Route103_Text_HannarDefeated
-	msgbox Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE
+text Route103_Text_HannarIntro {
+    format("Gah! My fishing line's all snarled up! I'm getting frustrated and mean! That's it! Battle me!")
+}
+
+text Route103_Text_HannarDefeated {
+    format("Gah! Lost it! I'm even more annoyed now!")
+}
+
+text Route103_Text_HannarPostBattle {
+    format("Gah, I'm still boiling mad… Grrrrr…")
+}
+
+script Route106_EventScript_Custom_Martin {
+	trainerbattle_single(TRAINER_CUSTOM_MARTIN, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
 	end
+}
 
-
-Route106_EventScript_Custom_Nicole::
-	trainerbattle_single TRAINER_CUSTOM_NICOLE, Route103_Text_HannarIntro, Route103_Text_HannarDefeated
-	msgbox Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE
+script Route106_EventScript_Custom_Nicole {
+	trainerbattle_single(TRAINER_CUSTOM_NICOLE, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
 	end
+}
 
-
-Route106_EventScript_Custom_Owen::
-	trainerbattle_single TRAINER_CUSTOM_OWEN, Route103_Text_HannarIntro, Route103_Text_HannarDefeated
-	msgbox Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE
+script Route106_EventScript_Custom_Owen {
+	trainerbattle_single(TRAINER_CUSTOM_OWEN, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
 	end
+}
 
-
-Route107_EventScript_Custom_Paula::
-	trainerbattle_single TRAINER_CUSTOM_PAULA, Route103_Text_HannarIntro, Route103_Text_HannarDefeated
-	msgbox Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE
+script Route107_EventScript_Custom_Paula {
+	trainerbattle_single(TRAINER_CUSTOM_PAULA, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
 	end
+}
 
-
-Route107_EventScript_Custom_Richard::
-	trainerbattle_single TRAINER_CUSTOM_RICHARD, Route103_Text_HannarIntro, Route103_Text_HannarDefeated
-	msgbox Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE
+script Route107_EventScript_Custom_Richard {
+	trainerbattle_single(TRAINER_CUSTOM_RICHARD, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
 	end
+}
 
-
-Route107_EventScript_Custom_Shary::
-	trainerbattle_single TRAINER_CUSTOM_SHARY, Route103_Text_HannarIntro, Route103_Text_HannarDefeated
-	msgbox Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE
+script Route107_EventScript_Custom_Shary {
+	trainerbattle_single(TRAINER_CUSTOM_SHARY, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
 	end
+}
 
-
-Route107_EventScript_Custom_Tobias::
-	trainerbattle_single TRAINER_CUSTOM_TOBIAS, Route103_Text_HannarIntro, Route103_Text_HannarDefeated
-	msgbox Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE
+script Route107_EventScript_Custom_Tobias {
+	trainerbattle_single(TRAINER_CUSTOM_TOBIAS, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
 	end
+}
 
-
-Route107_EventScript_Custom_Virginie::
-	trainerbattle_single TRAINER_CUSTOM_VIRGINIE, Route103_Text_HannarIntro, Route103_Text_HannarDefeated
-	msgbox Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE
+script Route107_EventScript_Custom_Virginie {
+	trainerbattle_single(TRAINER_CUSTOM_VIRGINIE, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
 	end
+}
 
-
-Route107_EventScript_Custom_Walter::
-	trainerbattle_single TRAINER_CUSTOM_WALTER, Route103_Text_HannarIntro, Route103_Text_HannarDefeated
-	msgbox Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE
+script Route107_EventScript_Custom_Walter {
+	trainerbattle_single(TRAINER_CUSTOM_WALTER, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
 	end
+}
 
-
-Route107_EventScript_Custom_Ana::
-	trainerbattle_single TRAINER_CUSTOM_ANA, Route103_Text_HannarIntro, Route103_Text_HannarDefeated
-	msgbox Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE
+script Route107_EventScript_Custom_Ana {
+	trainerbattle_single(TRAINER_CUSTOM_ANA, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
 	end
+}
 
-
-Route107_EventScript_Custom_Bill::
-	trainerbattle_single TRAINER_CUSTOM_BILL, Route103_Text_HannarIntro, Route103_Text_HannarDefeated
-	msgbox Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE
+script Route107_EventScript_Custom_Bill {
+	trainerbattle_single(TRAINER_CUSTOM_BILL, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
 	end
+}
 
-
-Route107_EventScript_Custom_Claudette::
-	trainerbattle_single TRAINER_CUSTOM_CLAUDETTE, Route103_Text_HannarIntro, Route103_Text_HannarDefeated
-	msgbox Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE
+script Route107_EventScript_Custom_Claudette {
+	trainerbattle_single(TRAINER_CUSTOM_CLAUDETTE, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
 	end
+}
 
+
+raw `
 
 Route102_Text_CalvinIntro:
 	.string "If you have POKéMON with you, then\n"
@@ -4852,13 +4867,4 @@ Route134_Text_HudsonPostBattle:
 	.string "My buddy's a timid fellow, so I'm\n"
 	.string "worried about him.$"
 
-Route103_Text_HannarIntro::
-	.string "Gah! My fishing line's all snarled up! I'm\n"
-	.string "getting frustrated and mean! That's\l"
-	.string "it! Battle me!$"
-
-Route103_Text_HannarDefeated::
-	.string "Gah! Lost it! I'm even more annoyed now!$"
-
-Route103_Text_HannarPostBattle::
-	.string "Gah, I'm still boiling mad… Grrrrr…$"
+`
