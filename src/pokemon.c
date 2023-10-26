@@ -8113,7 +8113,7 @@ u8 GetLevelCap(void)
     u16 currentBadge = getHighestBadge();
 
     static const u8 levelCapsStandard[] = {101, 101, 101, 101, 101, 101, 101, 101, 101, 101};
-    static const u8 levelCapsMore[] =     {9, 25, 38, 50,  54,  70,  85,  92,  95, 101};
+    static const u8 levelCapsMore[] =     {9, 16, 22, 28,  54,  70,  85,  92,  95, 101};
 
     switch (levelCapSetting)
     {

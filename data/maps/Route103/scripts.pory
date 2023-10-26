@@ -243,69 +243,6 @@ Route103_EventScript_Andrew::
 	msgbox Route103_Text_AndrewPostBattle, MSGBOX_AUTOCLOSE
 	end
 
-Route103_EventScript_Custom_Alex::
-	trainerbattle_single TRAINER_CUSTOM_ALEX, Route103_Text_HannarIntro, Route103_Text_HannarDefeated
-	msgbox Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE
-	end
-
-Route103_EventScript_Custom_Bonnie::
-	trainerbattle_single TRAINER_CUSTOM_BONNIE, Route103_Text_HannarIntro, Route103_Text_HannarDefeated
-	msgbox Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE
-	end
-
-Route103_EventScript_Custom_Colin::
-	trainerbattle_single TRAINER_CUSTOM_COLIN, Route103_Text_HannarIntro, Route103_Text_HannarDefeated
-	msgbox Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE
-	end
-
-Route103_EventScript_Custom_Danielle::
-	trainerbattle_single TRAINER_CUSTOM_DANIELLE, Route103_Text_HannarIntro, Route103_Text_HannarDefeated
-	msgbox Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE
-	end
-
-Route103_EventScript_Custom_Earl::
-	trainerbattle_single TRAINER_CUSTOM_EARL, Route103_Text_HannarIntro, Route103_Text_HannarDefeated, Route103_EventScript_SoftSandGirl
-	goto Route103_EventScript_SoftSandGirl
-	end
-
-
-Route103_EventScript_SoftSandGirl::
-	lock
-	faceplayer
-	special GetPlayerBigGuyGirlString
-	goto_if_set FLAG_RECEIVED_SOFT_SAND, Route103_EventScript_AlreadyReceivedSoftSand
-	msgbox Route103_Text_YouCanHaveThis, MSGBOX_DEFAULT
-	giveitem ITEM_POWER_WEIGHT
-	goto_if_eq VAR_RESULT, 0, Common_EventScript_ShowBagIsFull
-	closemessage
-	applymovement VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection
-	waitmovement 0
-	setflag FLAG_RECEIVED_SOFT_SAND
-	release
-	end
-
-Route103_EventScript_AlreadyReceivedSoftSand::
-	msgbox Route103_Text_WereGoingToMakeBigCastle, MSGBOX_DEFAULT
-	applymovement VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection
-	waitmovement 0
-	release
-	end
-
-Route103_Text_YouCanHaveThis:
-	.string "You can have this!$"
-
-Route103_Text_WereGoingToMakeBigCastle:
-	.string "We're going to get all the sand from\n"
-	.string "the beach and make a big castle!\p"
-	.string "And then we're going to be a king and\n"
-	.string "queen.\p"
-	.string "We'll let you be a servant.$"
-
-Route103_EventScript_Custom_Fiona::
-	trainerbattle_single TRAINER_CUSTOM_FIONA, Route103_Text_HannarIntro, Route103_Text_HannarDefeated
-	msgbox Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE
-	end
-
 Route103_EventScript_Miguel::
 	trainerbattle_single TRAINER_MIGUEL_1, Route103_Text_MiguelIntro, Route103_Text_MiguelDefeated, Route102_EventScript_MiguelRegisterMatchCallAfterBattle
 	specialvar VAR_RESULT, ShouldTryRematchBattle

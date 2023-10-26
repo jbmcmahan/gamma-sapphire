@@ -261,6 +261,10 @@ void HandleAction_UseMove(void)
 {
     u32 i, side, moveType, var = 4;
     u16 moveTarget;
+    u8 tera;
+    struct BattleMove tempMove;
+    
+
 
     gBattlerAttacker = gBattlerByTurnOrder[gCurrentTurnActionNumber];
     if (gBattleStruct->absentBattlerFlags & gBitTable[gBattlerAttacker] || !IsBattlerAlive(gBattlerAttacker))
@@ -334,6 +338,23 @@ void HandleAction_UseMove(void)
         else
             gBattleResults.lastUsedMoveOpponent = gCurrentMove;
     }
+
+
+    tera = gBattleMons[gBattlerAttacker].teraType;
+    tempMove = gBattleMoves[gCurrentMove];
+    if (gTeraMoveTable[gCurrentMove][tera].priority)
+        tempMove.priority = gTeraMoveTable[gCurrentMove][tera].priority;
+    if (gTeraMoveTable[gCurrentMove][tera].type)
+        tempMove.type = gTeraMoveTable[gCurrentMove][tera].type;
+    if (gTeraMoveTable[gCurrentMove][tera].effect)
+        tempMove.effect = gTeraMoveTable[gCurrentMove][tera].effect;
+    if (gTeraMoveTable[gCurrentMove][tera].power)
+        tempMove.power = gTeraMoveTable[gCurrentMove][tera].power;
+    if (gTeraMoveTable[gCurrentMove][tera].flags)
+        tempMove.flags = gTeraMoveTable[gCurrentMove][tera].flags;
+    if (gTeraMoveTable[gCurrentMove][tera].accuracy)
+        tempMove.accuracy = gTeraMoveTable[gCurrentMove][tera].accuracy;
+
 
     // Set dynamic move type.
     SetTypeBeforeUsingMove(gChosenMove, gBattlerAttacker);
@@ -512,7 +533,7 @@ void HandleAction_UseMove(void)
     }
     else
     {
-        gBattlescriptCurrInstr = gBattleScriptsForMoveEffects[gBattleMoves[gCurrentMove].effect];
+        gBattlescriptCurrInstr = gBattleScriptsForMoveEffects[tempMove.effect];
     }
 
     if (gBattleTypeFlags & BATTLE_TYPE_ARENA)
@@ -6667,7 +6688,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u32 ability, u8 special, u16 move
             }
             break;
 
-        // Gulp Missile
+        // Gulp Missile - when hit
         case ABILITY_GULP_MISSILE:
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
@@ -6922,9 +6943,11 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u32 ability, u8 special, u16 move
             }
             break;
 
-        // Gulp Missile
+        // Gulp Missile - when diving / surf
         case ABILITY_GULP_MISSILE:
-            if (((gCurrentMove == MOVE_SURF && TARGET_TURN_DAMAGED) || gStatuses3[gBattlerAttacker] & STATUS3_UNDERWATER)
+            if (((gCurrentMove == MOVE_SURF && TARGET_TURN_DAMAGED)
+             || gStatuses3[gBattlerAttacker] & STATUS3_UNDERWATER
+             || (gCurrentMove == MOVE_DIVE && TARGET_TURN_DAMAGED))
                 && TryBattleFormChange(gBattlerAttacker, FORM_CHANGE_BATTLE_HP_PERCENT))
             {
                 gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_GULP_MISSILE;
@@ -12225,7 +12248,7 @@ u16 GetBattleFormChangeTargetSpecies(u8 battlerId, u16 method)
                     targetSpecies = formChanges[i].targetSpecies;
                     break;
                 case FORM_CHANGE_BATTLE_HP_PERCENT:
-                    if (formChanges[i].param1 == GetBattlerAbility(battlerId))
+                    if (BattlerHasAbilityOrInnate(battlerId, formChanges[i].param1))
                     {
                         // We multiply by 100 to make sure that integer division doesn't mess with the health check.
                         u32 hpCheck = gBattleMons[battlerId].hp * 100 * 100 / gBattleMons[battlerId].maxHP;
@@ -12246,7 +12269,7 @@ u16 GetBattleFormChangeTargetSpecies(u8 battlerId, u16 method)
                     // Check if there is a required ability and if the battler's ability does not match it
                     // or is suppressed. If so, revert to the no weather form.
                     if (formChanges[i].param2
-                        && GetBattlerAbility(battlerId) != formChanges[i].param2
+                        && !BattlerHasAbilityOrInnate(battlerId, formChanges[i].param2)
                         && formChanges[i].param1 == B_WEATHER_NONE)
                     {
                         targetSpecies = formChanges[i].targetSpecies;
@@ -12264,7 +12287,7 @@ u16 GetBattleFormChangeTargetSpecies(u8 battlerId, u16 method)
                     }
                     break;
                 case FORM_CHANGE_BATTLE_TURN_END:
-                    if (formChanges[i].param1 == GetBattlerAbility(battlerId))
+                    if (BattlerHasAbilityOrInnate(battlerId, formChanges[i].param1))
                         targetSpecies = formChanges[i].targetSpecies;
                     break;
                 }

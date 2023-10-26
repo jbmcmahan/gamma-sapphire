@@ -1129,19 +1129,3 @@ Route104_Text_BrendanPostBattle:
 	.string "making POKéMON battle.\p"
 	.string "Like MR. BRINEY, it's important to\n"
 	.string "become friends with your POKéMON.$"
-
-
-Route104_EventScript_Custom_Gaston::
-	trainerbattle_single TRAINER_CUSTOM_GASTON, Route103_Text_HannarIntro, Route103_Text_HannarDefeated
-	msgbox Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE
-	end
-
-Route104_EventScript_Custom_Hermine::
-	trainerbattle_single TRAINER_CUSTOM_HERMINE, Route103_Text_HannarIntro, Route103_Text_HannarDefeated
-	msgbox Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE
-	end
-
-Route104_EventScript_Custom_Ian::
-	trainerbattle_single TRAINER_CUSTOM_IAN, Route103_Text_HannarIntro, Route103_Text_HannarDefeated
-	msgbox Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE
-	end

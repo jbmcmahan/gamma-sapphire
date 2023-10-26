@@ -308,36 +308,39 @@
 #define MOVEEND_INNATES_2                         6
 #define MOVEEND_INNATES_3                         7
 #define MOVEEND_ABILITIES_ATTACKER                8
-#define MOVEEND_STATUS_IMMUNITY_ABILITIES         9
-#define MOVEEND_SYNCHRONIZE_ATTACKER              10
-#define MOVEEND_CHOICE_MOVE                       11
-#define MOVEEND_ATTACKER_INVISIBLE                12
-#define MOVEEND_ATTACKER_VISIBLE                  13
-#define MOVEEND_TARGET_VISIBLE                    14
-#define MOVEEND_ITEM_EFFECTS_TARGET               15
-#define MOVEEND_ITEM_EFFECTS_ALL                  16
-#define MOVEEND_KINGSROCK                         17    // These item effects will occur each strike of a multi-hit move
-#define MOVEEND_SUBSTITUTE                        18
-#define MOVEEND_SKY_DROP_CONFUSE                  19
-#define MOVEEND_UPDATE_LAST_MOVES                 20
-#define MOVEEND_MIRROR_MOVE                       21
-#define MOVEEND_NEXT_TARGET                       22   // Everything up until here is handled for each strike of a multi-hit move
-#define MOVEEND_MULTIHIT_MOVE                     23
-#define MOVEEND_DEFROST                           24
-#define MOVEEND_MOVE_EFFECTS2                     25
-#define MOVEEND_RECOIL                            26
-#define MOVEEND_MAGICIAN                          27    // Occurs after final multi-hit strike, and after other items/abilities would activate
-#define MOVEEND_EJECT_BUTTON                      28
-#define MOVEEND_RED_CARD                          29
-#define MOVEEND_EJECT_PACK                        30
-#define MOVEEND_LIFEORB_SHELLBELL                 31    // Includes shell bell, throat spray, etc
-#define MOVEEND_CHANGED_ITEMS                     32
-#define MOVEEND_PICKPOCKET                        33
-#define MOVEEND_DANCER                            34
-#define MOVEEND_EMERGENCY_EXIT                    35
-#define MOVEEND_SYMBIOSIS                         36
-#define MOVEEND_CLEAR_BITS                        37
-#define MOVEEND_COUNT                             38
+#define MOVEEND_INNATES_1_ATTACKER                9
+#define MOVEEND_INNATES_2_ATTACKER                10
+#define MOVEEND_INNATES_3_ATTACKER                11
+#define MOVEEND_STATUS_IMMUNITY_ABILITIES         12
+#define MOVEEND_SYNCHRONIZE_ATTACKER              13
+#define MOVEEND_CHOICE_MOVE                       14
+#define MOVEEND_ATTACKER_INVISIBLE                15
+#define MOVEEND_ATTACKER_VISIBLE                  16
+#define MOVEEND_TARGET_VISIBLE                    17
+#define MOVEEND_ITEM_EFFECTS_TARGET               18
+#define MOVEEND_ITEM_EFFECTS_ALL                  19
+#define MOVEEND_KINGSROCK                         20    // These item effects will occur each strike of a multi-hit move
+#define MOVEEND_SUBSTITUTE                        21
+#define MOVEEND_SKY_DROP_CONFUSE                  22
+#define MOVEEND_UPDATE_LAST_MOVES                 23
+#define MOVEEND_MIRROR_MOVE                       24
+#define MOVEEND_NEXT_TARGET                       25   // Everything up until here is handled for each strike of a multi-hit move
+#define MOVEEND_MULTIHIT_MOVE                     26
+#define MOVEEND_DEFROST                           27
+#define MOVEEND_MOVE_EFFECTS2                     28
+#define MOVEEND_RECOIL                            29
+#define MOVEEND_MAGICIAN                          30    // Occurs after final multi-hit strike, and after other items/abilities would activate
+#define MOVEEND_EJECT_BUTTON                      31
+#define MOVEEND_RED_CARD                          32
+#define MOVEEND_EJECT_PACK                        33
+#define MOVEEND_LIFEORB_SHELLBELL                 34    // Includes shell bell, throat spray, etc
+#define MOVEEND_CHANGED_ITEMS                     35
+#define MOVEEND_PICKPOCKET                        36
+#define MOVEEND_DANCER                            37
+#define MOVEEND_EMERGENCY_EXIT                    38
+#define MOVEEND_SYMBIOSIS                         39
+#define MOVEEND_CLEAR_BITS                        40
+#define MOVEEND_COUNT                             41
 
 // switch cases
 #define B_SWITCH_NORMAL     0

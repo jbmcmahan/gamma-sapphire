@@ -92,20 +92,6 @@ Route104_Text_RegisteredDadInPokenav:
 	.string "Registered DAD NORMAN\n"
 	.string "in the POKéNAV.$"
 
-Route105_EventScript_Custom_Julia::
-	trainerbattle_single TRAINER_CUSTOM_JULIA, Route103_Text_HannarIntro, Route103_Text_HannarDefeated
-	msgbox Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE
-	end
-
-Route105_EventScript_Custom_Karl::
-	trainerbattle_single TRAINER_CUSTOM_KARL, Route103_Text_HannarIntro, Route103_Text_HannarDefeated
-	msgbox Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE
-	end
-
-Route105_EventScript_Custom_Lisa::
-	trainerbattle_single TRAINER_CUSTOM_LISA, Route103_Text_HannarIntro, Route103_Text_HannarDefeated
-	msgbox Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE
-	end
 
 Route105_EventScript_EggWoman::
 	lock

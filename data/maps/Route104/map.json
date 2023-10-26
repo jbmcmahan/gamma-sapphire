@@ -35,7 +35,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NORMAL",
       "trainer_sight_or_berry_tree_id": "3",
-      "script": "Route104_EventScript_Custom_Gaston",
+      "script": "EventScript_Gamma_Gaston",
       "flag": "0"
     },
     {
@@ -48,7 +48,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NORMAL",
       "trainer_sight_or_berry_tree_id": "3",
-      "script": "Route104_EventScript_Custom_Hermine",
+      "script": "EventScript_Gamma_Hermine",
       "flag": "0"
     },
     {
@@ -100,7 +100,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NORMAL",
       "trainer_sight_or_berry_tree_id": "3",
-      "script": "Route104_EventScript_Custom_Ian",
+      "script": "EventScript_Gamma_Ian",
       "flag": "0"
     }
   ],

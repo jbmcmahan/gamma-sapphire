@@ -5915,38 +5915,45 @@ static void Cmd_moveend(void)
             gBattleScripting.moveendState++;
             break;
         case MOVEEND_ABILITIES: // Such as abilities activating on contact(Poison Spore, Rough Skin, etc.).
-            if (AbilityBattleEffects(ABILITYEFFECT_MOVE_END, gBattlerTarget, gBattleScripting.abilityNum, 0, 0))
+            if (AbilityBattleEffects(ABILITYEFFECT_MOVE_END, gBattlerTarget, 0, 0, 0))
                 effect = TRUE;
-            if (gBattleScripting.abilityNum == 3) {
-                gBattleScripting.moveendState++;
-                gBattleScripting.abilityNum = 0;
-            }
-            gBattleScripting.abilityNum++;
+            gBattleScripting.moveendState++;
             break;
         case MOVEEND_INNATES_1: // Such as abilities activating on contact(Poison Spore, Rough Skin, etc.).
-            // if (AbilityBattleEffects(ABILITYEFFECT_MOVE_END, gBattlerTarget, 1, 0, 0))
-            //     effect = TRUE;
+            if (AbilityBattleEffects(ABILITYEFFECT_MOVE_END, gBattlerTarget, 1, 0, 0))
+                effect = TRUE;
             gBattleScripting.moveendState++;
             break;
         case MOVEEND_INNATES_2: // Such as abilities activating on contact(Poison Spore, Rough Skin, etc.).
-            // if (AbilityBattleEffects(ABILITYEFFECT_MOVE_END, gBattlerTarget, 2, 0, 0))
-            //     effect = TRUE;
+            if (AbilityBattleEffects(ABILITYEFFECT_MOVE_END, gBattlerTarget, 2, 0, 0))
+                effect = TRUE;
             gBattleScripting.moveendState++;
             break;
         case MOVEEND_INNATES_3: // Such as abilities activating on contact(Poison Spore, Rough Skin, etc.).
-            // if (AbilityBattleEffects(ABILITYEFFECT_MOVE_END, gBattlerTarget, 3, 0, 0))
-            //     effect = TRUE;
+            if (AbilityBattleEffects(ABILITYEFFECT_MOVE_END, gBattlerTarget, 3, 0, 0))
+                effect = TRUE;
             gBattleScripting.moveendState++;
             break;
 
         case MOVEEND_ABILITIES_ATTACKER: // Poison Touch, possibly other in the future
-            if (AbilityBattleEffects(ABILITYEFFECT_MOVE_END_ATTACKER, gBattlerAttacker, gBattleScripting.abilityNum, 0, 0))
+            if (AbilityBattleEffects(ABILITYEFFECT_MOVE_END_ATTACKER, gBattlerAttacker, 0, 0, 0))
                 effect = TRUE;
-            if (gBattleScripting.abilityNum == 3) {
-                gBattleScripting.moveendState++;
-                gBattleScripting.abilityNum = 0;
-            }
-            gBattleScripting.abilityNum++;
+            gBattleScripting.moveendState++;
+            break;
+        case MOVEEND_INNATES_1_ATTACKER: // Poison Touch, possibly other in the future
+            if (AbilityBattleEffects(ABILITYEFFECT_MOVE_END_ATTACKER, gBattlerAttacker, 1, 0, 0))
+                effect = TRUE;
+            gBattleScripting.moveendState++;
+            break;
+        case MOVEEND_INNATES_2_ATTACKER: // Poison Touch, possibly other in the future
+            if (AbilityBattleEffects(ABILITYEFFECT_MOVE_END_ATTACKER, gBattlerAttacker, 2, 0, 0))
+                effect = TRUE;
+            gBattleScripting.moveendState++;
+            break;
+        case MOVEEND_INNATES_3_ATTACKER: // Poison Touch, possibly other in the future
+            if (AbilityBattleEffects(ABILITYEFFECT_MOVE_END_ATTACKER, gBattlerAttacker, 3, 0, 0))
+                effect = TRUE;
+            gBattleScripting.moveendState++;
             break;
         case MOVEEND_STATUS_IMMUNITY_ABILITIES: // status immunities
             if (AbilityBattleEffects(ABILITYEFFECT_IMMUNITY, 0, 0, 0, 0))

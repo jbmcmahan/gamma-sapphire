@@ -1,4 +1,4 @@
-static const struct TrainerMonCustomized sParty_Custom_Alex[] =
+static const struct TrainerMonCustomized sParty_Gamma_Alex[] =
 {
     {
         .species = SPECIES_PETILIL,
@@ -44,7 +44,7 @@ static const struct TrainerMonCustomized sParty_Custom_Alex[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Bonnie[] =
+static const struct TrainerMonCustomized sParty_Gamma_Bonnie[] =
 {
     {
         .species = SPECIES_AIPOM,
@@ -90,7 +90,7 @@ static const struct TrainerMonCustomized sParty_Custom_Bonnie[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Colin[] =
+static const struct TrainerMonCustomized sParty_Gamma_Colin[] =
 {
     {
         .species = SPECIES_SKITTY,
@@ -136,7 +136,7 @@ static const struct TrainerMonCustomized sParty_Custom_Colin[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Danielle[] =
+static const struct TrainerMonCustomized sParty_Gamma_Danielle[] =
 {
     {
         .species = SPECIES_CROAGUNK,
@@ -168,7 +168,7 @@ static const struct TrainerMonCustomized sParty_Custom_Danielle[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Earl[] =
+static const struct TrainerMonCustomized sParty_Gamma_Earl[] =
 {
     {
         .species = SPECIES_MURKROW,
@@ -228,7 +228,7 @@ static const struct TrainerMonCustomized sParty_Custom_Earl[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Fiona[] =
+static const struct TrainerMonCustomized sParty_Gamma_Fiona[] =
 {
     {
         .species = SPECIES_JOLTIK,
@@ -277,7 +277,7 @@ static const struct TrainerMonCustomized sParty_Custom_Fiona[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Gaston[] =
+static const struct TrainerMonCustomized sParty_Gamma_Gaston[] =
 {
     {
         .species = SPECIES_PHANTUMP,
@@ -326,7 +326,7 @@ static const struct TrainerMonCustomized sParty_Custom_Gaston[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Hermine[] =
+static const struct TrainerMonCustomized sParty_Gamma_Hermine[] =
 {
     {
         .species = SPECIES_PETILIL,
@@ -375,7 +375,7 @@ static const struct TrainerMonCustomized sParty_Custom_Hermine[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Ian[] =
+static const struct TrainerMonCustomized sParty_Gamma_Ian[] =
 {
     {
         .species = SPECIES_ROCKRUFF,
@@ -439,7 +439,7 @@ static const struct TrainerMonCustomized sParty_Custom_Ian[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Julia[] =
+static const struct TrainerMonCustomized sParty_Gamma_Julia[] =
 {
     {
         .species = SPECIES_CROAGUNK,
@@ -503,7 +503,7 @@ static const struct TrainerMonCustomized sParty_Custom_Julia[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Karl[] =
+static const struct TrainerMonCustomized sParty_Gamma_Karl[] =
 {
     {
         .species = SPECIES_SNUBBULL,
@@ -552,7 +552,7 @@ static const struct TrainerMonCustomized sParty_Custom_Karl[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Lisa[] =
+static const struct TrainerMonCustomized sParty_Gamma_Lisa[] =
 {
     {
         .species = SPECIES_JOLTIK,
@@ -631,7 +631,7 @@ static const struct TrainerMonCustomized sParty_Custom_Lisa[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Martin[] =
+static const struct TrainerMonCustomized sParty_Gamma_Martin[] =
 {
     {
         .species = SPECIES_NINCADA,
@@ -691,7 +691,7 @@ static const struct TrainerMonCustomized sParty_Custom_Martin[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Nicole[] =
+static const struct TrainerMonCustomized sParty_Gamma_Nicole[] =
 {
     {
         .species = SPECIES_MORELULL,
@@ -751,7 +751,7 @@ static const struct TrainerMonCustomized sParty_Custom_Nicole[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Owen[] =
+static const struct TrainerMonCustomized sParty_Gamma_Owen[] =
 {
     {
         .species = SPECIES_SANDYGAST,
@@ -811,7 +811,7 @@ static const struct TrainerMonCustomized sParty_Custom_Owen[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Paula[] =
+static const struct TrainerMonCustomized sParty_Gamma_Paula[] =
 {
     {
         .species = SPECIES_CROAGUNK,
@@ -871,7 +871,7 @@ static const struct TrainerMonCustomized sParty_Custom_Paula[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Richard[] =
+static const struct TrainerMonCustomized sParty_Gamma_Richard[] =
 {
     {
         .species = SPECIES_SLOWPOKE_GALARIAN,
@@ -931,7 +931,7 @@ static const struct TrainerMonCustomized sParty_Custom_Richard[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Shary[] =
+static const struct TrainerMonCustomized sParty_Gamma_Shary[] =
 {
     {
         .species = SPECIES_MURKROW,
@@ -991,7 +991,7 @@ static const struct TrainerMonCustomized sParty_Custom_Shary[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Tobias[] =
+static const struct TrainerMonCustomized sParty_Gamma_Tobias[] =
 {
     {
         .species = SPECIES_TYMPOLE,
@@ -1051,7 +1051,7 @@ static const struct TrainerMonCustomized sParty_Custom_Tobias[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Virginie[] =
+static const struct TrainerMonCustomized sParty_Gamma_Virginie[] =
 {
     {
         .species = SPECIES_ZUBAT,
@@ -1111,7 +1111,7 @@ static const struct TrainerMonCustomized sParty_Custom_Virginie[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Walter[] =
+static const struct TrainerMonCustomized sParty_Gamma_Walter[] =
 {
     {
         .species = SPECIES_VANILLITE,
@@ -1171,7 +1171,7 @@ static const struct TrainerMonCustomized sParty_Custom_Walter[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Ana[] =
+static const struct TrainerMonCustomized sParty_Gamma_Ana[] =
 {
     {
         .species = SPECIES_CUTIEFLY,
@@ -1231,7 +1231,7 @@ static const struct TrainerMonCustomized sParty_Custom_Ana[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Bill[] =
+static const struct TrainerMonCustomized sParty_Gamma_Bill[] =
 {
     {
         .species = SPECIES_TYMPOLE,
@@ -1291,7 +1291,7 @@ static const struct TrainerMonCustomized sParty_Custom_Bill[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Claudette[] =
+static const struct TrainerMonCustomized sParty_Gamma_Claudette[] =
 {
     {
         .species = SPECIES_NOIBAT,
@@ -1351,7 +1351,7 @@ static const struct TrainerMonCustomized sParty_Custom_Claudette[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Danny[] =
+static const struct TrainerMonCustomized sParty_Gamma_Danny[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -1369,7 +1369,7 @@ static const struct TrainerMonCustomized sParty_Custom_Danny[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Elsa[] =
+static const struct TrainerMonCustomized sParty_Gamma_Elsa[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -1387,7 +1387,7 @@ static const struct TrainerMonCustomized sParty_Custom_Elsa[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Fred[] =
+static const struct TrainerMonCustomized sParty_Gamma_Fred[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -1405,7 +1405,7 @@ static const struct TrainerMonCustomized sParty_Custom_Fred[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Grace[] =
+static const struct TrainerMonCustomized sParty_Gamma_Grace[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -1423,7 +1423,7 @@ static const struct TrainerMonCustomized sParty_Custom_Grace[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Henri[] =
+static const struct TrainerMonCustomized sParty_Gamma_Henri[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -1441,7 +1441,7 @@ static const struct TrainerMonCustomized sParty_Custom_Henri[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Ida[] =
+static const struct TrainerMonCustomized sParty_Gamma_Ida[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -1459,7 +1459,7 @@ static const struct TrainerMonCustomized sParty_Custom_Ida[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Julian[] =
+static const struct TrainerMonCustomized sParty_Gamma_Julian[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -1477,7 +1477,160 @@ static const struct TrainerMonCustomized sParty_Custom_Julian[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Kate[] =
+static const struct TrainerMonCustomized sParty_Gamma_Kate[] =
+{
+    {
+        .species = SPECIES_VOLTORB_HISUIAN,
+        .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_PSYCHIC,
+        .ability = ABILITY_AFTERMATH,
+        .friendship = 0,
+        .gender = TRAINER_MON_FEMALE,
+        .heldItem = ITEM_LIFE_ORB,
+        .isShiny = FALSE,
+        .iv = TRAINER_PARTY_IVS(31,31,31,31,31,31),
+        .ev = TRAINER_PARTY_EVS(0,0,0,0,0,0),
+        .lvl = 19,
+        .moves = {MOVE_THUNDER_SHOCK, MOVE_SPARK, MOVE_ENERGY_BALL, MOVE_THUNDER_WAVE},
+        .nature = NATURE_JOLLY,
+    },
+    {
+        .species = SPECIES_DARUMAKA_GALARIAN,
+        .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_ELECTRIC,
+        .ability = ABILITY_INNER_FOCUS,
+        .friendship = 0,
+        .gender = TRAINER_MON_MALE,
+        .heldItem = ITEM_EVIOLITE,
+        .isShiny = FALSE,
+        .iv = TRAINER_PARTY_IVS(31,31,31,31,31,31),
+        .ev = TRAINER_PARTY_EVS(0,0,0,0,0,0),
+        .lvl = 19,
+        .moves = {MOVE_POWDER_SNOW, MOVE_TACKLE, MOVE_BITE, MOVE_TAUNT},
+        .nature = NATURE_JOLLY,
+    },
+    {
+        .species = SPECIES_KLINK,
+        .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_ELECTRIC,
+        .ability = ABILITY_STEELWORKER,
+        .friendship = 0,
+        .gender = TRAINER_MON_MALE,
+        .heldItem = ITEM_LEFTOVERS,
+        .isShiny = FALSE,
+        .iv = TRAINER_PARTY_IVS(31,31,31,31,31,31),
+        .ev = TRAINER_PARTY_EVS(0,0,0,0,0,0),
+        .lvl = 19,
+        .moves = {MOVE_GEAR_GRIND, MOVE_THUNDER_SHOCK, MOVE_CHARGE, MOVE_VISE_GRIP},
+        .nature = NATURE_JOLLY,
+    },
+    {
+        .species = SPECIES_HELIOPTILE,
+        .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_FIRE,
+        .ability = ABILITY_LIGHTNING_ROD,
+        .friendship = 0,
+        .gender = TRAINER_MON_FEMALE,
+        .heldItem = ITEM_EJECT_BUTTON,
+        .isShiny = FALSE,
+        .iv = TRAINER_PARTY_IVS(31,31,31,31,31,31),
+        .ev = TRAINER_PARTY_EVS(0,0,0,0,0,0),
+        .lvl = 19,
+        .moves = {MOVE_POUND, MOVE_TAIL_WHIP, MOVE_THUNDER_SHOCK, MOVE_QUICK_ATTACK},
+        .nature = NATURE_JOLLY,
+    },
+    {
+        .species = SPECIES_CRAMORANT,
+        .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_ELECTRIC,
+        .ability = ABILITY_PREDATOR,
+        .friendship = 0,
+        .gender = TRAINER_MON_MALE,
+        .heldItem = ITEM_FIGY_BERRY,
+        .isShiny = FALSE,
+        .iv = TRAINER_PARTY_IVS(31,31,31,31,31,31),
+        .ev = TRAINER_PARTY_EVS(0,0,0,0,0,0),
+        .lvl = 19,
+        .moves = {MOVE_PECK, MOVE_DIVE, MOVE_AMNESIA, MOVE_DRILL_PECK},
+        .nature = NATURE_NAUGHTY,
+    },
+};
+
+static const struct TrainerMonCustomized sParty_Gamma_Wattson[] =
+{
+    {
+        .species = SPECIES_HELIOPTILE,
+        .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_ELECTRIC,
+        .ability = ABILITY_LIGHTNING_ROD,
+        .friendship = 0,
+        .gender = TRAINER_MON_MALE,
+        .isShiny = FALSE,
+        .iv = TRAINER_PARTY_IVS(31,31,31,31,31,31),
+        .ev = TRAINER_PARTY_EVS(0,0,0,0,0,0),
+        .lvl = 5,
+        .moves = {MOVE_AROMATIC_MIST, MOVE_SWEET_KISS, MOVE_DRAINING_KISS, MOVE_ATTRACT},
+        .nature = NATURE_HARDY,
+    },
+    {
+        .species = SPECIES_ELECTRIKE,
+        .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_ELECTRIC,
+        .ability = ABILITY_STATIC,
+        .friendship = 0,
+        .gender = TRAINER_MON_MALE,
+        .isShiny = FALSE,
+        .iv = TRAINER_PARTY_IVS(31,31,31,31,31,31),
+        .ev = TRAINER_PARTY_EVS(0,0,0,0,0,0),
+        .lvl = 19,
+        .moves = {MOVE_AROMATIC_MIST, MOVE_SWEET_KISS, MOVE_DRAINING_KISS, MOVE_ATTRACT},
+        .nature = NATURE_LONELY,
+    },
+    {
+        .species = SPECIES_PALOSSAND,
+        .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_ELECTRIC,
+        .ability = ABILITY_UNNERVE,
+        .friendship = 0,
+        .gender = TRAINER_MON_MALE,
+        .isShiny = FALSE,
+        .iv = TRAINER_PARTY_IVS(31,31,31,31,31,31),
+        .ev = TRAINER_PARTY_EVS(0,0,0,0,0,0),
+        .lvl = 19,
+        .moves = {MOVE_AROMATIC_MIST, MOVE_SWEET_KISS, MOVE_DRAINING_KISS, MOVE_ATTRACT},
+        .nature = NATURE_BRAVE,
+    },
+    {
+        .species = SPECIES_GEODUDE_ALOLAN,
+        .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_ELECTRIC,
+        .ability = ABILITY_ROCK_HEAD,
+        .friendship = 0,
+        .gender = TRAINER_MON_MALE,
+        .isShiny = FALSE,
+        .iv = TRAINER_PARTY_IVS(31,31,31,31,31,31),
+        .ev = TRAINER_PARTY_EVS(0,0,0,0,0,0),
+        .lvl = 19,
+        .moves = {MOVE_AROMATIC_MIST, MOVE_SWEET_KISS, MOVE_DRAINING_KISS, MOVE_ATTRACT},
+        .nature = NATURE_ADAMANT,
+    },
+    {
+        .species = SPECIES_CRAMORANT,
+        .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_ELECTRIC,
+        .ability = ABILITY_GULP_MISSILE,
+        .friendship = 0,
+        .gender = TRAINER_MON_MALE,
+        .isShiny = FALSE,
+        .iv = TRAINER_PARTY_IVS(31,31,31,31,31,31),
+        .ev = TRAINER_PARTY_EVS(0,0,0,0,0,0),
+        .lvl = 19,
+        .moves = {MOVE_STOCKPILE, MOVE_PECK, MOVE_DIVE, MOVE_SWALLOW},
+        .nature = NATURE_NAUGHTY,
+    },
+};
+
+static const struct TrainerMonCustomized sParty_Gamma_Larry[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -1495,7 +1648,7 @@ static const struct TrainerMonCustomized sParty_Custom_Kate[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Larry[] =
+static const struct TrainerMonCustomized sParty_Gamma_Mindy[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -1513,7 +1666,7 @@ static const struct TrainerMonCustomized sParty_Custom_Larry[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Mindy[] =
+static const struct TrainerMonCustomized sParty_Gamma_Nicholas[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -1531,7 +1684,7 @@ static const struct TrainerMonCustomized sParty_Custom_Mindy[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Nicholas[] =
+static const struct TrainerMonCustomized sParty_Gamma_Odette[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -1549,7 +1702,7 @@ static const struct TrainerMonCustomized sParty_Custom_Nicholas[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Odette[] =
+static const struct TrainerMonCustomized sParty_Gamma_Peter[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -1567,7 +1720,7 @@ static const struct TrainerMonCustomized sParty_Custom_Odette[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Peter[] =
+static const struct TrainerMonCustomized sParty_Gamma_Rose[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -1585,7 +1738,7 @@ static const struct TrainerMonCustomized sParty_Custom_Peter[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Rose[] =
+static const struct TrainerMonCustomized sParty_Gamma_Sam[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -1603,7 +1756,7 @@ static const struct TrainerMonCustomized sParty_Custom_Rose[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Sam[] =
+static const struct TrainerMonCustomized sParty_Gamma_Teresa[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -1621,7 +1774,7 @@ static const struct TrainerMonCustomized sParty_Custom_Sam[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Teresa[] =
+static const struct TrainerMonCustomized sParty_Gamma_Victor[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -1639,7 +1792,7 @@ static const struct TrainerMonCustomized sParty_Custom_Teresa[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Victor[] =
+static const struct TrainerMonCustomized sParty_Gamma_Wanda[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -1657,7 +1810,7 @@ static const struct TrainerMonCustomized sParty_Custom_Victor[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Wanda[] =
+static const struct TrainerMonCustomized sParty_Gamma_Arthur[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -1675,7 +1828,7 @@ static const struct TrainerMonCustomized sParty_Custom_Wanda[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Arthur[] =
+static const struct TrainerMonCustomized sParty_Gamma_Bertha[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -1693,7 +1846,7 @@ static const struct TrainerMonCustomized sParty_Custom_Arthur[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Bertha[] =
+static const struct TrainerMonCustomized sParty_Gamma_Cristobal[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -1711,7 +1864,7 @@ static const struct TrainerMonCustomized sParty_Custom_Bertha[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Cristobal[] =
+static const struct TrainerMonCustomized sParty_Gamma_Dolly[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -1729,7 +1882,7 @@ static const struct TrainerMonCustomized sParty_Custom_Cristobal[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Dolly[] =
+static const struct TrainerMonCustomized sParty_Gamma_Edouard[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -1747,7 +1900,7 @@ static const struct TrainerMonCustomized sParty_Custom_Dolly[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Edouard[] =
+static const struct TrainerMonCustomized sParty_Gamma_Fay[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -1765,7 +1918,7 @@ static const struct TrainerMonCustomized sParty_Custom_Edouard[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Fay[] =
+static const struct TrainerMonCustomized sParty_Gamma_Gonzalo[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -1783,7 +1936,7 @@ static const struct TrainerMonCustomized sParty_Custom_Fay[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Gonzalo[] =
+static const struct TrainerMonCustomized sParty_Gamma_Hanna[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -1801,7 +1954,7 @@ static const struct TrainerMonCustomized sParty_Custom_Gonzalo[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Hanna[] =
+static const struct TrainerMonCustomized sParty_Gamma_Isaias[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -1819,7 +1972,7 @@ static const struct TrainerMonCustomized sParty_Custom_Hanna[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Isaias[] =
+static const struct TrainerMonCustomized sParty_Gamma_Josephine[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -1837,7 +1990,7 @@ static const struct TrainerMonCustomized sParty_Custom_Isaias[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Josephine[] =
+static const struct TrainerMonCustomized sParty_Gamma_Kyle[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -1855,7 +2008,7 @@ static const struct TrainerMonCustomized sParty_Custom_Josephine[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Kyle[] =
+static const struct TrainerMonCustomized sParty_Gamma_Laura[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -1873,7 +2026,7 @@ static const struct TrainerMonCustomized sParty_Custom_Kyle[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Laura[] =
+static const struct TrainerMonCustomized sParty_Gamma_Marco[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -1891,7 +2044,7 @@ static const struct TrainerMonCustomized sParty_Custom_Laura[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Marco[] =
+static const struct TrainerMonCustomized sParty_Gamma_Nana[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -1909,7 +2062,7 @@ static const struct TrainerMonCustomized sParty_Custom_Marco[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Nana[] =
+static const struct TrainerMonCustomized sParty_Gamma_Omar[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -1927,30 +2080,12 @@ static const struct TrainerMonCustomized sParty_Custom_Nana[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Omar[] =
+static const struct TrainerMonCustomized sParty_Gamma_Paulette[] =
 {
     {
         .species = SPECIES_BULBASAUR,
         .ball = ITEM_POKE_BALL,
         .teraType = TYPE_NORMAL,
-        .ability = ABILITY_AROMA_VEIL,
-        .friendship = 0,
-        .gender = TRAINER_MON_MALE,
-        .isShiny = FALSE,
-        .iv = TRAINER_PARTY_IVS(31,31,31,31,31,31),
-        .ev = TRAINER_PARTY_EVS(0,0,0,0,0,0),
-        .lvl = 5,
-        .moves = {MOVE_AROMATIC_MIST, MOVE_SWEET_KISS, MOVE_DRAINING_KISS, MOVE_ATTRACT},
-        .nature = NATURE_MILD,
-    },
-};
-
-static const struct TrainerMonCustomized sParty_Custom_Paulette[] =
-{
-    {
-        .species = SPECIES_BULBASAUR,
-        .ball = ITEM_POKE_BALL,
-        .teraType = TYPE_NORMAL,
         .ability = ABILITY_CHLOROPHYLL,
         .friendship = 0,
         .gender = TRAINER_MON_MALE,
@@ -1964,7 +2099,7 @@ static const struct TrainerMonCustomized sParty_Custom_Paulette[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Rene[] =
+static const struct TrainerMonCustomized sParty_Gamma_Rene[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -1983,7 +2118,7 @@ static const struct TrainerMonCustomized sParty_Custom_Rene[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Sally[] =
+static const struct TrainerMonCustomized sParty_Gamma_Sally[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -2002,7 +2137,7 @@ static const struct TrainerMonCustomized sParty_Custom_Sally[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Teddy[] =
+static const struct TrainerMonCustomized sParty_Gamma_Teddy[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -2021,7 +2156,7 @@ static const struct TrainerMonCustomized sParty_Custom_Teddy[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Vicky[] =
+static const struct TrainerMonCustomized sParty_Gamma_Vicky[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -2040,7 +2175,7 @@ static const struct TrainerMonCustomized sParty_Custom_Vicky[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Wilfred[] =
+static const struct TrainerMonCustomized sParty_Gamma_Wilfred[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -2059,7 +2194,7 @@ static const struct TrainerMonCustomized sParty_Custom_Wilfred[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Andrea[] =
+static const struct TrainerMonCustomized sParty_Gamma_Andrea[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -2078,7 +2213,7 @@ static const struct TrainerMonCustomized sParty_Custom_Andrea[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Barry[] =
+static const struct TrainerMonCustomized sParty_Gamma_Barry[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -2097,7 +2232,7 @@ static const struct TrainerMonCustomized sParty_Custom_Barry[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Chantal[] =
+static const struct TrainerMonCustomized sParty_Gamma_Chantal[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -2116,7 +2251,7 @@ static const struct TrainerMonCustomized sParty_Custom_Chantal[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Dorain[] =
+static const struct TrainerMonCustomized sParty_Gamma_Dorain[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -2135,7 +2270,7 @@ static const struct TrainerMonCustomized sParty_Custom_Dorain[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Erin[] =
+static const struct TrainerMonCustomized sParty_Gamma_Erin[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -2154,7 +2289,7 @@ static const struct TrainerMonCustomized sParty_Custom_Erin[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Fernand[] =
+static const struct TrainerMonCustomized sParty_Gamma_Fernand[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -2173,7 +2308,7 @@ static const struct TrainerMonCustomized sParty_Custom_Fernand[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Gabrielle[] =
+static const struct TrainerMonCustomized sParty_Gamma_Gabrielle[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -2192,7 +2327,7 @@ static const struct TrainerMonCustomized sParty_Custom_Gabrielle[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Humberto[] =
+static const struct TrainerMonCustomized sParty_Gamma_Humberto[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -2211,7 +2346,7 @@ static const struct TrainerMonCustomized sParty_Custom_Humberto[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Imelda[] =
+static const struct TrainerMonCustomized sParty_Gamma_Imelda[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -2230,7 +2365,7 @@ static const struct TrainerMonCustomized sParty_Custom_Imelda[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Jerry[] =
+static const struct TrainerMonCustomized sParty_Gamma_Jerry[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -2249,7 +2384,7 @@ static const struct TrainerMonCustomized sParty_Custom_Jerry[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Karen[] =
+static const struct TrainerMonCustomized sParty_Gamma_Karen[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -2268,7 +2403,7 @@ static const struct TrainerMonCustomized sParty_Custom_Karen[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Lorenzo[] =
+static const struct TrainerMonCustomized sParty_Gamma_Lorenzo[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -2287,7 +2422,7 @@ static const struct TrainerMonCustomized sParty_Custom_Lorenzo[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Melissa[] =
+static const struct TrainerMonCustomized sParty_Gamma_Melissa[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -2306,7 +2441,7 @@ static const struct TrainerMonCustomized sParty_Custom_Melissa[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Nestor[] =
+static const struct TrainerMonCustomized sParty_Gamma_Nestor[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -2325,7 +2460,7 @@ static const struct TrainerMonCustomized sParty_Custom_Nestor[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Olga[] =
+static const struct TrainerMonCustomized sParty_Gamma_Olga[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -2344,7 +2479,7 @@ static const struct TrainerMonCustomized sParty_Custom_Olga[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Pablo[] =
+static const struct TrainerMonCustomized sParty_Gamma_Pablo[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -2363,7 +2498,7 @@ static const struct TrainerMonCustomized sParty_Custom_Pablo[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Rebekah[] =
+static const struct TrainerMonCustomized sParty_Gamma_Rebekah[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -2382,7 +2517,7 @@ static const struct TrainerMonCustomized sParty_Custom_Rebekah[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Sebastien[] =
+static const struct TrainerMonCustomized sParty_Gamma_Sebastien[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -2401,7 +2536,7 @@ static const struct TrainerMonCustomized sParty_Custom_Sebastien[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Tanya[] =
+static const struct TrainerMonCustomized sParty_Gamma_Tanya[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -2420,7 +2555,7 @@ static const struct TrainerMonCustomized sParty_Custom_Tanya[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Van[] =
+static const struct TrainerMonCustomized sParty_Gamma_Van[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -2439,7 +2574,7 @@ static const struct TrainerMonCustomized sParty_Custom_Van[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Wendy[] =
+static const struct TrainerMonCustomized sParty_Gamma_Wendy[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -2458,7 +2593,7 @@ static const struct TrainerMonCustomized sParty_Custom_Wendy[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Alberto[] =
+static const struct TrainerMonCustomized sParty_Gamma_Alberto[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -2477,7 +2612,7 @@ static const struct TrainerMonCustomized sParty_Custom_Alberto[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Beryl[] =
+static const struct TrainerMonCustomized sParty_Gamma_Beryl[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -2496,7 +2631,7 @@ static const struct TrainerMonCustomized sParty_Custom_Beryl[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Chris[] =
+static const struct TrainerMonCustomized sParty_Gamma_Chris[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -2515,7 +2650,7 @@ static const struct TrainerMonCustomized sParty_Custom_Chris[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Debby[] =
+static const struct TrainerMonCustomized sParty_Gamma_Debby[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -2534,7 +2669,7 @@ static const struct TrainerMonCustomized sParty_Custom_Debby[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Ernesto[] =
+static const struct TrainerMonCustomized sParty_Gamma_Ernesto[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -2553,7 +2688,7 @@ static const struct TrainerMonCustomized sParty_Custom_Ernesto[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Francine[] =
+static const struct TrainerMonCustomized sParty_Gamma_Francine[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -2572,7 +2707,7 @@ static const struct TrainerMonCustomized sParty_Custom_Francine[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Gordon[] =
+static const struct TrainerMonCustomized sParty_Gamma_Gordon[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -2591,7 +2726,7 @@ static const struct TrainerMonCustomized sParty_Custom_Gordon[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Helene[] =
+static const struct TrainerMonCustomized sParty_Gamma_Helene[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -2610,7 +2745,7 @@ static const struct TrainerMonCustomized sParty_Custom_Helene[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Isaac[] =
+static const struct TrainerMonCustomized sParty_Gamma_Isaac[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -2629,7 +2764,7 @@ static const struct TrainerMonCustomized sParty_Custom_Isaac[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Joyce[] =
+static const struct TrainerMonCustomized sParty_Gamma_Joyce[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -2648,7 +2783,7 @@ static const struct TrainerMonCustomized sParty_Custom_Joyce[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Kirk[] =
+static const struct TrainerMonCustomized sParty_Gamma_Kirk[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -2667,7 +2802,7 @@ static const struct TrainerMonCustomized sParty_Custom_Kirk[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Leslie[] =
+static const struct TrainerMonCustomized sParty_Gamma_Leslie[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -2686,7 +2821,7 @@ static const struct TrainerMonCustomized sParty_Custom_Leslie[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Milton[] =
+static const struct TrainerMonCustomized sParty_Gamma_Milton[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -2705,7 +2840,7 @@ static const struct TrainerMonCustomized sParty_Custom_Milton[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Nadine[] =
+static const struct TrainerMonCustomized sParty_Gamma_Nadine[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -2724,7 +2859,7 @@ static const struct TrainerMonCustomized sParty_Custom_Nadine[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Oscar[] =
+static const struct TrainerMonCustomized sParty_Gamma_Oscar[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -2743,7 +2878,7 @@ static const struct TrainerMonCustomized sParty_Custom_Oscar[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Patty[] =
+static const struct TrainerMonCustomized sParty_Gamma_Patty[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -2762,7 +2897,7 @@ static const struct TrainerMonCustomized sParty_Custom_Patty[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Rafael[] =
+static const struct TrainerMonCustomized sParty_Gamma_Rafael[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -2781,7 +2916,7 @@ static const struct TrainerMonCustomized sParty_Custom_Rafael[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Sara[] =
+static const struct TrainerMonCustomized sParty_Gamma_Sara[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -2800,7 +2935,7 @@ static const struct TrainerMonCustomized sParty_Custom_Sara[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Tony[] =
+static const struct TrainerMonCustomized sParty_Gamma_Tony[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -2819,7 +2954,7 @@ static const struct TrainerMonCustomized sParty_Custom_Tony[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Valerie[] =
+static const struct TrainerMonCustomized sParty_Gamma_Valerie[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -2838,7 +2973,7 @@ static const struct TrainerMonCustomized sParty_Custom_Valerie[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_William[] =
+static const struct TrainerMonCustomized sParty_Gamma_William[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -2857,7 +2992,7 @@ static const struct TrainerMonCustomized sParty_Custom_William[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Arlene[] =
+static const struct TrainerMonCustomized sParty_Gamma_Arlene[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -2876,7 +3011,7 @@ static const struct TrainerMonCustomized sParty_Custom_Arlene[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Bret[] =
+static const struct TrainerMonCustomized sParty_Gamma_Bret[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -2895,7 +3030,7 @@ static const struct TrainerMonCustomized sParty_Custom_Bret[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Cindy[] =
+static const struct TrainerMonCustomized sParty_Gamma_Cindy[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -2914,7 +3049,7 @@ static const struct TrainerMonCustomized sParty_Custom_Cindy[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Don[] =
+static const struct TrainerMonCustomized sParty_Gamma_Don[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -2933,7 +3068,7 @@ static const struct TrainerMonCustomized sParty_Custom_Don[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Emily[] =
+static const struct TrainerMonCustomized sParty_Gamma_Emily[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -2952,7 +3087,7 @@ static const struct TrainerMonCustomized sParty_Custom_Emily[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Franklin[] =
+static const struct TrainerMonCustomized sParty_Gamma_Franklin[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -2971,7 +3106,7 @@ static const struct TrainerMonCustomized sParty_Custom_Franklin[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Gert[] =
+static const struct TrainerMonCustomized sParty_Gamma_Gert[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -2990,7 +3125,7 @@ static const struct TrainerMonCustomized sParty_Custom_Gert[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Harold[] =
+static const struct TrainerMonCustomized sParty_Gamma_Harold[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -3009,7 +3144,7 @@ static const struct TrainerMonCustomized sParty_Custom_Harold[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Idalia[] =
+static const struct TrainerMonCustomized sParty_Gamma_Idalia[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -3028,7 +3163,7 @@ static const struct TrainerMonCustomized sParty_Custom_Idalia[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Jose[] =
+static const struct TrainerMonCustomized sParty_Gamma_Jose[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -3047,7 +3182,7 @@ static const struct TrainerMonCustomized sParty_Custom_Jose[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Katia[] =
+static const struct TrainerMonCustomized sParty_Gamma_Katia[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -3066,7 +3201,7 @@ static const struct TrainerMonCustomized sParty_Custom_Katia[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Lee[] =
+static const struct TrainerMonCustomized sParty_Gamma_Lee[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -3085,7 +3220,7 @@ static const struct TrainerMonCustomized sParty_Custom_Lee[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Margot[] =
+static const struct TrainerMonCustomized sParty_Gamma_Margot[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -3104,7 +3239,7 @@ static const struct TrainerMonCustomized sParty_Custom_Margot[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Nigel[] =
+static const struct TrainerMonCustomized sParty_Gamma_Nigel[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -3123,7 +3258,7 @@ static const struct TrainerMonCustomized sParty_Custom_Nigel[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Ophelia[] =
+static const struct TrainerMonCustomized sParty_Gamma_Ophelia[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -3142,7 +3277,7 @@ static const struct TrainerMonCustomized sParty_Custom_Ophelia[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Philippe[] =
+static const struct TrainerMonCustomized sParty_Gamma_Philippe[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -3161,7 +3296,7 @@ static const struct TrainerMonCustomized sParty_Custom_Philippe[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Rina[] =
+static const struct TrainerMonCustomized sParty_Gamma_Rina[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -3180,7 +3315,7 @@ static const struct TrainerMonCustomized sParty_Custom_Rina[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Sean[] =
+static const struct TrainerMonCustomized sParty_Gamma_Sean[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -3199,7 +3334,7 @@ static const struct TrainerMonCustomized sParty_Custom_Sean[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Tammy[] =
+static const struct TrainerMonCustomized sParty_Gamma_Tammy[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -3218,7 +3353,7 @@ static const struct TrainerMonCustomized sParty_Custom_Tammy[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Vince[] =
+static const struct TrainerMonCustomized sParty_Gamma_Vince[] =
 {
     {
         .species = SPECIES_BULBASAUR,
@@ -3237,7 +3372,7 @@ static const struct TrainerMonCustomized sParty_Custom_Vince[] =
     },
 };
 
-static const struct TrainerMonCustomized sParty_Custom_Whitney[] =
+static const struct TrainerMonCustomized sParty_Gamma_Whitney[] =
 {
     {
         .species = SPECIES_BULBASAUR,

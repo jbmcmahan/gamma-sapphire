@@ -697,3 +697,55 @@ Route105_EventScript_ItemLaggingTail::
 Route105_EventScript_ItemMentalHerb::
 	finditem ITEM_MENTAL_HERB
 	end
+
+Route106_EventScript_ItemMuscleBand::
+	finditem ITEM_MUSCLE_BAND
+	end
+
+Route106_EventScript_ItemZoomLens::
+	finditem ITEM_ZOOM_LENS
+	end
+
+Route106_EventScript_ItemPowerBelt::
+	finditem ITEM_POWER_BELT
+	end
+
+Route106_EventScript_ItemPowerLens::
+	finditem ITEM_POWER_LENS
+	end
+
+Route106_EventScript_ItemPowerBand::
+	finditem ITEM_POWER_BAND
+	end
+
+Route106_EventScript_ItemPechaBerry::
+	finditem ITEM_PECHA_BERRY
+	end
+
+Route106_EventScript_ItemPersimBerry::
+	finditem ITEM_PERSIM_BERRY
+	end
+
+Route108_EventScript_ItemCharcoal::
+	finditem ITEM_CHARCOAL
+	end
+
+Route108_EventScript_ItemMagnet::
+	finditem ITEM_MAGNET
+	end
+
+Route108_EventScript_ItemSharpBeak::
+	finditem ITEM_SHARP_BEAK
+	end
+
+Route108_EventScript_ItemDestinyKnot::
+	finditem ITEM_DESTINY_KNOT
+	end
+
+Route108_EventScript_ItemBindingBand::
+	finditem ITEM_BINDING_BAND
+	end
+
+Route108_EventScript_ItemShedShell::
+	finditem ITEM_SHED_SHELL
+	end

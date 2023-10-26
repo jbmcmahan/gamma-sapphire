@@ -10,78 +10,219 @@ text Route103_Text_HannarPostBattle {
     format("Gah, I'm still boiling mad… Grrrrr…")
 }
 
-script Route106_EventScript_Custom_Martin {
-	trainerbattle_single(TRAINER_CUSTOM_MARTIN, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+// Chapter 1
+script EventScript_Gamma_Alex{
+	trainerbattle_single(TRAINER_GAMMA_ALEX, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
 	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
 	end
 }
 
-script Route106_EventScript_Custom_Nicole {
-	trainerbattle_single(TRAINER_CUSTOM_NICOLE, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+script EventScript_Gamma_Bonnie{
+	trainerbattle_single(TRAINER_GAMMA_BONNIE, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
 	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
 	end
 }
 
-script Route106_EventScript_Custom_Owen {
-	trainerbattle_single(TRAINER_CUSTOM_OWEN, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+script EventScript_Gamma_Colin{
+	trainerbattle_single(TRAINER_GAMMA_COLIN, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
 	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
 	end
 }
 
-script Route107_EventScript_Custom_Paula {
-	trainerbattle_single(TRAINER_CUSTOM_PAULA, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+script EventScript_Gamma_Danielle{
+	trainerbattle_single(TRAINER_GAMMA_DANIELLE, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
 	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
 	end
 }
 
-script Route107_EventScript_Custom_Richard {
-	trainerbattle_single(TRAINER_CUSTOM_RICHARD, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+script EventScript_Gamma_Earl{
+	trainerbattle_single(TRAINER_GAMMA_EARL, Route103_Text_HannarIntro, Route103_Text_HannarDefeated, Route103_EventScript_SoftSandGirl)
+	goto(Route103_EventScript_SoftSandGirl)
+	end
+}
+
+script Route103_EventScript_SoftSandGirl{
+	lock
+	faceplayer
+	special(GetPlayerBigGuyGirlString)
+	goto_if_set(FLAG_RECEIVED_SOFT_SAND, Route103_EventScript_AlreadyReceivedSoftSand)
+	msgbox(Route103_Text_YouCanHaveThis, MSGBOX_DEFAULT)
+	giveitem(ITEM_POWER_WEIGHT)
+	goto_if_eq(VAR_RESULT, 0, Common_EventScript_ShowBagIsFull)
+	closemessage
+	applymovement(VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection)
+	waitmovement(0)
+	setflag(FLAG_RECEIVED_SOFT_SAND)
+	release
+	end
+}
+
+script Route103_EventScript_AlreadyReceivedSoftSand{
+	msgbox(Route103_Text_WereGoingToMakeBigCastle, MSGBOX_DEFAULT)
+	applymovement(VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection)
+	waitmovement(0)
+	release
+	end
+}
+
+text Route103_Text_YouCanHaveThis{
+	"You can have this!"
+}
+
+text Route103_Text_WereGoingToMakeBigCastle{
+	"We're going to get all the sand from\nthe beach and make a big castle!\pAnd then we're going to be a king and\nqueen.\pWe'll let you be a servant.$"
+}
+
+script EventScript_Gamma_Fiona{
+	trainerbattle_single(TRAINER_GAMMA_FIONA, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
 	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
 	end
 }
 
-script Route107_EventScript_Custom_Shary {
-	trainerbattle_single(TRAINER_CUSTOM_SHARY, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+script EventScript_Gamma_Gaston{
+	trainerbattle_single(TRAINER_GAMMA_GASTON, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
 	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
 	end
 }
 
-script Route107_EventScript_Custom_Tobias {
-	trainerbattle_single(TRAINER_CUSTOM_TOBIAS, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+script EventScript_Gamma_Hermine{
+	trainerbattle_single(TRAINER_GAMMA_HERMINE, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
 	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
 	end
 }
 
-script Route107_EventScript_Custom_Virginie {
-	trainerbattle_single(TRAINER_CUSTOM_VIRGINIE, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+script EventScript_Gamma_Ian{
+	trainerbattle_single(TRAINER_GAMMA_IAN, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
 	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
 	end
 }
 
-script Route107_EventScript_Custom_Walter {
-	trainerbattle_single(TRAINER_CUSTOM_WALTER, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+script EventScript_Gamma_Julia{
+	trainerbattle_single(TRAINER_GAMMA_JULIA, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
 	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
 	end
 }
 
-script Route107_EventScript_Custom_Ana {
-	trainerbattle_single(TRAINER_CUSTOM_ANA, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+script EventScript_Gamma_Karl{
+	trainerbattle_single(TRAINER_GAMMA_KARL, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
 	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
 	end
 }
 
-script Route107_EventScript_Custom_Bill {
-	trainerbattle_single(TRAINER_CUSTOM_BILL, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+script EventScript_Gamma_Lisa{
+	trainerbattle_single(TRAINER_GAMMA_LISA, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
+	setflag(FLAG_BADGE01_GET)
+	end
+}
+
+// Chapter 2
+
+
+script EventScript_Gamma_Martin {
+	trainerbattle_single(TRAINER_GAMMA_MARTIN, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
 	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
 	end
 }
 
-script Route107_EventScript_Custom_Claudette {
-	trainerbattle_single(TRAINER_CUSTOM_CLAUDETTE, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+script EventScript_Gamma_Nicole {
+	trainerbattle_single(TRAINER_GAMMA_NICOLE, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
 	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
 	end
 }
 
+script EventScript_Gamma_Owen {
+	trainerbattle_single(TRAINER_GAMMA_OWEN, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
+	end
+}
+
+script EventScript_Gamma_Paula {
+	trainerbattle_single(TRAINER_GAMMA_PAULA, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
+	end
+}
+
+script EventScript_Gamma_Richard {
+	trainerbattle_single(TRAINER_GAMMA_RICHARD, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
+	end
+}
+
+script EventScript_Gamma_Shary {
+	trainerbattle_single(TRAINER_GAMMA_SHARY, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
+	end
+}
+
+script EventScript_Gamma_Tobias {
+	trainerbattle_single(TRAINER_GAMMA_TOBIAS, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
+	end
+}
+
+script EventScript_Gamma_Virginie {
+	trainerbattle_single(TRAINER_GAMMA_VIRGINIE, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
+	end
+}
+
+script EventScript_Gamma_Walter {
+	trainerbattle_single(TRAINER_GAMMA_WALTER, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
+	end
+}
+
+script EventScript_Gamma_Ana {
+	trainerbattle_single(TRAINER_GAMMA_ANA, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
+	end
+}
+
+script EventScript_Gamma_Bill {
+	trainerbattle_single(TRAINER_GAMMA_BILL, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
+	end
+}
+
+script EventScript_Gamma_Claudette {
+	trainerbattle_single(TRAINER_GAMMA_CLAUDETTE, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
+	setflag(FLAG_BADGE02_GET)
+	end
+}
+
+// Chapter 3
+
+script EventScript_Gamma_Danny {
+	trainerbattle_single(TRAINER_GAMMA_DANNY, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
+	end
+}
+
+script EventScript_Gamma_Elsa {
+	trainerbattle_single(TRAINER_GAMMA_ELSA, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
+	end
+}
+
+script EventScript_Gamma_Fred {
+	trainerbattle_single(TRAINER_GAMMA_FRED, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
+	end
+}
+
+script EventScript_Gamma_Grace {
+	trainerbattle_single(TRAINER_GAMMA_GRACE, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
+	end
+}
+
+script EventScript_Gamma_Kate {
+	trainerbattle_single(TRAINER_GAMMA_KATE, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
+	end
+}
 
 raw `
 
