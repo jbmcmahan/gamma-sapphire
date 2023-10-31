@@ -436,7 +436,7 @@ static const u8 sText_FoePkmnPrefix3[] = _("Foe");
 static const u8 sText_AllyPkmnPrefix2[] = _("Ally");
 static const u8 sText_FoePkmnPrefix4[] = _("Foe");
 static const u8 sText_AllyPkmnPrefix3[] = _("Ally");
-static const u8 sText_AttackerUsedX[] = _("{B_ATK_NAME_WITH_PREFIX} used\n{B_BUFF3}!");
+static const u8 sText_AttackerUsedX[] = _("{B_ATK_NAME_WITH_PREFIX} used\nTera {B_BUFF2} {B_BUFF3}!");
 static const u8 sText_ExclamationMark[] = _("!");
 static const u8 sText_ExclamationMark2[] = _("!");
 static const u8 sText_ExclamationMark3[] = _("!");
@@ -2878,6 +2878,11 @@ void BufferStringBattle(u16 stringID)
             StringCopy(gBattleTextBuff3, sATypeMove_Table[*(&gBattleStruct->stringMoveType)]);
         else
             StringCopy(gBattleTextBuff3, gMoveNames[gBattleMsgDataPtr->currentMove]);
+
+        if (GetBattlerSide(gActiveBattler) == B_SIDE_PLAYER)
+            StringCopy(gBattleTextBuff2, gTypeNames[GetTeraType(gActiveBattler)]);
+        else
+            StringCopy(gBattleTextBuff2, gTypeNames[GetTeraType(gActiveBattler)]);
 
         stringPtr = sText_AttackerUsedX;
         break;

@@ -21,6 +21,8 @@
 #include "constants/moves.h"
 #include "constants/items.h"
 
+extern struct TeraMove gTeraMoveTable[][NUMBER_OF_MON_TYPES];
+
 static u32 AI_GetEffectiveness(u16 multiplier);
 
 // Const Data
@@ -713,10 +715,8 @@ bool32 IsTruantMonVulnerable(u32 battlerAI, u32 opposingBattler)
 // move checks
 bool32 IsAffectedByPowder(u8 battler, u16 ability, u16 holdEffect)
 {
-    if (ability == ABILITY_OVERCOAT
-    #if B_POWDER_GRASS >= GEN_6
+    if (BattlerHasAbilityOrInnate(battler, ABILITY_OVERCOAT)
         || IsBattlerOfType(battler, TYPE_GRASS)
-    #endif
         || holdEffect == HOLD_EFFECT_SAFETY_GOGGLES)
         return FALSE;
     return TRUE;
@@ -1355,11 +1355,19 @@ bool32 AI_WeatherHasEffect(void)
 u32 AI_GetBattlerMoveTargetType(u8 battlerId, u16 move)
 {
     u32 target;
+    u8 tera = gBattleMons[battlerId].teraType;
+    struct BattleMove tempMove;
+    
+    tempMove = gBattleMoves[move];
+    if (gTeraMoveTable[move][tera].effect)
+        tempMove.effect = gTeraMoveTable[move][tera].effect;
+    if (gTeraMoveTable[move][tera].target)
+        tempMove.target = gTeraMoveTable[move][tera].target;
 
-    if (gBattleMoves[move].effect == EFFECT_EXPANDING_FORCE && AI_IsTerrainAffected(battlerId, STATUS_FIELD_PSYCHIC_TERRAIN))
+    if (tempMove.effect == EFFECT_EXPANDING_FORCE && AI_IsTerrainAffected(battlerId, STATUS_FIELD_PSYCHIC_TERRAIN))
         return MOVE_TARGET_BOTH;
     else
-        return gBattleMoves[move].target;
+        return tempMove.target;
 }
 
 bool32 IsAromaVeilProtectedMove(u16 move)

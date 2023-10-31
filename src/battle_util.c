@@ -9669,10 +9669,8 @@ static bool32 IsBattlerGrounded2(u8 battlerId, bool32 considerInverse)
         return TRUE;
     if (gFieldStatuses & STATUS_FIELD_GRAVITY)
         return TRUE;
-#if B_ROOTED_GROUNDING >= GEN_4
     if (gStatuses3[battlerId] & STATUS3_ROOTED)
         return TRUE;
-#endif
     if (gStatuses3[battlerId] & STATUS3_SMACKED_DOWN)
         return TRUE;
     if (gStatuses3[battlerId] & STATUS3_TELEKINESIS)
@@ -12570,6 +12568,21 @@ u8 GetSplitBasedOnStats(u8 battlerId)
 
 bool32 TestMoveFlags(u16 move, u32 flag)
 {
+    if (gBattleMoves[move].flags & flag)
+        return TRUE;
+    return FALSE;
+}
+
+bool32 TestMoveTeraFlags(u8 battlerId, u16 move, u32 flag)
+{
+    u8 tera = gBattleMons[battlerId].teraType;
+    struct BattleMove tempMove;
+    
+    tempMove = gBattleMoves[move];
+    if (gTeraMoveTable[move][tera].flags)
+        tempMove.flags = gTeraMoveTable[move][tera].flags;
+
+
     if (gBattleMoves[move].flags & flag)
         return TRUE;
     return FALSE;

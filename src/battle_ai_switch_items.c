@@ -29,6 +29,8 @@ static bool32 AiExpectsToFaintPlayer(void);
 static bool32 AI_ShouldHeal(u32 healAmount);
 static bool32 AI_OpponentCanFaintAiWithMod(u32 healAmount);
 
+
+// TRUE if AI's last mon, FALSE otherwise
 static bool32 IsAceMon(u32 battlerId, u32 monPartyId)
 {
     if (AI_THINKING_STRUCT->aiFlags & AI_FLAG_ACE_POKEMON

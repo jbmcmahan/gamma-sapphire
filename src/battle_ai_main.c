@@ -21,6 +21,8 @@
 #include "constants/moves.h"
 #include "constants/items.h"
 
+extern struct TeraMove gTeraMoveTable[][NUMBER_OF_MON_TYPES];
+
 #define AI_ACTION_DONE          0x0001
 #define AI_ACTION_FLEE          0x0002
 #define AI_ACTION_WATCH         0x0004
@@ -673,8 +675,12 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
 {
     // move data
     u8 atkPriority = GetMovePriority(battlerAtk, move);
-    u16 moveEffect = gBattleMoves[move].effect;
+    u16 moveEffect;
     s32 moveType;
+
+    u8 tera = gBattleMons[battlerAtk].teraType;
+    struct BattleMove tempMove;
+    
     u16 moveTarget = AI_GetBattlerMoveTargetType(battlerAtk, move);
     u16 accuracy = AI_GetMoveAccuracy(battlerAtk, battlerDef, move);
     u32 effectiveness = AI_DATA->effectiveness[battlerAtk][battlerDef][AI_THINKING_STRUCT->movesetIndex];
@@ -682,20 +688,42 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
     u32 i;
     u16 predictedMove = AI_DATA->predictedMoves[battlerDef];
 
+    tempMove = gBattleMoves[move];
+    if (gTeraMoveTable[move][tera].priority)
+        tempMove.priority = gTeraMoveTable[move][tera].priority;
+    if (gTeraMoveTable[move][tera].type)
+        tempMove.type = gTeraMoveTable[move][tera].type;
+    if (gTeraMoveTable[move][tera].effect)
+        tempMove.effect = gTeraMoveTable[move][tera].effect;
+    if (gTeraMoveTable[move][tera].power)
+        tempMove.power = gTeraMoveTable[move][tera].power;
+    if (gTeraMoveTable[move][tera].flags)
+        tempMove.flags = gTeraMoveTable[move][tera].flags;
+    if (gTeraMoveTable[move][tera].accuracy)
+        tempMove.accuracy = gTeraMoveTable[move][tera].accuracy;
+    moveEffect = tempMove.effect;
+
     SetTypeBeforeUsingMove(move, battlerAtk);
-    GET_MOVE_TYPE(move, moveType);
+                                                          \
+    if (gBattleStruct->dynamicMoveType)                               \
+        moveType = gBattleStruct->dynamicMoveType & DYNAMIC_TYPE_MASK; \
+    else                                                              \
+        moveType = tempMove.type;                            \
 
     if (IsTargetingPartner(battlerAtk, battlerDef))
         return score;
 
-    GET_MOVE_TYPE(move, moveType);
+    if (gBattleStruct->dynamicMoveType)                               \
+        moveType = gBattleStruct->dynamicMoveType & DYNAMIC_TYPE_MASK; \
+    else                                                              \
+        moveType = tempMove.type;                            \
 
     // check non-user target
     if (!(moveTarget & MOVE_TARGET_USER))
     {
         // handle negative checks on non-user target
         // check powder moves
-        if (TestMoveFlags(move, FLAG_POWDER) && !IsAffectedByPowder(battlerDef, AI_DATA->abilities[battlerDef], AI_DATA->holdEffects[battlerDef]))
+        if (TestMoveTeraFlags(battlerAtk, move, FLAG_POWDER) && !IsAffectedByPowder(battlerDef, AI_DATA->abilities[battlerDef], AI_DATA->holdEffects[battlerDef]))
         {
             RETURN_SCORE_MINUS(20);
         }
@@ -929,13 +957,17 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
 
 
         //Volt Absorb, Motor Drive and Lighting Rod
-        if(BattlerHasInnate(battlerDef, ABILITY_VOLT_ABSORB) && 
-            moveType == TYPE_ELECTRIC)
+        if ((BattlerHasInnate(battlerDef, ABILITY_VOLT_ABSORB) ||
+              BattlerHasInnate(battlerDef, ABILITY_MOTOR_DRIVE) ||
+              BattlerHasInnate(battlerDef, ABILITY_LIGHTNING_ROD)) && 
+             moveType == TYPE_ELECTRIC)
             RETURN_SCORE_MINUS(20);
 
         //Water Absorb, Dry skin and Storm Drain
-        if(BattlerHasInnate(battlerDef, ABILITY_WATER_ABSORB) && 
-            moveType == TYPE_WATER)
+        if ((BattlerHasInnate(battlerDef, ABILITY_WATER_ABSORB) ||
+              BattlerHasInnate(battlerDef, ABILITY_DRY_SKIN) ||
+              BattlerHasInnate(battlerDef, ABILITY_STORM_DRAIN)) && 
+             moveType == TYPE_WATER)
             RETURN_SCORE_MINUS(20);
 
         //Flash Fire
@@ -3289,7 +3321,7 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         if (predictedMove != MOVE_NONE)
             return AI_CheckViability(battlerAtk, battlerDef, gLastMoves[battlerDef], score);
         break;
-// stat raising effects
+    // stat raising effects
     case EFFECT_ATTACK_UP:
     case EFFECT_ATTACK_UP_2:
     case EFFECT_ATTACK_UP_USER_ALLY:
@@ -3399,7 +3431,7 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         else if (!AI_RandLessThan(70))
             score -= 2;
         break;
-// stat lowering effects
+    // stat lowering effects
     case EFFECT_ATTACK_DOWN:
     case EFFECT_ATTACK_DOWN_2:
         if (!ShouldLowerAttack(battlerAtk, battlerDef, AI_DATA->abilities[battlerDef]))
