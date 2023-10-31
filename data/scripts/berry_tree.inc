@@ -134,7 +134,32 @@ BerryTree_EventScript_CancelPickingBerry::
 	message BerryTree_Text_BerryLeftUnpicked
 	waitmessage
 	waitbuttonpress
+	call BerryTree_EventScript_WantToMulch
 	release
+	end
+
+BerryTree_EventScript_WantToMulch::
+	special ObjectEventInteractionGetMulchId
+	checkitem VAR_0x8005
+	goto_if_eq VAR_RESULT, FALSE, BerryTree_EventScript_DontWater
+	special ObjectEventInteractionGetMulchName
+	msgbox BerryTree_Text_WantToMulch, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, YES, BerryTree_EventScript_MulchBerry
+	goto_if_eq VAR_RESULT, NO, BerryTree_EventScript_DontWater
+
+
+BerryTree_EventScript_MulchBerry::
+	special ObjectEventInteractionGetBerryName
+	message BerryTree_Text_MulchedTheBerry
+	removeitem VAR_0x8005
+	waitmessage
+	special ObjectEventInteractionWaterBerryTree
+	special DoWateringBerryTreeAnim
+	waitstate
+	message BerryTree_Text_PlantIsDelighted
+	waitmessage
+	waitbuttonpress
+	releaseall
 	end
 
 BerryTree_EventScript_ItemUsePlantBerry::
@@ -241,8 +266,16 @@ BerryTree_Text_WantToWater:
 	.string "Want to water the {STR_VAR_1} with the\n"
 	.string "WAILMER PAIL?$"
 
+BerryTree_Text_WantToMulch:
+	.string "Want to use {STR_VAR_1} to grow\n"
+	.string "more berries?$"
+
 BerryTree_Text_WateredTheBerry:
 	.string "{PLAYER} watered the {STR_VAR_1}.$"
+
+BerryTree_Text_MulchedTheBerry:
+	.string "{PLAYER} added mulch to\n"
+	.string "the {STR_VAR_1} plant.$"
 
 BerryTree_Text_PlantIsDelighted:
 	.string "The plant seems to be delighted.$"

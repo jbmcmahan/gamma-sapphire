@@ -695,8 +695,22 @@ Route105_EventScript_ItemLaggingTail::
 	end
 
 Route105_EventScript_ItemMentalHerb::
-	finditem ITEM_MENTAL_HERB
+	finditem ITEM_WAILMER_PAIL
+	setflag FLAG_RECEIVED_WAILMER_PAIL
 	end
+
+Route105_EventScript_ItemDampMulch::
+	finditem ITEM_DAMP_MULCH
+	end
+
+Route105_EventScript_ItemGrowthMulch::
+	finditem ITEM_GROWTH_MULCH
+	end
+
+Route105_EventScript_ItemRichMulch::
+	finditem ITEM_RICH_MULCH
+	end
+
 
 Route106_EventScript_ItemMuscleBand::
 	finditem ITEM_MUSCLE_BAND

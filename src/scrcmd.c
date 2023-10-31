@@ -1943,12 +1943,12 @@ bool8 ScrCmd_setberrytree(struct ScriptContext *ctx)
 {
     u8 treeId = ScriptReadByte(ctx);
     u8 berry = ScriptReadByte(ctx);
-    u8 growthStage = ScriptReadByte(ctx);
+    u8 initialBerries = ScriptReadByte(ctx);
 
     if (berry == 0)
-        PlantBerryTree(treeId, berry, growthStage, FALSE);
+        PlantBerryTree(treeId, berry, BERRY_STAGE_BERRIES, initialBerries);
     else
-        PlantBerryTree(treeId, berry, growthStage, FALSE);
+        PlantBerryTree(treeId, berry, BERRY_STAGE_BERRIES, initialBerries);
     return FALSE;
 }
 

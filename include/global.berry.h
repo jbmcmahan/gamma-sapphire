@@ -20,6 +20,7 @@ struct Berry
     u8 bitter;
     u8 sour;
     u8 smoothness;
+    u16 mulch;
 };
 
 // with no const fields
@@ -40,6 +41,7 @@ struct Berry2
     u8 bitter;
     u8 sour;
     u8 smoothness;
+    u16 mulch;
     //u8 padding;
 };
 

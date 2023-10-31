@@ -178,6 +178,7 @@ const struct Berry gBerries[] =
         .bitter = 0,
         .sour = 0,
         .smoothness = 25,
+        .mulch = ITEM_GROWTH_MULCH,
     },
 
     [ITEM_CHESTO_BERRY - FIRST_BERRY_INDEX] =
@@ -196,6 +197,7 @@ const struct Berry gBerries[] =
         .bitter = 0,
         .sour = 0,
         .smoothness = 25,
+        .mulch = ITEM_GROWTH_MULCH,
     },
 
     [ITEM_PECHA_BERRY - FIRST_BERRY_INDEX] =
@@ -214,6 +216,7 @@ const struct Berry gBerries[] =
         .bitter = 0,
         .sour = 0,
         .smoothness = 25,
+        .mulch = ITEM_GROWTH_MULCH,
     },
 
     [ITEM_RAWST_BERRY - FIRST_BERRY_INDEX] =
@@ -232,6 +235,7 @@ const struct Berry gBerries[] =
         .bitter = 10,
         .sour = 0,
         .smoothness = 25,
+        .mulch = ITEM_GROWTH_MULCH,
     },
 
     [ITEM_ASPEAR_BERRY - FIRST_BERRY_INDEX] =
@@ -250,6 +254,7 @@ const struct Berry gBerries[] =
         .bitter = 0,
         .sour = 10,
         .smoothness = 25,
+        .mulch = ITEM_GROWTH_MULCH,
     },
 
     [ITEM_LEPPA_BERRY - FIRST_BERRY_INDEX] =
@@ -268,6 +273,7 @@ const struct Berry gBerries[] =
         .bitter = 10,
         .sour = 10,
         .smoothness = 20,
+        .mulch = ITEM_GROWTH_MULCH,
     },
 
     [ITEM_ORAN_BERRY - FIRST_BERRY_INDEX] =
@@ -286,6 +292,7 @@ const struct Berry gBerries[] =
         .bitter = 10,
         .sour = 10,
         .smoothness = 20,
+        .mulch = ITEM_GROWTH_MULCH,
     },
 
     [ITEM_PERSIM_BERRY - FIRST_BERRY_INDEX] =
@@ -304,6 +311,7 @@ const struct Berry gBerries[] =
         .bitter = 10,
         .sour = 10,
         .smoothness = 20,
+        .mulch = ITEM_GROWTH_MULCH,
     },
 
     [ITEM_LUM_BERRY - FIRST_BERRY_INDEX] =
@@ -322,6 +330,7 @@ const struct Berry gBerries[] =
         .bitter = 10,
         .sour = 10,
         .smoothness = 20,
+        .mulch = ITEM_GROWTH_MULCH,
     },
 
     [ITEM_SITRUS_BERRY - FIRST_BERRY_INDEX] =
@@ -340,6 +349,7 @@ const struct Berry gBerries[] =
         .bitter = 10,
         .sour = 10,
         .smoothness = 20,
+        .mulch = ITEM_DAMP_MULCH,
     },
 
     [ITEM_FIGY_BERRY - FIRST_BERRY_INDEX] =
@@ -358,6 +368,7 @@ const struct Berry gBerries[] =
         .bitter = 0,
         .sour = 0,
         .smoothness = 25,
+        .mulch = ITEM_DAMP_MULCH,
     },
 
     [ITEM_WIKI_BERRY - FIRST_BERRY_INDEX] =
@@ -376,6 +387,7 @@ const struct Berry gBerries[] =
         .bitter = 0,
         .sour = 0,
         .smoothness = 25,
+        .mulch = ITEM_DAMP_MULCH,
     },
 
     [ITEM_MAGO_BERRY - FIRST_BERRY_INDEX] =
@@ -394,6 +406,7 @@ const struct Berry gBerries[] =
         .bitter = 0,
         .sour = 0,
         .smoothness = 25,
+        .mulch = ITEM_DAMP_MULCH,
     },
 
     [ITEM_AGUAV_BERRY - FIRST_BERRY_INDEX] =
@@ -412,6 +425,7 @@ const struct Berry gBerries[] =
         .bitter = 10,
         .sour = 0,
         .smoothness = 25,
+        .mulch = ITEM_DAMP_MULCH,
     },
 
     [ITEM_IAPAPA_BERRY - FIRST_BERRY_INDEX] =
@@ -430,6 +444,7 @@ const struct Berry gBerries[] =
         .bitter = 0,
         .sour = 10,
         .smoothness = 25,
+        .mulch = ITEM_DAMP_MULCH,
     },
 
     [ITEM_RAZZ_BERRY - FIRST_BERRY_INDEX] =
@@ -448,6 +463,7 @@ const struct Berry gBerries[] =
         .bitter = 0,
         .sour = 0,
         .smoothness = 20,
+        .mulch = ITEM_STABLE_MULCH,
     },
 
     [ITEM_BLUK_BERRY - FIRST_BERRY_INDEX] =
@@ -466,6 +482,7 @@ const struct Berry gBerries[] =
         .bitter = 0,
         .sour = 0,
         .smoothness = 20,
+        .mulch = ITEM_STABLE_MULCH,
     },
 
     [ITEM_NANAB_BERRY - FIRST_BERRY_INDEX] =
@@ -484,6 +501,7 @@ const struct Berry gBerries[] =
         .bitter = 10,
         .sour = 0,
         .smoothness = 20,
+        .mulch = ITEM_STABLE_MULCH,
     },
 
     [ITEM_WEPEAR_BERRY - FIRST_BERRY_INDEX] =
@@ -502,6 +520,7 @@ const struct Berry gBerries[] =
         .bitter = 10,
         .sour = 10,
         .smoothness = 20,
+        .mulch = ITEM_STABLE_MULCH,
     },
 
     [ITEM_PINAP_BERRY - FIRST_BERRY_INDEX] =
@@ -520,6 +539,7 @@ const struct Berry gBerries[] =
         .bitter = 0,
         .sour = 10,
         .smoothness = 20,
+        .mulch = ITEM_STABLE_MULCH,
     },
 
     [ITEM_POMEG_BERRY - FIRST_BERRY_INDEX] =
@@ -538,6 +558,7 @@ const struct Berry gBerries[] =
         .bitter = 10,
         .sour = 0,
         .smoothness = 20,
+        .mulch = ITEM_GOOEY_MULCH,
     },
 
     [ITEM_KELPSY_BERRY - FIRST_BERRY_INDEX] =
@@ -556,6 +577,7 @@ const struct Berry gBerries[] =
         .bitter = 10,
         .sour = 10,
         .smoothness = 20,
+        .mulch = ITEM_GOOEY_MULCH,
     },
 
     [ITEM_QUALOT_BERRY - FIRST_BERRY_INDEX] =
@@ -574,6 +596,7 @@ const struct Berry gBerries[] =
         .bitter = 0,
         .sour = 10,
         .smoothness = 20,
+        .mulch = ITEM_GOOEY_MULCH,
     },
 
     [ITEM_HONDEW_BERRY - FIRST_BERRY_INDEX] =
@@ -592,6 +615,7 @@ const struct Berry gBerries[] =
         .bitter = 10,
         .sour = 0,
         .smoothness = 20,
+        .mulch = ITEM_GOOEY_MULCH,
     },
 
     [ITEM_GREPA_BERRY - FIRST_BERRY_INDEX] =
@@ -610,6 +634,7 @@ const struct Berry gBerries[] =
         .bitter = 0,
         .sour = 10,
         .smoothness = 20,
+        .mulch = ITEM_GOOEY_MULCH,
     },
 
     [ITEM_TAMATO_BERRY - FIRST_BERRY_INDEX] =
@@ -628,6 +653,7 @@ const struct Berry gBerries[] =
         .bitter = 0,
         .sour = 0,
         .smoothness = 30,
+        .mulch = ITEM_GOOEY_MULCH,
     },
 
     [ITEM_CORNN_BERRY - FIRST_BERRY_INDEX] =
@@ -646,6 +672,7 @@ const struct Berry gBerries[] =
         .bitter = 0,
         .sour = 0,
         .smoothness = 30,
+        .mulch = ITEM_RICH_MULCH,
     },
 
     [ITEM_MAGOST_BERRY - FIRST_BERRY_INDEX] =
@@ -664,6 +691,7 @@ const struct Berry gBerries[] =
         .bitter = 10,
         .sour = 0,
         .smoothness = 30,
+        .mulch = ITEM_RICH_MULCH,
     },
 
     [ITEM_RABUTA_BERRY - FIRST_BERRY_INDEX] =
@@ -682,6 +710,7 @@ const struct Berry gBerries[] =
         .bitter = 20,
         .sour = 10,
         .smoothness = 30,
+        .mulch = ITEM_RICH_MULCH,
     },
 
     [ITEM_NOMEL_BERRY - FIRST_BERRY_INDEX] =
@@ -700,6 +729,7 @@ const struct Berry gBerries[] =
         .bitter = 0,
         .sour = 20,
         .smoothness = 30,
+        .mulch = ITEM_RICH_MULCH,
     },
 
     [ITEM_SPELON_BERRY - FIRST_BERRY_INDEX] =
@@ -718,6 +748,7 @@ const struct Berry gBerries[] =
         .bitter = 0,
         .sour = 0,
         .smoothness = 70,
+        .mulch = ITEM_RICH_MULCH,
     },
 
     [ITEM_PAMTRE_BERRY - FIRST_BERRY_INDEX] =
@@ -736,6 +767,7 @@ const struct Berry gBerries[] =
         .bitter = 0,
         .sour = 0,
         .smoothness = 70,
+        .mulch = ITEM_RICH_MULCH,
     },
 
     [ITEM_WATMEL_BERRY - FIRST_BERRY_INDEX] =
@@ -754,6 +786,7 @@ const struct Berry gBerries[] =
         .bitter = 10,
         .sour = 0,
         .smoothness = 70,
+        .mulch = ITEM_RICH_MULCH,
     },
 
     [ITEM_DURIN_BERRY - FIRST_BERRY_INDEX] =
@@ -772,6 +805,7 @@ const struct Berry gBerries[] =
         .bitter = 40,
         .sour = 10,
         .smoothness = 70,
+        .mulch = ITEM_RICH_MULCH,
     },
 
     [ITEM_BELUE_BERRY - FIRST_BERRY_INDEX] =
@@ -790,6 +824,7 @@ const struct Berry gBerries[] =
         .bitter = 0,
         .sour = 40,
         .smoothness = 70,
+        .mulch = ITEM_RICH_MULCH,
     },
 
     [ITEM_CHILAN_BERRY - FIRST_BERRY_INDEX] =
@@ -808,6 +843,7 @@ const struct Berry gBerries[] =
         .bitter = 0,
         .sour = 0,
         .smoothness = 35,
+        .mulch = ITEM_SURPRISE_MULCH,
     },
 
     [ITEM_OCCA_BERRY - FIRST_BERRY_INDEX] =
@@ -826,6 +862,7 @@ const struct Berry gBerries[] =
         .bitter = 0,
         .sour = 0,
         .smoothness = 30,
+        .mulch = ITEM_SURPRISE_MULCH,
     },
 
     [ITEM_PASSHO_BERRY - FIRST_BERRY_INDEX] =
@@ -844,6 +881,7 @@ const struct Berry gBerries[] =
         .bitter = 10,
         .sour = 0,
         .smoothness = 30,
+        .mulch = ITEM_SURPRISE_MULCH,
     },
 
     [ITEM_WACAN_BERRY - FIRST_BERRY_INDEX] =
@@ -862,6 +900,7 @@ const struct Berry gBerries[] =
         .bitter = 0,
         .sour = 10,
         .smoothness = 30,
+        .mulch = ITEM_SURPRISE_MULCH,
     },
 
     [ITEM_RINDO_BERRY - FIRST_BERRY_INDEX] =
@@ -880,6 +919,7 @@ const struct Berry gBerries[] =
         .bitter = 15,
         .sour = 0,
         .smoothness = 30,
+        .mulch = ITEM_SURPRISE_MULCH,
     },
 
     [ITEM_YACHE_BERRY - FIRST_BERRY_INDEX] =
@@ -898,6 +938,7 @@ const struct Berry gBerries[] =
         .bitter = 0,
         .sour = 15,
         .smoothness = 30,
+        .mulch = ITEM_SURPRISE_MULCH,
     },
 
     [ITEM_CHOPLE_BERRY - FIRST_BERRY_INDEX] =
@@ -916,6 +957,7 @@ const struct Berry gBerries[] =
         .bitter = 10,
         .sour = 0,
         .smoothness = 30,
+        .mulch = ITEM_SURPRISE_MULCH,
     },
 
     [ITEM_KEBIA_BERRY - FIRST_BERRY_INDEX] =
@@ -934,6 +976,7 @@ const struct Berry gBerries[] =
         .bitter = 0,
         .sour = 10,
         .smoothness = 30,
+        .mulch = ITEM_SURPRISE_MULCH,
     },
 
     [ITEM_SHUCA_BERRY - FIRST_BERRY_INDEX] =
@@ -952,6 +995,7 @@ const struct Berry gBerries[] =
         .bitter = 0,
         .sour = 0,
         .smoothness = 30,
+        .mulch = ITEM_SURPRISE_MULCH,
     },
 
     [ITEM_COBA_BERRY - FIRST_BERRY_INDEX] =
@@ -970,6 +1014,7 @@ const struct Berry gBerries[] =
         .bitter = 15,
         .sour = 0,
         .smoothness = 30,
+        .mulch = ITEM_SURPRISE_MULCH,
     },
 
     [ITEM_PAYAPA_BERRY - FIRST_BERRY_INDEX] =
@@ -988,6 +1033,7 @@ const struct Berry gBerries[] =
         .bitter = 0,
         .sour = 15,
         .smoothness = 30,
+        .mulch = ITEM_SURPRISE_MULCH,
     },
 
     [ITEM_TANGA_BERRY - FIRST_BERRY_INDEX] =
@@ -1006,6 +1052,7 @@ const struct Berry gBerries[] =
         .bitter = 0,
         .sour = 10,
         .smoothness = 35,
+        .mulch = ITEM_SURPRISE_MULCH,
     },
 
     [ITEM_CHARTI_BERRY - FIRST_BERRY_INDEX] =
@@ -1024,6 +1071,7 @@ const struct Berry gBerries[] =
         .bitter = 0,
         .sour = 0,
         .smoothness = 35,
+        .mulch = ITEM_SURPRISE_MULCH,
     },
 
     [ITEM_KASIB_BERRY - FIRST_BERRY_INDEX] =
@@ -1042,6 +1090,7 @@ const struct Berry gBerries[] =
         .bitter = 0,
         .sour = 0,
         .smoothness = 35,
+        .mulch = ITEM_SURPRISE_MULCH,
     },
 
     [ITEM_HABAN_BERRY - FIRST_BERRY_INDEX] =
@@ -1060,6 +1109,7 @@ const struct Berry gBerries[] =
         .bitter = 20,
         .sour = 0,
         .smoothness = 35,
+        .mulch = ITEM_SURPRISE_MULCH,
     },
 
     [ITEM_COLBUR_BERRY - FIRST_BERRY_INDEX] =
@@ -1078,6 +1128,7 @@ const struct Berry gBerries[] =
         .bitter = 10,
         .sour = 20,
         .smoothness = 35,
+        .mulch = ITEM_SURPRISE_MULCH,
     },
 
     [ITEM_BABIRI_BERRY - FIRST_BERRY_INDEX] =
@@ -1096,6 +1147,7 @@ const struct Berry gBerries[] =
         .bitter = 0,
         .sour = 0,
         .smoothness = 35,
+        .mulch = ITEM_SURPRISE_MULCH,
     },
 
     [ITEM_ROSELI_BERRY - FIRST_BERRY_INDEX] =
@@ -1114,6 +1166,7 @@ const struct Berry gBerries[] =
         .bitter = 10,
         .sour = 0,
         .smoothness = 35,
+        .mulch = ITEM_SURPRISE_MULCH,
     },
 
     [ITEM_LIECHI_BERRY - FIRST_BERRY_INDEX] =
@@ -1132,6 +1185,7 @@ const struct Berry gBerries[] =
         .bitter = 0,
         .sour = 10,
         .smoothness = 80,
+        .mulch = ITEM_BOOST_MULCH,
     },
 
     [ITEM_GANLON_BERRY - FIRST_BERRY_INDEX] =
@@ -1150,6 +1204,7 @@ const struct Berry gBerries[] =
         .bitter = 40,
         .sour = 0,
         .smoothness = 80,
+        .mulch = ITEM_BOOST_MULCH,
     },
 
     [ITEM_SALAC_BERRY - FIRST_BERRY_INDEX] =
@@ -1168,6 +1223,7 @@ const struct Berry gBerries[] =
         .bitter = 0,
         .sour = 40,
         .smoothness = 80,
+        .mulch = ITEM_BOOST_MULCH,
     },
 
     [ITEM_PETAYA_BERRY - FIRST_BERRY_INDEX] =
@@ -1186,6 +1242,7 @@ const struct Berry gBerries[] =
         .bitter = 40,
         .sour = 0,
         .smoothness = 80,
+        .mulch = ITEM_BOOST_MULCH,
     },
 
     [ITEM_APICOT_BERRY - FIRST_BERRY_INDEX] =
@@ -1204,6 +1261,7 @@ const struct Berry gBerries[] =
         .bitter = 0,
         .sour = 40,
         .smoothness = 80,
+        .mulch = ITEM_BOOST_MULCH,
     },
 
     [ITEM_LANSAT_BERRY - FIRST_BERRY_INDEX] =
@@ -1222,6 +1280,7 @@ const struct Berry gBerries[] =
         .bitter = 10,
         .sour = 10,
         .smoothness = 30,
+        .mulch = ITEM_BOOST_MULCH,
     },
 
     [ITEM_STARF_BERRY - FIRST_BERRY_INDEX] =
@@ -1240,6 +1299,7 @@ const struct Berry gBerries[] =
         .bitter = 10,
         .sour = 10,
         .smoothness = 30,
+        .mulch = ITEM_BOOST_MULCH,
     },
 
     [ITEM_ENIGMA_BERRY - FIRST_BERRY_INDEX] =
@@ -1258,6 +1318,7 @@ const struct Berry gBerries[] =
         .bitter = 0,
         .sour = 0,
         .smoothness = 60,
+        .mulch = ITEM_AMAZE_MULCH,
     },
 
     [ITEM_MICLE_BERRY - FIRST_BERRY_INDEX] =
@@ -1276,6 +1337,7 @@ const struct Berry gBerries[] =
         .bitter = 0,
         .sour = 0,
         .smoothness = 60,
+        .mulch = ITEM_BOOST_MULCH,
     },
 
     [ITEM_CUSTAP_BERRY - FIRST_BERRY_INDEX] =
@@ -1294,6 +1356,7 @@ const struct Berry gBerries[] =
         .bitter = 10,
         .sour = 0,
         .smoothness = 60,
+        .mulch = ITEM_BOOST_MULCH,
     },
 
     [ITEM_JABOCA_BERRY - FIRST_BERRY_INDEX] =
@@ -1312,6 +1375,7 @@ const struct Berry gBerries[] =
         .bitter = 40,
         .sour = 10,
         .smoothness = 60,
+        .mulch = ITEM_BOOST_MULCH,
     },
 
     [ITEM_ROWAP_BERRY - FIRST_BERRY_INDEX] =
@@ -1330,6 +1394,7 @@ const struct Berry gBerries[] =
         .bitter = 0,
         .sour = 40,
         .smoothness = 60,
+        .mulch = ITEM_BOOST_MULCH,
     },
 
     [ITEM_KEE_BERRY - FIRST_BERRY_INDEX] =
@@ -1348,6 +1413,7 @@ const struct Berry gBerries[] =
         .bitter = 10,
         .sour = 10,
         .smoothness = 60,
+        .mulch = ITEM_BOOST_MULCH,
     },
 
     [ITEM_MARANGA_BERRY - FIRST_BERRY_INDEX] =
@@ -1366,6 +1432,7 @@ const struct Berry gBerries[] =
         .bitter = 30,
         .sour = 10,
         .smoothness = 60,
+        .mulch = ITEM_BOOST_MULCH,
     },
 
     [ITEM_ENIGMA_BERRY_E_READER - FIRST_BERRY_INDEX] =
@@ -1384,6 +1451,7 @@ const struct Berry gBerries[] =
         .bitter = 40,
         .sour = 40,
         .smoothness = 40,
+        .mulch = ITEM_AMAZE_MULCH,
     },
 };
 
@@ -1496,23 +1564,24 @@ bool32 ObjectEventInteractionWaterBerryTree(void)
 {
     struct BerryTree *tree = GetBerryTreeInfo(GetObjectEventBerryTreeId(gSelectedObjectEvent));
 
-    switch (tree->stage)
-    {
-    case BERRY_STAGE_PLANTED:
-        tree->watered1 = TRUE;
-        break;
-    case BERRY_STAGE_SPROUTED:
-        tree->watered2 = TRUE;
-        break;
-    case BERRY_STAGE_TALLER:
-        tree->watered3 = TRUE;
-        break;
-    case BERRY_STAGE_FLOWERING:
-        tree->watered4 = TRUE;
-        break;
-    default:
-        return FALSE;
-    }
+    tree->berryYield++;
+    // switch (tree->stage)
+    // {
+    // case BERRY_STAGE_PLANTED:
+    //     tree->watered1 = TRUE;
+    //     break;
+    // case BERRY_STAGE_SPROUTED:
+    //     tree->watered2 = TRUE;
+    //     break;
+    // case BERRY_STAGE_TALLER:
+    //     tree->watered3 = TRUE;
+    //     break;
+    // case BERRY_STAGE_FLOWERING:
+    //     tree->watered4 = TRUE;
+    //     break;
+    // default:
+    //     return FALSE;
+    // }
     return TRUE;
 }
 
@@ -1609,7 +1678,7 @@ void BerryTreeTimeUpdate(s32 minutes)
     }
 }
 
-void PlantBerryTree(u8 id, u8 berry, u8 stage, bool8 allowGrowth)
+void PlantBerryTree(u8 id, u8 berry, u8 stage, u8 initialBerries)
 {
     struct BerryTree *tree = GetBerryTreeInfo(id);
 
@@ -1617,15 +1686,16 @@ void PlantBerryTree(u8 id, u8 berry, u8 stage, bool8 allowGrowth)
     tree->berry = berry;
     tree->minutesUntilNextStage = GetStageDurationByBerryType(berry);
     tree->stage = stage;
-    if (stage == BERRY_STAGE_BERRIES)
-    {
-        tree->berryYield = CalcBerryYield(tree);
-        tree->minutesUntilNextStage *= 4;
-    }
+    tree->berryYield = initialBerries;
+    // if (stage == BERRY_STAGE_BERRIES)
+    // {
+    //     tree->berryYield = CalcBerryYield(tree);
+    //     tree->minutesUntilNextStage *= 4;
+    // }
 
     // Stop growth, to keep tree at this stage until the player has seen it
     // allowGrowth is always true for berry trees the player has planted
-    if (!allowGrowth)
+    // if (!allowGrowth)
         tree->stopGrowth = TRUE;
 }
 
@@ -1682,17 +1752,7 @@ void AllowBerryTreeGrowth(u8 id)
 
 static u8 BerryTreeGetNumStagesWatered(struct BerryTree *tree)
 {
-    u8 count = 0;
-
-    if (tree->watered1)
-        count++;
-    if (tree->watered2)
-        count++;
-    if (tree->watered3)
-        count++;
-    if (tree->watered4)
-        count++;
-    return count;
+    return tree->berryYield;
 }
 
 static u8 GetNumStagesWateredByBerryTreeId(u8 id)
@@ -1715,6 +1775,8 @@ static u8 CalcBerryYieldInternal(u16 max, u16 min, u8 water)
     u32 randMax;
     u32 rand;
     u32 extraYield;
+
+    return water;
 
     if (water == 0)
         return min;
@@ -1781,6 +1843,25 @@ void ObjectEventInteractionGetBerryName(void)
     GetBerryNameByBerryType(berryType, gStringVar1);
 }
 
+void ObjectEventInteractionGetMulchName(void)
+{
+    u8 berryType = GetBerryTypeByBerryTreeId(GetObjectEventBerryTreeId(gSelectedObjectEvent));
+    GetMulchNameByBerryType(berryType, gStringVar1);
+}
+
+void GetMulchNameByBerryType(u8 berry, u8 *string)
+{
+    u16 mulch = GetBerryInfo(berry)->mulch;
+    memcpy(string, gItems[mulch].name, ITEM_NAME_LENGTH);
+    string[ITEM_NAME_LENGTH] = EOS;
+}
+
+void ObjectEventInteractionGetMulchId(void)
+{
+    u8 berryType = GetBerryTypeByBerryTreeId(GetObjectEventBerryTreeId(gSelectedObjectEvent));
+    gSpecialVar_0x8005 = GetBerryInfo(berryType)->mulch;
+}
+
 void ObjectEventInteractionGetBerryCountString(void)
 {
     u8 treeId = GetObjectEventBerryTreeId(gSelectedObjectEvent);
@@ -1798,7 +1879,7 @@ void ObjectEventInteractionPlantBerryTree(void)
 {
     u8 berry = ItemIdToBerryType(gSpecialVar_ItemId);
 
-    PlantBerryTree(GetObjectEventBerryTreeId(gSelectedObjectEvent), berry, BERRY_STAGE_PLANTED, TRUE);
+    PlantBerryTree(GetObjectEventBerryTreeId(gSelectedObjectEvent), berry, BERRY_STAGE_BERRIES, TRUE);
     ObjectEventInteractionGetBerryTreeData();
 }
 
@@ -1844,8 +1925,8 @@ void SetBerryTreesSeen(void)
         {
             cam_left = gObjectEvents[i].currentCoords.x;
             cam_top = gObjectEvents[i].currentCoords.y;
-            if (left <= cam_left && cam_left <= right && top <= cam_top && cam_top <= bottom)
-                AllowBerryTreeGrowth(gObjectEvents[i].trainerRange_berryTreeId);
+            // if (left <= cam_left && cam_left <= right && top <= cam_top && cam_top <= bottom)
+            //     AllowBerryTreeGrowth(gObjectEvents[i].trainerRange_berryTreeId);
         }
     }
 }

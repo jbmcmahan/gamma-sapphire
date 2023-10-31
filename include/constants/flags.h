@@ -1240,9 +1240,9 @@
 #define FLAG_ITEM_ROUTE_106_POWER_BAND                                          0x4A7 // Unused Flag
 #define FLAG_ITEM_ROUTE_106_PECHA_BERRY                                         0x4A8 // Unused Flag
 #define FLAG_ITEM_ROUTE_106_PERSIM_BERRY                                          0x4A9 // Unused Flag
-#define FLAG_UNUSED_0x4AA                                           0x4AA // Unused Flag
-#define FLAG_UNUSED_0x4AB                                           0x4AB // Unused Flag
-#define FLAG_UNUSED_0x4AC                                           0x4AC // Unused Flag
+#define FLAG_ITEM_ROUTE_105_DAMP_MULCH                               0x4AA // Unused Flag
+#define FLAG_ITEM_ROUTE_105_GROWTH_MULCH                         0x4AB // Unused Flag
+#define FLAG_ITEM_ROUTE_105_RICH_MULCH                        0x4AC // Unused Flag
 #define FLAG_UNUSED_0x4AD                                           0x4AD // Unused Flag
 #define FLAG_UNUSED_0x4AE                                           0x4AE // Unused Flag
 #define FLAG_UNUSED_0x4AF                                           0x4AF // Unused Flag
