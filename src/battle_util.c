@@ -10762,15 +10762,16 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
     #endif
 
     // Terastallization boosts weak, non-priority, non-multi hit moves to 60 BP.
-    if (IsTerastallized(battlerAtk)
-        && moveType == GetTeraType(battlerAtk)
-        && ApplyModifier(modifier, basePower) < 60
-        && !(tempMove.flags & (FLAG_TWO_STRIKES | FLAG_THREE_STRIKES))
-        && tempMove.effect != EFFECT_MULTI_HIT
-        && tempMove.priority == 0)
-    {
-        return 60;
-    }
+    // Changed in this version (more terastallization in early game)
+    // if (IsTerastallized(battlerAtk)
+    //     && moveType == GetTeraType(battlerAtk)
+    //     && ApplyModifier(modifier, basePower) < 60
+    //     && !(tempMove.flags & (FLAG_TWO_STRIKES | FLAG_THREE_STRIKES))
+    //     && tempMove.effect != EFFECT_MULTI_HIT
+    //     && tempMove.priority == 0)
+    // {
+    //     return 60;
+    // }
 
     return ApplyModifier(modifier, basePower);
 }
