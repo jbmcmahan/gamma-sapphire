@@ -1,5 +1,5 @@
 text Route103_Text_HannarIntro {
-    format("Gah! My fishing line's all snarled up! I'm getting frustrated and mean! That's it! Battle me!")
+    format("Gah! My {COLOR RED}{SHADOW LIGHT_RED}Γ{COLOR DARK_GRAY}{SHADOW LIGHT_GRAY} fishing Δ line's all snarled up! I'm getting frustrated and mean! That's it! Battle me!")
 }
 
 text Route103_Text_HannarDefeated {
