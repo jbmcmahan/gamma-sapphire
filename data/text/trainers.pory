@@ -112,7 +112,7 @@ script EventScript_Gamma_Karl{
 script EventScript_Gamma_Lisa{
 	trainerbattle_single(TRAINER_GAMMA_LISA, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
 	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
-	setflag(FLAG_BADGE01_GET)
+	setflag(FLAG_CHAPTER_1)
 	end
 }
 
@@ -188,7 +188,7 @@ script EventScript_Gamma_Bill {
 script EventScript_Gamma_Claudette {
 	trainerbattle_single(TRAINER_GAMMA_CLAUDETTE, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
 	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
-	setflag(FLAG_BADGE02_GET)
+	setflag(FLAG_CHAPTER_2)
 	end
 }
 
@@ -221,6 +221,7 @@ script EventScript_Gamma_Grace {
 script EventScript_Gamma_Kate {
 	trainerbattle_single(TRAINER_GAMMA_KATE, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
 	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
+	setflag(FLAG_CHAPTER_3)
 	end
 }
 

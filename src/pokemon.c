@@ -8085,22 +8085,46 @@ u8 GetFormIdFromFormSpeciesId(u16 formSpeciesId)
 static u16 getHighestBadge(void)
 {
     if (FlagGet(FLAG_SYS_GAME_CLEAR))
+        return 21;
+    if (FlagGet(FLAG_CHAPTER_20))
+        return 20;
+    if (FlagGet(FLAG_CHAPTER_19))
+        return 19;
+    if (FlagGet(FLAG_CHAPTER_18))
+        return 18;
+    if (FlagGet(FLAG_CHAPTER_17))
+        return 17;
+    if (FlagGet(FLAG_CHAPTER_16))
+        return 16;
+    if (FlagGet(FLAG_CHAPTER_15))
+        return 15;
+    if (FlagGet(FLAG_CHAPTER_14))
+        return 14;
+    if (FlagGet(FLAG_CHAPTER_13))
+        return 13;
+    if (FlagGet(FLAG_CHAPTER_12))
+        return 12;
+    if (FlagGet(FLAG_CHAPTER_11))
+        return 11;
+    if (FlagGet(FLAG_CHAPTER_10))
+        return 10;
+    if (FlagGet(FLAG_CHAPTER_9))
         return 9;
-    if (FlagGet(FLAG_BADGE08_GET))
+    if (FlagGet(FLAG_CHAPTER_8))
         return 8;
-    if (FlagGet(FLAG_BADGE07_GET))
+    if (FlagGet(FLAG_CHAPTER_7))
         return 7;
-    if (FlagGet(FLAG_BADGE06_GET))
+    if (FlagGet(FLAG_CHAPTER_6))
         return 6;
-    if (FlagGet(FLAG_BADGE05_GET))
+    if (FlagGet(FLAG_CHAPTER_5))
         return 5;
-    if (FlagGet(FLAG_BADGE04_GET))
+    if (FlagGet(FLAG_CHAPTER_4))
         return 4;
-    if (FlagGet(FLAG_BADGE03_GET))
+    if (FlagGet(FLAG_CHAPTER_3))
         return 3;
-    if (FlagGet(FLAG_BADGE02_GET))
+    if (FlagGet(FLAG_CHAPTER_2))
         return 2;
-    if (FlagGet(FLAG_BADGE01_GET))
+    if (FlagGet(FLAG_CHAPTER_1))
         return 1;
 
     return 0;
@@ -8112,8 +8136,8 @@ u8 GetLevelCap(void)
     u8 levelCapSetting = gSaveBlock2Ptr->levelCaps;
     u16 currentBadge = getHighestBadge();
 
-    static const u8 levelCapsStandard[] = {101, 101, 101, 101, 101, 101, 101, 101, 101, 101};
-    static const u8 levelCapsMore[] =     {9, 16, 22, 28,  54,  70,  85,  92,  95, 101};
+    static const u8 levelCapsStandard[] = {101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101, 101};
+    static const u8 levelCapsMore[] =     {8, 12, 16, 20, 24, 29, 35, 41, 46, 50, 54, 61, 67, 71, 74, 78, 81, 88, 92, 96, 101};
 
     switch (levelCapSetting)
     {

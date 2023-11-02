@@ -3835,6 +3835,16 @@ bool32 ShouldUseZMove(u8 battlerAtk, u8 battlerDef, u16 chosenMove)
     return FALSE;
 }
 
+bool32 ShouldTerastallize(u8 battlerAtk, u8 battlerDef)
+{
+    if (gBattleStruct->tera.alreadyTerastallized[battlerAtk])
+        return FALSE;   //cant use tera twice
+
+    if (gBattleTypeFlags & (!BATTLE_TYPE_TRAINER))
+        return FALSE;
+    return TRUE;
+}
+
 bool32 AI_IsBattlerAsleepOrComatose(u8 battlerId)
 {
     return (gBattleMons[battlerId].status1 & STATUS1_SLEEP) || AI_DATA->abilities[battlerId] == ABILITY_COMATOSE;

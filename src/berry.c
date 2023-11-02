@@ -1644,6 +1644,7 @@ void BerryTreeTimeUpdate(s32 minutes)
 {
     int i;
     struct BerryTree *tree;
+    return;
 
     for (i = 0; i < BERRY_TREES_COUNT; i++)
     {
