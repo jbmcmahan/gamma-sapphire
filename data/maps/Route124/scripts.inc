@@ -96,3 +96,11 @@ Route124_EventScript_Isabella::
 
 Route124_Text_HuntersHouse:
 	.string "HUNTER'S HOUSE$"
+
+Chapter19_EventScript_SetFlag::
+	setflag FLAG_CHAPTER_19
+	msgbox Chapter19_Text_FlagSet, MSGBOX_SIGN
+	end
+
+Chapter19_Text_FlagSet:
+	.string "Chapter 19 Complete.$"

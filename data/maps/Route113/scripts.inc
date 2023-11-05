@@ -163,3 +163,11 @@ Route113_Text_TrainerTipsRegisterKeyItems:
 Route113_Text_GlassWorkshopSign:
 	.string "GLASS WORKSHOP\n"
 	.string "“Turning Volcanic Ash into Glass Items”$"
+
+Chapter8_EventScript_SetFlag::
+	setflag FLAG_CHAPTER_8
+	msgbox Chapter8_Text_FlagSet, MSGBOX_SIGN
+	end
+
+Chapter8_Text_FlagSet:
+	.string "Chapter 8 Complete.$"

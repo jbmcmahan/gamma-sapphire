@@ -612,3 +612,11 @@ Route119_Text_TrainerTipsDecoration:
 	.string "Pick your favorite items and create\n"
 	.string "your very own SECRET BASE exactly the\l"
 	.string "way you want.$"
+
+Chapter14_EventScript_SetFlag::
+	setflag FLAG_CHAPTER_14
+	msgbox Chapter14_Text_FlagSet, MSGBOX_SIGN
+	end
+
+Chapter14_Text_FlagSet:
+	.string "Chapter 14 Complete.$"

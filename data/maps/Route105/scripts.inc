@@ -158,3 +158,11 @@ Route105_Text_EverySoOftenEggFoundAtDayCare:
 	.string "Every so often, an EGG will be found at\n"
 	.string "the POKéMON DAY CARE.\p"
 	.string "Or at least that's how the rumor goes.$"
+
+Chapter1_EventScript_SetFlag::
+	setflag FLAG_CHAPTER_1
+	msgbox Chapter1_Text_FlagSet, MSGBOX_SIGN
+	end
+
+Chapter1_Text_FlagSet:
+	.string "Chapter 1 Complete.$"

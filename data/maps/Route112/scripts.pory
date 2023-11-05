@@ -144,4 +144,13 @@ Route112_Text_RouteSignLavaridge:
 	.string "ROUTE 112\n"
 	.string "{LEFT_ARROW} LAVARIDGE TOWN$"
 
+Chapter7_EventScript_SetFlag::
+	setflag FLAG_CHAPTER_7
+	msgbox Chapter7_Text_FlagSet, MSGBOX_SIGN
+	end
+
+Chapter7_Text_FlagSet:
+	.string "Chapter 7 Complete.$"
+
+
 `

@@ -51,3 +51,11 @@ Route107_EventScript_Camron::
 	trainerbattle_single TRAINER_CAMRON, Route107_Text_CamronIntro, Route107_Text_CamronDefeated
 	msgbox Route107_Text_CamronPostBattle, MSGBOX_AUTOCLOSE
 	end
+
+Chapter2_EventScript_SetFlag::
+	setflag FLAG_CHAPTER_2
+	msgbox Chapter2_Text_FlagSet, MSGBOX_SIGN
+	end
+
+Chapter2_Text_FlagSet:
+	.string "Chapter 2 Complete.$"

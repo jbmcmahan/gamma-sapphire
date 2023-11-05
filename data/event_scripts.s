@@ -1059,3 +1059,107 @@ Common_EventScript_LegendaryFlewAway::
 	.include "data/text/frontier_brain.inc"
 	.include "data/text/save.inc"
 	.include "data/text/birch_speech.inc"
+
+	.include "data/maps/Chapter4a/scripts.inc"
+
+	.include "data/maps/Chapter4b/scripts.inc"
+
+	.include "data/maps/Chapter3a/scripts.inc"
+
+	.include "data/maps/Chapter3b/scripts.inc"
+
+	.include "data/maps/Chapter5a/scripts.inc"
+
+	.include "data/maps/Chapter5b/scripts.inc"
+
+	.include "data/maps/Chapter5c/scripts.inc"
+
+	.include "data/maps/Chapter6a/scripts.inc"
+
+	.include "data/maps/Chapter6b/scripts.inc"
+
+	.include "data/maps/Chapter6c/scripts.inc"
+
+	.include "data/maps/Chapter7a/scripts.inc"
+
+	.include "data/maps/Chapter7b/scripts.inc"
+
+	.include "data/maps/Chapter7c/scripts.inc"
+
+	.include "data/maps/Chapter8a/scripts.inc"
+
+	.include "data/maps/Chapter8b/scripts.inc"
+
+	.include "data/maps/Chapter8c/scripts.inc"
+
+	.include "data/maps/Chapter9a/scripts.inc"
+
+	.include "data/maps/Chapter9b/scripts.inc"
+
+	.include "data/maps/Chapter9c/scripts.inc"
+
+	.include "data/maps/Chapter10a/scripts.inc"
+
+	.include "data/maps/Chapter10b/scripts.inc"
+
+	.include "data/maps/Chapter10c/scripts.inc"
+
+	.include "data/maps/Chapter11a/scripts.inc"
+
+	.include "data/maps/Chapter11b/scripts.inc"
+
+	.include "data/maps/Chapter11c/scripts.inc"
+
+	.include "data/maps/Chapter12a/scripts.inc"
+
+	.include "data/maps/Chapter12b/scripts.inc"
+
+	.include "data/maps/Chapter12c/scripts.inc"
+
+	.include "data/maps/Chapter13a/scripts.inc"
+
+	.include "data/maps/Chapter13b/scripts.inc"
+
+	.include "data/maps/Chapter13c/scripts.inc"
+
+	.include "data/maps/Chapter14a/scripts.inc"
+
+	.include "data/maps/Chapter14b/scripts.inc"
+
+	.include "data/maps/Chapter14c/scripts.inc"
+
+	.include "data/maps/Chapter15a/scripts.inc"
+
+	.include "data/maps/Chapter15b/scripts.inc"
+
+	.include "data/maps/Chapter15c/scripts.inc"
+
+	.include "data/maps/Chapter16a/scripts.inc"
+
+	.include "data/maps/Chapter16b/scripts.inc"
+
+	.include "data/maps/Chapter16c/scripts.inc"
+
+	.include "data/maps/Chapter17a/scripts.inc"
+
+	.include "data/maps/Chapter17b/scripts.inc"
+
+	.include "data/maps/Chapter17c/scripts.inc"
+
+	.include "data/maps/Chapter18a/scripts.inc"
+
+	.include "data/maps/Chapter18b/scripts.inc"
+
+	.include "data/maps/Chapter18c/scripts.inc"
+
+	.include "data/maps/Chapter19a/scripts.inc"
+
+	.include "data/maps/Chapter19b/scripts.inc"
+
+	.include "data/maps/Chapter19c/scripts.inc"
+
+	.include "data/maps/Chapter20a/scripts.inc"
+
+	.include "data/maps/Chapter20b/scripts.inc"
+
+	.include "data/maps/Chapter20c/scripts.inc"

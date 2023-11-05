@@ -199,6 +199,126 @@ EventScript_Gamma_Kate::
 	end
 
 
+EventScript_Gamma_Aqua_Grunt_1::
+	trainerbattle_single TRAINER_GAMMA_AQUA_GRUNT_1, Route103_Text_HannarIntro, Route103_Text_HannarDefeated
+	msgbox Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+
+EventScript_Gamma_Aqua_Grunt_2::
+	trainerbattle_single TRAINER_GAMMA_AQUA_GRUNT_2, Route103_Text_HannarIntro, Route103_Text_HannarDefeated
+	msgbox Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+
+EventScript_Gamma_Wattson::
+	trainerbattle_single TRAINER_GAMMA_WATTSON, Route103_Text_HannarIntro, Route103_Text_HannarDefeated
+	msgbox Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+
+EventScript_Gamma_Anabel_1::
+	trainerbattle_single TRAINER_GAMMA_ANABEL_1, Route103_Text_HannarIntro, Route103_Text_HannarDefeated
+	msgbox Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+
+EventScript_Gamma_Phoebe::
+	trainerbattle_single TRAINER_GAMMA_PHOEBE, Route103_Text_HannarIntro, Route103_Text_HannarDefeated
+	msgbox Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+
+EventScript_Gamma_Matt_1::
+	trainerbattle_single TRAINER_GAMMA_MATT_1, Route103_Text_HannarIntro, Route103_Text_HannarDefeated
+	msgbox Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+
+EventScript_Gamma_Winona::
+	trainerbattle_single TRAINER_GAMMA_WINONA, Route103_Text_HannarIntro, Route103_Text_HannarDefeated
+	msgbox Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+
+EventScript_Gamma_Flannery::
+	trainerbattle_single TRAINER_GAMMA_FLANNERY, Route103_Text_HannarIntro, Route103_Text_HannarDefeated
+	msgbox Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+
+EventScript_Gamma_Anabel_2::
+	trainerbattle_single TRAINER_GAMMA_ANABEL_2, Route103_Text_HannarIntro, Route103_Text_HannarDefeated
+	msgbox Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+
+EventScript_Gamma_Matt_2::
+	trainerbattle_single TRAINER_GAMMA_MATT_2, Route103_Text_HannarIntro, Route103_Text_HannarDefeated
+	msgbox Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+
+EventScript_Gamma_Wallace::
+	trainerbattle_single TRAINER_GAMMA_WALLACE, Route103_Text_HannarIntro, Route103_Text_HannarDefeated
+	msgbox Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+
+EventScript_Gamma_Tate_And_Liza::
+	trainerbattle_single TRAINER_GAMMA_TATE_AND_LIZA, Route103_Text_HannarIntro, Route103_Text_HannarDefeated
+	msgbox Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+
+EventScript_Gamma_Tucker::
+	trainerbattle_single TRAINER_GAMMA_TUCKER, Route103_Text_HannarIntro, Route103_Text_HannarDefeated
+	msgbox Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+
+EventScript_Gamma_Shelly::
+	trainerbattle_single TRAINER_GAMMA_SHELLY, Route103_Text_HannarIntro, Route103_Text_HannarDefeated
+	msgbox Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+
+EventScript_Gamma_Anabel_3::
+	trainerbattle_single TRAINER_GAMMA_ANABEL_3, Route103_Text_HannarIntro, Route103_Text_HannarDefeated
+	msgbox Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+
+EventScript_Gamma_Roxanne::
+	trainerbattle_single TRAINER_GAMMA_ROXANNE, Route103_Text_HannarIntro, Route103_Text_HannarDefeated
+	msgbox Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+
+EventScript_Gamma_Archie_1::
+	trainerbattle_single TRAINER_GAMMA_ARCHIE_1, Route103_Text_HannarIntro, Route103_Text_HannarDefeated
+	msgbox Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+
+EventScript_Gamma_Steven::
+	trainerbattle_single TRAINER_GAMMA_STEVEN, Route103_Text_HannarIntro, Route103_Text_HannarDefeated
+	msgbox Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+
+EventScript_Gamma_Archie_2::
+	trainerbattle_single TRAINER_GAMMA_ARCHIE_2, Route103_Text_HannarIntro, Route103_Text_HannarDefeated
+	msgbox Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+
+EventScript_Gamma_Brendan::
+	trainerbattle_single TRAINER_GAMMA_BRENDAN, Route103_Text_HannarIntro, Route103_Text_HannarDefeated
+	msgbox Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+
 Route102_Text_CalvinIntro:
 	.string "If you have POKéMON with you, then\n"
 	.string "you're an official POKéMON TRAINER!\l"

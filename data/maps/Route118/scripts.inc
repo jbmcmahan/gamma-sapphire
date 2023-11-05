@@ -277,3 +277,11 @@ Route118_Text_RouteSignMauville:
 Route118_Text_RouteSign119:
 	.string "ROUTE 118\n"
 	.string "{UP_ARROW} ROUTE 119$"
+
+Chapter13_EventScript_SetFlag::
+	setflag FLAG_CHAPTER_13
+	msgbox Chapter13_Text_FlagSet, MSGBOX_SIGN
+	end
+
+Chapter13_Text_FlagSet:
+	.string "Chapter 13 Complete.$"

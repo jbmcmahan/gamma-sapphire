@@ -162,4 +162,13 @@ Route123_Text_RouteSignMtPyre:
 Route123_Text_BerryMastersHouse:
 	.string "BERRY MASTER'S HOUSE$"
 
+Chapter18_EventScript_SetFlag::
+	setflag FLAG_CHAPTER_18
+	msgbox Chapter18_Text_FlagSet, MSGBOX_SIGN
+	end
+
+Chapter18_Text_FlagSet:
+	.string "Chapter 18 Complete.$"
+
+
 `

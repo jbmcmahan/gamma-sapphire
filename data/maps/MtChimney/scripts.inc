@@ -492,11 +492,6 @@ MtChimney_EventScript_RematchShelby::
 	msgbox MtChimney_Text_ShelbyPostRematch, MSGBOX_AUTOCLOSE
 	end
 
-MtChimney_EventScript_Grunt1::
-	trainerbattle_single TRAINER_GRUNT_MT_CHIMNEY_1, MtChimney_Text_Grunt1Intro, MtChimney_Text_Grunt1Defeat
-	msgbox MtChimney_Text_Grunt1PostBattle, MSGBOX_AUTOCLOSE
-	end
-
 MtChimney_Text_MeteoriteWillActivateVolcano:
 	.string "The power contained in the METEORITE…\p"
 	.string "By amplifying its power with this\n"

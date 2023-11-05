@@ -1,2 +1,10 @@
 Route122_MapScripts::
 	.byte 0
+
+Chapter17_EventScript_SetFlag::
+	setflag FLAG_CHAPTER_17
+	msgbox Chapter17_Text_FlagSet, MSGBOX_SIGN
+	end
+
+Chapter17_Text_FlagSet:
+	.string "Chapter 17 Complete.$"

@@ -1,0 +1,44 @@
+{
+  "id": "MAP_CHAPTER20B",
+  "name": "Chapter20b",
+  "layout": "LAYOUT_CHAPTER20B",
+  "music": "MUS_ABANDONED_SHIP",
+  "region_map_section": "MAPSEC_LITTLEROOT_TOWN",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_NONE",
+  "allow_cycling": true,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": [
+    {
+      "map": "MAP_CHAPTER20A",
+      "offset": 0,
+      "direction": "emerge"
+    },
+    {
+      "map": "MAP_CHAPTER20A",
+      "offset": 0,
+      "direction": "left"
+    },
+    {
+      "map": "MAP_CHAPTER20C",
+      "offset": 0,
+      "direction": "right"
+    }
+  ],
+  "object_events": [
+
+  ],
+  "warp_events": [
+
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+
+  ]
+}

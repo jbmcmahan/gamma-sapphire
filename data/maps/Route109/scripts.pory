@@ -511,4 +511,14 @@ Route109_Text_TrainerTipsSign:
 	.string "always have identical stats.\p"
 	.string "POKéMON raised by TRAINERS are said\n"
 	.string "to grow stronger than wild POKéMON.$"
+
+Chapter4_EventScript_SetFlag::
+	setflag FLAG_CHAPTER_4
+	msgbox Chapter4_Text_FlagSet, MSGBOX_SIGN
+	end
+
+Chapter4_Text_FlagSet:
+	.string "Chapter 4 Complete.$"
+
+
 `

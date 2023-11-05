@@ -32,6 +32,11 @@
       "map": "MAP_ROUTE109",
       "offset": 0,
       "direction": "up"
+    },
+    {
+      "map": "MAP_CHAPTER3A",
+      "offset": 9,
+      "direction": "right"
     }
   ],
   "object_events": [
@@ -168,7 +173,7 @@
     {
       "graphics_id": "OBJ_EVENT_GFX_LASS",
       "x": 6,
-      "y": 11,
+      "y": 13,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
       "movement_range_x": 0,
@@ -176,6 +181,19 @@
       "trainer_type": "TRAINER_TYPE_NORMAL",
       "trainer_sight_or_berry_tree_id": "3",
       "script": "EventScript_Gamma_Kate",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_WATTSON",
+      "x": 6,
+      "y": 11,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "3",
+      "script": "EventScript_Gamma_Wattson",
       "flag": "0"
     }
   ],
@@ -186,6 +204,13 @@
 
   ],
   "bg_events": [
-
+    {
+      "type": "sign",
+      "x": 5,
+      "y": 11,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "Chapter3_EventScript_SetFlag"
+    }
   ]
 }

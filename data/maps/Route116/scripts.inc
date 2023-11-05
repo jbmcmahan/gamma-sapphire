@@ -470,3 +470,11 @@ Route116_Text_TrainerTipsBagHasPockets:
 	.string "placed in the appropriate POCKETS.\p"
 	.string "No TRAINER can afford to be without\n"
 	.string "a BAG of their own.$"
+
+Chapter11_EventScript_SetFlag::
+	setflag FLAG_CHAPTER_11
+	msgbox Chapter11_Text_FlagSet, MSGBOX_SIGN
+	end
+
+Chapter11_Text_FlagSet:
+	.string "Chapter 11 Complete.$"

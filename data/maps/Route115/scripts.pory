@@ -144,4 +144,13 @@ Route115_Text_MeteorFallsSign:
 	.string "METEOR FALLS\n"
 	.string "FALLARBOR TOWN THROUGH HERE$"
 
+Chapter10_EventScript_SetFlag::
+	setflag FLAG_CHAPTER_10
+	msgbox Chapter10_Text_FlagSet, MSGBOX_SIGN
+	end
+
+Chapter10_Text_FlagSet:
+	.string "Chapter 10 Complete.$"
+
+
 `

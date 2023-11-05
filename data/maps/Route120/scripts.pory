@@ -421,4 +421,14 @@ Route120_Text_RouteSignFortree:
 Route120_Text_RouteSign121:
 	.string "{RIGHT_ARROW} ROUTE 121\n"
 	.string "{LEFT_ARROW} ROUTE 120$"
+
+Chapter15_EventScript_SetFlag::
+	setflag FLAG_CHAPTER_15
+	msgbox Chapter15_Text_FlagSet, MSGBOX_SIGN
+	end
+
+Chapter15_Text_FlagSet:
+	.string "Chapter 15 Complete.$"
+
+
 `

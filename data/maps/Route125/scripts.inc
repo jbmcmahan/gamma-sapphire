@@ -80,3 +80,11 @@ Route125_EventScript_Auron::
 	trainerbattle_single TRAINER_AURON, Route125_Text_AuronIntro, Route125_Text_AuronDefeat
 	msgbox Route125_Text_AuronPostBattle, MSGBOX_AUTOCLOSE
 	end
+
+Chapter20_EventScript_SetFlag::
+	setflag FLAG_CHAPTER_20
+	msgbox Chapter20_Text_FlagSet, MSGBOX_SIGN
+	end
+
+Chapter20_Text_FlagSet:
+	.string "Chapter 20 Complete.$"

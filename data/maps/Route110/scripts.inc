@@ -991,3 +991,12 @@ Route110_Text_KeepAnEyeOutForRival:
 	.string "… … … … … …\p"
 	.string "Well, I had better get going.\n"
 	.string "See you again, {PLAYER}{KUN}!$"
+
+
+Chapter5_EventScript_SetFlag::
+	setflag FLAG_CHAPTER_5
+	msgbox Chapter5_Text_FlagSet, MSGBOX_SIGN
+	end
+
+Chapter5_Text_FlagSet:
+	.string "Chapter 5 Complete.$"

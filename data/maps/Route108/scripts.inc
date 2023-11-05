@@ -46,3 +46,11 @@ Route108_EventScript_CoryRematch::
 	trainerbattle_rematch TRAINER_CORY_1, Route108_Text_CoryRematchIntro, Route108_Text_CoryRematchDefeated
 	msgbox Route108_Text_CoryRematchPostBattle, MSGBOX_AUTOCLOSE
 	end
+
+Chapter3_EventScript_SetFlag::
+	setflag FLAG_CHAPTER_3
+	msgbox Chapter3_Text_FlagSet, MSGBOX_SIGN
+	end
+
+Chapter3_Text_FlagSet:
+	.string "Chapter 3 Complete.$"

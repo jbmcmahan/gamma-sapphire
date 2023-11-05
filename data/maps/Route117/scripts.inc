@@ -205,3 +205,11 @@ Route117_Text_RouteSignMauville:
 Route117_Text_DayCareSign:
 	.string "POKéMON DAY CARE\n"
 	.string "“Let us raise your POKéMON.”$"
+
+Chapter12_EventScript_SetFlag::
+	setflag FLAG_CHAPTER_12
+	msgbox Chapter12_Text_FlagSet, MSGBOX_SIGN
+	end
+
+Chapter12_Text_FlagSet:
+	.string "Chapter 12 Complete.$"

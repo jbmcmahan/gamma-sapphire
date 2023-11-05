@@ -243,9 +243,8 @@ Route101_EventScript_BirchsBag::
 	special SetUnlockedPokedexFlags
 	setflag FLAG_RECEIVED_POKEDEX_FROM_BIRCH
 	setvar VAR_CABLE_CLUB_TUTORIAL_STATE, 1
-	giveitem ITEM_POKE_BALL, 90
+	giveitem ITEM_MASTER_BALL, 90
 	giveitem ITEM_SUPER_CANDY
-	giveitem ITEM_TERA_ORB
 	special EnableNationalPokedex
 	clearflag FLAG_HIDE_MAP_NAME_POPUP
 	checkplayergender

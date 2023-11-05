@@ -659,3 +659,11 @@ Route111_Text_TrainerHillSign:
 	.string "{RIGHT_ARROW} TRAINER HILL ENTRANCE\p"
 	.string "“Scale the heights, you hot-blooded\n"
 	.string "TRAINERS!”$"
+
+Chapter6_EventScript_SetFlag::
+	setflag FLAG_CHAPTER_6
+	msgbox Chapter6_Text_FlagSet, MSGBOX_SIGN
+	end
+
+Chapter6_Text_FlagSet:
+	.string "Chapter 6 Complete.$"
