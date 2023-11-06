@@ -324,7 +324,7 @@ const struct TeraMove gTeraMoveTable[MOVES_COUNT_Z][NUMBER_OF_MON_TYPES] =
     [MOVE_LICK] = {
         [TYPE_NORMAL] = {
             .requiresTerastalization = FALSE,
-            .effect = EFFECT_ATTACK_DOWN,
+            .effect = EFFECT_ATTACK_DOWN_HIT,
         },
         [TYPE_FAIRY] = {
             .requiresTerastalization = FALSE,
@@ -474,10 +474,10 @@ const struct TeraMove gTeraMoveTable[MOVES_COUNT_Z][NUMBER_OF_MON_TYPES] =
     },
 
     [MOVE_DIVE] = {
-        [TYPE_WATER] = {
+        [TYPE_ELECTRIC] = {
             .requiresTerastalization = FALSE,
             .power = 50,
-            .effect = EFFECT_FLINCH_HIT,
+            .effect = EFFECT_HIT,
         },
         [TYPE_ICE] = {
             .requiresTerastalization = FALSE,
