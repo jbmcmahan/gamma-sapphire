@@ -19,9 +19,9 @@
       "direction": "down"
     },
     {
-      "map": "MAP_ROUTE120",
+      "map": "MAP_FORTREE_CITY",
       "offset": 0,
-      "direction": "up"
+      "direction": "right"
     }
   ],
   "object_events": [

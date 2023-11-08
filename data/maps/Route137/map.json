@@ -1,12 +1,12 @@
 {
-  "id": "MAP_ROUTE120",
-  "name": "Route120",
-  "layout": "LAYOUT_ROUTE120",
-  "music": "MUS_ROUTE120",
-  "region_map_section": "MAPSEC_ROUTE_120",
+  "id": "MAP_ROUTE137",
+  "name": "Route137",
+  "layout": "LAYOUT_ROUTE137",
+  "music": "MUS_ABANDONED_SHIP",
+  "region_map_section": "MAPSEC_LITTLEROOT_TOWN",
   "requires_flash": false,
-  "weather": "WEATHER_SUNNY",
-  "map_type": "MAP_TYPE_ROUTE",
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_NONE",
   "allow_cycling": true,
   "allow_escaping": false,
   "allow_running": true,
@@ -14,14 +14,14 @@
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": [
     {
-      "map": "MAP_ROUTE121",
+      "map": "MAP_PACIFIDLOG_TOWN",
       "offset": 0,
       "direction": "down"
     },
     {
-      "map": "MAP_FORTREE_CITY",
+      "map": "MAP_ROUTE123",
       "offset": 0,
-      "direction": "left"
+      "direction": "up"
     }
   ],
   "object_events": [

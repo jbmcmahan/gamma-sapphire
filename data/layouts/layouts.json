@@ -255,7 +255,7 @@
       "id": "LAYOUT_ROUTE110",
       "name": "Route110_Layout",
       "width": 20,
-      "height": 30,
+      "height": 50,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Mauville",
       "border_filepath": "data/layouts/Route110/border.bin",
@@ -265,7 +265,7 @@
       "id": "LAYOUT_ROUTE111",
       "name": "Route111_Layout",
       "width": 20,
-      "height": 30,
+      "height": 60,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Mauville",
       "border_filepath": "data/layouts/Route111/border.bin",
@@ -337,7 +337,7 @@
       "width": 20,
       "height": 10,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Rustboro",
+      "secondary_tileset": "gTileset_Mauville",
       "border_filepath": "data/layouts/Route118/border.bin",
       "blockdata_filepath": "data/layouts/Route118/map.bin"
     },
@@ -345,7 +345,7 @@
       "id": "LAYOUT_ROUTE119",
       "name": "Route119_Layout",
       "width": 20,
-      "height": 10,
+      "height": 60,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Fortree",
       "border_filepath": "data/layouts/Route119/border.bin",
@@ -355,7 +355,7 @@
       "id": "LAYOUT_ROUTE120",
       "name": "Route120_Layout",
       "width": 20,
-      "height": 10,
+      "height": 60,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Fortree",
       "border_filepath": "data/layouts/Route120/border.bin",
@@ -364,7 +364,7 @@
     {
       "id": "LAYOUT_ROUTE121",
       "name": "Route121_Layout",
-      "width": 20,
+      "width": 40,
       "height": 10,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Lilycove",
@@ -4430,6 +4430,16 @@
       "secondary_tileset": "gTileset_Mauville",
       "border_filepath": "data/layouts/Route136/border.bin",
       "blockdata_filepath": "data/layouts/Route136/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE137",
+      "name": "Route137_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/Route137/border.bin",
+      "blockdata_filepath": "data/layouts/Route137/map.bin"
     }
   ]
 }

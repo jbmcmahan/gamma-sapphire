@@ -16,12 +16,12 @@
     {
       "map": "MAP_ROUTE114",
       "offset": 0,
-      "direction": "down"
+      "direction": "right"
     },
     {
-      "map": "MAP_ROUTE116",
-      "offset": 0,
-      "direction": "up"
+      "map": "MAP_RUSTBORO_CITY",
+      "offset": -7,
+      "direction": "down"
     }
   ],
   "object_events": [
