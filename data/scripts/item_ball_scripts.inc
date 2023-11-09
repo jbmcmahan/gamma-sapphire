@@ -763,3 +763,653 @@ Route108_EventScript_ItemBindingBand::
 Route108_EventScript_ItemShedShell::
 	finditem ITEM_SHED_SHELL
 	end
+	
+Chapter4_EventScript_MysticWater::
+    finditem ITEM_MYSTIC_WATER
+    end
+
+Chapter4_EventScript_WhiteHerb::
+    finditem ITEM_WHITE_HERB
+    end
+
+Chapter4_EventScript_WiseGlasses::
+    finditem ITEM_WISE_GLASSES
+    end
+
+Chapter4_EventScript_MiracleSeed::
+    finditem ITEM_MIRACLE_SEED
+    end
+
+Chapter5_EventScript_Nevermeltice::
+    finditem ITEM_NEVER_MELT_ICE
+    end
+
+Chapter5_EventScript_FloatStone::
+    finditem ITEM_FLOAT_STONE
+    end
+
+Chapter5_EventScript_AmuletCoin::
+    finditem ITEM_AMULET_COIN
+    end
+
+Chapter5_EventScript_MetalCoat::
+    finditem ITEM_METAL_COAT
+    end
+
+Chapter5_EventScript_PoisonBarb::
+    finditem ITEM_POISON_BARB
+    end
+
+Chapter5_EventScript_GripClaw::
+    finditem ITEM_GRIP_CLAW
+    end
+
+Chapter6_EventScript_BlackBelt::
+    finditem ITEM_BLACK_BELT
+    end
+
+Chapter6_EventScript_SoftSand::
+    finditem ITEM_SOFT_SAND
+    end
+
+Chapter6_EventScript_TwistedSpoon::
+    finditem ITEM_TWISTED_SPOON
+    end
+
+Chapter6_EventScript_EjectPack::
+    finditem ITEM_EJECT_PACK
+    end
+
+Chapter6_EventScript_BrightPowder::
+    finditem ITEM_BRIGHT_POWDER
+    end
+
+Chapter6_EventScript_IronBall::
+    finditem ITEM_IRON_BALL
+    end
+
+Chapter6_EventScript_BigRoot::
+    finditem ITEM_BIG_ROOT
+    end
+
+Chapter6_EventScript_LumBerry::
+    finditem ITEM_LUM_BERRY
+    end
+
+Chapter6_EventScript_SitrusBerry::
+    finditem ITEM_SITRUS_BERRY
+    end
+
+Chapter6_EventScript_KebiaBerry::
+    finditem ITEM_KEBIA_BERRY
+    end
+
+Chapter7_EventScript_SpellTag::
+    finditem ITEM_SPELL_TAG
+    end
+
+Chapter7_EventScript_DragonFang::
+    finditem ITEM_DRAGON_FANG
+    end
+
+Chapter7_EventScript_HardStone::
+    finditem ITEM_HARD_STONE
+    end
+
+Chapter7_EventScript_RedCard::
+    finditem ITEM_RED_CARD
+    end
+
+Chapter7_EventScript_RazorFang::
+    finditem ITEM_RAZOR_FANG
+    end
+
+Chapter7_EventScript_ScopeLens::
+    finditem ITEM_SCOPE_LENS
+    end
+
+Chapter7_EventScript_Metronome::
+    finditem ITEM_METRONOME
+    end
+
+Chapter7_EventScript_AdrenalineOrb::
+    finditem ITEM_ADRENALINE_ORB
+    end
+
+Chapter7_EventScript_PasshoBerry::
+    finditem ITEM_PASSHO_BERRY
+    end
+
+Chapter7_EventScript_KeeBerry::
+    finditem ITEM_KEE_BERRY
+    end
+
+Chapter7_EventScript_MarangaBerry::
+    finditem ITEM_MARANGA_BERRY
+    end
+
+Chapter8_EventScript_RockyHelmet::
+    finditem ITEM_ROCKY_HELMET
+    end
+
+Chapter8_EventScript_FocusBand::
+    finditem ITEM_FOCUS_BAND
+    end
+
+Chapter8_EventScript_Leftovers::
+    finditem ITEM_LEFTOVERS
+    end
+
+Chapter8_EventScript_FigyBerry::
+    finditem ITEM_FIGY_BERRY
+    end
+
+Chapter8_EventScript_MagoBerry::
+    finditem ITEM_MAGO_BERRY
+    end
+
+Chapter8_EventScript_KasibBerry::
+    finditem ITEM_KASIB_BERRY
+    end
+
+Chapter8_EventScript_ChilanBerry::
+    finditem ITEM_CHILAN_BERRY
+    end
+
+Chapter8_EventScript_OccaBerry::
+    finditem ITEM_OCCA_BERRY
+    end
+
+Chapter8_EventScript_ChopleBerry::
+    finditem ITEM_CHOPLE_BERRY
+    end
+
+Chapter8_EventScript_ShucaBerry::
+    finditem ITEM_SHUCA_BERRY
+    end
+
+Chapter9_EventScript_AbsorbBulb::
+    finditem ITEM_ABSORB_BULB
+    end
+
+Chapter9_EventScript_StickyBarb::
+    finditem ITEM_STICKY_BARB
+    end
+
+Chapter9_EventScript_KingsRock::
+    finditem ITEM_KINGS_ROCK
+    end
+
+Chapter9_EventScript_WideLens::
+    finditem ITEM_WIDE_LENS
+    end
+
+Chapter9_EventScript_WikiBerry::
+    finditem ITEM_WIKI_BERRY
+    end
+
+Chapter9_EventScript_AguavBerry::
+    finditem ITEM_AGUAV_BERRY
+    end
+
+Chapter9_EventScript_IapapaBerry::
+    finditem ITEM_IAPAPA_BERRY
+    end
+
+Chapter9_EventScript_WacanBerry::
+    finditem ITEM_WACAN_BERRY
+    end
+
+Chapter9_EventScript_YacheBerry::
+    finditem ITEM_YACHE_BERRY
+    end
+
+Chapter9_EventScript_CobaBerry::
+    finditem ITEM_COBA_BERRY
+    end
+
+Chapter10_EventScript_EjectButton::
+    finditem ITEM_EJECT_BUTTON
+    end
+
+Chapter10_EventScript_ShellBell::
+    finditem ITEM_SHELL_BELL
+    end
+
+Chapter10_EventScript_ExpertBelt::
+    finditem ITEM_EXPERT_BELT
+    end
+
+Chapter10_EventScript_StarfBerry::
+    finditem ITEM_STARF_BERRY
+    end
+
+Chapter10_EventScript_GrepaBerry::
+    finditem ITEM_GREPA_BERRY
+    end
+
+Chapter10_EventScript_TamatoBerry::
+    finditem ITEM_TAMATO_BERRY
+    end
+
+Chapter10_EventScript_KelpsyBerry::
+    finditem ITEM_KELPSY_BERRY
+    end
+
+Chapter10_EventScript_RindoBerry::
+    finditem ITEM_RINDO_BERRY
+    end
+
+Chapter10_EventScript_PayapaBerry::
+    finditem ITEM_PAYAPA_BERRY
+    end
+
+Chapter11_EventScript_RingTarget::
+    finditem ITEM_RING_TARGET
+    end
+
+Chapter11_EventScript_BlackSludge::
+    finditem ITEM_BLACK_SLUDGE
+    end
+
+Chapter11_EventScript_PowerHerb::
+    finditem ITEM_POWER_HERB
+    end
+
+Chapter11_EventScript_BlunderPolicy::
+    finditem ITEM_BLUNDER_POLICY
+    end
+
+Chapter11_EventScript_PomegBerry::
+    finditem ITEM_POMEG_BERRY
+    end
+
+Chapter11_EventScript_HondewBerry::
+    finditem ITEM_HONDEW_BERRY
+    end
+
+Chapter11_EventScript_QualotBerry::
+    finditem ITEM_QUALOT_BERRY
+    end
+
+Chapter11_EventScript_TangaBerry::
+    finditem ITEM_TANGA_BERRY
+    end
+
+Chapter11_EventScript_YacheBerry::
+    finditem ITEM_YACHE_BERRY
+    end
+
+Chapter11_EventScript_BabiriBerry::
+    finditem ITEM_BABIRI_BERRY
+    end
+
+Chapter12_EventScript_GrassySeed::
+    finditem ITEM_GRASSY_SEED
+    end
+
+Chapter12_EventScript_FlameOrb::
+    finditem ITEM_FLAME_ORB
+    end
+
+Chapter12_EventScript_RazorClaw::
+    finditem ITEM_RAZOR_CLAW
+    end
+
+Chapter12_EventScript_LightClay::
+    finditem ITEM_LIGHT_CLAY
+    end
+
+Chapter12_EventScript_ThroatSpray::
+    finditem ITEM_THROAT_SPRAY
+    end
+
+Chapter12_EventScript_LeppaBerry::
+    finditem ITEM_LEPPA_BERRY
+    end
+
+Chapter12_EventScript_LiechiBerry::
+    finditem ITEM_LIECHI_BERRY
+    end
+
+Chapter12_EventScript_ApicotBerry::
+    finditem ITEM_APICOT_BERRY
+    end
+
+Chapter12_EventScript_ChartiBerry::
+    finditem ITEM_CHARTI_BERRY
+    end
+
+Chapter12_EventScript_HabanBerry::
+    finditem ITEM_HABAN_BERRY
+    end
+
+Chapter13_EventScript_PsychicSeed::
+    finditem ITEM_PSYCHIC_SEED
+    end
+
+Chapter13_EventScript_MistySeed::
+    finditem ITEM_MISTY_SEED
+    end
+
+Chapter13_EventScript_ToxicOrb::
+    finditem ITEM_TOXIC_ORB
+    end
+
+Chapter13_EventScript_HeavyDutyBoots::
+    finditem ITEM_HEAVY_DUTY_BOOTS
+    end
+
+Chapter13_EventScript_SafetyGoggles::
+    finditem ITEM_SAFETY_GOGGLES
+    end
+
+Chapter13_EventScript_FocusSash::
+    finditem ITEM_FOCUS_SASH
+    end
+
+Chapter13_EventScript_GanlonBerry::
+    finditem ITEM_GANLON_BERRY
+    end
+
+Chapter13_EventScript_PetayaBerry::
+    finditem ITEM_PETAYA_BERRY
+    end
+
+Chapter13_EventScript_ColburBerry::
+    finditem ITEM_COLBUR_BERRY
+    end
+
+Chapter13_EventScript_MicleBerry::
+    finditem ITEM_MICLE_BERRY
+    end
+
+Chapter14_EventScript_ElectricSeed::
+    finditem ITEM_ELECTRIC_SEED
+    end
+
+Chapter14_EventScript_AirBalloon::
+    finditem ITEM_AIR_BALLOON
+    end
+
+Chapter14_EventScript_LifeOrb::
+    finditem ITEM_LIFE_ORB
+    end
+
+Chapter14_EventScript_UtilityUmbrella::
+    finditem ITEM_UTILITY_UMBRELLA
+    end
+
+Chapter14_EventScript_SalacBerry::
+    finditem ITEM_SALAC_BERRY
+    end
+
+Chapter14_EventScript_LansatBerry::
+    finditem ITEM_LANSAT_BERRY
+    end
+
+Chapter14_EventScript_CustapBerry::
+    finditem ITEM_CUSTAP_BERRY
+    end
+
+Chapter15_EventScript_HeatRock::
+    finditem ITEM_HEAT_ROCK
+    end
+
+Chapter15_EventScript_DampRock::
+    finditem ITEM_DAMP_ROCK
+    end
+
+Chapter15_EventScript_Eviolite::
+    finditem ITEM_EVIOLITE
+    end
+
+Chapter15_EventScript_TerrainExtender::
+    finditem ITEM_TERRAIN_EXTENDER
+    end
+	
+Chapter15_EventScript_EnigmaBerry::
+    finditem ITEM_ENIGMA_BERRY
+    end
+
+Chapter15_EventScript_JabocaBerry::
+    finditem ITEM_JABOCA_BERRY
+    end
+
+Chapter15_EventScript_RowapBerry::
+    finditem ITEM_ROWAP_BERRY
+    end
+
+Chapter15_EventScript_Abomasite::
+    finditem ITEM_ABOMASITE
+    end
+
+Chapter15_EventScript_Cameruptite::
+    finditem ITEM_CAMERUPTITE
+    end
+
+Chapter15_EventScript_Sharpedonite::
+    finditem ITEM_SHARPEDONITE
+    end
+
+Chapter15_EventScript_Mawilite::
+    finditem ITEM_MAWILITE
+    end
+
+Chapter15_EventScript_Beedrillite::
+    finditem ITEM_BEEDRILLITE
+    end
+
+Chapter15_EventScript_Pidgeotite::
+    finditem ITEM_PIDGEOTITE
+    end
+
+Chapter15_EventScript_Ampharosite::
+    finditem ITEM_AMPHAROSITE
+    end
+
+Chapter15_EventScript_Heracronite::
+    finditem ITEM_HERACRONITE
+    end
+
+Chapter16_EventScript_SmoothRock::
+    finditem ITEM_SMOOTH_ROCK
+    end
+
+Chapter16_EventScript_IcyRock::
+    finditem ITEM_ICY_ROCK
+    end
+
+Chapter16_EventScript_WeaknessPolicy::
+    finditem ITEM_WEAKNESS_POLICY
+    end
+
+Chapter16_EventScript_RoomService::
+    finditem ITEM_ROOM_SERVICE
+    end
+
+Chapter16_EventScript_Galladite::
+    finditem ITEM_GALLADITE
+    end
+
+Chapter16_EventScript_Altarianite::
+    finditem ITEM_ALTARIANITE
+    end
+
+Chapter16_EventScript_Sablenite::
+    finditem ITEM_SABLENITE
+    end
+
+Chapter16_EventScript_CharizarditeX::
+    finditem ITEM_CHARIZARDITE_X
+    end
+
+Chapter16_EventScript_CharizarditeY::
+    finditem ITEM_CHARIZARDITE_Y
+    end
+
+Chapter16_EventScript_Steelixite::
+    finditem ITEM_STEELIXITE
+    end
+
+Chapter16_EventScript_Houndoominite::
+    finditem ITEM_HOUNDOOMINITE
+    end
+
+Chapter17_EventScript_SnowBall::
+    finditem ITEM_SNOWBALL
+    end
+
+Chapter17_EventScript_LuminousMoss::
+    finditem ITEM_LUMINOUS_MOSS
+    end
+
+Chapter17_EventScript_AssaultVest::
+    finditem ITEM_ASSAULT_VEST
+    end
+
+Chapter17_EventScript_ChoiceScarf::
+    finditem ITEM_CHOICE_SCARF
+    end
+
+Chapter17_EventScript_Audinite::
+    finditem ITEM_AUDINITE
+    end
+
+Chapter17_EventScript_Lucarionite::
+    finditem ITEM_LUCARIONITE
+    end
+
+Chapter17_EventScript_Banettite::
+    finditem ITEM_BANETTITE
+    end
+
+Chapter17_EventScript_Gardevoirite::
+    finditem ITEM_GARDEVOIRITE
+    end
+
+Chapter17_EventScript_Venusaurite::
+    finditem ITEM_VENUSAURITE
+    end
+
+Chapter17_EventScript_Slowbronite::
+    finditem ITEM_SLOWBRONITE
+    end
+
+Chapter17_EventScript_Scizorite::
+    finditem ITEM_SCIZORITE
+    end
+
+Chapter17_EventScript_Sceptilite::
+    finditem ITEM_SCEPTILITE
+    end
+
+Chapter17_EventScript_Manectite::
+    finditem ITEM_MANECTITE
+    end
+
+Chapter18_EventScript_CellBattery::
+    finditem ITEM_CELL_BATTERY
+    end
+
+Chapter18_EventScript_ChoiceBand::
+    finditem ITEM_CHOICE_BAND
+    end
+
+Chapter18_EventScript_ChoiceSpecs::
+    finditem ITEM_CHOICE_SPECS
+    end
+
+Chapter18_EventScript_Garchompite::
+    finditem ITEM_GARCHOMPITE
+    end
+
+Chapter18_EventScript_Lopunnite::
+    finditem ITEM_LOPUNNITE
+    end
+
+Chapter18_EventScript_Glalitite::
+    finditem ITEM_GLALITITE
+    end
+
+Chapter18_EventScript_Absolite::
+    finditem ITEM_ABSOLITE
+    end
+
+Chapter18_EventScript_Blastoistinite::
+    finditem ITEM_BLASTOISINITE
+    end
+
+Chapter18_EventScript_Kangaskhanite::
+    finditem ITEM_KANGASKHANITE
+    end
+
+Chapter18_EventScript_Pinsirite::
+    finditem ITEM_PINSIRITE
+    end
+
+Chapter18_EventScript_Blazikenite::
+    finditem ITEM_BLAZIKENITE
+    end
+
+Chapter19_EventScript_Medichamite::
+    finditem ITEM_MEDICHAMITE
+    end
+
+Chapter19_EventScript_Salamencite::
+    finditem ITEM_SALAMENCITE
+    end
+
+Chapter19_EventScript_Swampertite::
+    finditem ITEM_SWAMPERTITE
+    end
+
+Chapter19_EventScript_Alakazite::
+    finditem ITEM_ALAKAZITE
+    end
+
+Chapter19_EventScript_Gengarite::
+    finditem ITEM_GENGARITE
+    end
+
+Chapter19_EventScript_Gyaradosite::
+    finditem ITEM_GYARADOSITE
+    end
+
+Chapter19_EventScript_Tyranitarite::
+    finditem ITEM_TYRANITARITE
+    end
+
+Chapter20_EventScript_Diancite::
+    finditem ITEM_DIANCITE
+    end
+
+Chapter20_EventScript_Latiosite::
+    finditem ITEM_LATIOSITE
+    end
+
+Chapter20_EventScript_Latiasite::
+    finditem ITEM_LATIASITE
+    end
+
+Chapter20_EventScript_Metagrossite::
+    finditem ITEM_METAGROSSITE
+    end
+
+Chapter20_EventScript_Aggronite::
+    finditem ITEM_AGGRONITE
+    end
+
+Chapter20_EventScript_Aerodactylite::
+    finditem ITEM_AERODACTYLITE
+    end
+
+Chapter20_EventScript_MewtwoniteX::
+    finditem ITEM_MEWTWONITE_X
+    end
+
+Chapter20_EventScript_MewtwoniteY::
+    finditem ITEM_MEWTWONITE_Y
+    end
+
+
