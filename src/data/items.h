@@ -10202,13 +10202,13 @@ const struct Item gItems[] =
 
     [ITEM_NORMAL_TERA_SHARD] =
     {
-        .name = _("NormlTeraShrd"),
+        .name = _("Tera Shard"),
         .itemId = ITEM_NORMAL_TERA_SHARD,
         .price = 0,
         .description = sTeraShardDesc,
         .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TeraShard,
     },
 
     [ITEM_POISON_TERA_SHARD] =

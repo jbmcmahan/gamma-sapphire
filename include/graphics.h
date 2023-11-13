@@ -8869,6 +8869,8 @@ extern const u32 gItemIcon_ScrollOfWaters[];
 extern const u32 gItemIconPalette_ScrollOfWaters[];
 extern const u32 gItemIcon_TeraOrb[];
 extern const u32 gItemIconPalette_TeraOrb[];
+extern const u32 gItemIcon_TeraShard[];
+extern const u32 gItemIconPalette_TeraShard[];
 extern const u32 gItemIcon_TinyBambooShoot[];
 extern const u32 gItemIconPalette_TinyBambooShoot[];
 

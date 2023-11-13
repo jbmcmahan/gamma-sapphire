@@ -660,6 +660,14 @@ MagmaHideout_3F_3R_EventScript_ItemEscapeRope::
 
 Route103_EventScript_ItemOranBerry::
 	finditem ITEM_ORAN_BERRY
+	finditem ITEM_ORAN_BERRY
+	finditem ITEM_ORAN_BERRY
+	finditem ITEM_ORAN_BERRY
+	finditem ITEM_ORAN_BERRY
+	finditem ITEM_ORAN_BERRY
+	finditem ITEM_ORAN_BERRY
+	finditem ITEM_ORAN_BERRY
+	finditem ITEM_ORAN_BERRY
 	end
 
 Route103_EventScript_ItemQuickClaw::
@@ -667,19 +675,28 @@ Route103_EventScript_ItemQuickClaw::
 	end
 
 Route103_EventScript_ItemSilkScarf::
-	finditem ITEM_SILK_SCARF
+	finditem ITEM_ABILITY_CAPSULE
 	end
 
 Route104_EventScript_ItemAmuletCoin::
-	finditem ITEM_AMULET_COIN
+	finditem ITEM_NORMAL_TERA_SHARD
 	end
 
 Route104_EventScript_ItemCheriBerry::
 	finditem ITEM_CHERI_BERRY
+	finditem ITEM_CHERI_BERRY
+	finditem ITEM_CHERI_BERRY
+	finditem ITEM_CHERI_BERRY
+	finditem ITEM_CHERI_BERRY
+	finditem ITEM_CHERI_BERRY
+	finditem ITEM_CHERI_BERRY
+	finditem ITEM_CHERI_BERRY
+	finditem ITEM_CHERI_BERRY
+	finditem ITEM_CHERI_BERRY
 	end
 
 Route104_EventScript_ItemChestoBerry::
-	finditem ITEM_CHESTO_BERRY
+	finditem ITEM_TERA_ORB
 	end
 
 Route105_EventScript_ItemCellBattery::

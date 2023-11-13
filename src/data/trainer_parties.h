@@ -1,23 +1,9 @@
 static const struct TrainerMonCustomized sParty_Gamma_Aqua_Grunt_1[] =
 {
     {
-        .species = SPECIES_SKORUPI,
-        .ball = ITEM_POKE_BALL,
-        .teraType = TYPE_NORMAL,
-        .ability = ABILITY_POISON_TOUCH,
-        .friendship = 0,
-        .gender = TRAINER_MON_FEMALE,
-        .isShiny = FALSE,
-        .iv = TRAINER_PARTY_IVS(31,31,31,31,31,31),
-        .ev = TRAINER_PARTY_EVS(0,0,0,0,0,0),
-        .lvl = 8,
-        .moves = {MOVE_BITE, MOVE_POISON_STING, MOVE_LEER, MOVE_KNOCK_OFF},
-        .nature = NATURE_BOLD,
-    },
-    {
         .species = SPECIES_MORELULL,
         .ball = ITEM_POKE_BALL,
-        .teraType = TYPE_NORMAL,
+        .teraType = TYPE_POISON,
         .ability = ABILITY_REGENERATOR,
         .friendship = 0,
         .gender = TRAINER_MON_FEMALE,
@@ -25,13 +11,27 @@ static const struct TrainerMonCustomized sParty_Gamma_Aqua_Grunt_1[] =
         .iv = TRAINER_PARTY_IVS(31,31,31,31,31,31),
         .ev = TRAINER_PARTY_EVS(0,0,0,0,0,0),
         .lvl = 8,
-        .moves = {MOVE_ABSORB, MOVE_ASTONISH, MOVE_POISON_POWDER, MOVE_MOONLIGHT},
+        .moves = {MOVE_ABSORB, MOVE_ASTONISH, MOVE_POISON_POWDER, MOVE_SLEEP_POWDER},
         .nature = NATURE_TIMID,
+    },
+    {
+        .species = SPECIES_CROAGUNK,
+        .ball = ITEM_POKE_BALL,
+        .teraType = TYPE_ELECTRIC,
+        .ability = ABILITY_OPPORTUNIST,
+        .friendship = 0,
+        .gender = TRAINER_MON_MALE,
+        .isShiny = FALSE,
+        .iv = TRAINER_PARTY_IVS(31,31,31,31,31,31),
+        .ev = TRAINER_PARTY_EVS(0,0,0,0,0,0),
+        .lvl = 8,
+        .moves = {MOVE_ASTONISH, MOVE_POISON_STING, MOVE_TAUNT, MOVE_MACH_PUNCH},
+        .nature = NATURE_BOLD,
     },
     {
         .species = SPECIES_ZUBAT,
         .ball = ITEM_POKE_BALL,
-        .teraType = TYPE_NORMAL,
+        .teraType = TYPE_BUG,
         .ability = ABILITY_INNER_FOCUS,
         .friendship = 0,
         .gender = TRAINER_MON_FEMALE,
@@ -39,13 +39,13 @@ static const struct TrainerMonCustomized sParty_Gamma_Aqua_Grunt_1[] =
         .iv = TRAINER_PARTY_IVS(31,31,31,31,31,31),
         .ev = TRAINER_PARTY_EVS(0,0,0,0,0,0),
         .lvl = 8,
-        .moves = {MOVE_ABSORB, MOVE_SUPERSONIC, MOVE_ASTONISH, MOVE_BITE},
+        .moves = {MOVE_ABSORB, MOVE_TORMENT, MOVE_ASTONISH, MOVE_BITE},
         .nature = NATURE_ADAMANT,
     },
     {
         .species = SPECIES_SKRELP,
         .ball = ITEM_POKE_BALL,
-        .teraType = TYPE_NORMAL,
+        .teraType = TYPE_WATER,
         .ability = ABILITY_PROPELLER_TAIL,
         .friendship = 0,
         .gender = TRAINER_MON_FEMALE,
@@ -53,7 +53,7 @@ static const struct TrainerMonCustomized sParty_Gamma_Aqua_Grunt_1[] =
         .iv = TRAINER_PARTY_IVS(31,31,31,31,31,31),
         .ev = TRAINER_PARTY_EVS(0,0,0,0,0,0),
         .lvl = 8,
-        .moves = {MOVE_TACKLE, MOVE_SMOKESCREEN, MOVE_WATER_GUN, MOVE_FEINT_ATTACK},
+        .moves = {MOVE_TACKLE, MOVE_SMOKESCREEN, MOVE_BUBBLE, MOVE_TAIL_WHIP},
         .nature = NATURE_JOLLY,
     },
 };
@@ -1021,7 +1021,7 @@ static const struct TrainerMonCustomized sParty_Gamma_Tucker[] =
         .iv = TRAINER_PARTY_IVS(31,31,31,31,31,31),
         .ev = TRAINER_PARTY_EVS(0,0,0,0,0,0),
         .lvl = 67,
-        .moves = {MOVE_SAND_ATTACK, MOVE_SAND_ATTACK, MOVE_SAND_ATTACK, MOVE_SAND_ATTACK},
+        .moves = {MOVE_DAZZLING_GLEAM, MOVE_NASTY_PLOT, MOVE_ICE_BEAM, MOVE_PROTECT},
         .nature = NATURE_GENTLE,
     },
     {
@@ -5002,7 +5002,6 @@ static const struct TrainerMonCustomized sParty_Gamma_Whitney[] =
         .nature = NATURE_BOLD,
     },
 };
-
 
 
 static const struct TrainerMonNoItemDefaultMoves sParty_Steve2[] = {

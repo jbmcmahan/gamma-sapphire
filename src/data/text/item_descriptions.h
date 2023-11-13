@@ -3890,8 +3890,8 @@ static const u8 sTinyBambooShootDesc[] = _(
 
 static const u8 sTeraShardDesc[] = _(
     "These shards may\n"
-    "form when a Tera\n"
-    "Pokémon faints.");
+    "change the Tera\n"
+    "Type of a Pokémon");
 
 static const u8 sAdamantCrystalDesc[] = _(
     "A large, glowing gem\n"

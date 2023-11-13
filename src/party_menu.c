@@ -217,6 +217,62 @@ struct PartyMenuBox
     u8 statusSpriteId;
 };
 
+static const struct ListMenuItem sPossibleTypesListMenuItems[] = {
+    { gTypeNames[TYPE_NORMAL], TYPE_NORMAL },
+    { gTypeNames[TYPE_FIGHTING], TYPE_FIGHTING },
+    { gTypeNames[TYPE_FLYING], TYPE_FLYING },
+    { gTypeNames[TYPE_POISON], TYPE_POISON },
+    { gTypeNames[TYPE_GROUND], TYPE_GROUND },
+    { gTypeNames[TYPE_ROCK], TYPE_ROCK },
+    { gTypeNames[TYPE_BUG], TYPE_BUG },
+    { gTypeNames[TYPE_GHOST], TYPE_GHOST },
+    { gTypeNames[TYPE_STEEL], TYPE_STEEL },
+    { gTypeNames[TYPE_FIRE], TYPE_FIRE },
+    { gTypeNames[TYPE_WATER], TYPE_WATER },
+    { gTypeNames[TYPE_GRASS], TYPE_GRASS },
+    { gTypeNames[TYPE_ELECTRIC], TYPE_ELECTRIC },
+    { gTypeNames[TYPE_PSYCHIC], TYPE_PSYCHIC },
+    { gTypeNames[TYPE_ICE], TYPE_ICE },
+    { gTypeNames[TYPE_DRAGON], TYPE_DRAGON },
+    { gTypeNames[TYPE_DARK], TYPE_DARK },
+    { gTypeNames[TYPE_FAIRY], TYPE_FAIRY },
+};
+
+
+static const struct ListMenuTemplate sTypeListMenu =
+{
+    .items = sPossibleTypesListMenuItems,
+    .moveCursorFunc = ListMenuDefaultCursorMoveFunc,
+    .itemPrintFunc = NULL,
+    .totalItems = ARRAY_COUNT(sPossibleTypesListMenuItems),
+    .maxShowed = 5,
+    .windowId = 0,
+    .header_X = 0,
+    .item_X = 8,
+    .cursor_X = 0,
+    .upText_Y = 1,
+    .cursorPal = 2,
+    .fillValue = 1,
+    .cursorShadowPal = 3,
+    .lettersSpacing = 0,
+    .itemVerticalPadding = 0,
+    .scrollMultiple = LIST_NO_MULTIPLE_SCROLL,
+    .fontId = FONT_NORMAL,
+    .cursorKind = CURSOR_BLACK_ARROW
+};
+
+static const struct WindowTemplate sMainListWindowTemplate =
+{
+    .bg = 2,
+    .tilemapLeft = 19,
+    .tilemapTop = 2,
+    .width = 9,
+    .height = 10,
+    .paletteNum = 14,
+    .baseBlock = 0x2E9
+};
+
+
 // EWRAM vars
 static EWRAM_DATA struct PartyMenuInternal *sPartyMenuInternal = NULL;
 EWRAM_DATA struct PartyMenu gPartyMenu = {0};
@@ -234,6 +290,8 @@ static EWRAM_DATA u16 sUnused = 0;
 EWRAM_DATA u8 gBattlePartyCurrentOrder[PARTY_SIZE / 2] = {0}; // bits 0-3 are the current pos of Slot 1, 4-7 are Slot 2, and so on
 static EWRAM_DATA u8 sInitialLevel = 0;
 static EWRAM_DATA u8 sFinalLevel = 0;
+EWRAM_DATA static u16 sDecorationsCursorPos = 0;
+EWRAM_DATA static u16 sDecorationsScrollOffset = 0;
 
 // IWRAM common
 void (*gItemUseCB)(u8, TaskFunc);
@@ -486,6 +544,7 @@ void TryItemHoldFormChange(struct Pokemon *mon);
 static void ShowMoveSelectWindow(u8 slot);
 static void Task_HandleWhichMoveInput(u8 taskId);
 static bool32 CannotUsePartyBattleItem(u16 itemId, struct Pokemon* mon);
+static void Task_HandleMenuInput_Types(u8 taskId);
 
 // static const data
 #include "data/party_menu.h"
@@ -4754,11 +4813,190 @@ void ItemUseCB_AbilityPatch(u8 taskId, TaskFunc task)
     gTasks[taskId].func = Task_AbilityPatch;
 }
 
+void Task_TeraShard(u8 taskId)
+{
+    static const u8 askText[] = _("Would you like to change {STR_VAR_1}'s\nTera Type?");
+    static const u8 doneText[] = _("{STR_VAR_1}'s Tera Type was changed!\n{PAUSE_UNTIL_PRESS}");
+    s16 *data = gTasks[taskId].data;
+    struct ListMenuTemplate menuTemplate;
+    u8 windowId;
+    u8 listMenuTaskId;
+    u8 teraTypeMenuTaskId;
+    u32 input;
+
+    switch (tState)
+    {
+    case 0:
+        // Can't use.
+        // if (gSpeciesInfo[tSpecies].abilities[tAbilityNum] == 0
+        //     || !tSpecies
+        //     )
+        // {
+        //     gPartyMenuUseExitCallback = FALSE;
+        //     PlaySE(SE_SELECT);
+        //     DisplayPartyMenuMessage(gText_WontHaveEffect, 1);
+        //     ScheduleBgCopyTilemapToVram(2);
+        //     gTasks[taskId].func = Task_ClosePartyMenuAfterText;
+        //     return;
+        // }
+        gPartyMenuUseExitCallback = TRUE;
+        GetMonNickname(&gPlayerParty[tMonId], gStringVar1);
+        // StringCopy(gStringVar2, gAbilityNames[GetAbilityBySpecies(tSpecies, tAbilityNum)]);
+        StringExpandPlaceholders(gStringVar4, askText);
+        PlaySE(SE_SELECT);
+        DisplayPartyMenuMessage(gStringVar4, 1);
+        ScheduleBgCopyTilemapToVram(2);
+        tState++;
+        break;
+    case 1:
+        if (!IsPartyMenuTextPrinterActive())
+        {
+            windowId = AddWindow(&sMainListWindowTemplate);
+            DrawStdFrameWithCustomTileAndPalette(windowId, TRUE, 0x4F, 13);
+
+            menuTemplate = sTypeListMenu;
+            menuTemplate.windowId = windowId;
+            listMenuTaskId = ListMenuInit(&menuTemplate, 0, 0);
+
+            CopyWindowToVram(windowId, COPYWIN_FULL);
+
+            teraTypeMenuTaskId = CreateTask(Task_HandleMenuInput_Types, 3);
+            gTasks[teraTypeMenuTaskId].data[0] = listMenuTaskId;
+            gTasks[teraTypeMenuTaskId].data[1] = windowId;
+            tState++;
+        }
+        break;
+    case 2:
+
+        // input = ListMenu_ProcessInput(listMenuTaskId);
+        // switch (input) {
+        //     case LIST_NOTHING_CHOSEN:
+        //         break;
+        //     case LIST_CANCEL:
+        //         PlaySE(SE_SELECT);
+        //         gPartyMenuUseExitCallback = FALSE;
+        //         ScheduleBgCopyTilemapToVram(2);
+        //         // Don't exit party selections screen, return to choosing a mon.
+        //         ClearStdWindowAndFrameToTransparent(6, 0);
+        //         ClearWindowTilemap(6);
+        //         DisplayPartyMenuStdMessage(5);
+        //         gTasks[taskId].func = (void *)GetWordTaskArg(taskId, tOldFunc);
+        //     default:
+        //         tState++;
+
+        // }
+
+        break;
+    // case 3:
+    //     PlaySE(SE_USE_ITEM);
+    //     StringExpandPlaceholders(gStringVar4, doneText);
+    //     DisplayPartyMenuMessage(gStringVar4, 1);
+    //     ScheduleBgCopyTilemapToVram(2);
+    //     tState++;
+    //     break;
+    // case 4:
+    //     if (!IsPartyMenuTextPrinterActive())
+    //         tState++;
+    //     break;
+    // case 5:
+    //     SetMonData(&gPlayerParty[tMonId], MON_DATA_ABILITY_NUM, &tAbilityNum);
+    //     RemoveBagItem(gSpecialVar_ItemId, 1);
+    //     gTasks[taskId].func = Task_ClosePartyMenu;
+    //     break;
+    }
+}
+
+static void Task_HandleMenuInput_Types(u8 taskId)
+{
+    s16 *data = gTasks[taskId].data;
+    u32 input = ListMenu_ProcessInput(gTasks[taskId].data[0]);
+
+    switch (input)
+    {
+    case LIST_NOTHING_CHOSEN:
+        break;
+    case LIST_CANCEL:
+        PlaySE(SE_SELECT);
+        // gPartyMenuUseExitCallback = FALSE;
+        // ScheduleBgCopyTilemapToVram(2);
+        // // Don't exit party selections screen, return to choosing a mon.
+        // ClearStdWindowAndFrameToTransparent(6, 0);
+        // ClearWindowTilemap(6);
+        // DisplayPartyMenuStdMessage(5);
+        gTasks[taskId].func = Task_ClosePartyMenu;
+        break;
+    default:
+        PlaySE(SE_USE_ITEM);
+        SetMonData(&gPlayerParty[tMonId], MON_DATA_TERA_TYPE, &input);
+        RemoveBagItem(gSpecialVar_ItemId, 1);
+        gTasks[taskId].func = Task_ClosePartyMenu;
+        break;
+    }
+}
+
+
+
+    // if (JOY_NEW(A_BUTTON))
+    // {
+    //     switch (input)
+    //     {
+    //     case 0:
+    //     case 1:
+    //         gSpecialVar_Result = input;
+    //         break;
+    //     case 2:
+    //         gSpecialVar_Result = 2;
+    //         break;
+    //     }
+    //     DestroyListMenuTask(gTasks[taskId].data[0], NULL, NULL);
+    //     ClearStdWindowAndFrame(gTasks[taskId].data[1], TRUE);
+    //     RemoveWindow(gTasks[taskId].data[1]);
+    //     DestroyTask(taskId);
+    //     ScriptContext_Enable();
+    // }
+    // else if (JOY_NEW(B_BUTTON))
+    // {
+    //     // gSpecialVar_Result = 1;
+    //     // DestroyListMenuTask(gTasks[taskId].data[0], NULL, NULL);
+    //     // ClearStdWindowAndFrame(gTasks[taskId].data[1], TRUE);
+    //     // RemoveWindow(gTasks[taskId].data[1]);
+    //     // DestroyTask(taskId);
+    //     // ScriptContext_Enable();
+
+    //     gPartyMenuUseExitCallback = FALSE;
+    //     PlaySE(SE_SELECT);
+    //     ScheduleBgCopyTilemapToVram(2);
+    //     // Don't exit party selections screen, return to choosing a mon.
+    //     ClearStdWindowAndFrameToTransparent(6, 0);
+    //     ClearWindowTilemap(6);
+    //     DisplayPartyMenuStdMessage(5);
+    //     gTasks[taskId].func = (void *)GetWordTaskArg(taskId, tOldFunc);
+    //     return;
+    // }
+
+
+void ItemUseCB_TeraShard(u8 taskId, TaskFunc task)
+{
+    s16 *data = gTasks[taskId].data;
+
+    tState = 0;
+    tMonId = gPartyMenu.slotId;
+    tSpecies = GetMonData(&gPlayerParty[tMonId], MON_DATA_SPECIES, NULL);
+    if (GetMonData(&gPlayerParty[tMonId], MON_DATA_ABILITY_NUM, NULL) == 2)
+        tAbilityNum = 0;
+    else
+        tAbilityNum = 2;
+    SetWordTaskArg(taskId, tOldFunc, (uintptr_t)(gTasks[taskId].func));
+    gTasks[taskId].func = Task_TeraShard;
+}
+
 #undef tState
 #undef tSpecies
 #undef tAbilityNum
 #undef tMonId
 #undef tOldFunc
+
+
 
 static void Task_DisplayHPRestoredMessage(u8 taskId)
 {
