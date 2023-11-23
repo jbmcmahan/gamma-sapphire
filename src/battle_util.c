@@ -12216,6 +12216,7 @@ u16 GetBattleFormChangeTargetSpecies(u8 battlerId, u16 method)
     u32 i, j;
     u16 targetSpecies = SPECIES_NONE;
     u16 species = gBattleMons[battlerId].species;
+    u16 teraType = gBattleMons[battlerId].teraType;
     const struct FormChange *formChanges = gFormChangeTablePointers[species];
     u16 heldItem;
     u32 ability;
@@ -12233,8 +12234,10 @@ u16 GetBattleFormChangeTargetSpecies(u8 battlerId, u16 method)
                 {
                 case FORM_CHANGE_BATTLE_MEGA_EVOLUTION_ITEM:
                 case FORM_CHANGE_BATTLE_PRIMAL_REVERSION:
-                    if (heldItem == formChanges[i].param1)
+                    if (heldItem == formChanges[i].param1
+                     && 1<<teraType & (formChanges[i].param2 | formChanges[i].param3<<16)) {
                         targetSpecies = formChanges[i].targetSpecies;
+                    }
                     break;
                 case FORM_CHANGE_BATTLE_MEGA_EVOLUTION_MOVE:
                     if (gBattleMons[battlerId].moves[0] == formChanges[i].param1
