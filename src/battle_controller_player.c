@@ -2889,7 +2889,7 @@ static void PlayerHandleChooseMove(void)
             gBattleStruct->zmove.triggerSpriteId = 0xFF;
         if (!IsTeraTriggerSpriteActive())
             gBattleStruct->tera.triggerSpriteId = 0xFF;
-        if (CanTerastallize(gActiveBattler))
+        if (CanTerastallize(gActiveBattler) && !CanMegaEvolve(gActiveBattler))
             CreateTeraTriggerSprite(gActiveBattler, 0);
 
         GetUsableZMoves(gActiveBattler, moveInfo->moves);

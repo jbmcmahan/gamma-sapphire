@@ -45,6 +45,8 @@ bool32 CanTerastallize(u32 battlerId)
 {
     u32 side = GetBattlerSide(battlerId);
     u32 holdEffect = GetBattlerHoldEffect(battlerId, FALSE);
+    u8 battlerPosition = GetBattlerPosition(battlerId);
+    struct MegaEvolutionData *mega = &(((struct ChooseMoveStruct *)(&gBattleResources->bufferA[gActiveBattler][4]))->mega);
 
     // Check if Player has Tera Orb and has charge.
 // #if B_FLAG_TERA_ORB_CHARGE != 0
@@ -55,9 +57,11 @@ bool32 CanTerastallize(u32 battlerId)
 
     // Check if Trainer has already Terastallized.
     if (gBattleStruct->tera.alreadyTerastallized[battlerId])
-    {
         return FALSE;
-    }
+
+    // Check if trainer already mega evolved a pokemon.
+    if (mega->alreadyEvolved[battlerPosition])
+        return FALSE;
 
     if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE
         && IsPartnerMonFromSameTrainer(battlerId)
@@ -68,10 +72,10 @@ bool32 CanTerastallize(u32 battlerId)
     }
 
     // Check if battler is holding a Z-Crystal or Mega Stone.
-    if (holdEffect == HOLD_EFFECT_Z_CRYSTAL || holdEffect == HOLD_EFFECT_MEGA_STONE)
-    {
-        return FALSE;
-    }
+    // if (holdEffect == HOLD_EFFECT_Z_CRYSTAL || holdEffect == HOLD_EFFECT_MEGA_STONE)
+    // {
+    //     return FALSE;
+    // }
 
     // Every check passed!
     return TRUE;
