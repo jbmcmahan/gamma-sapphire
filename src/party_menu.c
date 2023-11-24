@@ -4927,7 +4927,7 @@ static void Task_HandleMenuInput_Types(u8 taskId)
         break;
     default:
         PlaySE(SE_USE_ITEM);
-        SetMonData(&gPlayerParty[tMonId], MON_DATA_TERA_TYPE, &input);
+        SetMonData(&gPlayerParty[gPartyMenu.slotId], MON_DATA_TERA_TYPE, &input);
         RemoveBagItem(gSpecialVar_ItemId, 1);
         gTasks[taskId].func = Task_ClosePartyMenu;
         break;
