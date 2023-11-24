@@ -1045,15 +1045,15 @@ const struct Item gItems[] =
 
 // Mints
 
-    [ITEM_LONELY_MINT] =
+    [ITEM_NATURE_MINT] =
     {
-        .name = _("Lonely Mint"),
-        .itemId = ITEM_LONELY_MINT,
+        .name = _("Nature Mint"),
+        .itemId = ITEM_NATURE_MINT,
         .price = 20,
-        .description = sLonelyMintDesc,
+        .description = sNatureMintDesc,
         .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse, // Todo
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_Mint,
         .flingPower = 10,
     },
 

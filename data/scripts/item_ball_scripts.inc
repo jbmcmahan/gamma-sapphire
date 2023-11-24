@@ -683,16 +683,7 @@ Route104_EventScript_ItemAmuletCoin::
 	end
 
 Route104_EventScript_ItemCheriBerry::
-	finditem ITEM_CHERI_BERRY
-	finditem ITEM_CHERI_BERRY
-	finditem ITEM_CHERI_BERRY
-	finditem ITEM_CHERI_BERRY
-	finditem ITEM_CHERI_BERRY
-	finditem ITEM_CHERI_BERRY
-	finditem ITEM_CHERI_BERRY
-	finditem ITEM_CHERI_BERRY
-	finditem ITEM_CHERI_BERRY
-	finditem ITEM_CHERI_BERRY
+	finditem ITEM_NATURE_MINT
 	end
 
 Route104_EventScript_ItemChestoBerry::

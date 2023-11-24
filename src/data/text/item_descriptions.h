@@ -429,10 +429,10 @@ static const u8 sAbilityPatchDesc[] = _(
     "a rare ability.");
 
 // Mints
-static const u8 sLonelyMintDesc[] = _(
+static const u8 sNatureMintDesc[] = _(
     "Can be smelled. It\n"
-    "ups Attack, but\n"
-    "reduces Defense.");
+    "can switch a \n"
+    "Pokémon's Nature.");
 
 static const u8 sAdamantMintDesc[] = _(
     "Can be smelled. It\n"

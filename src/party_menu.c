@@ -238,6 +238,60 @@ static const struct ListMenuItem sPossibleTypesListMenuItems[] = {
     { gTypeNames[TYPE_FAIRY], TYPE_FAIRY },
 };
 
+static const u8 sHardyNatureName[] = _("Hardy");
+static const u8 sLonelyNatureName[] = _("Lonely");
+static const u8 sBraveNatureName[] = _("Brave");
+static const u8 sAdamantNatureName[] = _("Adamant");
+static const u8 sNaughtyNatureName[] = _("Naughty");
+static const u8 sBoldNatureName[] = _("Bold");
+static const u8 sDocileNatureName[] = _("Docile");
+static const u8 sRelaxedNatureName[] = _("Relaxed");
+static const u8 sImpishNatureName[] = _("Impish");
+static const u8 sLaxNatureName[] = _("Lax");
+static const u8 sTimidNatureName[] = _("Timid");
+static const u8 sHastyNatureName[] = _("Hasty");
+static const u8 sSeriousNatureName[] = _("Serious");
+static const u8 sJollyNatureName[] = _("Jolly");
+static const u8 sNaiveNatureName[] = _("Naive");
+static const u8 sModestNatureName[] = _("Modest");
+static const u8 sMildNatureName[] = _("Mild");
+static const u8 sQuietNatureName[] = _("Quiet");
+static const u8 sBashfulNatureName[] = _("Bashful");
+static const u8 sRashNatureName[] = _("Rash");
+static const u8 sCalmNatureName[] = _("Calm");
+static const u8 sGentleNatureName[] = _("Gentle");
+static const u8 sSassyNatureName[] = _("Sassy");
+static const u8 sCarefulNatureName[] = _("Careful");
+static const u8 sQuirkyNatureName[] = _("Quirky");
+
+static const struct ListMenuItem sPossibleNaturesListMenuItems[] = {
+    { sHardyNatureName, NATURE_HARDY },
+    { sLonelyNatureName, NATURE_LONELY },
+    { sBraveNatureName, NATURE_BRAVE },
+    { sAdamantNatureName, NATURE_ADAMANT },
+    { sNaughtyNatureName, NATURE_NAUGHTY },
+    { sBoldNatureName, NATURE_BOLD },
+    { sDocileNatureName, NATURE_DOCILE },
+    { sRelaxedNatureName, NATURE_RELAXED },
+    { sImpishNatureName, NATURE_IMPISH },
+    { sLaxNatureName, NATURE_LAX },
+    { sTimidNatureName, NATURE_TIMID },
+    { sHastyNatureName, NATURE_HASTY },
+    { sSeriousNatureName, NATURE_SERIOUS },
+    { sJollyNatureName, NATURE_JOLLY },
+    { sNaiveNatureName, NATURE_NAIVE },
+    { sModestNatureName, NATURE_MODEST },
+    { sMildNatureName, NATURE_MILD },
+    { sQuietNatureName, NATURE_QUIET },
+    { sBashfulNatureName, NATURE_BASHFUL },
+    { sRashNatureName, NATURE_RASH },
+    { sCalmNatureName, NATURE_CALM },
+    { sGentleNatureName, NATURE_GENTLE },
+    { sSassyNatureName, NATURE_SASSY },
+    { sCarefulNatureName, NATURE_CAREFUL },
+    { sQuirkyNatureName, NATURE_QUIRKY }
+};
+
 
 static const struct ListMenuTemplate sTypeListMenu =
 {
@@ -245,6 +299,28 @@ static const struct ListMenuTemplate sTypeListMenu =
     .moveCursorFunc = ListMenuDefaultCursorMoveFunc,
     .itemPrintFunc = NULL,
     .totalItems = ARRAY_COUNT(sPossibleTypesListMenuItems),
+    .maxShowed = 5,
+    .windowId = 0,
+    .header_X = 0,
+    .item_X = 8,
+    .cursor_X = 0,
+    .upText_Y = 1,
+    .cursorPal = 2,
+    .fillValue = 1,
+    .cursorShadowPal = 3,
+    .lettersSpacing = 0,
+    .itemVerticalPadding = 0,
+    .scrollMultiple = LIST_NO_MULTIPLE_SCROLL,
+    .fontId = FONT_NORMAL,
+    .cursorKind = CURSOR_BLACK_ARROW
+};
+
+static const struct ListMenuTemplate sNatureListMenu =
+{
+    .items = sPossibleNaturesListMenuItems,
+    .moveCursorFunc = ListMenuDefaultCursorMoveFunc,
+    .itemPrintFunc = NULL,
+    .totalItems = ARRAY_COUNT(sPossibleNaturesListMenuItems),
     .maxShowed = 5,
     .windowId = 0,
     .header_X = 0,
@@ -4813,6 +4889,31 @@ void ItemUseCB_AbilityPatch(u8 taskId, TaskFunc task)
     gTasks[taskId].func = Task_AbilityPatch;
 }
 
+static void Task_Tera_Shards_Close(u8 taskId)
+{
+    s16 *data = gTasks[taskId].data;
+    static const u8 doneText[] = _("{STR_VAR_1}'s Tera Type was changed!\n{PAUSE_UNTIL_PRESS}");
+    switch (tState)
+    {
+    case 0:
+        PlaySE(SE_USE_ITEM);
+        StringExpandPlaceholders(gStringVar4, doneText);
+        DisplayPartyMenuMessage(gStringVar4, 1);
+        ScheduleBgCopyTilemapToVram(2);
+        tState = 1;
+        break;
+    case 1:
+        if (!IsPartyMenuTextPrinterActive())
+            tState++;
+        break;
+    case 2:
+        SetMonData(&gPlayerParty[gPartyMenu.slotId], MON_DATA_TERA_TYPE, &gTasks[taskId].data[2]);
+        RemoveBagItem(gSpecialVar_ItemId, 1);
+        gTasks[taskId].func = Task_ClosePartyMenu;
+        break;
+    }
+}
+
 void Task_TeraShard(u8 taskId)
 {
     static const u8 askText[] = _("Would you like to change {STR_VAR_1}'s\nTera Type?");
@@ -4822,26 +4923,12 @@ void Task_TeraShard(u8 taskId)
     u8 windowId;
     u8 listMenuTaskId;
     u8 teraTypeMenuTaskId;
-    u32 input;
 
     switch (tState)
     {
     case 0:
-        // Can't use.
-        // if (gSpeciesInfo[tSpecies].abilities[tAbilityNum] == 0
-        //     || !tSpecies
-        //     )
-        // {
-        //     gPartyMenuUseExitCallback = FALSE;
-        //     PlaySE(SE_SELECT);
-        //     DisplayPartyMenuMessage(gText_WontHaveEffect, 1);
-        //     ScheduleBgCopyTilemapToVram(2);
-        //     gTasks[taskId].func = Task_ClosePartyMenuAfterText;
-        //     return;
-        // }
         gPartyMenuUseExitCallback = TRUE;
         GetMonNickname(&gPlayerParty[tMonId], gStringVar1);
-        // StringCopy(gStringVar2, gAbilityNames[GetAbilityBySpecies(tSpecies, tAbilityNum)]);
         StringExpandPlaceholders(gStringVar4, askText);
         PlaySE(SE_SELECT);
         DisplayPartyMenuMessage(gStringVar4, 1);
@@ -4866,43 +4953,6 @@ void Task_TeraShard(u8 taskId)
             tState++;
         }
         break;
-    case 2:
-
-        // input = ListMenu_ProcessInput(listMenuTaskId);
-        // switch (input) {
-        //     case LIST_NOTHING_CHOSEN:
-        //         break;
-        //     case LIST_CANCEL:
-        //         PlaySE(SE_SELECT);
-        //         gPartyMenuUseExitCallback = FALSE;
-        //         ScheduleBgCopyTilemapToVram(2);
-        //         // Don't exit party selections screen, return to choosing a mon.
-        //         ClearStdWindowAndFrameToTransparent(6, 0);
-        //         ClearWindowTilemap(6);
-        //         DisplayPartyMenuStdMessage(5);
-        //         gTasks[taskId].func = (void *)GetWordTaskArg(taskId, tOldFunc);
-        //     default:
-        //         tState++;
-
-        // }
-
-        break;
-    // case 3:
-    //     PlaySE(SE_USE_ITEM);
-    //     StringExpandPlaceholders(gStringVar4, doneText);
-    //     DisplayPartyMenuMessage(gStringVar4, 1);
-    //     ScheduleBgCopyTilemapToVram(2);
-    //     tState++;
-    //     break;
-    // case 4:
-    //     if (!IsPartyMenuTextPrinterActive())
-    //         tState++;
-    //     break;
-    // case 5:
-    //     SetMonData(&gPlayerParty[tMonId], MON_DATA_ABILITY_NUM, &tAbilityNum);
-    //     RemoveBagItem(gSpecialVar_ItemId, 1);
-    //     gTasks[taskId].func = Task_ClosePartyMenu;
-    //     break;
     }
 }
 
@@ -4917,63 +4967,16 @@ static void Task_HandleMenuInput_Types(u8 taskId)
         break;
     case LIST_CANCEL:
         PlaySE(SE_SELECT);
-        // gPartyMenuUseExitCallback = FALSE;
-        // ScheduleBgCopyTilemapToVram(2);
-        // // Don't exit party selections screen, return to choosing a mon.
-        // ClearStdWindowAndFrameToTransparent(6, 0);
-        // ClearWindowTilemap(6);
-        // DisplayPartyMenuStdMessage(5);
         gTasks[taskId].func = Task_ClosePartyMenu;
         break;
     default:
         PlaySE(SE_USE_ITEM);
-        SetMonData(&gPlayerParty[gPartyMenu.slotId], MON_DATA_TERA_TYPE, &input);
-        RemoveBagItem(gSpecialVar_ItemId, 1);
-        gTasks[taskId].func = Task_ClosePartyMenu;
+        gTasks[taskId].data[2] = input;
+        gTasks[taskId].data[0] = 0;
+        gTasks[taskId].func = Task_Tera_Shards_Close;
         break;
     }
 }
-
-
-
-    // if (JOY_NEW(A_BUTTON))
-    // {
-    //     switch (input)
-    //     {
-    //     case 0:
-    //     case 1:
-    //         gSpecialVar_Result = input;
-    //         break;
-    //     case 2:
-    //         gSpecialVar_Result = 2;
-    //         break;
-    //     }
-    //     DestroyListMenuTask(gTasks[taskId].data[0], NULL, NULL);
-    //     ClearStdWindowAndFrame(gTasks[taskId].data[1], TRUE);
-    //     RemoveWindow(gTasks[taskId].data[1]);
-    //     DestroyTask(taskId);
-    //     ScriptContext_Enable();
-    // }
-    // else if (JOY_NEW(B_BUTTON))
-    // {
-    //     // gSpecialVar_Result = 1;
-    //     // DestroyListMenuTask(gTasks[taskId].data[0], NULL, NULL);
-    //     // ClearStdWindowAndFrame(gTasks[taskId].data[1], TRUE);
-    //     // RemoveWindow(gTasks[taskId].data[1]);
-    //     // DestroyTask(taskId);
-    //     // ScriptContext_Enable();
-
-    //     gPartyMenuUseExitCallback = FALSE;
-    //     PlaySE(SE_SELECT);
-    //     ScheduleBgCopyTilemapToVram(2);
-    //     // Don't exit party selections screen, return to choosing a mon.
-    //     ClearStdWindowAndFrameToTransparent(6, 0);
-    //     ClearWindowTilemap(6);
-    //     DisplayPartyMenuStdMessage(5);
-    //     gTasks[taskId].func = (void *)GetWordTaskArg(taskId, tOldFunc);
-    //     return;
-    // }
-
 
 void ItemUseCB_TeraShard(u8 taskId, TaskFunc task)
 {
@@ -4981,22 +4984,114 @@ void ItemUseCB_TeraShard(u8 taskId, TaskFunc task)
 
     tState = 0;
     tMonId = gPartyMenu.slotId;
-    tSpecies = GetMonData(&gPlayerParty[tMonId], MON_DATA_SPECIES, NULL);
-    if (GetMonData(&gPlayerParty[tMonId], MON_DATA_ABILITY_NUM, NULL) == 2)
-        tAbilityNum = 0;
-    else
-        tAbilityNum = 2;
     SetWordTaskArg(taskId, tOldFunc, (uintptr_t)(gTasks[taskId].func));
     gTasks[taskId].func = Task_TeraShard;
 }
+
+static void Task_Mints_Close(u8 taskId)
+{
+    s16 *data = gTasks[taskId].data;
+    static const u8 doneText[] = _("{STR_VAR_1}'s Nature was changed!\n{PAUSE_UNTIL_PRESS}");
+    switch (tState)
+    {
+    case 0:
+        PlaySE(SE_USE_ITEM);
+        StringExpandPlaceholders(gStringVar4, doneText);
+        DisplayPartyMenuMessage(gStringVar4, 1);
+        ScheduleBgCopyTilemapToVram(2);
+        tState = 1;
+        break;
+    case 1:
+        if (!IsPartyMenuTextPrinterActive())
+            tState++;
+        break;
+    case 2:
+        SetMonData(&gPlayerParty[gPartyMenu.slotId], MON_DATA_PERSONALITY, &gTasks[taskId].data[2]);
+        RemoveBagItem(gSpecialVar_ItemId, 1);
+        gTasks[taskId].func = Task_ClosePartyMenu;
+        break;
+    }
+}
+
+static void Task_HandleMenuInput_Natures(u8 taskId)
+{
+    s16 *data = gTasks[taskId].data;
+    u32 input = ListMenu_ProcessInput(gTasks[taskId].data[0]);
+
+    switch (input)
+    {
+    case LIST_NOTHING_CHOSEN:
+        break;
+    case LIST_CANCEL:
+        PlaySE(SE_SELECT);
+        gTasks[taskId].func = Task_ClosePartyMenu;
+        break;
+    default:
+        PlaySE(SE_USE_ITEM);
+        gTasks[taskId].data[2] = input;
+        gTasks[taskId].data[0] = 0;
+        gTasks[taskId].func = Task_Mints_Close;
+        break;
+    }
+}
+
+void Task_Mint(u8 taskId)
+{
+    static const u8 askText[] = _("Would you like to change\n{STR_VAR_1}'s Nature?");
+    s16 *data = gTasks[taskId].data;
+    struct ListMenuTemplate menuTemplate;
+    u8 windowId;
+    u8 listMenuTaskId;
+    u8 natureMenuTaskId;
+
+    switch (tState)
+    {
+    case 0:
+        gPartyMenuUseExitCallback = TRUE;
+        GetMonNickname(&gPlayerParty[tMonId], gStringVar1);
+        StringExpandPlaceholders(gStringVar4, askText);
+        PlaySE(SE_SELECT);
+        DisplayPartyMenuMessage(gStringVar4, 1);
+        ScheduleBgCopyTilemapToVram(2);
+        tState++;
+        break;
+    case 1:
+        if (!IsPartyMenuTextPrinterActive())
+        {
+            windowId = AddWindow(&sMainListWindowTemplate);
+            DrawStdFrameWithCustomTileAndPalette(windowId, TRUE, 0x4F, 13);
+
+            menuTemplate = sNatureListMenu;
+            menuTemplate.windowId = windowId;
+            listMenuTaskId = ListMenuInit(&menuTemplate, 0, 0);
+
+            CopyWindowToVram(windowId, COPYWIN_FULL);
+
+            natureMenuTaskId = CreateTask(Task_HandleMenuInput_Natures, 3);
+            gTasks[natureMenuTaskId].data[0] = listMenuTaskId;
+            gTasks[natureMenuTaskId].data[1] = windowId;
+            tState++;
+        }
+        break;
+    }
+}
+
+
+void ItemUseCB_Mint(u8 taskId, TaskFunc task)
+{
+    s16 *data = gTasks[taskId].data;
+    tState = 0;
+    tMonId = gPartyMenu.slotId;
+    SetWordTaskArg(taskId, tOldFunc, (uintptr_t)(gTasks[taskId].func));
+    gTasks[taskId].func = Task_Mint;
+}
+
 
 #undef tState
 #undef tSpecies
 #undef tAbilityNum
 #undef tMonId
 #undef tOldFunc
-
-
 
 static void Task_DisplayHPRestoredMessage(u8 taskId)
 {

@@ -88,7 +88,7 @@ const u32 *const gItemIconTable[ITEMS_COUNT + 1][2] =
     [ITEM_ABILITY_CAPSULE] = {gItemIcon_AbilityCapsule, gItemIconPalette_AbilityCapsule},
     [ITEM_ABILITY_PATCH] = {gItemIcon_AbilityPatch, gItemIconPalette_AbilityPatch},
     // Mints
-    [ITEM_LONELY_MINT] = {gItemIcon_Mint, gItemIconPalette_RedMint},
+    [ITEM_NATURE_MINT] = {gItemIcon_Mint, gItemIconPalette_GreenMint},
     [ITEM_ADAMANT_MINT] = {gItemIcon_Mint, gItemIconPalette_RedMint},
     [ITEM_NAUGHTY_MINT] = {gItemIcon_Mint, gItemIconPalette_RedMint},
     [ITEM_BRAVE_MINT] = {gItemIcon_Mint, gItemIconPalette_RedMint},
