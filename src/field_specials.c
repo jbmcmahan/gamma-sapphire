@@ -1196,7 +1196,7 @@ void ResetTrickHouseNuggetFlag(void)
 
 bool8 CheckLeadMonCool(void)
 {
-    if (GetMonData(&gPlayerParty[GetLeadMonIndex()], MON_DATA_COOL) < 200)
+    if (GetMonData(&gPlayerParty[GetLeadMonIndex()], MON_DATA_SPATK_EV) < 200)
         return FALSE;
 
     return TRUE;
@@ -1204,7 +1204,7 @@ bool8 CheckLeadMonCool(void)
 
 bool8 CheckLeadMonBeauty(void)
 {
-    if (GetMonData(&gPlayerParty[GetLeadMonIndex()], MON_DATA_BEAUTY) < 200)
+    if (GetMonData(&gPlayerParty[GetLeadMonIndex()], MON_DATA_SPDEF_EV) < 200)
         return FALSE;
 
     return TRUE;
@@ -1212,7 +1212,7 @@ bool8 CheckLeadMonBeauty(void)
 
 bool8 CheckLeadMonCute(void)
 {
-    if (GetMonData(&gPlayerParty[GetLeadMonIndex()], MON_DATA_CUTE) < 200)
+    if (GetMonData(&gPlayerParty[GetLeadMonIndex()], MON_DATA_ATK_EV) < 200)
         return FALSE;
 
     return TRUE;
@@ -1220,7 +1220,7 @@ bool8 CheckLeadMonCute(void)
 
 bool8 CheckLeadMonSmart(void)
 {
-    if (GetMonData(&gPlayerParty[GetLeadMonIndex()], MON_DATA_SMART) < 200)
+    if (GetMonData(&gPlayerParty[GetLeadMonIndex()], MON_DATA_DEF_EV) < 200)
         return FALSE;
 
     return TRUE;
@@ -1228,7 +1228,7 @@ bool8 CheckLeadMonSmart(void)
 
 bool8 CheckLeadMonTough(void)
 {
-    if (GetMonData(&gPlayerParty[GetLeadMonIndex()], MON_DATA_TOUGH) < 200)
+    if (GetMonData(&gPlayerParty[GetLeadMonIndex()], MON_DATA_SPEED_EV) < 200)
         return FALSE;
 
     return TRUE;

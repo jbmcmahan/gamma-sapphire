@@ -148,13 +148,12 @@ struct BoxPokemon
     u8 spAttackEV;
     u8 spDefenseEV;
     // Contest data (6 bytes)
-    u8 cool;
-    u8 beauty;
+    u16 learnedMoves1;
+    u32 learnedMoves2;
 
-    u8 cute;
-    u8 smart;
-    u8 tough;
-    u8 sheen;
+    // added word
+    u32 learnedMoves3;
+
 
     // Words 15 & 16: Trainer name + met location
     u8 metLocation;
@@ -205,7 +204,6 @@ struct BoxPokemon
     u32 filler1:1;
 
     // Word 20: Filler
-    u32 filler2;
 };
 
 

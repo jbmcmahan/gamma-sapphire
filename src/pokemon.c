@@ -4180,6 +4180,11 @@ u16 GiveMoveToBoxMon(struct BoxPokemon *boxMon, u16 move)
         {
             SetBoxMonData(boxMon, MON_DATA_MOVE1 + i, &move);
             SetBoxMonData(boxMon, MON_DATA_PP1 + i, &gBattleMoves[move].pp);
+
+            // SetBoxMonData(boxMon, MON_DATA_LEARNED_MOVES_1, &move);
+            // SetBoxMonData(boxMon, MON_DATA_LEARNED_MOVES_2, &move);
+            // SetBoxMonData(boxMon, MON_DATA_LEARNED_MOVES_3, &move);
+
             return move;
         }
         if (existingMove == move)
@@ -4662,24 +4667,6 @@ u32 GetBoxMonData(struct BoxPokemon *boxMon, s32 field, u8 *data)
     case MON_DATA_SPDEF_EV:
         retVal = boxMon->spDefenseEV;
         break;
-    case MON_DATA_COOL:
-        retVal = boxMon->cool;
-        break;
-    case MON_DATA_BEAUTY:
-        retVal = boxMon->beauty;
-        break;
-    case MON_DATA_CUTE:
-        retVal = boxMon->cute;
-        break;
-    case MON_DATA_SMART:
-        retVal = boxMon->smart;
-        break;
-    case MON_DATA_TOUGH:
-        retVal = boxMon->tough;
-        break;
-    case MON_DATA_SHEEN:
-        retVal = boxMon->sheen;
-        break;
     case MON_DATA_POKERUS:
         retVal = boxMon->pokerus;
         break;
@@ -4862,6 +4849,15 @@ u32 GetBoxMonData(struct BoxPokemon *boxMon, s32 field, u8 *data)
     case MON_DATA_IS_SHINY:
         retVal = boxMon->shiny;
         break;
+    case MON_DATA_LEARNED_MOVES_1:
+        retVal = boxMon->learnedMoves1;
+        break;
+    case MON_DATA_LEARNED_MOVES_2:
+        retVal = boxMon->learnedMoves2;
+        break;
+    case MON_DATA_LEARNED_MOVES_3:
+        retVal = boxMon->learnedMoves3;
+        break;
     default:
         break;
     }
@@ -5003,24 +4999,6 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
     case MON_DATA_SPDEF_EV:
         SET8(boxMon->spDefenseEV);
         break;
-    case MON_DATA_COOL:
-        SET8(boxMon->cool);
-        break;
-    case MON_DATA_BEAUTY:
-        SET8(boxMon->beauty);
-        break;
-    case MON_DATA_CUTE:
-        SET8(boxMon->cute);
-        break;
-    case MON_DATA_SMART:
-        SET8(boxMon->smart);
-        break;
-    case MON_DATA_TOUGH:
-        SET8(boxMon->tough);
-        break;
-    case MON_DATA_SHEEN:
-        SET8(boxMon->sheen);
-        break;
     case MON_DATA_POKERUS:
         SET8(boxMon->pokerus);
         break;
@@ -5142,6 +5120,15 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
         break;
     case MON_DATA_IS_SHINY:
         SET8(boxMon->shiny);
+        break;
+    case MON_DATA_LEARNED_MOVES_1:
+        SET16(boxMon->learnedMoves1);
+        break;
+    case MON_DATA_LEARNED_MOVES_2:
+        SET32(boxMon->learnedMoves2);
+        break;
+    case MON_DATA_LEARNED_MOVES_3:
+        SET32(boxMon->learnedMoves3);
         break;
     default:
         break;
@@ -6148,7 +6135,7 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 mode, u16 evolutionItem, s
     u32 personality = GetMonData(mon, MON_DATA_PERSONALITY, 0);
     u8 level;
     u16 friendship;
-    u8 beauty = GetMonData(mon, MON_DATA_BEAUTY, 0);
+    u8 beauty = GetMonData(mon, MON_DATA_SPATK_EV, 0);
     u16 upperPersonality = personality >> 16;
     u8 holdEffect;
     u16 currentMap;

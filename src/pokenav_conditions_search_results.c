@@ -67,7 +67,7 @@ static void PrintSearchResultListMenuItems(struct Pokenav_SearchResultsGfx *);
 static void CreateSearchResultsList(void);
 static void BufferSearchMonListItem(struct PokenavMonListItem *, u8 *);
 
-static const u32 sSearchMonDataIds[] = {MON_DATA_COOL, MON_DATA_BEAUTY, MON_DATA_CUTE, MON_DATA_SMART, MON_DATA_TOUGH};
+static const u32 sSearchMonDataIds[] = {MON_DATA_SPATK_EV, MON_DATA_SPDEF_EV, MON_DATA_ATK_EV, MON_DATA_DEF_EV, MON_DATA_SPEED_EV};
 
 static const LoopedTask sConditionSearchLoopedTaskFuncs[] =
 {
