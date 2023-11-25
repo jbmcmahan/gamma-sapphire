@@ -36,6 +36,7 @@ static u8 GetDaycareCompatibilityScore(struct DayCare *daycare);
 static void DaycarePrintMonInfo(u8 windowId, u32 daycareSlotId, u8 y);
 static u8 ModifyBreedingScoreForOvalCharm(u8 score);
 static u8 GetEggMoves(struct Pokemon *pokemon, u16 *eggMoves);
+static bool8 EggGroupsOverlap(u16 *eggGroups1, u16 *eggGroups2);
 
 // RAM buffers used to assist with BuildEggMoveset()
 EWRAM_DATA static u16 sHatchedEggLevelUpMoves[EGG_LVL_UP_MOVES_ARRAY_COUNT] = {0};
@@ -178,12 +179,17 @@ static void TransferEggMoves(void)
 {
     u32 i, j, k, l;
     u16 numEggMoves;
+    u16 eggGroups[DAYCARE_MON_COUNT][EGG_GROUPS_PER_MON];
     struct Pokemon mon;
 
     for (i = 0; i < DAYCARE_MON_COUNT; i++)
     {
-        if (!GetBoxMonData(&gSaveBlock1Ptr->daycare.mons[i].mon, MON_DATA_SANITY_HAS_SPECIES))
-            continue;
+
+        // if (!GetBoxMonData(&gSaveBlock1Ptr->daycare.mons[i].mon, MON_DATA_SANITY_HAS_SPECIES))
+        //     continue;
+
+        eggGroups[i][0] = gSpeciesInfo[&gSaveBlock1Ptr->daycare.mons[i].mon, MON_DATA_SPECIES].eggGroups[0];
+        eggGroups[i][1] = gSpeciesInfo[&gSaveBlock1Ptr->daycare.mons[i].mon, MON_DATA_SPECIES].eggGroups[1];
 
         BoxMonToMon(&gSaveBlock1Ptr->daycare.mons[i].mon, &mon);
         ClearHatchedEggMoves();
@@ -193,14 +199,16 @@ static void TransferEggMoves(void)
             // Go through other Daycare mons
             for (k = 0; k < DAYCARE_MON_COUNT; k++)
             {
-                if (k == i || !GetBoxMonData(&gSaveBlock1Ptr->daycare.mons[k].mon, MON_DATA_SANITY_HAS_SPECIES))
-                    continue;
+                // if (k == i || !GetBoxMonData(&gSaveBlock1Ptr->daycare.mons[k].mon, MON_DATA_SANITY_HAS_SPECIES))
+                //     continue;
                 
                 // Check if you can inherit from them
-                if (GetBoxMonData(&gSaveBlock1Ptr->daycare.mons[k].mon, MON_DATA_SPECIES) != GetBoxMonData(&gSaveBlock1Ptr->daycare.mons[i].mon, MON_DATA_SPECIES)
-            #if P_EGG_MOVE_TRANSFER >= GEN_9
-                    && GetBoxMonData(&gSaveBlock1Ptr->daycare.mons[i].mon, MON_DATA_HELD_ITEM) != ITEM_MIRROR_HERB
-            #endif
+
+                eggGroups[k][0] = gSpeciesInfo[&gSaveBlock1Ptr->daycare.mons[k].mon, MON_DATA_SPECIES].eggGroups[0];
+                eggGroups[k][1] = gSpeciesInfo[&gSaveBlock1Ptr->daycare.mons[k].mon, MON_DATA_SPECIES].eggGroups[1];
+
+                if (!EggGroupsOverlap(eggGroups[i],eggGroups[k])
+                    || GetBoxMonData(&gSaveBlock1Ptr->daycare.mons[i].mon, MON_DATA_HELD_ITEM) != ITEM_MIRROR_HERB
                 )
                     continue;
 
@@ -239,9 +247,7 @@ static void StorePokemonInDaycare(struct Pokemon *mon, struct DaycareMon *daycar
     CompactPartySlots();
     CalculatePlayerPartyCount();
 
-#if P_EGG_MOVE_TRANSFER >= GEN_8
     TransferEggMoves();
-#endif
 }
 
 static void StorePokemonInEmptyDaycareSlot(struct Pokemon *mon, struct DayCare *daycare)

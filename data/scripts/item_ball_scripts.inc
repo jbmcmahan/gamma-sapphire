@@ -741,7 +741,7 @@ Route106_EventScript_ItemPowerBand::
 	end
 
 Route106_EventScript_ItemPechaBerry::
-	finditem ITEM_PECHA_BERRY
+	finditem ITEM_MIRROR_HERB
 	end
 
 Route106_EventScript_ItemPersimBerry::

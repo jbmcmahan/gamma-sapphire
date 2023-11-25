@@ -97,7 +97,13 @@
     }
   ],
   "warp_events": [
-
+    {
+      "x": 16,
+      "y": 11,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE117_POKEMON_DAY_CARE",
+      "dest_warp_id": "0"
+    }
   ],
   "coord_events": [
 
