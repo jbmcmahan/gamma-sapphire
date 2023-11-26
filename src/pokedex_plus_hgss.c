@@ -6256,11 +6256,11 @@ static void Task_LoadEvolutionScreen(u8 taskId)
         //Print evo info and icons
         gTasks[taskId].data[3] = 0;
         PrintEvolutionTargetSpeciesAndMethod(taskId, NationalPokedexNumToSpeciesHGSS(sPokedexListItem->dexNum), 0, sPokedexView->numPreEvolutions);
-        LoadSpritePalette(&sSpritePalette_Arrow);
+        LoadSpritePalette(&gSpritePalette_Arrow);
         GetSeenFlagTargetSpecies();
         if (sPokedexView->sEvoScreenData.numAllEvolutions != 0 && sPokedexView->sEvoScreenData.numSeen != 0)
         {
-            sPokedexView->sEvoScreenData.arrowSpriteId = CreateSprite(&sSpriteTemplate_Arrow, 7, 58, 0);
+            sPokedexView->sEvoScreenData.arrowSpriteId = CreateSprite(&gSpriteTemplate_Arrow, 7, 58, 0);
             gSprites[sPokedexView->sEvoScreenData.arrowSpriteId].animNum = 2;
         }
         gMain.state++;
@@ -6535,13 +6535,13 @@ static u8 PrintPreEvolutions(u8 taskId, u16 species)
             {
                 preEvolutionOne = i;
                 numPreEvolutions += 1;
-                #ifdef POKEMON_EXPANSION
-                    if (gEvolutionTable[i][j].method == EVO_MEGA_EVOLUTION)
-                    {
-                        CopyItemName(gEvolutionTable[i][j].param, gStringVar2); //item
-                        isMega = TRUE;
-                    }
-                #endif
+                // #ifdef POKEMON_EXPANSION
+                //     if (gEvolutionTable[i][j].method == EVO_MEGA_EVOLUTION)
+                //     {
+                //         CopyItemName(gEvolutionTable[i][j].param, gStringVar2); //item
+                //         isMega = TRUE;
+                //     }
+                // #endif
                 break;
             }
         }
@@ -6649,14 +6649,8 @@ static u8 PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 depth,
     //Calculate number of possible direct evolutions (e.g. Eevee has 5 but torchic has 1)
     for (i = 0; i < EVOS_PER_MON; i++)
     {
-        #ifndef POKEMON_EXPANSION
-            if (gEvolutionTable[species][i].method != 0)
-                times += 1;
-        #endif
-        #ifdef POKEMON_EXPANSION
-            if (gEvolutionTable[species][i].method != 0 && gEvolutionTable[species][i].method != EVO_MEGA_EVOLUTION)
-                times += 1;
-        #endif
+        if (gEvolutionTable[species][i].method != 0)
+            times += 1;
     }
     gTasks[taskId].data[3] = times;
     sPokedexView->sEvoScreenData.numAllEvolutions += times;
@@ -6947,7 +6941,7 @@ static void Task_LoadFormsScreen(u8 taskId)
         //Print form icons
         gTasks[taskId].data[3] = 0;
         PrintForms(taskId, NationalPokedexNumToSpeciesHGSS(sPokedexListItem->dexNum));
-        LoadSpritePalette(&sSpritePalette_Arrow);
+        LoadSpritePalette(&gSpritePalette_Arrow);
         gMain.state++;
         break;
     case 5:

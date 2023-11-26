@@ -5103,8 +5103,8 @@ Route134_Text_HudsonPostBattle:
 
 Route103_Text_HannarIntro::
 	.string "Gah! My {COLOR RED}{SHADOW LIGHT_RED}Γ{COLOR DARK_GRAY}{SHADOW LIGHT_GRAY} fishing Δ line's all snarled up!\n"
-	.string "I'm getting frustrated and mean!\l"
-	.string "That's it! Battle me!$"
+	.string "I'm getting frustrated and mean! That's\l"
+	.string "it! Battle me!$"
 
 Route103_Text_HannarDefeated::
 	.string "Gah! Lost it! I'm even more annoyed now!$"
