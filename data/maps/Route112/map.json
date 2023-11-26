@@ -188,7 +188,13 @@
     }
   ],
   "warp_events": [
-
+    {
+      "x": 17,
+      "y": 6,
+      "elevation": 0,
+      "dest_map": "MAP_LILYCOVE_CITY_MOVE_DELETERS_HOUSE",
+      "dest_warp_id": "0"
+    }
   ],
   "coord_events": [
 
