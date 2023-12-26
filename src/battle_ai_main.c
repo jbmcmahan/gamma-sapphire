@@ -64,6 +64,8 @@ static s16 AI_Safari(u8 battlerAtk, u8 battlerDef, u16 move, s16 score);
 static s16 AI_FirstBattle(u8 battlerAtk, u8 battlerDef, u16 move, s16 score);
 static s16 AI_DoubleBattle(u8 battlerAtk, u8 battlerDef, u16 move, s16 score);
 static s16 AI_TeraFirstTurn(u8 battlerAtk, u8 battlerDef, u16 move, s16 score);
+static s16 AI_TeraAceOnly(u8 battlerAtk, u8 battlerDef, u16 move, s16 score);
+
 
 static s16 (*const sBattleAiFuncTable[])(u8, u8, u16, s16) =
 {
@@ -77,7 +79,7 @@ static s16 (*const sBattleAiFuncTable[])(u8, u8, u16, s16) =
     [7] = AI_DoubleBattle,           // AI_FLAG_DOUBLE_BATTLE
     [8] = AI_HPAware,                // AI_FLAG_HP_AWARE
     [9] = AI_TeraFirstTurn,                      // AI_FLAG_NEGATE_UNAWARE
-    [10] = NULL,                     // AI_FLAG_WILL_SUICIDE
+    [10] = AI_TeraAceOnly,                     // AI_FLAG_WILL_SUICIDE
     [11] = NULL,                     // AI_FLAG_HELP_PARTNER
     [12] = NULL,                     // Unused
     [13] = NULL,                     // Unused
@@ -5412,6 +5414,18 @@ static s16 AI_TeraFirstTurn(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
     return score;
 }
 
+static s16 AI_TeraAceOnly(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
+{
+
+    if (AI_THINKING_STRUCT->teraMon == TRUE
+     && IsAceMon(battlerAtk, gBattlerPartyIndexes[battlerAtk]))
+        score += 20;
+    else if (AI_THINKING_STRUCT->teraMon == TRUE
+     && !IsAceMon(battlerAtk, gBattlerPartyIndexes[battlerAtk]))
+        score -= 20;
+
+    return score;
+}
 
 
 static void AI_Flee(void)

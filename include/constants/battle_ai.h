@@ -50,7 +50,7 @@
 #define AI_FLAG_HP_AWARE              (1 << 8)
 // New, Trainer Handicap Flags
 #define AI_FLAG_TERA_FIRST_TURN         (1 << 9)   // AI is NOT aware of negating effects like wonder room, mold breaker, etc
-#define AI_FLAG_TERA_ACE          (1 << 10)  // AI will use explosion / self destruct / final gambit / etc
+#define AI_FLAG_TERA_ACE_ONLY          (1 << 10)  // AI will use explosion / self destruct / final gambit / etc
 // New, Trainer Strategy Flags
 #define AI_FLAG_HELP_PARTNER          (1 << 11)  // AI can try to help partner. If not set, will tend not to target partner
 #define AI_FLAG_PREFER_STATUS_MOVES   (1 << 12)  // AI gets a score bonus for status moves. Should be combined with AI_FLAG_CHECK_BAD_MOVE to prevent using only status moves
