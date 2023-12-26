@@ -671,7 +671,7 @@ bool32 IsBattlerTrapped(u8 battler, bool8 checkSwitch)
 #endif
     if (checkSwitch && holdEffect == HOLD_EFFECT_SHED_SHELL)
         return FALSE;
-    else if (!checkSwitch && GetBattlerAbility(battler) == ABILITY_RUN_AWAY)
+    else if (!checkSwitch && BattlerHasAbilityOrInnate(battler, ABILITY_RUN_AWAY))
         return FALSE;
     else if (!checkSwitch && holdEffect == HOLD_EFFECT_CAN_ALWAYS_RUN)
         return FALSE;
@@ -2988,6 +2988,14 @@ bool32 AI_CanBeInfatuated(u8 battlerAtk, u8 battlerDef, u16 defAbility)
     return TRUE;
 }
 
+bool32 AI_CanBeTaunted(u8 battlerAtk, u8 battlerDef, u16 defAbility)
+{
+    if (BattlerHasAbilityOrInnate(battlerDef, ABILITY_OBLIVIOUS)
+      || AI_IsAbilityOnSide(battlerDef, ABILITY_AROMA_VEIL))
+        return FALSE;
+    return TRUE;
+}
+
 u32 ShouldTryToFlinch(u8 battlerAtk, u8 battlerDef, u16 atkAbility, u16 defAbility, u16 move)
 {
     if (defAbility == ABILITY_INNER_FOCUS
@@ -3835,15 +3843,40 @@ bool32 ShouldUseZMove(u8 battlerAtk, u8 battlerDef, u16 chosenMove)
     return FALSE;
 }
 
-bool32 ShouldTerastallize(u8 battlerAtk, u8 battlerDef)
+bool32 ShouldTerastallize(u8 battlerAtk, u8 battlerDef, u16 chosenMove)
 {
+    u8 effectiveness;
+    u32 damageBefore;
+    u32 damageAfter;
+
     if (gBattleStruct->tera.alreadyTerastallized[battlerAtk])
         return FALSE;   //cant use tera twice
     if (gBattleTypeFlags & BATTLE_TYPE_FIRST_BATTLE)
         return FALSE;
     if (gBattleTypeFlags & (!BATTLE_TYPE_TRAINER))
         return FALSE;
+    if (ShouldSwitch())
+        return FALSE;
+    // if (WillAIStrikeFirst() && AI_CalcDamage(chosenMove, battlerAtk, battlerDef, &effectiveness, FALSE) >= gBattleMons[battlerDef].hp)
+        // return FALSE; 
+    // if ((AI_CalcDamage(chosenMove, battlerAtk, battlerDef, &effectiveness, TRUE) * 2) > (AI_CalcDamage(chosenMove, battlerAtk, battlerDef, &effectiveness, FALSE) * 3))
+    //     return TRUE; 
+    // damageBefore = AI_CalcDamage(chosenMove, battlerAtk, battlerDef, &effectiveness, FALSE);
+    // damageAfter = AI_CalcDamage(chosenMove, battlerAtk, battlerDef, &effectiveness, TRUE);
+    // if ((damageAfter) == damageBefore)
+    //     return TRUE; 
+
     return TRUE;
+}
+
+// TRUE if AI's last mon, FALSE otherwise
+bool32 IsAceMon(u32 battlerId, u32 monPartyId)
+{
+    if (AI_THINKING_STRUCT->aiFlags & AI_FLAG_ACE_POKEMON
+        && !(gBattleStruct->forcedSwitch & gBitTable[battlerId])
+        && monPartyId == CalculateEnemyPartyCount()-1)
+            return TRUE;
+    return FALSE;
 }
 
 bool32 AI_IsBattlerAsleepOrComatose(u8 battlerId)

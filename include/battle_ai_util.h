@@ -64,7 +64,9 @@ bool32 AI_IsAbilityOnSide(u32 battlerId, u32 ability);
 bool32 AI_MoveMakesContact(u32 ability, u32 holdEffect, u16 move);
 u32 AI_GetBattlerMoveTargetType(u8 battlerId, u16 move);
 bool32 ShouldUseZMove(u8 activeId, u8 targetId, u16 chosenMove);
-bool32 ShouldTerastallize(u8 battlerAtk, u8 battlerDef);
+bool32 ShouldTerastallize(u8 battlerAtk, u8 battlerDef, u16 chosenMove);
+bool32 IsAceMon(u32 battlerId, u32 monPartyId);
+
 
 // stat stage checks
 bool32 AnyStatIsRaised(u8 battlerId);
@@ -145,6 +147,7 @@ bool32 ShouldBurnSelf(u8 battler, u16 ability);
 bool32 AI_CanBurn(u8 battlerAtk, u8 battlerDef, u16 defAbility, u8 battlerAtkPartner, u16 move, u16 partnerMove);
 bool32 AI_CanGiveFrostbite(u8 battlerAtk, u8 battlerDef, u16 defAbility, u8 battlerAtkPartner, u16 move, u16 partnerMove);
 bool32 AI_CanBeInfatuated(u8 battlerAtk, u8 battlerDef, u16 defAbility);
+bool32 AI_CanBeTaunted(u8 battlerAtk, u8 battlerDef, u16 defAbility);
 bool32 AnyPartyMemberStatused(u8 battlerId, bool32 checkSoundproof);
 u32 ShouldTryToFlinch(u8 battlerAtk, u8 battlerDef, u16 atkAbility, u16 defAbility, u16 move);
 bool32 ShouldTrap(u8 battlerAtk, u8 battlerDef, u16 move);

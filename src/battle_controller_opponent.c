@@ -1507,6 +1507,7 @@ static void OpponentHandleYesNoBox(void)
 static void OpponentHandleChooseMove(void)
 {
     u8 chosenMoveId;
+    u8 toTera;
     struct ChooseMoveStruct *moveInfo = (struct ChooseMoveStruct *)(&gBattleResources->bufferA[gActiveBattler][4]);
 
     if (gBattleTypeFlags & (BATTLE_TYPE_TRAINER | BATTLE_TYPE_FIRST_BATTLE | BATTLE_TYPE_SAFARI | BATTLE_TYPE_ROAMER)
@@ -1518,7 +1519,8 @@ static void OpponentHandleChooseMove(void)
         }
         else
         {
-            chosenMoveId = gBattleStruct->aiMoveOrAction[gActiveBattler];
+            chosenMoveId = gBattleStruct->aiMoveOrAction[gActiveBattler] % MAX_MON_MOVES;
+            toTera = gBattleStruct->aiMoveOrAction[gActiveBattler] / MAX_MON_MOVES;
             gBattlerTarget = gBattleStruct->aiChosenTarget[gActiveBattler];
             switch (chosenMoveId)
             {
@@ -1531,7 +1533,7 @@ static void OpponentHandleChooseMove(void)
             case AI_CHOICE_SWITCH:
                 BtlController_EmitTwoReturnValues(BUFFER_B, 10, 0xFFFF);
                 break;
-            case 6:
+            case 252:
                 BtlController_EmitTwoReturnValues(BUFFER_B, 15, gBattlerTarget);
                 break;
             default:
@@ -1546,11 +1548,10 @@ static void OpponentHandleChooseMove(void)
                         if (gAbsentBattlerFlags & gBitTable[gBattlerTarget])
                             gBattlerTarget = GetBattlerAtPosition(B_POSITION_PLAYER_RIGHT);
                     }
-                    if (ShouldUseZMove(gActiveBattler, gBattlerTarget, chosenMove))
-                        QueueZMove(gActiveBattler, chosenMove);
                     if (CanMegaEvolve(gActiveBattler)) // If opponent can mega evolve, do it.
                         BtlController_EmitTwoReturnValues(BUFFER_B, 10, (chosenMoveId) | (RET_MEGA_EVOLUTION) | (gBattlerTarget << 8));
-                    if (ShouldTerastallize(gActiveBattler, gBattlerTarget)) // If opponent can mega evolve, do it.
+                    if (ShouldTerastallize(gActiveBattler, gBattlerTarget, chosenMove) && (toTera))
+                    // if (ShouldTerastallize(gActiveBattler, gBattlerTarget, chosenMove))
                         BtlController_EmitTwoReturnValues(BUFFER_B, 10, (chosenMoveId) | (RET_TERASTAL) | (gBattlerTarget << 8));
                     else
                         BtlController_EmitTwoReturnValues(BUFFER_B, 10, (chosenMoveId) | (gBattlerTarget << 8));

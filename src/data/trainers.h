@@ -21,7 +21,7 @@ const struct Trainer gTrainers[] = {
         .trainerName = _("AQUA GRUNT"),
         .items = {},
         .doubleBattle = FALSE,
-        .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_OMNISCIENT,
+        .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_OMNISCIENT | AI_FLAG_TERA_FIRST_TURN,
         .party = EVERYTHING_CUSTOMIZED(sParty_Gamma_Aqua_Grunt_1),
     },
 

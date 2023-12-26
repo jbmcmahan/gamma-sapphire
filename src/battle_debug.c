@@ -735,7 +735,7 @@ static void PutMovesPointsText(struct BattleDebugMenu *data)
     u8 *text = Alloc(0x50);
 
     FillWindowPixelBuffer(data->aiMovesWindowId, 0x11);
-    for (i = 0; i < MAX_MON_MOVES; i++)
+    for (i = 0; i < 8; i++)
     {
         text[0] = CHAR_SPACE;
         StringCopy(text + 1, gMoveNames[gBattleMons[data->aiBattlerId].moves[i]]);

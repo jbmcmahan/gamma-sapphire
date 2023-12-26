@@ -63,6 +63,7 @@ static s16 AI_Roaming(u8 battlerAtk, u8 battlerDef, u16 move, s16 score);
 static s16 AI_Safari(u8 battlerAtk, u8 battlerDef, u16 move, s16 score);
 static s16 AI_FirstBattle(u8 battlerAtk, u8 battlerDef, u16 move, s16 score);
 static s16 AI_DoubleBattle(u8 battlerAtk, u8 battlerDef, u16 move, s16 score);
+static s16 AI_TeraFirstTurn(u8 battlerAtk, u8 battlerDef, u16 move, s16 score);
 
 static s16 (*const sBattleAiFuncTable[])(u8, u8, u16, s16) =
 {
@@ -75,7 +76,7 @@ static s16 (*const sBattleAiFuncTable[])(u8, u8, u16, s16) =
     [6] = AI_PreferBatonPass,        // AI_FLAG_PREFER_BATON_PASS
     [7] = AI_DoubleBattle,           // AI_FLAG_DOUBLE_BATTLE
     [8] = AI_HPAware,                // AI_FLAG_HP_AWARE
-    [9] = NULL,                      // AI_FLAG_NEGATE_UNAWARE
+    [9] = AI_TeraFirstTurn,                      // AI_FLAG_NEGATE_UNAWARE
     [10] = NULL,                     // AI_FLAG_WILL_SUICIDE
     [11] = NULL,                     // AI_FLAG_HELP_PARTNER
     [12] = NULL,                     // Unused
@@ -191,7 +192,7 @@ void BattleAI_SetupAIData(u8 defaultScoreMoves)
     AI_THINKING_STRUCT->aiFlags = flags;
 
     // Conditional score reset, unlike Ruby.
-    for (i = 0; i < MAX_MON_MOVES; i++)
+    for (i = 0; i < 8; i++)
     {
         if (defaultScoreMoves & 1)
             AI_THINKING_STRUCT->score[i] = 100;
@@ -237,7 +238,7 @@ u8 BattleAI_ChooseMoveOrAction(void)
 u8 ComputeBattleAiScores(u8 battler)
 {
     sBattler_AI = battler;
-    BattleAI_SetupAIData(0xF);
+    BattleAI_SetupAIData(0xFF);
     return BattleAI_ChooseMoveOrAction();
 }
 
@@ -379,17 +380,17 @@ void GetAiLogicData(void)
                 continue;
 
             RecordKnownMove(battlerDef, gLastMoves[battlerDef]);
-            for (i = 0; i < MAX_MON_MOVES; i++)
+            for (i = 0; i < 8; i++)
             {
                 dmg = 0;
                 effectiveness = AI_EFFECTIVENESS_x0;
-                move = gBattleMons[battlerAtk].moves[i];
+                move = gBattleMons[battlerAtk].moves[i % 4];
 
                 if (move != 0
                  && move != 0xFFFF
                  //&& gBattleMoves[move].power != 0  /* we want to get effectiveness of status moves */
-                 && !(AI_DATA->moveLimitations[battlerAtk] & gBitTable[i])) {
-                    dmg = AI_CalcDamage(move, battlerAtk, battlerDef, &effectiveness, TRUE);
+                 && !(AI_DATA->moveLimitations[battlerAtk] & gBitTable[i%4])) {
+                    dmg = AI_CalcDamage(move, battlerAtk, battlerDef, &effectiveness, FALSE);
                 }
 
                 AI_DATA->simulatedDmg[battlerAtk][battlerDef][i] = dmg;
@@ -401,11 +402,13 @@ void GetAiLogicData(void)
 
 static u8 ChooseMoveOrAction_Singles(void)
 {
-    u8 currentMoveArray[MAX_MON_MOVES];
-    u8 consideredMoveArray[MAX_MON_MOVES];
+    s8 currentMoveArray[8];
+    u8 consideredMoveArray[8];
     u32 numOfBestMoves;
     s32 i, id;
     u32 flags = AI_THINKING_STRUCT->aiFlags;
+    u8 chosenMoveId;
+    u8 toTera;
 
     AI_DATA->partnerMove = 0;   // no ally
     while (flags != 0)
@@ -420,7 +423,7 @@ static u8 ChooseMoveOrAction_Singles(void)
         AI_THINKING_STRUCT->movesetIndex = 0;
     }
 
-    for (i = 0; i < MAX_MON_MOVES; i++) {
+    for (i = 0; i < 8; i++) {
         gBattleStruct->aiFinalScore[sBattler_AI][gBattlerTarget][i] = AI_THINKING_STRUCT->score[i];
     }
 
@@ -445,13 +448,13 @@ static u8 ChooseMoveOrAction_Singles(void)
             && gBattleMons[sBattler_AI].hp >= gBattleMons[sBattler_AI].maxHP / 2)
         {
             s32 cap = AI_THINKING_STRUCT->aiFlags & (AI_FLAG_CHECK_VIABILITY) ? 95 : 93;
-            for (i = 0; i < MAX_MON_MOVES; i++)
+            for (i = 0; i < 8; i++)
             {
                 if (AI_THINKING_STRUCT->score[i] > cap)
                     break;
             }
 
-            if (i == MAX_MON_MOVES && GetMostSuitableMonToSwitchInto() != PARTY_SIZE)
+            if (i == 8 && GetMostSuitableMonToSwitchInto() != PARTY_SIZE)
             {
                 AI_THINKING_STRUCT->switchMon = TRUE;
                 return AI_CHOICE_SWITCH;
@@ -477,9 +480,10 @@ static u8 ChooseMoveOrAction_Singles(void)
     currentMoveArray[0] = AI_THINKING_STRUCT->score[0];
     consideredMoveArray[0] = 0;
 
-    for (i = 1; i < MAX_MON_MOVES; i++)
+    for (i = 1; i < 8; i++)
     {
-        if (gBattleMons[sBattler_AI].moves[i] != MOVE_NONE)
+        chosenMoveId = (i % 4);
+        if (gBattleMons[sBattler_AI].moves[chosenMoveId] != MOVE_NONE)
         {
             // In ruby, the order of these if statements is reversed.
             if (currentMoveArray[0] == AI_THINKING_STRUCT->score[i])
@@ -495,6 +499,7 @@ static u8 ChooseMoveOrAction_Singles(void)
             }
         }
     }
+
     return consideredMoveArray[Random() % numOfBestMoves];
 }
 
@@ -523,7 +528,7 @@ static u8 ChooseMoveOrAction_Doubles(void)
             if (gBattleTypeFlags & BATTLE_TYPE_PALACE)
                 BattleAI_SetupAIData(gBattleStruct->palaceFlags >> 4);
             else
-                BattleAI_SetupAIData(0xF);
+                BattleAI_SetupAIData(0xFF);
 
             gBattlerTarget = i;
             if ((i & BIT_SIDE) != (sBattler_AI & BIT_SIDE))
@@ -622,6 +627,8 @@ static u8 ChooseMoveOrAction_Doubles(void)
 
 static void BattleAI_DoAIProcessing(void)
 {
+    u8 chosenMoveId;
+    u8 toTera;
     while (AI_THINKING_STRUCT->aiState != AIState_FinishedProcessing)
     {
         switch (AI_THINKING_STRUCT->aiState)
@@ -629,29 +636,44 @@ static void BattleAI_DoAIProcessing(void)
             case AIState_DoNotProcess: // Needed to match.
                 break;
             case AIState_SettingUp:
-                if (gBattleMons[sBattler_AI].pp[AI_THINKING_STRUCT->movesetIndex] == 0)
+                chosenMoveId = AI_THINKING_STRUCT->movesetIndex % 4;
+                toTera = AI_THINKING_STRUCT->movesetIndex / 4;
+
+                if (gBattleMons[sBattler_AI].pp[chosenMoveId] == 0)
                 {
                     AI_THINKING_STRUCT->moveConsidered = 0;
                 }
                 else
                 {
-                    AI_THINKING_STRUCT->moveConsidered = gBattleMons[sBattler_AI].moves[AI_THINKING_STRUCT->movesetIndex];
+                    AI_THINKING_STRUCT->moveConsidered = gBattleMons[sBattler_AI].moves[chosenMoveId];
                 }
                 AI_THINKING_STRUCT->aiState++;
                 break;
             case AIState_Processing:
+                toTera = AI_THINKING_STRUCT->movesetIndex / 4;
+
                 if (AI_THINKING_STRUCT->moveConsidered != MOVE_NONE
-                  && AI_THINKING_STRUCT->score[AI_THINKING_STRUCT->movesetIndex] > 0)
+                // && AI_THINKING_STRUCT->movesetIndex<8)
+                  && (AI_THINKING_STRUCT->score[AI_THINKING_STRUCT->movesetIndex] > 0))
                 {
                     if (AI_THINKING_STRUCT->aiLogicId < ARRAY_COUNT(sBattleAiFuncTable)
                       && sBattleAiFuncTable[AI_THINKING_STRUCT->aiLogicId] != NULL)
                     {
+                        // AI_THINKING_STRUCT->teraMon = TRUE;
+
+                        if (toTera == 1)
+                            AI_THINKING_STRUCT->teraMon = TRUE;
+                        if (toTera == 0)
+                            AI_THINKING_STRUCT->teraMon = FALSE;
+                        
                         // Call AI function
                         AI_THINKING_STRUCT->score[AI_THINKING_STRUCT->movesetIndex] =
                             sBattleAiFuncTable[AI_THINKING_STRUCT->aiLogicId](sBattler_AI,
                               gBattlerTarget,
                               AI_THINKING_STRUCT->moveConsidered,
                               AI_THINKING_STRUCT->score[AI_THINKING_STRUCT->movesetIndex]);
+
+                        AI_THINKING_STRUCT->teraMon = FALSE;
                     }
                 }
                 else
@@ -660,10 +682,14 @@ static void BattleAI_DoAIProcessing(void)
                 }
 
                 AI_THINKING_STRUCT->movesetIndex++;
-                if (AI_THINKING_STRUCT->movesetIndex < MAX_MON_MOVES && !(AI_THINKING_STRUCT->aiAction & AI_ACTION_DO_NOT_ATTACK))
+                if (AI_THINKING_STRUCT->movesetIndex < 8 && !(AI_THINKING_STRUCT->aiAction & AI_ACTION_DO_NOT_ATTACK))
                     AI_THINKING_STRUCT->aiState = AIState_SettingUp;
                 else
                     AI_THINKING_STRUCT->aiState++;
+                    // AI_THINKING_STRUCT->score[4] = 120;
+                    // AI_THINKING_STRUCT->score[5] = 120;
+                    // AI_THINKING_STRUCT->score[6] = 120;
+                    // AI_THINKING_STRUCT->score[7] = 120;
                 break;
         }
     }
@@ -2203,8 +2229,9 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             return AI_CheckBadMove(battlerAtk, battlerDef, GetNaturePowerMove(), score);
         case EFFECT_TAUNT:
             if (gDisableStructs[battlerDef].tauntTimer > 0
-              || DoesPartnerHaveSameMoveEffect(BATTLE_PARTNER(battlerAtk), battlerDef, move, AI_DATA->partnerMove))
-                score--;
+              || DoesPartnerHaveSameMoveEffect(BATTLE_PARTNER(battlerAtk), battlerDef, move, AI_DATA->partnerMove)
+              || !AI_CanBeTaunted(battlerAtk, battlerDef, AI_DATA->abilities[battlerDef]))
+                score -= 10;
             break;
         case EFFECT_BESTOW:
             if (AI_DATA->holdEffects[battlerAtk] == HOLD_EFFECT_NONE
@@ -5374,6 +5401,18 @@ static s16 AI_HPAware(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
 
     return score;
 }
+
+// Adds score bonus to best powered move
+static s16 AI_TeraFirstTurn(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
+{
+
+    if (AI_THINKING_STRUCT->teraMon == TRUE)
+        score += 20;
+
+    return score;
+}
+
+
 
 static void AI_Flee(void)
 {

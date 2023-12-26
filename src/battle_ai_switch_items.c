@@ -31,14 +31,14 @@ static bool32 AI_OpponentCanFaintAiWithMod(u32 healAmount);
 
 
 // TRUE if AI's last mon, FALSE otherwise
-static bool32 IsAceMon(u32 battlerId, u32 monPartyId)
-{
-    if (AI_THINKING_STRUCT->aiFlags & AI_FLAG_ACE_POKEMON
-        && !(gBattleStruct->forcedSwitch & gBitTable[battlerId])
-        && monPartyId == CalculateEnemyPartyCount()-1)
-            return TRUE;
-    return FALSE;
-}
+// static bool32 IsAceMon(u32 battlerId, u32 monPartyId)
+// {
+//     if (AI_THINKING_STRUCT->aiFlags & AI_FLAG_ACE_POKEMON
+//         && !(gBattleStruct->forcedSwitch & gBitTable[battlerId])
+//         && monPartyId == CalculateEnemyPartyCount()-1)
+//             return TRUE;
+//     return FALSE;
+// }
 
 void GetAIPartyIndexes(u32 battlerId, s32 *firstId, s32 *lastId)
 {
