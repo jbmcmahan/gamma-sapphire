@@ -897,7 +897,7 @@ static u32 WhichMoveBetter(u32 move1, u32 move2)
             return 0;
     }
     // Check recoil
-    if (GetBattlerAbility(sBattler_AI) != ABILITY_ROCK_HEAD)
+    if (!BattlerHasAbilityOrInnate(sBattler_AI, ABILITY_ROCK_HEAD))
     {
         if (((gBattleMoves[move1].effect == EFFECT_RECOIL_25
                 || gBattleMoves[move1].effect == EFFECT_RECOIL_IF_MISS
@@ -1217,7 +1217,11 @@ bool32 AI_IsAbilityOnSide(u32 battlerId, u32 ability)
 {
     if (IsBattlerAlive(battlerId) && AI_DATA->abilities[battlerId] == ability)
         return TRUE;
+    else if (IsBattlerAlive(battlerId) && BattlerHasInnate(battlerId, ability))
+        return TRUE;
     else if (IsBattlerAlive(BATTLE_PARTNER(battlerId)) && AI_DATA->abilities[BATTLE_PARTNER(battlerId)] == ability)
+        return TRUE;
+    else if (IsBattlerAlive(BATTLE_PARTNER(battlerId)) && BattlerHasInnate(BATTLE_PARTNER(battlerId), ability))
         return TRUE;
     else
         return FALSE;
