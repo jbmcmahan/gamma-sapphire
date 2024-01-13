@@ -5197,8 +5197,10 @@ static s16 AI_PreferBatonPass(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
 
 static s16 AI_HPAware(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
 {
-    u16 effect = gBattleMoves[move].effect;
-    u8 moveType = gBattleMoves[move].type;
+    struct BattleMove teraMove = GetTeraMove(battlerAtk, move);
+
+    u16 effect = teraMove.effect;
+    u8 moveType = teraMove.type;
 
     SetTypeBeforeUsingMove(move, battlerAtk);
     GET_MOVE_TYPE(move, moveType);
