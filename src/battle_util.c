@@ -1660,10 +1660,12 @@ static bool32 IsGravityPreventingMove(u32 move)
 
 bool32 IsHealBlockPreventingMove(u32 battler, u32 move)
 {
+    struct BattleMove teraMove = GetTeraMove(battler, move);
+
     if (!(gStatuses3[battler] & STATUS3_HEAL_BLOCK))
         return FALSE;
 
-    switch (gBattleMoves[move].effect)
+    switch (teraMove.effect)
     {
 #if B_HEAL_BLOCKING >= GEN_6
     case EFFECT_ABSORB:
@@ -12579,15 +12581,9 @@ bool32 TestMoveFlags(u16 move, u32 flag)
 
 bool32 TestMoveTeraFlags(u8 battlerId, u16 move, u32 flag)
 {
-    u8 tera = gBattleMons[battlerId].teraType;
-    struct BattleMove tempMove;
+    struct BattleMove teraMove = GetTeraMove(battlerId, move);
     
-    tempMove = gBattleMoves[move];
-    if (gTeraMoveTable[move][tera].flags)
-        tempMove.flags = gTeraMoveTable[move][tera].flags;
-
-
-    if (gBattleMoves[move].flags & flag)
+    if (teraMove.flags & flag)
         return TRUE;
     return FALSE;
 }
@@ -13099,3 +13095,34 @@ bool32 IsBattlerOfType(u32 battlerId, u32 type)
     else
         return IS_BATTLER_OF_TYPE(battlerId, type);
 }
+
+u8 GetMonTeraType(u32 battlerId)
+{
+    u8 tera = gBattleMons[battlerId].teraType;
+    return tera;
+}
+
+struct BattleMove GetTeraMove(u32 battlerId, u32 move)
+{
+    u8 tera = GetMonTeraType(battlerId);
+    struct BattleMove teraMove = gBattleMoves[move];
+
+    if (gTeraMoveTable[move][tera].priority)
+        teraMove.priority = gTeraMoveTable[move][tera].priority;
+    if (gTeraMoveTable[move][tera].type)
+        teraMove.type = gTeraMoveTable[move][tera].type;
+    if (gTeraMoveTable[move][tera].effect)
+        teraMove.effect = gTeraMoveTable[move][tera].effect;
+    if (gTeraMoveTable[move][tera].power)
+        teraMove.power = gTeraMoveTable[move][tera].power;
+    if (gTeraMoveTable[move][tera].flags)
+        teraMove.flags = gTeraMoveTable[move][tera].flags;
+    if (gTeraMoveTable[move][tera].accuracy)
+        teraMove.accuracy = gTeraMoveTable[move][tera].accuracy;
+    if (gTeraMoveTable[move][tera].argument)
+        teraMove.argument = gTeraMoveTable[move][tera].argument;
+
+    return teraMove;
+}
+
+

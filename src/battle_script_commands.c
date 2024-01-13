@@ -1915,30 +1915,16 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move, u32 atkAbility, u
     s8 buff, accStage, evasionStage;
     u8 atkParam = GetBattlerHoldEffectParam(battlerAtk);
     u8 defParam = GetBattlerHoldEffectParam(battlerDef);
-    u8 tera = gBattleMons[battlerAtk].teraType;
-    struct BattleMove tempMove;
-    
-    tempMove = gBattleMoves[move];
-    if (gTeraMoveTable[move][tera].priority)
-        tempMove.priority = gTeraMoveTable[move][tera].priority;
-    if (gTeraMoveTable[move][tera].type)
-        tempMove.type = gTeraMoveTable[move][tera].type;
-    if (gTeraMoveTable[move][tera].effect)
-        tempMove.effect = gTeraMoveTable[move][tera].effect;
-    if (gTeraMoveTable[move][tera].power)
-        tempMove.power = gTeraMoveTable[move][tera].power;
-    if (gTeraMoveTable[move][tera].flags)
-        tempMove.flags = gTeraMoveTable[move][tera].flags;
-    if (gTeraMoveTable[move][tera].accuracy)
-        tempMove.accuracy = gTeraMoveTable[move][tera].accuracy;
 
+    struct BattleMove teraMove = GetTeraMove(battlerAtk, move);
+    // struct BattleMove teraMove = gBattleMoves[move];
 
     gPotentialItemEffectBattler = battlerDef;
     accStage = gBattleMons[battlerAtk].statStages[STAT_ACC];
     evasionStage = gBattleMons[battlerDef].statStages[STAT_EVASION];
     if (atkAbility == ABILITY_UNAWARE || atkAbility == ABILITY_KEEN_EYE)
         evasionStage = DEFAULT_STAT_STAGE;
-    if (tempMove.flags & FLAG_STAT_STAGES_IGNORED)
+    if (teraMove.flags & FLAG_STAT_STAGES_IGNORED)
         evasionStage = DEFAULT_STAT_STAGE;
     if (defAbility == ABILITY_UNAWARE)
         accStage = DEFAULT_STAT_STAGE;
@@ -1953,7 +1939,7 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move, u32 atkAbility, u
     if (buff > MAX_STAT_STAGE)
         buff = MAX_STAT_STAGE;
 
-    moveAcc = tempMove.accuracy;
+    moveAcc = teraMove.accuracy;
 
     // Hypnotist - Elite Redux
     if(move == MOVE_HYPNOSIS && BattlerHasAbilityOrInnate(battlerAtk, ABILITY_HYPNOTIST))
@@ -1972,8 +1958,9 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move, u32 atkAbility, u
 
     // Check Thunder and Hurricane on sunny weather.
     if (IsBattlerWeatherAffected(battlerDef, B_WEATHER_SUN)
-      && (tempMove.effect == EFFECT_THUNDER || tempMove.effect == EFFECT_HURRICANE))
+      && (teraMove.effect == EFFECT_THUNDER || teraMove.effect == EFFECT_HURRICANE))
         moveAcc = 50;
+
     // Check Wonder Skin.
     if (defAbility == ABILITY_WONDER_SKIN && IS_MOVE_STATUS(move) && moveAcc > 50)
         moveAcc = 50;
@@ -1988,7 +1975,7 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move, u32 atkAbility, u
 
     // Artillery - Elite Redux
     if (BattlerHasAbilityOrInnate(battlerAtk, ABILITY_ARTILLERY)
-        && (tempMove.flags & FLAG_MEGA_LAUNCHER_BOOST))
+        && (teraMove.flags & FLAG_MEGA_LAUNCHER_BOOST))
         moveAcc = 100;
 
     calc = gAccuracyStageRatios[buff].dividend * moveAcc;
@@ -15602,13 +15589,17 @@ static void Cmd_settypebasedhalvers(void)
 
 bool32 DoesSubstituteBlockMove(u8 battlerAtk, u8 battlerDef, u32 move)
 {
+
+    struct BattleMove teraMove = GetTeraMove(battlerAtk, move);
+
+
     if (!(gBattleMons[battlerDef].status2 & STATUS2_SUBSTITUTE))
         return FALSE;
 #if B_SOUND_SUBSTITUTE >= GEN_6
-    else if (gBattleMoves[move].flags & FLAG_SOUND)
+    else if (teraMove.flags & FLAG_SOUND)
         return FALSE;
 #endif
-    else if (gBattleMoves[move].flags & FLAG_HIT_IN_SUBSTITUTE)
+    else if (teraMove.flags & FLAG_HIT_IN_SUBSTITUTE)
         return FALSE;
     else if (BattlerHasAbilityOrInnate(battlerAtk,  ABILITY_INFILTRATOR))
         return FALSE;

@@ -130,7 +130,7 @@ bool32 IsStatLoweringEffect(u16 effect);
 bool32 IsStatRaisingEffect(u16 effect);
 bool32 IsAttackBoostMoveEffect(u16 effect);
 bool32 IsUngroundingEffect(u16 effect);
-bool32 IsSemiInvulnerable(u8 battlerDef, u16 move);
+bool32 IsSemiInvulnerable(u8 battlerAtk, u8 battlerDef, u16 move);
 
 // status checks
 bool32 AI_CanBeBurned(u8 battler, u16 ability);
@@ -159,7 +159,7 @@ u16 GetAllyChosenMove(u8 battlerId);
 bool32 IsValidDoubleBattle(u8 battlerAtk);
 bool32 IsTargetingPartner(u8 battlerAtk, u8 battlerDef);
 bool32 DoesPartnerHaveSameMoveEffect(u8 battlerAtkPartner, u8 battlerDef, u16 move, u16 partnerMove);
-bool32 PartnerHasSameMoveEffectWithoutTarget(u8 battlerAtkPartner, u16 move, u16 partnerMove);
+bool32 PartnerHasSameMoveEffectWithoutTarget(u8 battlerAtk, u8 battlerAtkPartner, u16 move, u16 partnerMove);
 bool32 PartnerMoveEffectIsStatusSameTarget(u8 battlerAtkPartner, u8 battlerDef, u16 partnerMove);
 bool32 PartnerMoveEffectIsWeather(u8 battlerAtkPartner, u16 partnerMove);
 bool32 PartnerMoveEffectIsTerrain(u8 battlerAtkPartner, u16 partnerMove);

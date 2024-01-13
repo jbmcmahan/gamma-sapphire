@@ -238,5 +238,7 @@ bool8 ChangeTypeBasedOnTerrain(u8 battlerId);
 void RemoveConfusionStatus(u8 battlerId);
 u8 GetBattlerGender(u8 battlerId);
 bool8 AreBattlersOfOppositeGender(u8 battler1, u8 battler2);
+u8 GetMonTeraType(u32 battlerId);
+struct BattleMove GetTeraMove(u32 battlerId, u32 move);
 
 #endif // GUARD_BATTLE_UTIL_H

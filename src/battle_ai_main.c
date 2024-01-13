@@ -706,8 +706,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
     u16 moveEffect;
     s32 moveType;
 
-    u8 tera = gBattleMons[battlerAtk].teraType;
-    struct BattleMove tempMove;
+    struct BattleMove teraMove = GetTeraMove(battlerAtk, move);
     
     u16 moveTarget = AI_GetBattlerMoveTargetType(battlerAtk, move);
     u16 accuracy = AI_GetMoveAccuracy(battlerAtk, battlerDef, move);
@@ -716,35 +715,17 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
     u32 i;
     u16 predictedMove = AI_DATA->predictedMoves[battlerDef];
 
-    tempMove = gBattleMoves[move];
-    if (gTeraMoveTable[move][tera].priority)
-        tempMove.priority = gTeraMoveTable[move][tera].priority;
-    if (gTeraMoveTable[move][tera].type)
-        tempMove.type = gTeraMoveTable[move][tera].type;
-    if (gTeraMoveTable[move][tera].effect)
-        tempMove.effect = gTeraMoveTable[move][tera].effect;
-    if (gTeraMoveTable[move][tera].power)
-        tempMove.power = gTeraMoveTable[move][tera].power;
-    if (gTeraMoveTable[move][tera].flags)
-        tempMove.flags = gTeraMoveTable[move][tera].flags;
-    if (gTeraMoveTable[move][tera].accuracy)
-        tempMove.accuracy = gTeraMoveTable[move][tera].accuracy;
-    moveEffect = tempMove.effect;
+    moveEffect = teraMove.effect;
 
     SetTypeBeforeUsingMove(move, battlerAtk);
                                                           \
     if (gBattleStruct->dynamicMoveType)                               \
         moveType = gBattleStruct->dynamicMoveType & DYNAMIC_TYPE_MASK; \
     else                                                              \
-        moveType = tempMove.type;                            \
+        moveType = teraMove.type;                            \
 
     if (IsTargetingPartner(battlerAtk, battlerDef))
         return score;
-
-    if (gBattleStruct->dynamicMoveType)                               \
-        moveType = gBattleStruct->dynamicMoveType & DYNAMIC_TYPE_MASK; \
-    else                                                              \
-        moveType = tempMove.type;                            \
 
     // check non-user target
     if (!(moveTarget & MOVE_TARGET_USER))
@@ -769,7 +750,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         }
 
         // Sand Song - Elite Redux
-        if(gBattleMoves[move].flags & FLAG_SOUND
+        if(teraMove.flags & FLAG_SOUND
          && (AI_DATA->abilities[battlerAtk] == ABILITY_SAND_SONG
           || BattlerHasInnate(battlerAtk, ABILITY_SAND_SONG)))
         {
@@ -800,7 +781,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         }
 
         // check off screen
-        if (IsSemiInvulnerable(battlerDef, move) && moveEffect != EFFECT_SEMI_INVULNERABLE && AI_WhoStrikesFirst(battlerAtk, battlerDef, move) == AI_IS_FASTER)
+        if (IsSemiInvulnerable(battlerAtk, battlerDef, move) && moveEffect != EFFECT_SEMI_INVULNERABLE && AI_WhoStrikesFirst(battlerAtk, battlerDef, move) == AI_IS_FASTER)
             RETURN_SCORE_MINUS(20);    // if target off screen and we go first, don't use move
 
         // check if negates type
@@ -869,11 +850,11 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                     RETURN_SCORE_MINUS(10);
                 break;
             case ABILITY_SOUNDPROOF:
-                if (TestMoveFlags(move, FLAG_SOUND))
+                if (TestMoveTeraFlags(battlerAtk, move, FLAG_SOUND))
                     RETURN_SCORE_MINUS(10);
                 break;
             case ABILITY_BULLETPROOF:
-                if (TestMoveFlags(move, FLAG_BALLISTIC))
+                if (TestMoveTeraFlags(battlerAtk, move, FLAG_BALLISTIC))
                     RETURN_SCORE_MINUS(10);
                 break;
             case ABILITY_DAZZLING:
@@ -894,7 +875,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                     RETURN_SCORE_MINUS(10);
                 break;
             case ABILITY_MAGIC_BOUNCE:
-                if (TestMoveFlags(move, FLAG_MAGIC_COAT_AFFECTED))
+                if (TestMoveTeraFlags(battlerAtk, move, FLAG_MAGIC_COAT_AFFECTED))
                     RETURN_SCORE_MINUS(20);
                 break;
             case ABILITY_CONTRARY:
@@ -959,7 +940,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                         RETURN_SCORE_MINUS(20);
                     break;
                 case ABILITY_MAGIC_BOUNCE:
-                    if (TestMoveFlags(move, FLAG_MAGIC_COAT_AFFECTED) && moveTarget & (MOVE_TARGET_BOTH | MOVE_TARGET_FOES_AND_ALLY | MOVE_TARGET_OPPONENTS_FIELD))
+                    if (TestMoveTeraFlags(battlerAtk, move, FLAG_MAGIC_COAT_AFFECTED) && moveTarget & (MOVE_TARGET_BOTH | MOVE_TARGET_FOES_AND_ALLY | MOVE_TARGET_OPPONENTS_FIELD))
                         RETURN_SCORE_MINUS(20);
                     break;
                 case ABILITY_SWEET_VEIL:
@@ -1032,7 +1013,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
 // the following checks apply to any target (including user)
 
     // throat chop check
-    if (gDisableStructs[battlerAtk].throatChopTimer && TestMoveFlags(move, FLAG_SOUND))
+    if (gDisableStructs[battlerAtk].throatChopTimer && TestMoveTeraFlags(battlerAtk, move, FLAG_SOUND))
         return 0; // Can't even select move at all
     // heal block check
     if (gStatuses3[battlerAtk] & STATUS3_HEAL_BLOCK && IsHealBlockPreventingMove(battlerAtk, move))
@@ -1403,7 +1384,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             break;
     // other
         case EFFECT_HAZE:
-            if (PartnerHasSameMoveEffectWithoutTarget(BATTLE_PARTNER(battlerAtk), move, AI_DATA->partnerMove))
+            if (PartnerHasSameMoveEffectWithoutTarget(battlerAtk, BATTLE_PARTNER(battlerAtk), move, AI_DATA->partnerMove))
             {
                 score -= 10;    // partner already using haze
             }
@@ -1468,17 +1449,17 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             break;
         case EFFECT_LIGHT_SCREEN:
             if (gSideStatuses[GetBattlerSide(battlerAtk)] & SIDE_STATUS_LIGHTSCREEN
-              || PartnerHasSameMoveEffectWithoutTarget(BATTLE_PARTNER(battlerAtk), move, AI_DATA->partnerMove))
+              || PartnerHasSameMoveEffectWithoutTarget(battlerAtk, BATTLE_PARTNER(battlerAtk), move, AI_DATA->partnerMove))
                 score -= 10;
             break;
         case EFFECT_REFLECT:
             if (gSideStatuses[GetBattlerSide(battlerAtk)] & SIDE_STATUS_REFLECT
-              || PartnerHasSameMoveEffectWithoutTarget(BATTLE_PARTNER(battlerAtk), move, AI_DATA->partnerMove))
+              || PartnerHasSameMoveEffectWithoutTarget(battlerAtk, BATTLE_PARTNER(battlerAtk), move, AI_DATA->partnerMove))
                 score -= 10;
             break;
         case EFFECT_AURORA_VEIL:
             if (gSideStatuses[GetBattlerSide(battlerAtk)] & SIDE_STATUS_AURORA_VEIL
-              || PartnerHasSameMoveEffectWithoutTarget(BATTLE_PARTNER(battlerAtk), move, AI_DATA->partnerMove)
+              || PartnerHasSameMoveEffectWithoutTarget(battlerAtk, BATTLE_PARTNER(battlerAtk), move, AI_DATA->partnerMove)
               || !(gBattleWeather & (B_WEATHER_HAIL | B_WEATHER_SNOW)))
                 score -= 10;
             break;
@@ -1492,7 +1473,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             break;
         case EFFECT_MIST:
             if (gSideStatuses[GetBattlerSide(battlerAtk)] & SIDE_STATUS_MIST
-              || PartnerHasSameMoveEffectWithoutTarget(BATTLE_PARTNER(battlerAtk), move, AI_DATA->partnerMove))
+              || PartnerHasSameMoveEffectWithoutTarget(battlerAtk, BATTLE_PARTNER(battlerAtk), move, AI_DATA->partnerMove))
                 score -= 10;
             break;
         case EFFECT_FOCUS_ENERGY:
@@ -1532,7 +1513,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             #if B_MENTAL_HERB >= GEN_5
                 && AI_DATA->holdEffects[battlerDef] != HOLD_EFFECT_MENTAL_HERB
             #endif
-                && !PartnerHasSameMoveEffectWithoutTarget(BATTLE_PARTNER(battlerAtk), move, AI_DATA->partnerMove))
+                && !PartnerHasSameMoveEffectWithoutTarget(battlerAtk, BATTLE_PARTNER(battlerAtk), move, AI_DATA->partnerMove))
             {
                 if (AI_WhoStrikesFirst(battlerAtk, battlerDef, move) == AI_IS_FASTER) // Attacker should go first
                 {
@@ -1704,7 +1685,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             break;
         case EFFECT_SAFEGUARD:
             if (gSideStatuses[GetBattlerSide(battlerAtk)] & SIDE_STATUS_SAFEGUARD
-              || PartnerHasSameMoveEffectWithoutTarget(BATTLE_PARTNER(battlerAtk), move, AI_DATA->partnerMove))
+              || PartnerHasSameMoveEffectWithoutTarget(battlerAtk, BATTLE_PARTNER(battlerAtk), move, AI_DATA->partnerMove))
                 score -= 10;
             break;
         case EFFECT_MAGNITUDE:
@@ -1812,7 +1793,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         case EFFECT_HELPING_HAND:
             if (!isDoubleBattle
               || !IsBattlerAlive(BATTLE_PARTNER(battlerAtk))
-              || PartnerHasSameMoveEffectWithoutTarget(BATTLE_PARTNER(battlerAtk), move, AI_DATA->partnerMove)
+              || PartnerHasSameMoveEffectWithoutTarget(battlerAtk, BATTLE_PARTNER(battlerAtk), move, AI_DATA->partnerMove)
               || (AI_DATA->partnerMove != MOVE_NONE && IS_MOVE_STATUS(AI_DATA->partnerMove))
               || *(gBattleStruct->monToSwitchIntoId + BATTLE_PARTNER(battlerAtk)) != PARTY_SIZE) //Partner is switching out.
                 score -= 10;
@@ -1861,13 +1842,13 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         case EFFECT_MUD_SPORT:
             if (gFieldStatuses & STATUS_FIELD_MUDSPORT
               || gStatuses4[battlerAtk] & STATUS4_MUD_SPORT
-              || PartnerHasSameMoveEffectWithoutTarget(BATTLE_PARTNER(battlerAtk), move, AI_DATA->partnerMove))
+              || PartnerHasSameMoveEffectWithoutTarget(battlerAtk, BATTLE_PARTNER(battlerAtk), move, AI_DATA->partnerMove))
                 score -= 10;
             break;
         case EFFECT_WATER_SPORT:
             if (gFieldStatuses & STATUS_FIELD_WATERSPORT
               || gStatuses4[battlerAtk] & STATUS4_WATER_SPORT
-              || PartnerHasSameMoveEffectWithoutTarget(BATTLE_PARTNER(battlerAtk), move, AI_DATA->partnerMove))
+              || PartnerHasSameMoveEffectWithoutTarget(battlerAtk, BATTLE_PARTNER(battlerAtk), move, AI_DATA->partnerMove))
                 score -= 10;
             break;
         case EFFECT_ABSORB:
@@ -2058,7 +2039,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             // TODO
             break;
         case EFFECT_HEAL_BELL:
-            if (!AnyPartyMemberStatused(battlerAtk, TestMoveFlags(move, FLAG_SOUND)) || PartnerHasSameMoveEffectWithoutTarget(BATTLE_PARTNER(battlerAtk), move, AI_DATA->partnerMove))
+            if (!AnyPartyMemberStatused(battlerAtk, TestMoveFlags(move, FLAG_SOUND)) || PartnerHasSameMoveEffectWithoutTarget(battlerAtk, BATTLE_PARTNER(battlerAtk), move, AI_DATA->partnerMove))
                 score -= 10;
             break;
         case EFFECT_HIT_PREVENT_ESCAPE:
@@ -2155,7 +2136,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
               || gSideTimers[GetBattlerSide(battlerDef)].auroraVeilTimer != 0
               || gSideStatuses[GetBattlerSide(battlerAtk)] & SIDE_STATUS_HAZARDS_ANY)
             {
-                if (PartnerHasSameMoveEffectWithoutTarget(BATTLE_PARTNER(battlerAtk), move, AI_DATA->partnerMove))
+                if (PartnerHasSameMoveEffectWithoutTarget(battlerAtk, BATTLE_PARTNER(battlerAtk), move, AI_DATA->partnerMove))
                 {
                     score -= 10; //Only need one hazards removal
                     break;
@@ -2305,7 +2286,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             break;
         case EFFECT_SNATCH:
             if (!TestMoveFlagsInMoveset(battlerDef, FLAG_SNATCH_AFFECTED)
-              || PartnerHasSameMoveEffectWithoutTarget(BATTLE_PARTNER(battlerAtk), move, AI_DATA->partnerMove))
+              || PartnerHasSameMoveEffectWithoutTarget(battlerAtk, BATTLE_PARTNER(battlerAtk), move, AI_DATA->partnerMove))
                 score -= 10;
             break;
         case EFFECT_POWER_TRICK:
@@ -3574,7 +3555,7 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         break;
     case EFFECT_HAZE:
         if (AnyStatIsRaised(BATTLE_PARTNER(battlerAtk))
-          || PartnerHasSameMoveEffectWithoutTarget(BATTLE_PARTNER(battlerAtk), move, AI_DATA->partnerMove))
+          || PartnerHasSameMoveEffectWithoutTarget(battlerAtk, BATTLE_PARTNER(battlerAtk), move, AI_DATA->partnerMove))
             score -= 3;
             break;
         // fallthrough

@@ -1358,20 +1358,12 @@ bool32 AI_WeatherHasEffect(void)
 
 u32 AI_GetBattlerMoveTargetType(u8 battlerId, u16 move)
 {
-    u32 target;
-    u8 tera = gBattleMons[battlerId].teraType;
-    struct BattleMove tempMove;
+    struct BattleMove teraMove = GetTeraMove(battlerId, move);
     
-    tempMove = gBattleMoves[move];
-    if (gTeraMoveTable[move][tera].effect)
-        tempMove.effect = gTeraMoveTable[move][tera].effect;
-    if (gTeraMoveTable[move][tera].target)
-        tempMove.target = gTeraMoveTable[move][tera].target;
-
-    if (tempMove.effect == EFFECT_EXPANDING_FORCE && AI_IsTerrainAffected(battlerId, STATUS_FIELD_PSYCHIC_TERRAIN))
+    if (teraMove.effect == EFFECT_EXPANDING_FORCE && AI_IsTerrainAffected(battlerId, STATUS_FIELD_PSYCHIC_TERRAIN))
         return MOVE_TARGET_BOTH;
     else
-        return tempMove.target;
+        return teraMove.target;
 }
 
 bool32 IsAromaVeilProtectedMove(u16 move)
@@ -1479,15 +1471,15 @@ u32 AI_GetMoveAccuracy(u8 battlerAtk, u8 battlerDef, u16 move)
                             AI_DATA->holdEffects[battlerAtk], AI_DATA->holdEffects[battlerDef]);
 }
 
-bool32 IsSemiInvulnerable(u8 battlerDef, u16 move)
+bool32 IsSemiInvulnerable(u8 battlerAtk, u8 battlerDef, u16 move)
 {
     if (gStatuses3[battlerDef] & STATUS3_PHANTOM_FORCE)
         return TRUE;
-    else if (!TestMoveFlags(move, FLAG_DMG_IN_AIR) && gStatuses3[battlerDef] & STATUS3_ON_AIR)
+    else if (!TestMoveTeraFlags(battlerAtk, move, FLAG_DMG_IN_AIR) && gStatuses3[battlerDef] & STATUS3_ON_AIR)
         return TRUE;
-    else if (!TestMoveFlags(move, FLAG_DMG_UNDERWATER) && gStatuses3[battlerDef] & STATUS3_UNDERWATER)
+    else if (!TestMoveTeraFlags(battlerAtk, move, FLAG_DMG_UNDERWATER) && gStatuses3[battlerDef] & STATUS3_UNDERWATER)
         return TRUE;
-    else if (!TestMoveFlags(move, FLAG_DMG_UNDERGROUND) && gStatuses3[battlerDef] & STATUS3_UNDERGROUND)
+    else if (!TestMoveTeraFlags(battlerAtk, move, FLAG_DMG_UNDERGROUND) && gStatuses3[battlerDef] & STATUS3_UNDERGROUND)
         return TRUE;
     else
         return FALSE;
@@ -1495,7 +1487,7 @@ bool32 IsSemiInvulnerable(u8 battlerDef, u16 move)
 
 bool32 IsMoveEncouragedToHit(u8 battlerAtk, u8 battlerDef, u16 move)
 {
-    if (IsSemiInvulnerable(battlerDef, move))
+    if (IsSemiInvulnerable(battlerAtk, battlerDef, move))
         return FALSE;
 
     //TODO - anticipate protect move?
@@ -3245,12 +3237,15 @@ bool32 DoesPartnerHaveSameMoveEffect(u8 battlerAtkPartner, u8 battlerDef, u16 mo
 }
 
 //PARTNER_MOVE_EFFECT_IS_SAME_NO_TARGET
-bool32 PartnerHasSameMoveEffectWithoutTarget(u8 battlerAtkPartner, u16 move, u16 partnerMove)
+bool32 PartnerHasSameMoveEffectWithoutTarget(u8 battlerAtk, u8 battlerAtkPartner, u16 move, u16 partnerMove)
 {
+    struct BattleMove teraMove = GetTeraMove(battlerAtk, move);
+    struct BattleMove partnerTeraMove = GetTeraMove(battlerAtkPartner, partnerMove);
+
     if (!IsDoubleBattle())
         return FALSE;
 
-    if (gBattleMoves[move].effect == gBattleMoves[partnerMove].effect
+    if (teraMove.effect == partnerTeraMove.effect
       && gChosenMoveByBattler[battlerAtkPartner] != MOVE_NONE)
         return TRUE;
     return FALSE;
@@ -3259,17 +3254,19 @@ bool32 PartnerHasSameMoveEffectWithoutTarget(u8 battlerAtkPartner, u16 move, u16
 //PARTNER_MOVE_EFFECT_IS_STATUS_SAME_TARGET
 bool32 PartnerMoveEffectIsStatusSameTarget(u8 battlerAtkPartner, u8 battlerDef, u16 partnerMove)
 {
+    struct BattleMove teraMove = GetTeraMove(battlerAtkPartner, partnerMove);
+
     if (!IsDoubleBattle())
         return FALSE;
 
     if (gChosenMoveByBattler[battlerAtkPartner] != MOVE_NONE
      && gBattleStruct->moveTarget[battlerAtkPartner] == battlerDef
-     && (gBattleMoves[partnerMove].effect == EFFECT_SLEEP
-       || gBattleMoves[partnerMove].effect == EFFECT_POISON
-       || gBattleMoves[partnerMove].effect == EFFECT_TOXIC
-       || gBattleMoves[partnerMove].effect == EFFECT_PARALYZE
-       || gBattleMoves[partnerMove].effect == EFFECT_WILL_O_WISP
-       || gBattleMoves[partnerMove].effect == EFFECT_YAWN))
+     && (teraMove.effect == EFFECT_SLEEP
+       || teraMove.effect == EFFECT_POISON
+       || teraMove.effect == EFFECT_TOXIC
+       || teraMove.effect == EFFECT_PARALYZE
+       || teraMove.effect == EFFECT_WILL_O_WISP
+       || teraMove.effect == EFFECT_YAWN))
         return TRUE;
     return FALSE;
 }
@@ -3277,15 +3274,17 @@ bool32 PartnerMoveEffectIsStatusSameTarget(u8 battlerAtkPartner, u8 battlerDef, 
 //PARTNER_MOVE_EFFECT_IS_WEATHER
 bool32 PartnerMoveEffectIsWeather(u8 battlerAtkPartner, u16 partnerMove)
 {
+    struct BattleMove teraMove = GetTeraMove(battlerAtkPartner, partnerMove);
+
     if (!IsDoubleBattle())
         return FALSE;
 
     if (gChosenMoveByBattler[battlerAtkPartner] != MOVE_NONE
-     && (gBattleMoves[partnerMove].effect == EFFECT_SUNNY_DAY
-      || gBattleMoves[partnerMove].effect == EFFECT_RAIN_DANCE
-      || gBattleMoves[partnerMove].effect == EFFECT_SANDSTORM
-      || gBattleMoves[partnerMove].effect == EFFECT_HAIL
-      || gBattleMoves[partnerMove].effect == EFFECT_SNOWSCAPE))
+     && (teraMove.effect == EFFECT_SUNNY_DAY
+      || teraMove.effect == EFFECT_RAIN_DANCE
+      || teraMove.effect == EFFECT_SANDSTORM
+      || teraMove.effect == EFFECT_HAIL
+      || teraMove.effect == EFFECT_SNOWSCAPE))
         return TRUE;
 
     return FALSE;
@@ -3294,14 +3293,16 @@ bool32 PartnerMoveEffectIsWeather(u8 battlerAtkPartner, u16 partnerMove)
 //PARTNER_MOVE_EFFECT_IS_TERRAIN
 bool32 PartnerMoveEffectIsTerrain(u8 battlerAtkPartner, u16 partnerMove)
 {
+    struct BattleMove teraMove = GetTeraMove(battlerAtkPartner, partnerMove);
+
     if (!IsDoubleBattle())
         return FALSE;
 
     if (gChosenMoveByBattler[battlerAtkPartner] != MOVE_NONE
-     && (gBattleMoves[partnerMove].effect == EFFECT_GRASSY_TERRAIN
-      || gBattleMoves[partnerMove].effect == EFFECT_MISTY_TERRAIN
-      || gBattleMoves[partnerMove].effect == EFFECT_ELECTRIC_TERRAIN
-      || gBattleMoves[partnerMove].effect == EFFECT_PSYCHIC_TERRAIN))
+     && (teraMove.effect == EFFECT_GRASSY_TERRAIN
+      || teraMove.effect == EFFECT_MISTY_TERRAIN
+      || teraMove.effect == EFFECT_ELECTRIC_TERRAIN
+      || teraMove.effect == EFFECT_PSYCHIC_TERRAIN))
         return TRUE;
 
     return FALSE;
