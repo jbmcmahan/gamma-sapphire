@@ -2760,7 +2760,7 @@ static s16 AI_TryToFaint(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
     else
     {
         // this move isn't expected to faint the target
-        if (TestMoveFlags(move, FLAG_HIGH_CRIT))
+        if (TestMoveTeraFlags(battlerAtk, move, FLAG_HIGH_CRIT))
             score += 2; // crit makes it more likely to make them faint
 
         if (GetMoveDamageResult(move) == MOVE_POWER_OTHER)
@@ -4977,6 +4977,7 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
 // Effects that are encouraged on the first turn of battle
 static s16 AI_SetupFirstTurn(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
 {
+    struct BattleMove teraMove = GetTeraMove(battlerAtk, move);
     if (IsTargetingPartner(battlerAtk, battlerDef)
       || gBattleResults.battleTurnCounter != 0)
         return score;
@@ -4990,7 +4991,7 @@ static s16 AI_SetupFirstTurn(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
     }
 
     // check effects to prioritize first turn
-    switch (gBattleMoves[move].effect)
+    switch (teraMove.effect)
     {
     case EFFECT_ATTACK_UP:
     case EFFECT_ATTACK_UP_USER_ALLY:
