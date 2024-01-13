@@ -5142,6 +5142,7 @@ static s16 AI_PreferStrongestMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 sc
 static s16 AI_PreferBatonPass(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
 {
     u32 i;
+    struct BattleMove teraMove = GetTeraMove(battlerAtk, move);
 
     if (IsTargetingPartner(battlerAtk, battlerDef)
       || CountUsablePartyMons(battlerAtk) == 0
@@ -5150,7 +5151,7 @@ static s16 AI_PreferBatonPass(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
       || IsBattlerTrapped(battlerAtk, TRUE))
         return score;
 
-    if (IsStatRaisingEffect(gBattleMoves[move].effect))
+    if (IsStatRaisingEffect(teraMove.effect))
     {
         if (gBattleResults.battleTurnCounter == 0)
             score += 5;
@@ -5161,7 +5162,7 @@ static s16 AI_PreferBatonPass(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
     }
 
     // other specific checks
-    switch (gBattleMoves[move].effect)
+    switch (teraMove.effect)
     {
     case EFFECT_INGRAIN:
         if (!(gStatuses3[battlerAtk] & STATUS3_ROOTED))
