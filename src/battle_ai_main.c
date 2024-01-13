@@ -5089,13 +5089,14 @@ static s16 AI_SetupFirstTurn(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
 // Adds score bonus to 'riskier' move effects and high crit moves
 static s16 AI_Risky(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
 {
+    struct BattleMove teraMove = GetTeraMove(battlerAtk, move);
     if (IsTargetingPartner(battlerAtk, battlerDef))
         return score;
 
-    if (TestMoveFlags(move, FLAG_HIGH_CRIT))
+    if (TestMoveTeraFlags(move, FLAG_HIGH_CRIT))
         score += 2;
 
-    switch (gBattleMoves[move].effect)
+    switch (teraMove.effect)
     {
     case EFFECT_SLEEP:
     case EFFECT_EXPLOSION:
