@@ -715,7 +715,8 @@ bool32 IsTruantMonVulnerable(u32 battlerAI, u32 opposingBattler)
 // move checks
 bool32 IsAffectedByPowder(u8 battler, u16 ability, u16 holdEffect)
 {
-    if (BattlerHasAbilityOrInnate(battler, ABILITY_OVERCOAT)
+    if (ability == ABILITY_OVERCOAT
+        || BattlerHasInnate(battler, ABILITY_OVERCOAT)
         || IsBattlerOfType(battler, TYPE_GRASS)
         || holdEffect == HOLD_EFFECT_SAFETY_GOGGLES)
         return FALSE;
@@ -1326,7 +1327,7 @@ bool32 AI_IsBattlerGrounded(u8 battlerId)
         return TRUE;
 }
 
-bool32 DoesBattlerIgnoreAbilityChecks(u16 atkAbility, u16 move)
+bool32 DoesBattlerIgnoreAbilityChecks(u8 battlerId, u16 atkAbility, u16 move)
 {
     u32 i;
 
@@ -1339,9 +1340,9 @@ bool32 DoesBattlerIgnoreAbilityChecks(u16 atkAbility, u16 move)
             return TRUE;
     }
 
-    if (atkAbility == ABILITY_MOLD_BREAKER
-      || atkAbility == ABILITY_TERAVOLT
-      || atkAbility == ABILITY_TURBOBLAZE)
+    if (atkAbility == ABILITY_MOLD_BREAKER || BattlerHasInnate(battlerId, ABILITY_MOLD_BREAKER)
+      || atkAbility == ABILITY_TERAVOLT || BattlerHasInnate(battlerId, ABILITY_TERAVOLT)
+      || atkAbility == ABILITY_TURBOBLAZE || BattlerHasInnate(battlerId, ABILITY_TURBOBLAZE))
         return TRUE;
 
     return FALSE;
@@ -1452,7 +1453,7 @@ bool32 IsHazardMoveEffect(u16 moveEffect)
     }
 }
 
-bool32 IsMoveRedirectionPrevented(u16 move, u16 atkAbility)
+bool32 IsMoveRedirectionPrevented(u8 battler, u16 move, u16 atkAbility)
 {
     if (AI_THINKING_STRUCT->aiFlags & AI_FLAG_NEGATE_UNAWARE)
         return FALSE;
@@ -1460,7 +1461,9 @@ bool32 IsMoveRedirectionPrevented(u16 move, u16 atkAbility)
     if (move == MOVE_SKY_DROP
       || move == MOVE_SNIPE_SHOT
       || atkAbility == ABILITY_PROPELLER_TAIL
-      || atkAbility == ABILITY_STALWART)
+      || BattlerHasInnate(battler, ABILITY_PROPELLER_TAIL)
+      || atkAbility == ABILITY_STALWART
+      || BattlerHasInnate(battler, ABILITY_STALWART))
         return TRUE;
     return FALSE;
 }
@@ -1536,7 +1539,7 @@ bool32 ShouldTryOHKO(u8 battlerAtk, u8 battlerDef, u16 atkAbility, u16 defAbilit
     else if (holdEffect == HOLD_EFFECT_FOCUS_SASH && AtMaxHp(battlerDef))
         return FALSE;
 
-    if (!DoesBattlerIgnoreAbilityChecks(atkAbility, move) && defAbility == ABILITY_STURDY)
+    if (!DoesBattlerIgnoreAbilityChecks(battlerAtk, atkAbility, move) && defAbility == ABILITY_STURDY)
         return FALSE;
 
     if ((((gStatuses3[battlerDef] & STATUS3_ALWAYS_HITS)
@@ -1739,8 +1742,8 @@ bool32 ShouldLowerStat(u8 battler, u16 battlerAbility, u8 stat)
 
 bool32 BattlerStatCanRise(u8 battler, u16 battlerAbility, u8 stat)
 {
-    if ((gBattleMons[battler].statStages[stat] < MAX_STAT_STAGE && battlerAbility != ABILITY_CONTRARY)
-      || (battlerAbility == ABILITY_CONTRARY && gBattleMons[battler].statStages[stat] > MIN_STAT_STAGE))
+    if ((gBattleMons[battler].statStages[stat] < MAX_STAT_STAGE && (battlerAbility != ABILITY_CONTRARY && !BattlerHasInnate(battler, ABILITY_CONTRARY)))
+      || ((battlerAbility == ABILITY_CONTRARY || BattlerHasInnate(battler, ABILITY_CONTRARY)) && gBattleMons[battler].statStages[stat] > MIN_STAT_STAGE))
         return TRUE;
     return FALSE;
 }
@@ -1957,10 +1960,12 @@ bool32 HasMoveWithType(u32 battler, u8 type)
 {
     s32 i;
     u16 *moves = GetMovesArray(battler);
+    struct BattleMove teraMove;
 
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
-        if (moves[i] != MOVE_NONE && moves[i] != 0xFFFF && gBattleMoves[moves[i]].type == type)
+        teraMove = GetTeraMove(battler, moves[i]);
+        if (moves[i] != MOVE_NONE && moves[i] != 0xFFFF && teraMove.type == type)
             return TRUE;
     }
 
@@ -1971,10 +1976,13 @@ bool32 HasMoveEffect(u32 battlerId, u16 moveEffect)
 {
     s32 i;
     u16 *moves = GetMovesArray(battlerId);
+    struct BattleMove teraMove;
+
 
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
-        if (moves[i] != MOVE_NONE && moves[i] != 0xFFFF && gBattleMoves[moves[i]].effect == moveEffect)
+        teraMove = GetTeraMove(battlerId, moves[i]);
+        if (moves[i] != MOVE_NONE && moves[i] != 0xFFFF && teraMove.effect == moveEffect)
             return TRUE;
     }
 
@@ -2306,7 +2314,7 @@ bool32 TestMoveFlagsInMoveset(u8 battler, u32 flags)
 
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
-        if (moves[i] != MOVE_NONE && moves[i] != 0xFFFF && TestMoveFlags(moves[i], flags))
+        if (moves[i] != MOVE_NONE && moves[i] != 0xFFFF && TestMoveTeraFlags(battler, moves[i], flags))
             return TRUE;
     }
     return FALSE;
@@ -2792,9 +2800,9 @@ bool32 IsBattlerIncapacitated(u8 battler, u16 ability)
 
 bool32 AI_CanSleep(u8 battler, u16 ability)
 {
-    if (BattlerHasAbilityOrInnate(battler, ABILITY_INSOMNIA)
-      || ability == ABILITY_VITAL_SPIRIT
-      || ability == ABILITY_COMATOSE
+    if (ability == ABILITY_INSOMNIA || BattlerHasInnate(battler, ABILITY_INSOMNIA)
+      || ability == ABILITY_VITAL_SPIRIT || BattlerHasInnate(battler, ABILITY_VITAL_SPIRIT)
+      || ability == ABILITY_COMATOSE || BattlerHasInnate(battler, ABILITY_COMATOSE)
       || gBattleMons[battler].status1 & STATUS1_ANY
       || gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_SAFEGUARD
       || (gFieldStatuses & (STATUS_FIELD_MISTY_TERRAIN | STATUS_FIELD_ELECTRIC_TERRAIN))
@@ -2838,12 +2846,12 @@ static bool32 AI_CanBePoisoned(u8 battlerAtk, u8 battlerDef)
 bool32 ShouldPoisonSelf(u8 battler, u16 ability)
 {
     if (AI_CanBePoisoned(battler, battler) && (
-     ability == ABILITY_MARVEL_SCALE
-      || ability == ABILITY_POISON_HEAL
-      || ability == ABILITY_QUICK_FEET
-      || ability == ABILITY_MAGIC_GUARD
-      || (ability == ABILITY_TOXIC_BOOST && HasMoveWithSplit(battler, SPLIT_PHYSICAL))
-      || (ability == ABILITY_GUTS && HasMoveWithSplit(battler, SPLIT_PHYSICAL))
+     ability == ABILITY_MARVEL_SCALE || BattlerHasInnate(battler, ABILITY_MARVEL_SCALE)
+      || ability == ABILITY_POISON_HEAL || BattlerHasInnate(battler, ABILITY_POISON_HEAL)
+      || ability == ABILITY_QUICK_FEET || BattlerHasInnate(battler, ABILITY_QUICK_FEET)
+      || ability == ABILITY_MAGIC_GUARD || BattlerHasInnate(battler, ABILITY_MAGIC_GUARD)
+      || ((ability == ABILITY_TOXIC_BOOST || BattlerHasInnate(battler, ABILITY_TOXIC_BOOST)) && HasMoveWithSplit(battler, SPLIT_PHYSICAL))
+      || ((ability == ABILITY_GUTS || BattlerHasInnate(battler, ABILITY_GUTS)) && HasMoveWithSplit(battler, SPLIT_PHYSICAL))
       || HasMoveEffect(battler, EFFECT_FACADE)
       || HasMoveEffect(battler, EFFECT_PSYCHO_SHIFT)))
         return TRUE;    // battler can be poisoned and has move/ability that synergizes with being poisoned
@@ -2938,11 +2946,11 @@ bool32 AI_CanGetFrostbite(u8 battler, u16 ability)
 bool32 ShouldBurnSelf(u8 battler, u16 ability)
 {
     if (AI_CanBeBurned(battler, ability) && (
-     ability == ABILITY_QUICK_FEET
-      || ability == ABILITY_HEATPROOF
-      || ability == ABILITY_MAGIC_GUARD
-      || (ability == ABILITY_FLARE_BOOST && HasMoveWithSplit(battler, SPLIT_SPECIAL))
-      || (ability == ABILITY_GUTS && HasMoveWithSplit(battler, SPLIT_PHYSICAL))
+     ability == ABILITY_QUICK_FEET || BattlerHasInnate(battler, ABILITY_QUICK_FEET)
+      || ability == ABILITY_HEATPROOF || BattlerHasInnate(battler, ABILITY_HEATPROOF)
+      || ability == ABILITY_MAGIC_GUARD || BattlerHasInnate(battler, ABILITY_MAGIC_GUARD)
+      || ((ability == ABILITY_FLARE_BOOST || BattlerHasInnate(battler, ABILITY_FLARE_BOOST)) && HasMoveWithSplit(battler, SPLIT_SPECIAL))
+      || ((ability == ABILITY_GUTS || BattlerHasInnate(battler, ABILITY_GUTS)) && HasMoveWithSplit(battler, SPLIT_PHYSICAL))
       || HasMoveEffect(battler, EFFECT_FACADE)
       || HasMoveEffect(battler, EFFECT_PSYCHO_SHIFT)))
         return TRUE;
@@ -3886,5 +3894,8 @@ bool32 IsAceMon(u32 battlerId, u32 monPartyId)
 
 bool32 AI_IsBattlerAsleepOrComatose(u8 battlerId)
 {
-    return (gBattleMons[battlerId].status1 & STATUS1_SLEEP) || AI_DATA->abilities[battlerId] == ABILITY_COMATOSE;
+    return ((gBattleMons[battlerId].status1 & STATUS1_SLEEP)
+     || AI_DATA->abilities[battlerId] == ABILITY_COMATOSE || BattlerHasInnate(battlerId, ABILITY_COMATOSE));
 }
+
+

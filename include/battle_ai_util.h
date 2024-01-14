@@ -36,7 +36,7 @@ bool32 CanTargetFaintAiWithMod(u8 battlerDef, u8 battlerAtk, s32 hpMod, s32 dmgM
 s32 AI_GetAbility(u32 battlerId);
 u16 AI_GetHoldEffect(u32 battlerId);
 u32 AI_GetMoveAccuracy(u8 battlerAtk, u8 battlerDef, u16 move);
-bool32 DoesBattlerIgnoreAbilityChecks(u16 atkAbility, u16 move);
+bool32 DoesBattlerIgnoreAbilityChecks(u8 battlerId, u16 atkAbility, u16 move);
 bool32 AI_WeatherHasEffect(void);
 bool32 CanAIFaintTarget(u8 battlerAtk, u8 battlerDef, u8 numHits);
 bool32 CanIndexMoveFaintTarget(u8 battlerAtk, u8 battlerDef, u8 index, u8 numHits);
@@ -105,7 +105,7 @@ bool32 TestMoveFlagsInMoveset(u8 battler, u32 flags);
 bool32 IsAromaVeilProtectedMove(u16 move);
 bool32 IsNonVolatileStatusMoveEffect(u16 moveEffect);
 bool32 IsStatLoweringMoveEffect(u16 moveEffect);
-bool32 IsMoveRedirectionPrevented(u16 move, u16 atkAbility);
+bool32 IsMoveRedirectionPrevented(u8 battler, u16 move, u16 atkAbility);
 bool32 IsMoveEncouragedToHit(u8 battlerAtk, u8 battlerDef, u16 move);
 bool32 IsHazardMoveEffect(u16 moveEffect);
 bool32 MoveCallsOtherMove(u16 move);

@@ -33,6 +33,7 @@ bool8 BattlerHasInnate(u8 battlerId, u16 ability);
 bool8 GetBattlerInnateNum(u8 battlerId, u16 ability);
 bool8 GetBattlerAbilityOrInnateNum(u8 battlerId, u16 ability);
 bool8 BattlerHasAbilityOrInnate(u8 battlerId, u16 ability);
+bool8 AI_BattlerHasAbilityOrInnate(u8 battlerId, u16 ability);
 
 extern u8 sBattler_AI;
 
