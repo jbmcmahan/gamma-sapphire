@@ -2757,10 +2757,11 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
 
 static s16 AI_TryToFaint(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
 {
+    struct BattleMove teraMove = GetTeraMove(battlerAtk, move);
     if (IsTargetingPartner(battlerAtk, battlerDef))
         return score;
 
-    if (gBattleMoves[move].power == 0)
+    if (teraMove.power == 0)
         return score;   // can't make anything faint with no power
 
     if (CanIndexMoveFaintTarget(battlerAtk, battlerDef, AI_THINKING_STRUCT->movesetIndex, 0) && gBattleMoves[move].effect != EFFECT_EXPLOSION)
