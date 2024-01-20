@@ -11798,22 +11798,7 @@ static u16 CalcTypeEffectivenessMultiplierInternal(u16 move, u8 moveType, u8 bat
 {
     u32 illusionSpecies, type1, type2, type3;
     u16 defAbility = GetBattlerAbility(battlerDef);
-    u8 tera = gBattleMons[battlerAtk].teraType;
-    struct BattleMove tempMove;
-    
-    tempMove = gBattleMoves[move];
-    if (gTeraMoveTable[move][tera].priority)
-        tempMove.priority = gTeraMoveTable[move][tera].priority;
-    if (gTeraMoveTable[move][tera].type)
-        tempMove.type = gTeraMoveTable[move][tera].type;
-    if (gTeraMoveTable[move][tera].effect)
-        tempMove.effect = gTeraMoveTable[move][tera].effect;
-    if (gTeraMoveTable[move][tera].power)
-        tempMove.power = gTeraMoveTable[move][tera].power;
-    if (gTeraMoveTable[move][tera].flags)
-        tempMove.flags = gTeraMoveTable[move][tera].flags;
-    if (gTeraMoveTable[move][tera].accuracy)
-        tempMove.accuracy = gTeraMoveTable[move][tera].accuracy;
+    struct BattleMove teraMove = GetTeraMove(battlerAtk, move);
 
    // Terastallization overrides typing.
     if (IsTerastallized(battlerDef))
@@ -11838,7 +11823,7 @@ static u16 CalcTypeEffectivenessMultiplierInternal(u16 move, u8 moveType, u8 bat
     if (recordAbilities && (illusionSpecies = GetIllusionMonSpecies(battlerDef)))
         TryNoticeIllusionInTypeEffectiveness(move, moveType, battlerAtk, battlerDef, modifier, illusionSpecies);
 
-    if (tempMove.split == SPLIT_STATUS && move != MOVE_THUNDER_WAVE)
+    if (teraMove.split == SPLIT_STATUS && move != MOVE_THUNDER_WAVE)
     {
         modifier = UQ_4_12(1.0);
     #if B_GLARE_GHOST <= GEN_3
@@ -11848,7 +11833,7 @@ static u16 CalcTypeEffectivenessMultiplierInternal(u16 move, u8 moveType, u8 bat
         }
     #endif
     }
-    else if (moveType == TYPE_GROUND && !IsBattlerGrounded2(battlerDef, TRUE) && !(tempMove.flags & FLAG_DMG_UNGROUNDED_IGNORE_TYPE_IF_FLYING))
+    else if (moveType == TYPE_GROUND && !IsBattlerGrounded2(battlerDef, TRUE) && !(teraMove.flags & FLAG_DMG_UNGROUNDED_IGNORE_TYPE_IF_FLYING))
     {
         modifier = UQ_4_12(0.0);
         if (recordAbilities && BattlerHasAbilityOrInnate(battlerDef, ABILITY_LEVITATE))
@@ -11869,7 +11854,7 @@ static u16 CalcTypeEffectivenessMultiplierInternal(u16 move, u8 moveType, u8 bat
 
     // Bone Zone - Elite Redux
     if (!IsBattlerGrounded(battlerDef) && 
-       (tempMove.flags & FLAG_BONE_BASED) && 
+       (teraMove.flags & FLAG_BONE_BASED) && 
        (BattlerHasAbilityOrInnate(battlerAtk, ABILITY_BONE_ZONE)) &&
        moveType == TYPE_GROUND){
         if(gBattleMons[battlerDef].type1 == TYPE_FLYING && gBattleMons[battlerDef].type2 != TYPE_FLYING){
@@ -11900,14 +11885,14 @@ static u16 CalcTypeEffectivenessMultiplierInternal(u16 move, u8 moveType, u8 bat
     }
 
     // Thousand Arrows ignores type modifiers for flying mons
-    if (!IsBattlerGrounded(battlerDef) && (tempMove.flags & FLAG_DMG_UNGROUNDED_IGNORE_TYPE_IF_FLYING)
+    if (!IsBattlerGrounded(battlerDef) && (teraMove.flags & FLAG_DMG_UNGROUNDED_IGNORE_TYPE_IF_FLYING)
         && (type1 == TYPE_FLYING || type2 == TYPE_FLYING || type3 == TYPE_FLYING))    {
         modifier = UQ_4_12(1.0);
     }
 
     if (((BattlerHasAbilityOrInnate(battlerDef, ABILITY_WONDER_GUARD) && modifier <= UQ_4_12(1.0))
         || (BattlerHasAbilityOrInnate(battlerDef, ABILITY_TELEPATHY) && battlerDef == BATTLE_PARTNER(battlerAtk)))
-        && tempMove.power)
+        && teraMove.power)
     {
         modifier = UQ_4_12(0.0);
         if (recordAbilities)
@@ -11938,7 +11923,7 @@ static u16 CalcTypeEffectivenessMultiplierInternal(u16 move, u8 moveType, u8 bat
 
     // Weather Control - Elite Redux
 	if (BattlerHasAbilityOrInnate(battlerDef, ABILITY_WEATHER_CONTROL)   && 
-         (tempMove.flags & FLAG_WEATHER_BASED))
+         (teraMove.flags & FLAG_WEATHER_BASED))
     {
         modifier = UQ_4_12(0.0);
         if (recordAbilities)
@@ -11962,29 +11947,13 @@ u16 CalcTypeEffectivenessMultiplier(u16 move, u8 moveType, u8 battlerAtk, u8 bat
 {
     u16 modifier = UQ_4_12(1.0);
     u8 tera = gBattleMons[battlerAtk].teraType;
-    struct BattleMove tempMove;
-    
-    tempMove = gBattleMoves[move];
-    if (gTeraMoveTable[move][tera].priority)
-        tempMove.priority = gTeraMoveTable[move][tera].priority;
-    if (gTeraMoveTable[move][tera].type)
-        tempMove.type = gTeraMoveTable[move][tera].type;
-    if (gTeraMoveTable[move][tera].effect)
-        tempMove.effect = gTeraMoveTable[move][tera].effect;
-    if (gTeraMoveTable[move][tera].power)
-        tempMove.power = gTeraMoveTable[move][tera].power;
-    if (gTeraMoveTable[move][tera].flags)
-        tempMove.flags = gTeraMoveTable[move][tera].flags;
-    if (gTeraMoveTable[move][tera].accuracy)
-        tempMove.accuracy = gTeraMoveTable[move][tera].accuracy;
-    if (gTeraMoveTable[move][tera].argument)
-        tempMove.argument = gTeraMoveTable[move][tera].argument;
+    struct BattleMove teraMove = GetTeraMove(battlerAtk, move);
 
     if (move != MOVE_STRUGGLE && moveType != TYPE_MYSTERY)
     {
         modifier = CalcTypeEffectivenessMultiplierInternal(move, moveType, battlerAtk, battlerDef, recordAbilities, modifier);
-        if (tempMove.effect == EFFECT_TWO_TYPED_MOVE)
-            modifier = CalcTypeEffectivenessMultiplierInternal(move, tempMove.argument, battlerAtk, battlerDef, recordAbilities, modifier);
+        if (teraMove.effect == EFFECT_TWO_TYPED_MOVE)
+            modifier = CalcTypeEffectivenessMultiplierInternal(move, teraMove.argument, battlerAtk, battlerDef, recordAbilities, modifier);
     }
 
     if (recordAbilities)

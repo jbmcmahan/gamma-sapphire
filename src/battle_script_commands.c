@@ -1909,7 +1909,7 @@ static bool32 AccuracyCalcHelper(u16 move)
     return FALSE;
 }
 
-u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move, u32 atkAbility, u32 defAbility, u32 atkHoldEffect, u32 defHoldEffect)
+u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move, u32 atkAbility, u32 defAbility, u32 atkHoldEffect, u32 defHoldEffect, u32 atkPartnerAbility, u32 defPartnerAbility)
 {
     u32 calc, moveAcc;
     s8 buff, accStage, evasionStage;
@@ -1922,11 +1922,12 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move, u32 atkAbility, u
     gPotentialItemEffectBattler = battlerDef;
     accStage = gBattleMons[battlerAtk].statStages[STAT_ACC];
     evasionStage = gBattleMons[battlerDef].statStages[STAT_EVASION];
-    if (atkAbility == ABILITY_UNAWARE || atkAbility == ABILITY_KEEN_EYE)
+    if (atkAbility == ABILITY_UNAWARE || BattlerHasInnate(battlerAtk, ABILITY_UNAWARE)
+        || atkAbility == ABILITY_KEEN_EYE || BattlerHasInnate(battlerAtk, ABILITY_KEEN_EYE))
         evasionStage = DEFAULT_STAT_STAGE;
     if (teraMove.flags & FLAG_STAT_STAGES_IGNORED)
         evasionStage = DEFAULT_STAT_STAGE;
-    if (defAbility == ABILITY_UNAWARE)
+    if (defAbility == ABILITY_UNAWARE || BattlerHasInnate(battlerAtk, ABILITY_UNAWARE))
         accStage = DEFAULT_STAT_STAGE;
 
     if (gBattleMons[battlerDef].status2 & STATUS2_FORESIGHT || gStatuses3[battlerDef] & STATUS3_MIRACLE_EYED)
@@ -1942,19 +1943,17 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move, u32 atkAbility, u
     moveAcc = teraMove.accuracy;
 
     // Hypnotist - Elite Redux
-    if(move == MOVE_HYPNOSIS && BattlerHasAbilityOrInnate(battlerAtk, ABILITY_HYPNOTIST))
+    if((move == MOVE_HYPNOSIS) && (defAbility == ABILITY_HYPNOTIST || BattlerHasInnate(battlerAtk, ABILITY_HYPNOTIST)))
         moveAcc = moveAcc * 1.5;
 
     // Bad Luck Ability lowers accuracy by 5% - Elite Redux
-    if (BattlerHasAbilityOrInnate(battlerDef, ABILITY_BAD_LUCK)
-        || BattlerHasAbilityOrInnate(BATTLE_PARTNER(battlerDef), ABILITY_BAD_LUCK))
+    if ((defAbility == ABILITY_BAD_LUCK) || BattlerHasInnate(battlerDef, ABILITY_BAD_LUCK)
+        || (defPartnerAbility == ABILITY_BAD_LUCK) || BattlerHasInnate(BATTLE_PARTNER(battlerDef), ABILITY_BAD_LUCK))
         moveAcc = (moveAcc * 95) / 100;
 
     // Lunar Eclipse - Elite Redux
-    if(move == MOVE_HYPNOSIS && BattlerHasAbilityOrInnate(battlerAtk, ABILITY_LUNAR_ECLIPSE))
+    if(move == MOVE_HYPNOSIS && (defAbility == ABILITY_LUNAR_ECLIPSE || BattlerHasInnate(battlerAtk, ABILITY_LUNAR_ECLIPSE)))
 		moveAcc = moveAcc * 1.5;
-
-
 
     // Check Thunder and Hurricane on sunny weather.
     if (IsBattlerWeatherAffected(battlerDef, B_WEATHER_SUN)
@@ -1962,41 +1961,45 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move, u32 atkAbility, u
         moveAcc = 50;
 
     // Check Wonder Skin.
-    if (defAbility == ABILITY_WONDER_SKIN && IS_MOVE_STATUS(move) && moveAcc > 50)
+    if (((defAbility == ABILITY_WONDER_SKIN) || BattlerHasInnate(battlerDef, ABILITY_WONDER_SKIN))
+      && IS_MOVE_STATUS(move) && moveAcc > 50)
         moveAcc = 50;
 
     // Sighting System - Elite Redux
-    if (BattlerHasAbilityOrInnate(battlerAtk, ABILITY_SIGHTING_SYSTEM))
+    if ((atkAbility == ABILITY_SIGHTING_SYSTEM) || BattlerHasInnate(battlerAtk, ABILITY_SIGHTING_SYSTEM))
         moveAcc = 100;
 
     // Deadeye - Elite Redux
-    if (BattlerHasAbilityOrInnate(battlerAtk, ABILITY_DEADEYE))
+    if ((atkAbility == ABILITY_DEADEYE) || BattlerHasInnate(battlerAtk, ABILITY_DEADEYE))
         moveAcc = 100;
 
     // Artillery - Elite Redux
-    if (BattlerHasAbilityOrInnate(battlerAtk, ABILITY_ARTILLERY)
+    if (((atkAbility ==  ABILITY_ARTILLERY) || BattlerHasInnate(battlerAtk, ABILITY_ARTILLERY))
         && (teraMove.flags & FLAG_MEGA_LAUNCHER_BOOST))
         moveAcc = 100;
 
     calc = gAccuracyStageRatios[buff].dividend * moveAcc;
     calc /= gAccuracyStageRatios[buff].divisor;
 
-    if (BattlerHasAbilityOrInnate(battlerAtk, ABILITY_COMPOUND_EYES))
+    if ((atkAbility == ABILITY_COMPOUND_EYES) || BattlerHasInnate(battlerAtk, ABILITY_COMPOUND_EYES))
         calc = (calc * 130) / 100; // 1.3 compound eyes boost
-    else if (BattlerHasAbilityOrInnate(battlerAtk, ABILITY_VICTORY_STAR))
+    if ((atkAbility == ABILITY_VICTORY_STAR) || BattlerHasInnate(battlerAtk, ABILITY_VICTORY_STAR))
         calc = (calc * 110) / 100; // 1.1 victory star boost
-    if (IsBattlerAlive(BATTLE_PARTNER(battlerAtk)) && BattlerHasAbilityOrInnate(BATTLE_PARTNER(battlerAtk), ABILITY_VICTORY_STAR))
+    if (IsBattlerAlive(BATTLE_PARTNER(battlerAtk)) 
+         && (BattlerHasInnate(BATTLE_PARTNER(battlerAtk), ABILITY_VICTORY_STAR)
+         || (atkPartnerAbility == ABILITY_VICTORY_STAR)))
         calc = (calc * 110) / 100; // 1.1 ally's victory star boost
 
-    if (BattlerHasAbilityOrInnate(battlerDef, ABILITY_SAND_VEIL) && WEATHER_HAS_EFFECT && gBattleWeather & B_WEATHER_SANDSTORM)
+    if (((defAbility == ABILITY_SAND_VEIL) || BattlerHasInnate(battlerDef, ABILITY_SAND_VEIL)) && WEATHER_HAS_EFFECT && gBattleWeather & B_WEATHER_SANDSTORM)
         calc = (calc * 80) / 100; // 1.2 sand veil loss
-    else if (BattlerHasAbilityOrInnate(battlerDef, ABILITY_SNOW_CLOAK) && WEATHER_HAS_EFFECT && (gBattleWeather & (B_WEATHER_HAIL | B_WEATHER_SNOW)))
+    else if (((defAbility == ABILITY_SNOW_CLOAK) || BattlerHasInnate(battlerDef, ABILITY_SNOW_CLOAK)) && WEATHER_HAS_EFFECT && (gBattleWeather & (B_WEATHER_HAIL | B_WEATHER_SNOW)))
         calc = (calc * 80) / 100; // 1.2 snow cloak loss
-    else if (BattlerHasAbilityOrInnate(battlerDef, ABILITY_TANGLED_FEET) && gBattleMons[battlerDef].status2 & STATUS2_CONFUSION)
+    if (((defAbility == ABILITY_TANGLED_FEET) || BattlerHasInnate(battlerDef, ABILITY_TANGLED_FEET)) && gBattleMons[battlerDef].status2 & STATUS2_CONFUSION)
         calc = (calc * 50) / 100; // 1.5 tangled feet loss
 
-    if (BattlerHasAbilityOrInnate(battlerAtk, ABILITY_HUSTLE) && IS_MOVE_PHYSICAL(move))
+    if (((defAbility == ABILITY_HUSTLE) ||  BattlerHasInnate(battlerAtk, ABILITY_HUSTLE)) && IS_MOVE_PHYSICAL(move))
         calc = (calc * 80) / 100; // 1.2 hustle loss
+
 
     if (defHoldEffect == HOLD_EFFECT_EVASION_UP)
         calc = (calc * (100 - defParam)) / 100;
@@ -2009,7 +2012,7 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move, u32 atkAbility, u
     if (gProtectStructs[battlerAtk].usedMicleBerry)
     {
         gProtectStructs[battlerAtk].usedMicleBerry = FALSE;
-        if (atkAbility == ABILITY_RIPEN)
+        if (atkAbility == ABILITY_RIPEN || BattlerHasInnate(battlerAtk, ABILITY_RIPEN))
             calc = (calc * 140) / 100;  // ripen gives 40% acc boost
         else
             calc = (calc * 120) / 100;  // 20% acc boost
@@ -2071,7 +2074,9 @@ static void Cmd_accuracycheck(void)
             GetBattlerAbility(gBattlerAttacker),
             GetBattlerAbility(gBattlerTarget),
             GetBattlerHoldEffect(gBattlerAttacker, TRUE),
-            GetBattlerHoldEffect(gBattlerTarget, TRUE)
+            GetBattlerHoldEffect(gBattlerTarget, TRUE),
+            GetBattlerAbility(BATTLE_PARTNER(gBattlerAttacker)),
+            GetBattlerAbility(BATTLE_PARTNER(gBattlerTarget))
         );
 
         if (!RandomPercentage(RNG_ACCURACY, accuracy))
