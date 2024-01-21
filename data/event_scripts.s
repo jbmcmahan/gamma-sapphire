@@ -1163,3 +1163,55 @@ Common_EventScript_LegendaryFlewAway::
 	.include "data/maps/Chapter20b/scripts.inc"
 
 	.include "data/maps/Chapter20c/scripts.inc"
+
+	.include "data/maps/Chapter1a/scripts.inc"
+
+	.include "data/maps/Chapter1b/scripts.inc"
+
+	.include "data/maps/Chapter1c/scripts.inc"
+
+	.include "data/maps/Chapter2a/scripts.inc"
+
+	.include "data/maps/Chapter2b/scripts.inc"
+
+	.include "data/maps/Chapter2c/scripts.inc"
+
+	.include "data/maps/Chapter1/scripts.inc"
+
+	.include "data/maps/Chapter2/scripts.inc"
+
+	.include "data/maps/Chapter3/scripts.inc"
+
+	.include "data/maps/Chapter4/scripts.inc"
+
+	.include "data/maps/Chapter5/scripts.inc"
+
+	.include "data/maps/Chapter6/scripts.inc"
+
+	.include "data/maps/Chapter7/scripts.inc"
+
+	.include "data/maps/Chapter8/scripts.inc"
+
+	.include "data/maps/Chapter9/scripts.inc"
+
+	.include "data/maps/Chapter10/scripts.inc"
+
+	.include "data/maps/Chapter11/scripts.inc"
+
+	.include "data/maps/Chapter12/scripts.inc"
+
+	.include "data/maps/Chapter13/scripts.inc"
+
+	.include "data/maps/Chapter14/scripts.inc"
+
+	.include "data/maps/Chapter15/scripts.inc"
+
+	.include "data/maps/Chapter16/scripts.inc"
+
+	.include "data/maps/Chapter17/scripts.inc"
+
+	.include "data/maps/Chapter18/scripts.inc"
+
+	.include "data/maps/Chapter19/scripts.inc"
+
+	.include "data/maps/Chapter20/scripts.inc"

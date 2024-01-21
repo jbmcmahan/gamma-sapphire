@@ -115,6 +115,12 @@
 #define MAP_CHAPTER20A          (106 | (0 << 8))
 #define MAP_CHAPTER20B          (107 | (0 << 8))
 #define MAP_CHAPTER20C          (108 | (0 << 8))
+#define MAP_CHAPTER1A           (109 | (0 << 8))
+#define MAP_CHAPTER1B           (110 | (0 << 8))
+#define MAP_CHAPTER1C           (111 | (0 << 8))
+#define MAP_CHAPTER2A           (112 | (0 << 8))
+#define MAP_CHAPTER2B           (113 | (0 << 8))
+#define MAP_CHAPTER2C           (114 | (0 << 8))
 
 // gMapGroup_IndoorLittleroot
 #define MAP_LITTLEROOT_TOWN_BRENDANS_HOUSE_1F    (0 | (1 << 8))
@@ -643,6 +649,28 @@
 // gMapGroup_IndoorRoute124
 #define MAP_ROUTE124_DIVING_TREASURE_HUNTERS_HOUSE (0 | (33 << 8))
 
-#define MAP_GROUPS_COUNT 34
+// gMapGroup_Chapters
+#define MAP_CHAPTER1  (0 | (34 << 8))
+#define MAP_CHAPTER2  (1 | (34 << 8))
+#define MAP_CHAPTER3  (2 | (34 << 8))
+#define MAP_CHAPTER4  (3 | (34 << 8))
+#define MAP_CHAPTER5  (4 | (34 << 8))
+#define MAP_CHAPTER6  (5 | (34 << 8))
+#define MAP_CHAPTER7  (6 | (34 << 8))
+#define MAP_CHAPTER8  (7 | (34 << 8))
+#define MAP_CHAPTER9  (8 | (34 << 8))
+#define MAP_CHAPTER10 (9 | (34 << 8))
+#define MAP_CHAPTER11 (10 | (34 << 8))
+#define MAP_CHAPTER12 (11 | (34 << 8))
+#define MAP_CHAPTER13 (12 | (34 << 8))
+#define MAP_CHAPTER14 (13 | (34 << 8))
+#define MAP_CHAPTER15 (14 | (34 << 8))
+#define MAP_CHAPTER16 (15 | (34 << 8))
+#define MAP_CHAPTER17 (16 | (34 << 8))
+#define MAP_CHAPTER18 (17 | (34 << 8))
+#define MAP_CHAPTER19 (18 | (34 << 8))
+#define MAP_CHAPTER20 (19 | (34 << 8))
+
+#define MAP_GROUPS_COUNT 35
 
 #endif // GUARD_CONSTANTS_MAP_GROUPS_H

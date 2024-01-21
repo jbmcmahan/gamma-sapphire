@@ -32,11 +32,6 @@
       "map": "MAP_ROUTE109",
       "offset": 0,
       "direction": "up"
-    },
-    {
-      "map": "MAP_CHAPTER3A",
-      "offset": 9,
-      "direction": "right"
     }
   ],
   "object_events": [
