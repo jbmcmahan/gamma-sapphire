@@ -344,7 +344,7 @@ struct BattleMove
 
 struct TeraMove
 {
-    bool8 requiresTerastalization;
+    u8 requiresTerastalization;
     u8 split;
     u8 type;
     u16 effect;

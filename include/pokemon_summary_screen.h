@@ -11,11 +11,16 @@ extern const u8 *const gNatureNamePointers[];
 extern const struct SpriteTemplate sSpriteTemplate_MoveTypes;
 extern const struct CompressedSpriteSheet sSpriteSheet_MoveTypes;
 
+extern struct TeraMove gTeraMoveTable[][NUMBER_OF_MON_TYPES];
+
 void ShowPokemonSummaryScreen(u8 mode, void *mons, u8 monIndex, u8 maxMonIndex, void (*callback)(void));
 void ShowSelectMovePokemonSummaryScreen(struct Pokemon *mons, u8 monIndex, u8 maxMonIndex, void (*callback)(void), u16 newMove);
 void ShowPokemonSummaryScreenHandleDeoxys(u8 mode, struct BoxPokemon *mons, u8 monIndex, u8 maxMonIndex, void (*callback)(void));
 u8 GetMoveSlotToReplace(void);
 void SummaryScreen_SetAnimDelayTaskId(u8 taskId);
+void ShowTeraTypeIcons(u16 move);
+u8 GetTeraMoveTypes(u16 move, u8 number);
+void PrintTeraMoveEffects(u16 move);
 
 // The Pokemon Summary Screen can operate in different modes. Certain features,
 // such as move re-ordering, are available in the different modes.

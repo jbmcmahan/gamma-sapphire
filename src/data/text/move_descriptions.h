@@ -5,6 +5,8 @@
 #define BINDING_TURNS "2 to 5"
 #endif
 
+// 23 character limit per line
+
 static const u8 sNullDescription[] = _(
     "");
 
