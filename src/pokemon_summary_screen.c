@@ -96,7 +96,12 @@ enum {
 #define PSS_LABEL_WINDOW_PORTRAIT_DEX_NUMBER 22
 #define PSS_LABEL_WINDOW_PORTRAIT_NICKNAME 23 // The upper name
 #define PSS_LABEL_WINDOW_PORTRAIT_SPECIES 24 // The lower name
-#define PSS_LABEL_WINDOW_END 25
+
+#define PSS_DATA_WINDOW_MOVE_STATS 25
+#define PSS_DATA_WINDOW_MOVE_STATS2 26
+
+
+#define PSS_LABEL_WINDOW_END 27
 
 // Dynamic fields for the Pokemon Info page
 #define PSS_DATA_WINDOW_INFO_ORIGINAL_TRAINER 0
@@ -115,7 +120,7 @@ enum {
 #define PSS_DATA_WINDOW_MOVE_NAMES 0
 #define PSS_DATA_WINDOW_MOVE_PP 1
 #define PSS_DATA_WINDOW_MOVE_DESCRIPTION 2
-#define PSS_DATA_WINDOW_TERA_MOVE_DESCRIPTION 3
+#define PSS_DATA_WINDOW_MOVE_PP_TOTAL 3
 
 #define MOVE_SELECTOR_SPRITES_COUNT 4
 #define TYPE_ICON_SPRITE_COUNT (MAX_MON_MOVES + 1)
@@ -126,7 +131,8 @@ enum
     SPRITE_ARR_ID_BALL,
     SPRITE_ARR_ID_STATUS,
     SPRITE_ARR_ID_TERA_MOVE,
-    SPRITE_ARR_ID_TYPE = SPRITE_ARR_ID_TERA_MOVE + 4, // 2 for mon types, 5 for move types(4 moves and 1 to learn), used interchangeably, because mon types and move types aren't shown on the same screen
+    SPRITE_ARR_ID_TERA_SPLIT = SPRITE_ARR_ID_TERA_MOVE + 4,
+    SPRITE_ARR_ID_TYPE = SPRITE_ARR_ID_TERA_SPLIT + 4, // 2 for mon types, 5 for move types(4 moves and 1 to learn), used interchangeably, because mon types and move types aren't shown on the same screen
     SPRITE_ARR_ID_MOVE_SELECTOR1 = SPRITE_ARR_ID_TYPE + TYPE_ICON_SPRITE_COUNT, // 10 sprites that make up the selector
     SPRITE_ARR_ID_MOVE_SELECTOR2 = SPRITE_ARR_ID_MOVE_SELECTOR1 + MOVE_SELECTOR_SPRITES_COUNT,
     SPRITE_ARR_ID_COUNT = SPRITE_ARR_ID_MOVE_SELECTOR2 + MOVE_SELECTOR_SPRITES_COUNT
@@ -563,10 +569,10 @@ static const struct WindowTemplate sSummaryTemplate[] =
     },
     [PSS_LABEL_WINDOW_UNUSED2] = {
         .bg = 0,
-        .tilemapLeft = 22,
-        .tilemapTop = 4,
-        .width = 0,
-        .height = 2,
+        .tilemapLeft = 0,
+        .tilemapTop = 9,
+        .width = 10,
+        .height = 11,
         .paletteNum = 6,
         .baseBlock = 409,
     },
@@ -577,7 +583,7 @@ static const struct WindowTemplate sSummaryTemplate[] =
         .width = 4,
         .height = 2,
         .paletteNum = 7,
-        .baseBlock = 409,
+        .baseBlock = 519,
     },
     [PSS_LABEL_WINDOW_PORTRAIT_NICKNAME] = {
         .bg = 0,
@@ -586,7 +592,7 @@ static const struct WindowTemplate sSummaryTemplate[] =
         .width = 9,
         .height = 2,
         .paletteNum = 6,
-        .baseBlock = 417,
+        .baseBlock = 527,
     },
     [PSS_LABEL_WINDOW_PORTRAIT_SPECIES] = {
         .bg = 0,
@@ -595,7 +601,7 @@ static const struct WindowTemplate sSummaryTemplate[] =
         .width = 9,
         .height = 4,
         .paletteNum = 6,
-        .baseBlock = 435,
+        .baseBlock = 545,
     },
     [PSS_LABEL_WINDOW_END] = DUMMY_WIN_TEMPLATE
 };
@@ -608,7 +614,7 @@ static const struct WindowTemplate sPageInfoTemplate[] =
         .width = 11,
         .height = 2,
         .paletteNum = 6,
-        .baseBlock = 471,
+        .baseBlock = 581,
     },
     [PSS_DATA_WINDOW_INFO_ID] = {
         .bg = 0,
@@ -617,7 +623,7 @@ static const struct WindowTemplate sPageInfoTemplate[] =
         .width = 7,
         .height = 2,
         .paletteNum = 6,
-        .baseBlock = 493,
+        .baseBlock = 603,
     },
     [PSS_DATA_WINDOW_INFO_ABILITY] = {
         .bg = 0,
@@ -626,7 +632,7 @@ static const struct WindowTemplate sPageInfoTemplate[] =
         .width = 18,
         .height = 4,
         .paletteNum = 6,
-        .baseBlock = 507,
+        .baseBlock = 617,
     },
     [PSS_DATA_WINDOW_INFO_MEMO] = {
         .bg = 0,
@@ -635,7 +641,7 @@ static const struct WindowTemplate sPageInfoTemplate[] =
         .width = 18,
         .height = 6,
         .paletteNum = 6,
-        .baseBlock = 579,
+        .baseBlock = 689,
     },
 };
 static const struct WindowTemplate sPageSkillsTemplate[] =
@@ -647,7 +653,7 @@ static const struct WindowTemplate sPageSkillsTemplate[] =
         .width = 10,
         .height = 2,
         .paletteNum = 6,
-        .baseBlock = 471,
+        .baseBlock = 581,
     },
     [PSS_DATA_WINDOW_SKILLS_RIBBON_COUNT] = {
         .bg = 0,
@@ -656,7 +662,7 @@ static const struct WindowTemplate sPageSkillsTemplate[] =
         .width = 10,
         .height = 2,
         .paletteNum = 6,
-        .baseBlock = 491,
+        .baseBlock = 601,
     },
     [PSS_DATA_WINDOW_SKILLS_STATS_LEFT] = {
         .bg = 0,
@@ -665,7 +671,7 @@ static const struct WindowTemplate sPageSkillsTemplate[] =
         .width = 6,
         .height = 6,
         .paletteNum = 6,
-        .baseBlock = 511,
+        .baseBlock = 621,
     },
     [PSS_DATA_WINDOW_SKILLS_STATS_RIGHT] = {
         .bg = 0,
@@ -674,7 +680,7 @@ static const struct WindowTemplate sPageSkillsTemplate[] =
         .width = 3,
         .height = 6,
         .paletteNum = 6,
-        .baseBlock = 547,
+        .baseBlock = 657,
     },
     [PSS_DATA_WINDOW_EXP] = {
         .bg = 0,
@@ -683,7 +689,7 @@ static const struct WindowTemplate sPageSkillsTemplate[] =
         .width = 6,
         .height = 4,
         .paletteNum = 6,
-        .baseBlock = 565,
+        .baseBlock = 675,
     },
 };
 static const struct WindowTemplate sPageMovesTemplate[] = // This is used for both battle and contest moves
@@ -693,18 +699,18 @@ static const struct WindowTemplate sPageMovesTemplate[] = // This is used for bo
         .tilemapLeft = 0,
         .tilemapTop = 4,
         .width = 16,
-        .height = 10,
+        .height = 5,
         .paletteNum = 6,
-        .baseBlock = 471,
+        .baseBlock = 581,
     },
     [PSS_DATA_WINDOW_MOVE_PP] = {
         .bg = 0,
-        .tilemapLeft = 10,
-        .tilemapTop = 15,
-        .width = 6,
+        .tilemapLeft = 5,
+        .tilemapTop = 10,
+        .width = 25,
         .height = 10,
-        .paletteNum = 8,
-        .baseBlock = 631,
+        .paletteNum = 6,
+        .baseBlock = 661,
     },
     [PSS_DATA_WINDOW_MOVE_DESCRIPTION] = {
         .bg = 0,
@@ -713,16 +719,16 @@ static const struct WindowTemplate sPageMovesTemplate[] = // This is used for bo
         .width = 14,
         .height = 4,
         .paletteNum = 6,
-        .baseBlock = 691,
+        .baseBlock = 911,
     },
-    [PSS_DATA_WINDOW_TERA_MOVE_DESCRIPTION] = {
+    [PSS_DATA_WINDOW_MOVE_PP_TOTAL] = {
         .bg = 0,
-        .tilemapLeft = 11,
-        .tilemapTop = 11,
-        .width = 10,
-        .height = 10,
-        .paletteNum = 6,
-        .baseBlock = 747,
+        .tilemapLeft = 5,
+        .tilemapTop = 8,
+        .width = 6,
+        .height = 3,
+        .paletteNum = 8,
+        .baseBlock = 967,
     },
 };
 static const u8 sTextColors[][3] =
@@ -768,7 +774,7 @@ static const u8 sMemoMiscTextColor[] = _("{COLOR WHITE}{SHADOW DARK_GRAY}"); // 
 static const u8 sStatsLeftColumnLayout[] = _("{DYNAMIC 0}/{DYNAMIC 1}\n{DYNAMIC 2}\n{DYNAMIC 3}");
 static const u8 sStatsLeftColumnLayoutIVEV[] = _("{DYNAMIC 0}\n{DYNAMIC 1}\n{DYNAMIC 2}");
 static const u8 sStatsRightColumnLayout[] = _("{DYNAMIC 0}\n{DYNAMIC 1}\n{DYNAMIC 2}");
-static const u8 sMovesPPLayout[] = _("{PP}{DYNAMIC 0}/{DYNAMIC 1}");
+static const u8 sMovesPPLayout[] = _("{DYNAMIC 0}/{DYNAMIC 1}");
 
 #define TAG_MOVE_SELECTOR 30000
 #define TAG_MON_STATUS 30001
@@ -1188,11 +1194,22 @@ static const struct SpriteTemplate sSpriteTemplate_StatusCondition =
 };
 static const u16 sMarkings_Pal[] = INCBIN_U16("graphics/summary_screen/markings.gbapal");
 
+static u8 AddWindowFromTemplateList(const struct WindowTemplate *template, u8 templateId)
+{
+    u8 *windowIdPtr = &sMonSummaryScreen->windowIds[templateId];
+    if (*windowIdPtr == WINDOW_NONE)
+    {
+        *windowIdPtr = AddWindow(&template[templateId]);
+        FillWindowPixelBuffer(*windowIdPtr, PIXEL_FILL(0));
+    }
+    return *windowIdPtr;
+}
+
 // code
 static u8 ShowSplitIcon(u32 split)
 {
     if (sMonSummaryScreen->splitIconSpriteId == 0xFF)
-        sMonSummaryScreen->splitIconSpriteId = CreateSprite(&sSpriteTemplate_SplitIcons, 48, 129, 0);
+        sMonSummaryScreen->splitIconSpriteId = CreateSprite(&sSpriteTemplate_SplitIcons, 50, 115, 0);
 
     gSprites[sMonSummaryScreen->splitIconSpriteId].invisible = FALSE;
     StartSpriteAnim(&gSprites[sMonSummaryScreen->splitIconSpriteId], split);
@@ -2031,21 +2048,9 @@ static void SwitchToMoveSelection(u8 taskId)
 
     sMonSummaryScreen->firstMoveIndex = 0;
     move = sMonSummaryScreen->summary.moves[sMonSummaryScreen->firstMoveIndex];
-    ClearWindowTilemap(PSS_LABEL_WINDOW_PORTRAIT_SPECIES);
-    if (!gSprites[sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_STATUS]].invisible)
-        // ClearWindowTilemap(PSS_LABEL_WINDOW_POKEMON_SKILLS_STATUS);
-    HandlePowerAccTilemap(9, -3);
-    // HandleAppealJamTilemap(9, -3, move);
-    if (!sMonSummaryScreen->lockMovesFlag)
-    {
-        // ClearWindowTilemap(PSS_LABEL_WINDOW_PROMPT_INFO);
-        // PutWindowTilemap(PSS_LABEL_WINDOW_PROMPT_SWITCH);
-    }
-    // TilemapFiveMovesDisplay(sMonSummaryScreen->bgTilemapBuffers[PSS_PAGE_BATTLE_MOVES][0], 3, FALSE);
-    // TilemapFiveMovesDisplay(sMonSummaryScreen->bgTilemapBuffers[PSS_PAGE_CONTEST_MOVES][0], 1, FALSE);
     PrintMoveDetails(move);
-    // PrintNewMoveDetailsOrCancelText();
-    SetNewMoveTypeIcon();
+    PrintTeraMoveEffects(move);
+    PrintMovePP(sMonSummaryScreen->firstMoveIndex);
     ScheduleBgCopyTilemapToVram(0);
     ScheduleBgCopyTilemapToVram(1);
     ScheduleBgCopyTilemapToVram(2);
@@ -2061,23 +2066,39 @@ static void Task_HandleInput_MoveSelect(u8 taskId)
     {
         if (JOY_NEW(DPAD_UP))
         {
-            data[0] = 4;
-            ChangeSelectedMove(data, -2, &sMonSummaryScreen->firstMoveIndex);
+            if (sMonSummaryScreen->firstMoveIndex / 2 == 0)
+                PlaySE(SE_FAILURE);
+            else {
+                data[0] = 4;
+                ChangeSelectedMove(data, -2, &sMonSummaryScreen->firstMoveIndex);
+            }
         }
         else if (JOY_NEW(DPAD_DOWN))
         {
-            data[0] = 4;
-            ChangeSelectedMove(data, 2, &sMonSummaryScreen->firstMoveIndex);
+            if (sMonSummaryScreen->firstMoveIndex / 2 > 0 || (sMonSummaryScreen->summary.moves[sMonSummaryScreen->firstMoveIndex + 2] == 0))
+                PlaySE(SE_FAILURE);
+            else {
+                data[0] = 4;
+                ChangeSelectedMove(data, 2, &sMonSummaryScreen->firstMoveIndex);
+            }
         }
         if (JOY_NEW(DPAD_LEFT))
         {
-            data[0] = 4;
-            ChangeSelectedMove(data, -1, &sMonSummaryScreen->firstMoveIndex);
+            if (sMonSummaryScreen->firstMoveIndex % 2 == 0)
+                PlaySE(SE_FAILURE);
+            else {
+                data[0] = 4;
+                ChangeSelectedMove(data, -1, &sMonSummaryScreen->firstMoveIndex);
+            }
         }
         else if (JOY_NEW(DPAD_RIGHT))
         {
-            data[0] = 4;
-            ChangeSelectedMove(data, 1, &sMonSummaryScreen->firstMoveIndex);
+            if (sMonSummaryScreen->firstMoveIndex % 2 > 0 || (sMonSummaryScreen->summary.moves[sMonSummaryScreen->firstMoveIndex + 1] == 0))
+                PlaySE(SE_FAILURE);
+            else {
+                data[0] = 4;
+                ChangeSelectedMove(data, 1, &sMonSummaryScreen->firstMoveIndex);
+            }
         }
         else if (JOY_NEW(A_BUTTON))
         {
@@ -2087,11 +2108,11 @@ static void Task_HandleInput_MoveSelect(u8 taskId)
                 PlaySE(SE_SELECT);
                 CloseMoveSelectMode(taskId);
             }
-            else if (HasMoreThanOneMove() == TRUE)
-            {
-                PlaySE(SE_SELECT);
-                SwitchToMovePositionSwitchMode(taskId);
-            }
+            // else if (HasMoreThanOneMove() == TRUE)
+            // {
+            //     PlaySE(SE_SELECT);
+            //     SwitchToMovePositionSwitchMode(taskId);
+            // }
             else
             {
                 PlaySE(SE_FAILURE);
@@ -2144,26 +2165,20 @@ static void ChangeSelectedMove(s16 *taskData, s8 direction, u8 *moveIndexPtr)
     ScheduleBgCopyTilemapToVram(1);
     ScheduleBgCopyTilemapToVram(2);
     PrintMoveDetails(move);
+    PrintTeraMoveEffects(move);
+    PrintMovePP(newMoveIndex);
     if ((*moveIndexPtr == MAX_MON_MOVES && sMonSummaryScreen->newMove == MOVE_NONE)
         || taskData[1] == 1)
     {
-        ClearWindowTilemap(PSS_LABEL_WINDOW_PORTRAIT_SPECIES);
         if (!gSprites[sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_STATUS]].invisible)
-            ClearWindowTilemap(PSS_LABEL_WINDOW_POKEMON_SKILLS_STATUS);
         ScheduleBgCopyTilemapToVram(0);
-        HandlePowerAccTilemap(9, -3);
-        HandleAppealJamTilemap(9, -3, move);
     }
     if (*moveIndexPtr != MAX_MON_MOVES
         && newMoveIndex == MAX_MON_MOVES
         && sMonSummaryScreen->newMove == MOVE_NONE)
     {
-        ClearWindowTilemap(PSS_LABEL_WINDOW_MOVES_POWER_ACC);
-        ClearWindowTilemap(PSS_LABEL_WINDOW_MOVES_APPEAL_JAM);
         DestroySplitIcon();
         ScheduleBgCopyTilemapToVram(0);
-        HandlePowerAccTilemap(0, 3);
-        HandleAppealJamTilemap(0, 3, 0);
     }
 
     *moveIndexPtr = newMoveIndex;
@@ -2177,21 +2192,15 @@ static void ChangeSelectedMove(s16 *taskData, s8 direction, u8 *moveIndexPtr)
 static void CloseMoveSelectMode(u8 taskId)
 {
     DestroyMoveSelectorSprites(SPRITE_ARR_ID_MOVE_SELECTOR1);
-    ClearWindowTilemap(PSS_LABEL_WINDOW_PROMPT_SWITCH);
-    PutWindowTilemap(PSS_LABEL_WINDOW_PROMPT_INFO);
+    ShowTeraSplitIcons(MOVE_NONE);
     PrintMoveDetails(0);
     ShowTeraTypeIcons(MOVE_NONE);
+    PrintTeraMoveEffects(MOVE_NONE);
+    PrintMovePP(MAX_MON_MOVES);
 
-    // TilemapFiveMovesDisplay(sMonSummaryScreen->bgTilemapBuffers[PSS_PAGE_BATTLE_MOVES][0], 3, TRUE);
-    // TilemapFiveMovesDisplay(sMonSummaryScreen->bgTilemapBuffers[PSS_PAGE_CONTEST_MOVES][0], 1, TRUE);
-    // AddAndFillMoveNamesWindow(); // This function seems to have no effect.
     if (sMonSummaryScreen->firstMoveIndex != MAX_MON_MOVES)
     {
-        ClearWindowTilemap(PSS_LABEL_WINDOW_MOVES_POWER_ACC);
-        ClearWindowTilemap(PSS_LABEL_WINDOW_MOVES_APPEAL_JAM);
         DestroySplitIcon();
-        HandlePowerAccTilemap(0, 3);
-        HandleAppealJamTilemap(0, 3, 0);
     }
     ScheduleBgCopyTilemapToVram(0);
     ScheduleBgCopyTilemapToVram(1);
@@ -3035,6 +3044,14 @@ static void PrintPageNamesAndStats(void)
     PrintTextOnWindow(PSS_LABEL_WINDOW_MOVES_POWER_ACC, gText_Accuracy2, 0, 17, 0, 1);
     PrintTextOnWindow(PSS_LABEL_WINDOW_MOVES_APPEAL_JAM, gText_Appeal, 0, 1, 0, 1);
     PrintTextOnWindow(PSS_LABEL_WINDOW_MOVES_APPEAL_JAM, gText_Jam, 0, 17, 0, 1);
+
+    PrintSmallTextOnWindow(PSS_LABEL_WINDOW_UNUSED2, gText_PP, 5, 0, 0, 1);
+    PrintSmallTextOnWindow(PSS_LABEL_WINDOW_UNUSED2, gText_PowPrio, 5, 14, 0, 1);
+    PrintSmallTextOnWindow(PSS_LABEL_WINDOW_UNUSED2, gText_AccChance, 5, 25, 0, 1);
+    PrintSmallTextOnWindow(PSS_LABEL_WINDOW_UNUSED2, gText_Target, 5, 36, 0, 1);
+    PrintSmallTextOnWindow(PSS_LABEL_WINDOW_UNUSED2, gText_Type, 5, 47, 0, 1);
+    PrintSmallTextOnWindow(PSS_LABEL_WINDOW_UNUSED2, gText_Effect, 5, 63, 0, 1);
+    PrintSmallTextOnWindow(PSS_LABEL_WINDOW_UNUSED2, gText_Note, 5, 74, 0, 1);
 }
 
 static void PutPageWindowTilemaps(u8 page)
@@ -3076,28 +3093,10 @@ static void PutPageWindowTilemaps(u8 page)
         break;
     case PSS_PAGE_BATTLE_MOVES:
         PutWindowTilemap(PSS_LABEL_WINDOW_BATTLE_MOVES_TITLE);
-        if (sMonSummaryScreen->mode == SUMMARY_MODE_SELECT_MOVE)
-        {
-            if (sMonSummaryScreen->newMove != MOVE_NONE || sMonSummaryScreen->firstMoveIndex != MAX_MON_MOVES)
-                PutWindowTilemap(PSS_LABEL_WINDOW_MOVES_POWER_ACC);
-        }
-        else
-        {
-            PutWindowTilemap(PSS_LABEL_WINDOW_PROMPT_INFO);
-        }
+        PutWindowTilemap(PSS_LABEL_WINDOW_UNUSED2);
         break;
     case PSS_PAGE_CONTEST_MOVES:
         PutWindowTilemap(PSS_LABEL_WINDOW_CONTEST_MOVES_TITLE);
-        if (sMonSummaryScreen->mode == SUMMARY_MODE_SELECT_MOVE)
-        {
-            if (sMonSummaryScreen->newMove != MOVE_NONE || sMonSummaryScreen->firstMoveIndex != MAX_MON_MOVES)
-                PutWindowTilemap(PSS_LABEL_WINDOW_MOVES_APPEAL_JAM);
-        }
-        else
-        {
-            PutWindowTilemap(PSS_LABEL_WINDOW_PROMPT_INFO);
-        }
-        break;
     }
 
     for (i = 0; i < ARRAY_COUNT(sMonSummaryScreen->windowIds); i++)
@@ -3142,19 +3141,7 @@ static void ClearPageWindowTilemaps(u8 page)
         ClearWindowTilemap(PSS_LABEL_WINDOW_POKEMON_SKILLS_EXP);
         break;
     case PSS_PAGE_BATTLE_MOVES:
-        if (sMonSummaryScreen->mode == SUMMARY_MODE_SELECT_MOVE)
-        {
-            if (sMonSummaryScreen->newMove != MOVE_NONE || sMonSummaryScreen->firstMoveIndex != MAX_MON_MOVES)
-            {
-                ClearWindowTilemap(PSS_LABEL_WINDOW_MOVES_POWER_ACC);
-                gSprites[sMonSummaryScreen->splitIconSpriteId].invisible = TRUE;
-            }
-        }
-        else
-        {
-            ClearWindowTilemap(PSS_LABEL_WINDOW_PROMPT_INFO);
-        }
-        break;
+        ClearWindowTilemap(PSS_LABEL_WINDOW_UNUSED2);
     case PSS_PAGE_CONTEST_MOVES:
         if (sMonSummaryScreen->mode == SUMMARY_MODE_SELECT_MOVE)
         {
@@ -3172,17 +3159,6 @@ static void ClearPageWindowTilemaps(u8 page)
         RemoveWindowByIndex(i);
 
     ScheduleBgCopyTilemapToVram(0);
-}
-
-static u8 AddWindowFromTemplateList(const struct WindowTemplate *template, u8 templateId)
-{
-    u8 *windowIdPtr = &sMonSummaryScreen->windowIds[templateId];
-    if (*windowIdPtr == WINDOW_NONE)
-    {
-        *windowIdPtr = AddWindow(&template[templateId]);
-        FillWindowPixelBuffer(*windowIdPtr, PIXEL_FILL(0));
-    }
-    return *windowIdPtr;
 }
 
 static void RemoveWindowByIndex(u8 windowIndex)
@@ -3859,12 +3835,12 @@ static void PrintBattleMoves(void)
         }
         else
         {
-            PrintMoveDetails(sMonSummaryScreen->summary.moves[sMonSummaryScreen->firstMoveIndex]);
+            // PrintMoveDetails(sMonSummaryScreen->summary.moves[sMonSummaryScreen->firstMoveIndex]);
         }
     }
     else
     {
-        PrintMoveDetails(sMonSummaryScreen->summary.moves[sMonSummaryScreen->firstMoveIndex]);
+        // PrintMoveDetails(sMonSummaryScreen->summary.moves[sMonSummaryScreen->firstMoveIndex]);
     }
 }
 
@@ -3903,15 +3879,12 @@ static void Task_PrintBattleMoves(u8 taskId)
     case 7:
         if (sMonSummaryScreen->mode == SUMMARY_MODE_SELECT_MOVE)
         {
-            if (sMonSummaryScreen->newMove != MOVE_NONE || sMonSummaryScreen->firstMoveIndex != MAX_MON_MOVES)
+            if (sMonSummaryScreen->newMove != MOVE_NONE || sMonSummaryScreen->firstMoveIndex != MAX_MON_MOVES) {
                 PrintMoveDetails(data[1]);
+            }
         }
-        // else {
-        //     PrintMoveDetails(sMonSummaryScreen->summary.moves[sMonSummaryScreen->firstMoveIndex]);
-        // }
         break;
     case 8:
-        PrintTeraMoveEffects(sMonSummaryScreen->summary.moves[sMonSummaryScreen->firstMoveIndex]);
         DestroySprite(sMonSummaryScreen->markingsSprite);
     case 9:
         DestroyTask(taskId);
@@ -3920,7 +3893,45 @@ static void Task_PrintBattleMoves(u8 taskId)
     data[0]++;
 }
 
+void PrintMovePP(u8 moveIndex) {
+    u8 pp;
+    int ppState, x;
+    const u8 *text;
+    struct PokeSummary *summary = &sMonSummaryScreen->summary;
+    u8 ppValueWindowId = AddWindowFromTemplateList(sPageMovesTemplate, PSS_DATA_WINDOW_MOVE_PP_TOTAL);
+    u16 move = summary->moves[moveIndex];
+    FillWindowPixelBuffer(ppValueWindowId, PIXEL_FILL(0));
 
+    if (moveIndex != MAX_MON_MOVES){
+        if (move != 0)
+        {
+            pp = CalculatePPWithBonus(move, summary->ppBonuses, moveIndex);
+            ConvertIntToDecimalStringN(gStringVar1, summary->pp[moveIndex], STR_CONV_MODE_RIGHT_ALIGN, 2);
+            ConvertIntToDecimalStringN(gStringVar2, pp, STR_CONV_MODE_RIGHT_ALIGN, 2);
+            DynamicPlaceholderTextUtil_Reset();
+            DynamicPlaceholderTextUtil_SetPlaceholderPtr(0, gStringVar1);
+            DynamicPlaceholderTextUtil_SetPlaceholderPtr(1, gStringVar2);
+            DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, sMovesPPLayout);
+            text = gStringVar4;
+            ppState = GetCurrentPpToMaxPpState(summary->pp[moveIndex], pp) + 9;
+            x = GetStringRightAlignXOffset(FONT_NORMAL, text, 44);
+        }
+        else
+        {
+            text = gText_TwoDashes;
+            ppState = 12;
+            x = GetStringCenterAlignXOffset(FONT_NORMAL, text, 44);
+        }
+
+        PrintSmallTextOnWindow(ppValueWindowId, text, x-6, 8, 0, ppState);
+        PutWindowTilemap(ppValueWindowId);
+    }
+    else {
+        ClearWindowTilemap(ppValueWindowId);
+    }
+
+
+}
 
 static void PrintMoveNameAndPP(u8 moveIndex)
 {
@@ -4067,8 +4078,9 @@ static void PrintMoveDetails(u16 move)
         {
             moveEffect = gBattleMoves[move].effect;
             ShowSplitIcon(GetBattleMoveSplit(move));
-            PrintMovePowerAndAccuracy(move);
+            // PrintMovePowerAndAccuracy(move);
             ShowTeraTypeIcons(move);
+            ShowTeraSplitIcons(move);
 
             if (moveEffect != EFFECT_PLACEHOLDER) {
                 PrintSmallTextOnWindow(windowId, gMoveDescriptionPointers[move - 1], 3, 0, 0, 0);
@@ -4194,8 +4206,6 @@ static void SetTypeIcons(void)
         SetNewMoveTypeIcon();
         break;
     case PSS_PAGE_BATTLE_MOVES:
-        SetMoveTypeIcons();
-        SetNewMoveTypeIcon();
         break;
     case PSS_PAGE_CONTEST_MOVES:
         SetContestMoveTypeIcons();
@@ -4215,6 +4225,20 @@ static void CreateMoveTypeIcons(void)
 
         SetSpriteInvisibility(i, TRUE);
     }
+    for (i = SPRITE_ARR_ID_TERA_SPLIT; i < SPRITE_ARR_ID_TERA_SPLIT + 4; i++)
+    {
+        if (sMonSummaryScreen->spriteIds[i] == SPRITE_NONE)
+            sMonSummaryScreen->spriteIds[i] = CreateSprite(&sSpriteTemplate_SplitIcons, 0, 0, 2);
+
+        SetSpriteInvisibility(i, TRUE);
+    }
+    for (i = SPRITE_ARR_ID_TERA_MOVE; i < SPRITE_ARR_ID_TERA_MOVE + 4; i++)
+    {
+        if (sMonSummaryScreen->spriteIds[i] == SPRITE_NONE)
+            sMonSummaryScreen->spriteIds[i] = CreateSprite(&sSpriteTemplate_MoveTypes, 0, 0, 2);
+
+        SetSpriteInvisibility(i, TRUE);
+    }
 }
 
 void SetTypeSpritePosAndPal(u8 typeId, u8 x, u8 y, u8 spriteArrayId) //HGSS_Ui
@@ -4222,6 +4246,15 @@ void SetTypeSpritePosAndPal(u8 typeId, u8 x, u8 y, u8 spriteArrayId) //HGSS_Ui
     struct Sprite *sprite = &gSprites[sMonSummaryScreen->spriteIds[spriteArrayId]];
     StartSpriteAnim(sprite, typeId);
     sprite->oam.paletteNum = sMoveTypeToOamPaletteNum[typeId];
+    sprite->x = x + 16;
+    sprite->y = y + 8;
+    SetSpriteInvisibility(spriteArrayId, FALSE);
+}
+
+void SetSplitSpritePosAndPal(u8 typeId, u8 x, u8 y, u8 spriteArrayId) //HGSS_Ui
+{
+    struct Sprite *sprite = &gSprites[sMonSummaryScreen->spriteIds[spriteArrayId]];
+    StartSpriteAnim(sprite, typeId);
     sprite->x = x + 16;
     sprite->y = y + 8;
     SetSpriteInvisibility(spriteArrayId, FALSE);
@@ -4608,13 +4641,62 @@ void ShowTeraTypeIcons(u16 move)
     struct PokeSummary *summary = &sMonSummaryScreen->summary;
     u8 teraTypes;
 
+    if (move != MOVE_NONE) {
+        SetTypeSpritePosAndPal(gBattleMoves[move].type, 44, 121, SPRITE_ARR_ID_TYPE + 4);
+    }
+    else {
+        SetSpriteInvisibility(SPRITE_ARR_ID_TYPE + 4, TRUE);
+    }
+
     for (i = 0; i < 4; i++)
     {
         teraTypes = GetTeraMoveTypes(move, i);
         if (teraTypes != TYPE_NONE)
-            SetTypeSpritePosAndPal(teraTypes, 84 + (i*40), 74, i + SPRITE_ARR_ID_TYPE);
+            SetTypeSpritePosAndPal(teraTypes, 84 + (i*40), 72, i + SPRITE_ARR_ID_TYPE);
         else
             SetSpriteInvisibility(SPRITE_ARR_ID_TYPE + i, TRUE);
+    }
+
+    for (i = 0; i < 4; i++)
+    {
+        teraTypes = GetTeraMoveTypes(move, i);
+        if (teraTypes == TYPE_NONE || gBattleMoves[move].type == gTeraMoveTable[move][teraTypes].type)
+            SetSpriteInvisibility(SPRITE_ARR_ID_TERA_MOVE + i, TRUE);
+        else
+            SetTypeSpritePosAndPal(gTeraMoveTable[move][teraTypes].type, 84 + (i*40), 121, i + SPRITE_ARR_ID_TERA_MOVE);
+    }
+
+}
+
+void ShowTeraSplitIcons(u16 move)
+{
+    u8 i;
+    struct PokeSummary *summary = &sMonSummaryScreen->summary;
+    u8 teraType;
+
+    if (move == MOVE_NONE) {
+        SetSpriteInvisibility(SPRITE_ARR_ID_TERA_SPLIT, TRUE);
+        SetSpriteInvisibility(SPRITE_ARR_ID_TERA_SPLIT + 1, TRUE);
+        SetSpriteInvisibility(SPRITE_ARR_ID_TERA_SPLIT + 2, TRUE);
+        SetSpriteInvisibility(SPRITE_ARR_ID_TERA_SPLIT + 3, TRUE);
+    }
+    else {
+        for (i = 0; i < 4; i++)
+        {
+            teraType = GetTeraMoveTypes(move, i);
+            if (teraType != TYPE_NONE) {
+                if (gTeraMoveTable[move][teraType].split)
+                    SetSplitSpritePosAndPal(gTeraMoveTable[move][teraType].split, 74 + (i*40), 107, i + SPRITE_ARR_ID_TERA_SPLIT);
+                else
+                {
+                    SetSplitSpritePosAndPal(gBattleMoves[move].split, 74 + (i*40), 107, i + SPRITE_ARR_ID_TERA_SPLIT);
+                }
+            }
+            else
+            {
+                SetSpriteInvisibility(SPRITE_ARR_ID_TERA_SPLIT + i, TRUE);
+            }
+        }
     }
 }
 
@@ -4622,20 +4704,206 @@ void ShowTeraTypeIcons(u16 move)
 void PrintTeraMoveEffects(u16 move)
 {
     const u8 *text;
-    u8 windowId;
+    u8 windowId = AddWindowFromTemplateList(sPageMovesTemplate, PSS_DATA_WINDOW_MOVE_PP);
     u8 teraType = GetTeraMoveTypes(move, 0);
+    u8 i;
+    u8 xPos;
 
     if (move != MOVE_NONE)
     {
-        ConvertIntToDecimalStringN(gStringVar1, gTeraMoveTable[move][teraType].power, STR_CONV_MODE_RIGHT_ALIGN, 3);
+        FillWindowPixelBuffer(windowId, PIXEL_FILL(0));
+
+
+        if (gBattleMoves[move].power < 2)
+        {
+            text = gText_TwoDashes;
+            PrintSmallTextOnWindow(windowId, text, 8, 6, 0, 0);
+        }
+        else
+        {
+            ConvertIntToDecimalStringN(gStringVar1, gBattleMoves[move].power, STR_CONV_MODE_RIGHT_ALIGN, 3);
+            text = gStringVar1;
+            PrintSmallTextOnWindow(windowId, text, 3, 6, 0, 0);
+        }
+
+        ConvertIntToDecimalStringN(gStringVar1, gBattleMoves[move].priority, STR_CONV_MODE_LEFT_ALIGN, 3);
         text = gStringVar1;
+        PrintSmallTextOnWindow(windowId, text, 23, 6, 0, 0);
 
-        windowId = AddWindowFromTemplateList(sPageMovesTemplate, PSS_DATA_WINDOW_TERA_MOVE_DESCRIPTION);
-        PrintSmallTextOnWindow(windowId, text, 0, 0, 0, 0);
+        if (gBattleMoves[move].accuracy < 2)
+        {
+            text = gText_TwoDashes;
+            PrintSmallTextOnWindow(windowId, text, 8, 17, 0, 0);
+        }
+        else
+        {
+            ConvertIntToDecimalStringN(gStringVar1, gBattleMoves[move].accuracy, STR_CONV_MODE_RIGHT_ALIGN, 3);
+            text = gStringVar1;
+            PrintSmallTextOnWindow(windowId, text, 3, 17, 0, 0);
+        }
 
-        ConvertIntToDecimalStringN(gStringVar1, gTeraMoveTable[move][teraType].accuracy, STR_CONV_MODE_RIGHT_ALIGN, 3);
-        text = gStringVar1;
 
-        PrintSmallTextOnWindow(windowId, text, 0, 8, 0, 0);
+        if (gBattleMoves[move].secondaryEffectChance < 2)
+        {
+            text = gText_TwoDashes;
+        }
+        else
+        {
+            ConvertIntToDecimalStringN(gStringVar1, gBattleMoves[move].secondaryEffectChance, STR_CONV_MODE_LEFT_ALIGN, 3);
+            text = gStringVar1;
+        }
+
+        PrintSmallTextOnWindow(windowId, text, 23, 17, 0, 0);
+
+        PrintSmallTextOnWindow(windowId, gText_Slash, 18, 6, 0, 0);
+        PrintSmallTextOnWindow(windowId, gText_Slash, 18, 17, 0, 0);
+
+        switch (gBattleMoves[move].target){
+            case MOVE_TARGET_SELECTED:
+                text = gText_Select2;
+                break;
+            case MOVE_TARGET_USER:
+                text = gText_User;
+                break;
+            case MOVE_TARGET_ALLY:
+                text = gText_Ally;
+                break;
+            case MOVE_TARGET_DEPENDS:
+                text = gText_Depends;
+                break;
+            case MOVE_TARGET_BOTH:
+                text = gText_Both;
+                break;
+            case MOVE_TARGET_ALL_BATTLERS:
+                text = gText_All;
+                break;
+            case MOVE_TARGET_RANDOM:
+                text = gText_Random;
+                break;
+            case MOVE_TARGET_OPPONENTS_FIELD:
+                text = gText_Both;
+                break;
+            case MOVE_TARGET_FOES_AND_ALLY:
+                text = gText_Others3;
+                break;
+        }
+
+
+        PrintSmallTextOnWindow(windowId, text, 17, 28, 0, 0);
+
+
+        text = gMoveEffects[gBattleMoves[move].effect];
+        xPos = GetStringCenterAlignXOffset(FONT_SMALL_NARROW, text, 38);
+        PrintSmallTextOnWindow(windowId, text, 2+xPos, 55, 0, 0);
+
+
+
+        for (i = 0; i < 4; i++){
+            teraType = GetTeraMoveTypes(move, i);
+            
+            if (teraType != TYPE_NONE) {
+
+                if (gTeraMoveTable[move][teraType].power < 2)
+                {
+                    text = gText_TwoDashes;
+                    PrintSmallTextOnWindow(windowId, text, i*40+48, 6, 0, 0);
+                }
+                else
+                {
+                    ConvertIntToDecimalStringN(gStringVar1, gTeraMoveTable[move][teraType].power, STR_CONV_MODE_RIGHT_ALIGN, 3);
+                    text = gStringVar1;
+                    PrintSmallTextOnWindow(windowId, text, i*40+43, 6, 0, 0);
+                }
+
+                if (gTeraMoveTable[move][teraType].priority == 0)
+                {
+                    text = gText_TwoDashes;
+                }
+                else
+                {
+                    ConvertIntToDecimalStringN(gStringVar1, gTeraMoveTable[move][teraType].priority, STR_CONV_MODE_LEFT_ALIGN, 3);
+                    text = gStringVar1;
+                }
+                PrintSmallTextOnWindow(windowId, text, i*40+63, 6, 0, 0);
+
+                if (gTeraMoveTable[move][teraType].accuracy < 2)
+                {
+                    text = gText_TwoDashes;
+                    PrintSmallTextOnWindow(windowId, text, i*40+48, 17, 0, 0);
+                }
+                else
+                {
+                    ConvertIntToDecimalStringN(gStringVar1, gTeraMoveTable[move][teraType].accuracy, STR_CONV_MODE_RIGHT_ALIGN, 3);
+                    text = gStringVar1;
+                    PrintSmallTextOnWindow(windowId, text, i*40+43, 17, 0, 0);
+                }
+
+                if (gTeraMoveTable[move][teraType].secondaryEffectChance == 0)
+                {
+                    text = gText_TwoDashes;
+                }
+                else
+                {
+                    ConvertIntToDecimalStringN(gStringVar1, gTeraMoveTable[move][teraType].secondaryEffectChance, STR_CONV_MODE_LEFT_ALIGN, 3);
+                    text = gStringVar1;
+                }
+
+                PrintSmallTextOnWindow(windowId, text, i*40+63, 17, 0, 0);
+
+                PrintSmallTextOnWindow(windowId, gText_Slash, i*40+58, 6, 0, 0);
+                PrintSmallTextOnWindow(windowId, gText_Slash, i*40+58, 17, 0, 0);
+
+                switch (gTeraMoveTable[move][teraType].target){
+                    case MOVE_TARGET_SELECTED:
+                        text = gText_Select2;
+                        break;
+                    case MOVE_TARGET_USER:
+                        text = gText_User;
+                        break;
+                    case MOVE_TARGET_ALLY:
+                        text = gText_Ally;
+                        break;
+                    case MOVE_TARGET_DEPENDS:
+                        text = gText_Depends;
+                        break;
+                    case MOVE_TARGET_BOTH:
+                        text = gText_Both;
+                        break;
+                    case MOVE_TARGET_ALL_BATTLERS:
+                        text = gText_All;
+                        break;
+                    case MOVE_TARGET_RANDOM:
+                        text = gText_Random;
+                        break;
+                    case MOVE_TARGET_OPPONENTS_FIELD:
+                        text = gText_Both;
+                        break;
+                    case MOVE_TARGET_FOES_AND_ALLY:
+                        text = gText_Others3;
+                        break;
+                }
+                PrintSmallTextOnWindow(windowId, text, i*40+57, 28, 0, 0);
+
+                if (gTeraMoveTable[move][teraType].effect == gBattleMoves[move].effect || gTeraMoveTable[move][teraType].effect == 0)
+                {
+                    xPos = GetStringCenterAlignXOffset(FONT_SMALL_NARROW, gText_ThreeDashes, 36);
+                    PrintSmallTextOnWindow(windowId, gText_ThreeDashes, i*40+42+xPos, 55, 0, 0);
+                }
+                else {
+                    text = gMoveEffects[gTeraMoveTable[move][teraType].effect];
+                    xPos = GetStringCenterAlignXOffset(FONT_SMALL_NARROW, text, 36);
+                    PrintSmallTextOnWindow(windowId, text, i*40+42+xPos, 55, 0, 0);
+                }
+
+
+                
+                ScheduleBgCopyTilemapToVram(0);
+            }
+        }
+        PutWindowTilemap(windowId);
+    }
+    else
+    {
+        ClearWindowTilemap(windowId);
     }
 }

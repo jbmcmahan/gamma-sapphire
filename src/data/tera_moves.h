@@ -190,6 +190,11 @@ const struct TeraMove gTeraMoveTable[MOVES_COUNT_Z][NUMBER_OF_MON_TYPES] =
             .type = TYPE_POISON,
             .accuracy = 90,
         },
+        [TYPE_STEEL] = {
+            .requiresTerastalization = 1,
+            .type = TYPE_STEEL,
+            .power = 50,
+        },
     },
 
     [MOVE_TAKE_DOWN] = {

@@ -19,8 +19,11 @@ void ShowPokemonSummaryScreenHandleDeoxys(u8 mode, struct BoxPokemon *mons, u8 m
 u8 GetMoveSlotToReplace(void);
 void SummaryScreen_SetAnimDelayTaskId(u8 taskId);
 void ShowTeraTypeIcons(u16 move);
+void ShowTeraSplitIcons(u16 move);
+void SetSplitSpritePosAndPal(u8 typeId, u8 x, u8 y, u8 spriteArrayId);
 u8 GetTeraMoveTypes(u16 move, u8 number);
 void PrintTeraMoveEffects(u16 move);
+void PrintMovePP(u8 moveIndex);
 
 // The Pokemon Summary Screen can operate in different modes. Certain features,
 // such as move re-ordering, are available in the different modes.
