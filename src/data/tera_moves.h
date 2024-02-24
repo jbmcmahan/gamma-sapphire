@@ -225,6 +225,21 @@ const struct TeraMove gTeraMoveTable[MOVES_COUNT_Z][NUMBER_OF_MON_TYPES] =
         },
     },
 
+    [MOVE_PIN_MISSILE] = {
+        [TYPE_BUG] = {
+            .requiresTerastalization = 1,
+            .accuracy = 100,
+        },
+        [TYPE_ICE] = {
+            .requiresTerastalization = 1,
+            .power = 30,
+        },
+        [TYPE_ELECTRIC] = {
+            .requiresTerastalization = 1,
+            .priority = 1,
+        },
+    },
+
     [MOVE_LEER] = {
         [TYPE_FIGHTING] = {
             .requiresTerastalization = 1,
@@ -408,6 +423,22 @@ const struct TeraMove gTeraMoveTable[MOVES_COUNT_Z][NUMBER_OF_MON_TYPES] =
             .requiresTerastalization = 1,
             .power = 30,
             .effect = EFFECT_ALWAYS_CRIT,
+        },
+    },
+
+    [MOVE_FIRE_SPIN] = {
+        [TYPE_DARK] = {
+            .requiresTerastalization = 1,
+            .accuracy = 100,
+        },
+        [TYPE_ROCK] = {
+            .requiresTerastalization = 1,
+            .split = SPLIT_PHYSICAL,
+        },
+        [TYPE_FAIRY] = {
+            .requiresTerastalization = 1,
+            .power = 50,
+            .secondaryEffectChance = 30,
         },
     },
 
