@@ -22,13 +22,18 @@
       "map": "MAP_CHAPTER1C",
       "offset": 0,
       "direction": "right"
+    },
+    {
+      "map": "MAP_CHAPTER1",
+      "offset": -23,
+      "direction": "down"
     }
   ],
   "object_events": [
     {
       "graphics_id": "OBJ_EVENT_GFX_CAMPER",
-      "x": 6,
-      "y": 9,
+      "x": 5,
+      "y": 14,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 0,
@@ -40,8 +45,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_PICNICKER",
-      "x": 7,
-      "y": 9,
+      "x": 6,
+      "y": 14,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 0,
@@ -53,8 +58,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_GIRL_1",
-      "x": 8,
-      "y": 9,
+      "x": 7,
+      "y": 14,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 0,
