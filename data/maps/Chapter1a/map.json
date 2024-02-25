@@ -3,7 +3,7 @@
   "name": "Chapter1a",
   "layout": "LAYOUT_CHAPTER1A",
   "music": "MUS_ROUTE101",
-  "region_map_section": "MAPSEC_ROUTE_101",
+  "region_map_section": "MAPSEC_TRANQUIL_TRAIL",
   "requires_flash": false,
   "weather": "WEATHER_RAIN",
   "map_type": "MAP_TYPE_ROUTE",

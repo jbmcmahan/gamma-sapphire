@@ -3,7 +3,7 @@
   "name": "Chapter1",
   "layout": "LAYOUT_CHAPTER1",
   "music": "MUS_ROUTE101",
-  "region_map_section": "MAPSEC_LITTLEROOT_TOWN",
+  "region_map_section": "MAPSEC_SERENE_PATH",
   "requires_flash": false,
   "weather": "WEATHER_RAIN",
   "map_type": "MAP_TYPE_ROUTE",
@@ -13,11 +13,6 @@
   "show_map_name": true,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": [
-    {
-      "map": "MAP_CHAPTER2",
-      "offset": 0,
-      "direction": "down"
-    },
     {
       "map": "MAP_ROUTE101",
       "offset": 0,
@@ -32,6 +27,11 @@
       "map": "MAP_CHAPTER1B",
       "offset": 23,
       "direction": "up"
+    },
+    {
+      "map": "MAP_CHAPTER2",
+      "offset": 0,
+      "direction": "right"
     }
   ],
   "object_events": [

@@ -19,14 +19,14 @@
       "direction": "up"
     },
     {
-      "map": "MAP_CHAPTER2",
-      "offset": 0,
-      "direction": "down"
-    },
-    {
       "map": "MAP_CHAPTER3A",
       "offset": 4,
       "direction": "right"
+    },
+    {
+      "map": "MAP_CHAPTER2",
+      "offset": 0,
+      "direction": "left"
     }
   ],
   "object_events": [

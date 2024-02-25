@@ -3,7 +3,7 @@
   "name": "Chapter2a",
   "layout": "LAYOUT_CHAPTER2A",
   "music": "MUS_ROUTE101",
-  "region_map_section": "MAPSEC_ROUTE_101",
+  "region_map_section": "MAPSEC_ROUTE_105",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
   "map_type": "MAP_TYPE_ROUTE",
@@ -14,14 +14,14 @@
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": [
     {
-      "map": "MAP_CHAPTER2",
-      "offset": 0,
-      "direction": "left"
-    },
-    {
       "map": "MAP_CHAPTER2B",
       "offset": 0,
       "direction": "right"
+    },
+    {
+      "map": "MAP_CHAPTER2",
+      "offset": 0,
+      "direction": "up"
     }
   ],
   "object_events": [
