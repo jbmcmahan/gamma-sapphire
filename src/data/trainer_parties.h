@@ -91,7 +91,7 @@ static const struct TrainerMonCustomized sParty_Gamma_Aqua_Grunt_2[] =
         .iv = TRAINER_PARTY_IVS(31,31,31,31,31,31),
         .ev = TRAINER_PARTY_EVS(0,0,0,0,0,0),
         .lvl = 12,
-        .moves = {MOVE_SCRATCH, MOVE_LEER, MOVE_FURY_CUTTER, MOVE_TORMENT},
+        .moves = {MOVE_ROCK_SMASH, MOVE_LEER, MOVE_METAL_CLAW, MOVE_TORMENT},
         .nature = NATURE_RELAXED,
     },
     {
