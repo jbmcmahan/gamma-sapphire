@@ -671,7 +671,7 @@ const struct TeraMove gTeraMoveTable[MOVES_COUNT_Z][NUMBER_OF_MON_TYPES] =
     [MOVE_DIVE] = {
         [TYPE_ELECTRIC] = {
             .requiresTerastalization = 1,
-            .power = 50,
+            .power = 45,
             .effect = EFFECT_HIT,
         },
         [TYPE_ICE] = {
