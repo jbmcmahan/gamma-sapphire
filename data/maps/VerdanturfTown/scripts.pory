@@ -64,38 +64,6 @@ VerdanturfTown_EventScript_RusturfTunnelSign::
 	msgbox VerdanturfTown_Text_RusturfTunnelSign, MSGBOX_SIGN
 	end
 
-VerdanturfTown_EventScript_BirchsBag::
-	lock
-	faceplayer
-	setflag FLAG_SYS_POKEMON_GET
-	setflag FLAG_RESCUED_BIRCH
-	fadescreen FADE_TO_BLACK
-	removeobject LOCALID_ZIGZAGOON
-	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterLeft
-	waitmovement 0
-	special ChooseStarter
-	waitstate
-	applymovement LOCALID_BIRCH, Route101_Movement_BirchApproachPlayer
-	waitmovement 0
-	msgbox Route101_Text_YouSavedMe, MSGBOX_DEFAULT
-	special HealPlayerParty
-	setflag FLAG_HIDE_ROUTE_101_BIRCH_ZIGZAGOON_BATTLE
-	clearflag FLAG_HIDE_LITTLEROOT_TOWN_BIRCHS_LAB_BIRCH
-	setflag FLAG_HIDE_ROUTE_101_BIRCH_STARTERS_BAG
-	setvar VAR_BIRCH_LAB_STATE, 2
-	setvar VAR_ROUTE101_STATE, 3
-	setflag FLAG_SYS_POKEDEX_GET
-	special SetUnlockedPokedexFlags
-	setflag FLAG_RECEIVED_POKEDEX_FROM_BIRCH
-	setvar VAR_CABLE_CLUB_TUTORIAL_STATE, 1
-	giveitem ITEM_MASTER_BALL, 90
-	giveitem ITEM_SUPER_CANDY
-	giveitem ITEM_EXP_CANDY_XL, 99
-	special EnableNationalPokedex
-	clearflag FLAG_HIDE_MAP_NAME_POPUP
-	releaseall
-	end
-
 VerdanturfTown_Text_ManTryingToDigTunnel:
 	.string "My papa told me.\p"
 	.string "He says this tunnel is full of\n"
@@ -159,3 +127,22 @@ VerdanturfTown_Text_RusturfTunnelSign:
 	.string "canceled.”$"
 
 `
+
+script VerdanturfTown_EventScript_BirchsBag {
+	lock
+	faceplayer
+	setflag(FLAG_SYS_POKEMON_GET)
+	fadescreen(FADE_TO_BLACK)
+	special(ChooseStarter)
+	waitstate
+	setflag(FLAG_HIDE_ROUTE_101_BIRCH_STARTERS_BAG)
+	setflag(FLAG_SYS_POKEDEX_GET)
+	special(SetUnlockedPokedexFlags)
+	setflag(FLAG_RECEIVED_POKEDEX_FROM_BIRCH)
+	giveitem(ITEM_MASTER_BALL, 90)
+	giveitem(ITEM_SUPER_CANDY)
+	giveitem(ITEM_EXP_CANDY_XL, 99)
+	special(EnableNationalPokedex)
+	releaseall
+	end
+}

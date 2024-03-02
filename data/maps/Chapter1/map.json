@@ -167,7 +167,20 @@
     }
   ],
   "warp_events": [
-
+    {
+      "x": 35,
+      "y": 16,
+      "elevation": 0,
+      "dest_map": "MAP_CHAPTER1C",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 36,
+      "y": 16,
+      "elevation": 0,
+      "dest_map": "MAP_CHAPTER1C",
+      "dest_warp_id": "1"
+    }
   ],
   "coord_events": [
 

@@ -19,11 +19,6 @@
       "direction": "left"
     },
     {
-      "map": "MAP_CHAPTER1C",
-      "offset": 0,
-      "direction": "right"
-    },
-    {
       "map": "MAP_CHAPTER1",
       "offset": -23,
       "direction": "down"
