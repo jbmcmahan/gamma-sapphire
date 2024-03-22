@@ -6,6 +6,7 @@
 extern u8 gLastViewedMonIndex;
 
 extern const u8 *const gMoveDescriptionPointers[];
+extern const u8 *const gTeraMoveNotePointers[][];
 extern const u8 gNotDoneYetDescription[];
 extern const u8 *const gNatureNamePointers[];
 extern const struct SpriteTemplate sSpriteTemplate_MoveTypes;
@@ -33,6 +34,7 @@ enum PokemonSummaryScreenMode
     SUMMARY_MODE_LOCK_MOVES,
     SUMMARY_MODE_BOX,
     SUMMARY_MODE_SELECT_MOVE,
+    SUMMARY_MODE_FROM_TUTOR,
 };
 
 #endif // GUARD_POKEMON_SUMMARY_SCREEN_H

@@ -48,6 +48,7 @@
 #include "constants/region_map_sections.h"
 #include "constants/rgb.h"
 #include "constants/songs.h"
+#include "move_relearner.h"
 
 enum {
     PSS_PAGE_INFO,
@@ -343,6 +344,7 @@ static void BufferIvOrEvStats(u8 mode);
 // const rom data
 #include "data/text/move_descriptions.h"
 #include "data/text/nature_names.h"
+#include "data/text/tera_move_notes.h"
 
 static const struct BgTemplate sBgTemplates[] =
 {
@@ -1243,20 +1245,28 @@ void ShowPokemonSummaryScreen(u8 mode, void *mons, u8 monIndex, u8 maxMonIndex, 
     case SUMMARY_MODE_BOX:
         sMonSummaryScreen->minPageIndex = 0;
         sMonSummaryScreen->maxPageIndex = PSS_PAGE_COUNT - 1;
+        sMonSummaryScreen->currPageIndex = sMonSummaryScreen->minPageIndex;
         break;
     case SUMMARY_MODE_LOCK_MOVES:
         sMonSummaryScreen->minPageIndex = 0;
         sMonSummaryScreen->maxPageIndex = PSS_PAGE_COUNT - 1;
         sMonSummaryScreen->lockMovesFlag = TRUE;
+        sMonSummaryScreen->currPageIndex = sMonSummaryScreen->minPageIndex;
         break;
     case SUMMARY_MODE_SELECT_MOVE:
         sMonSummaryScreen->minPageIndex = PSS_PAGE_BATTLE_MOVES;
         sMonSummaryScreen->maxPageIndex = PSS_PAGE_COUNT - 1;
         sMonSummaryScreen->lockMonFlag = TRUE;
+        sMonSummaryScreen->currPageIndex = sMonSummaryScreen->minPageIndex;
+        break;
+    case SUMMARY_MODE_FROM_TUTOR:
+        sMonSummaryScreen->minPageIndex = 0;
+        sMonSummaryScreen->maxPageIndex = PSS_PAGE_COUNT - 1;
+        sMonSummaryScreen->currPageIndex = PSS_PAGE_BATTLE_MOVES;
+        sMonSummaryScreen->mode = SUMMARY_MODE_NORMAL;
         break;
     }
 
-    sMonSummaryScreen->currPageIndex = sMonSummaryScreen->minPageIndex;
     sMonSummaryScreen->splitIconSpriteId = 0xFF;
     SummaryScreen_SetAnimDelayTaskId(TASK_NONE);
 
@@ -1393,7 +1403,8 @@ static bool8 LoadGraphics(void)
         }
         break;
     case 18:
-        CreateMonMarkingsSprite(&sMonSummaryScreen->currentMon);
+        if (sMonSummaryScreen->currPageIndex == PSS_PAGE_INFO)
+            RemoveAndCreateMonMarkingsSprite(&sMonSummaryScreen->currentMon);
         gMain.state++;
         break;
     case 19:
@@ -1608,8 +1619,6 @@ static void SetDefaultTilemaps(void)
     else
     {
         DrawContestMoveHearts(sMonSummaryScreen->summary.moves[sMonSummaryScreen->firstMoveIndex]);
-        TilemapFiveMovesDisplay(sMonSummaryScreen->bgTilemapBuffers[PSS_PAGE_BATTLE_MOVES][0], 3, FALSE);
-        TilemapFiveMovesDisplay(sMonSummaryScreen->bgTilemapBuffers[PSS_PAGE_CONTEST_MOVES][0], 1, FALSE);
         SetBgTilemapBuffer(1, sMonSummaryScreen->bgTilemapBuffers[PSS_PAGE_CONTEST_MOVES][0]);
         SetBgTilemapBuffer(2, sMonSummaryScreen->bgTilemapBuffers[PSS_PAGE_BATTLE_MOVES][0]);
         ChangeBgX(2, 0x10000, BG_COORD_ADD);
@@ -2108,11 +2117,15 @@ static void Task_HandleInput_MoveSelect(u8 taskId)
                 PlaySE(SE_SELECT);
                 CloseMoveSelectMode(taskId);
             }
-            // else if (HasMoreThanOneMove() == TRUE)
-            // {
-            //     PlaySE(SE_SELECT);
-            //     SwitchToMovePositionSwitchMode(taskId);
-            // }
+            else if (HasMoreThanOneMove() == TRUE)
+            {
+                PlaySE(SE_SELECT);
+                FlagSet(FLAG_PARTY_MOVES);
+                gSpecialVar_0x8004 = sMonSummaryScreen->curMonIndex;
+                gSpecialVar_0x8005 = sMonSummaryScreen->firstMoveIndex;
+                TeachMoveRelearnerMove();
+                BeginCloseSummaryScreen(taskId);
+            }
             else
             {
                 PlaySE(SE_FAILURE);
@@ -4660,7 +4673,8 @@ void ShowTeraTypeIcons(u16 move)
     for (i = 0; i < 4; i++)
     {
         teraTypes = GetTeraMoveTypes(move, i);
-        if (teraTypes == TYPE_NONE || gBattleMoves[move].type == gTeraMoveTable[move][teraTypes].type)
+        // if (teraTypes == TYPE_NONE || gBattleMoves[move].type == gTeraMoveTable[move][teraTypes].type)
+        if (teraTypes == TYPE_NONE)
             SetSpriteInvisibility(SPRITE_ARR_ID_TERA_MOVE + i, TRUE);
         else
             SetTypeSpritePosAndPal(gTeraMoveTable[move][teraTypes].type, 84 + (i*40), 121, i + SPRITE_ARR_ID_TERA_MOVE);
@@ -4895,7 +4909,17 @@ void PrintTeraMoveEffects(u16 move)
                     PrintSmallTextOnWindow(windowId, text, i*40+42+xPos, 55, 0, 0);
                 }
 
-
+                if (gTeraMoveNotePointers[move][teraType])
+                {
+                    text = gTeraMoveNotePointers[move][teraType];
+                    xPos = GetStringCenterAlignXOffset(FONT_SMALL_NARROW, text, 36);
+                    PrintSmallTextOnWindow(windowId, text, i*40+42+xPos, 66, 0, 0);
+                }
+                else
+                {
+                    xPos = GetStringCenterAlignXOffset(FONT_SMALL_NARROW, gText_ThreeDashes, 36);
+                    PrintSmallTextOnWindow(windowId, gText_ThreeDashes, i*40+42+xPos, 66, 0, 0);
+                }
                 
                 ScheduleBgCopyTilemapToVram(0);
             }
