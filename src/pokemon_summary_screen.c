@@ -1435,17 +1435,14 @@ static bool8 LoadGraphics(void)
         gMain.state++;
         break;
     case 17:
-        if (sMonSummaryScreen->currPageIndex != PSS_PAGE_BATTLE_MOVES){
-            sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_MON] = LoadMonGfxAndSprite(&sMonSummaryScreen->currentMon, &sMonSummaryScreen->switchCounter);
-            if (sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_MON] != SPRITE_NONE)
-            {
-                sMonSummaryScreen->switchCounter = 0;
-                gMain.state++;
-            }
+        sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_MON] = LoadMonGfxAndSprite(&sMonSummaryScreen->currentMon, &sMonSummaryScreen->switchCounter);
+        if (sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_MON] == SPRITE_NONE)
+            return;
+        gSprites[sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_MON]].data[2] = 1;
+        if (sMonSummaryScreen->currPageIndex == PSS_PAGE_BATTLE_MOVES){
+            SetSpriteInvisibility(SPRITE_ARR_ID_MON, TRUE);
         }
-        else {
-            gMain.state++;
-        }
+        gMain.state++;
         break;
     case 18:
         if (sMonSummaryScreen->currPageIndex != PSS_PAGE_BATTLE_MOVES)
@@ -1454,6 +1451,9 @@ static bool8 LoadGraphics(void)
         break;
     case 19:
         CreateCaughtBallSprite(&sMonSummaryScreen->currentMon);
+        if (sMonSummaryScreen->currPageIndex == PSS_PAGE_BATTLE_MOVES){
+            SetSpriteInvisibility(SPRITE_ARR_ID_BALL, TRUE);
+        }
         gMain.state++;
         break;
     case 20:
@@ -1872,6 +1872,9 @@ static void Task_ChangeSummaryMon(u8 taskId)
         break;
     case 6:
         CreateCaughtBallSprite(&sMonSummaryScreen->currentMon);
+        if (sMonSummaryScreen->currPageIndex == PSS_PAGE_BATTLE_MOVES){
+            SetSpriteInvisibility(SPRITE_ARR_ID_BALL, TRUE);
+        }
         break;
     case 7:
         if (sMonSummaryScreen->summary.ailment != AILMENT_NONE)
@@ -3180,18 +3183,10 @@ static void ClearPageWindowTilemaps(u8 page)
         ClearWindowTilemap(PSS_LABEL_WINDOW_PORTRAIT_SPECIES);
         break;
     case PSS_PAGE_ABILITIES:
-        if (sMonSummaryScreen->mode == SUMMARY_MODE_SELECT_MOVE)
-        {
-            if (sMonSummaryScreen->newMove != MOVE_NONE || sMonSummaryScreen->firstMoveIndex != MAX_MON_MOVES)
-            {
-                ClearWindowTilemap(PSS_LABEL_WINDOW_MOVES_POWER_ACC);
-                gSprites[sMonSummaryScreen->splitIconSpriteId].invisible = TRUE;
-            }
-        }
-        else
-        {
-            ClearWindowTilemap(PSS_LABEL_WINDOW_PROMPT_INFO);
-        }
+        ClearWindowTilemap(PSS_DATA_WINDOW_ABILITY);
+        ClearWindowTilemap(PSS_DATA_WINDOW_INNATE1);
+        ClearWindowTilemap(PSS_DATA_WINDOW_INNATE2);
+        ClearWindowTilemap(PSS_DATA_WINDOW_INNATE3);
         break;
     case PSS_PAGE_SKILLS:
         ClearWindowTilemap(PSS_LABEL_WINDOW_POKEMON_SKILLS_STATS_LEFT);
@@ -3270,13 +3265,16 @@ static void Task_PrintInfoPage(u8 taskId)
     switch (data[0])
     {
     case 1:
-        DestroySpriteAndFreeResources(&gSprites[sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_MON]]);
+        // DestroySpriteAndFreeResources(&gSprites[sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_MON]]);
         break;
     case 2:
-        sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_MON] = LoadMonGfxAndSprite(&sMonSummaryScreen->currentMon, &data[1]);
-        if (sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_MON] == SPRITE_NONE)
-            return;
-        gSprites[sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_MON]].data[2] = 1;
+        // sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_MON] = LoadMonGfxAndSprite(&sMonSummaryScreen->currentMon, &data[1]);
+        // if (sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_MON] == SPRITE_NONE)
+        //     return;
+        // gSprites[sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_MON]].data[2] = 1;
+        if (gSprites[sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_MON]].invisible == TRUE){
+            SetSpriteInvisibility(SPRITE_ARR_ID_MON, FALSE);
+        }
         break;
     case 3:
         PrintMonInfo();
@@ -3622,7 +3620,7 @@ static void Task_PrintAbilitiesPage(u8 taskId)
         RemoveAndCreateMonMarkingsSprite(&sMonSummaryScreen->currentMon);
         break;
     case 11:
-        CreateCaughtBallSprite(&sMonSummaryScreen->currentMon);
+        SetSpriteInvisibility(SPRITE_ARR_ID_BALL, FALSE);
         break;
     case 12:
         // DestroySprite(sMonSummaryScreen->markingsSprite);
@@ -3645,6 +3643,9 @@ static void Task_PrintSkillsPage(u8 taskId)
         // if (sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_MON] == SPRITE_NONE)
         //     return;
         // gSprites[sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_MON]].data[2] = 1;
+        if (gSprites[sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_MON]].invisible == TRUE){
+            SetSpriteInvisibility(SPRITE_ARR_ID_MON, FALSE);
+        }
         break;
     case 2:
         PrintHeldItemName();
@@ -3671,6 +3672,7 @@ static void Task_PrintSkillsPage(u8 taskId)
         break;
     case 9:
         PrintMonInfo();
+        SetSpriteInvisibility(SPRITE_ARR_ID_BALL, FALSE);
         break;
     case 10:
         DestroyTask(taskId);
@@ -3917,11 +3919,7 @@ static void Task_PrintBattleMoves(u8 taskId)
     switch (data[0])
     {
     case 1:
-        // DestroySpriteAndFreeResources(&gSprites[sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_MON]]);
-        if (gSprites[sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_MON]].invisible == FALSE){
-            SetSpriteInvisibility(SPRITE_ARR_ID_MON, TRUE);
-        }
-        
+        SetSpriteInvisibility(SPRITE_ARR_ID_MON, TRUE);
         PrintMoveNameAndPP(0);
         break;
     case 2:
