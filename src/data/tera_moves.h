@@ -179,6 +179,7 @@ const struct TeraMove gTeraMoveTable[MOVES_COUNT_Z][NUMBER_OF_MON_TYPES] =
         [TYPE_ELECTRIC] = {
             .requiresTerastalization = 1,
             .type = TYPE_ELECTRIC,
+            .accuracy = 80,
         },
         [TYPE_ICE] = {
             .requiresTerastalization = 1,
@@ -187,6 +188,12 @@ const struct TeraMove gTeraMoveTable[MOVES_COUNT_Z][NUMBER_OF_MON_TYPES] =
         [TYPE_POISON] = {
             .requiresTerastalization = 1,
             .type = TYPE_POISON,
+            .accuracy = 90,
+        },
+        [TYPE_STEEL] = {
+            .requiresTerastalization = 1,
+            .type = TYPE_STEEL,
+            .power = 50,
         },
     },
 
