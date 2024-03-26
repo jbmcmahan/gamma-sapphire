@@ -397,6 +397,7 @@ static void CB2_InitLearnMove(void)
     ClearScheduledBgCopiesToVram();
     sMoveRelearnerStruct = AllocZeroed(sizeof(*sMoveRelearnerStruct));
     sMoveRelearnerStruct->partyMon = gSpecialVar_0x8004;
+    sMoveRelearnerStruct->moveSlot = gSpecialVar_0x8005;
     SetVBlankCallback(VBlankCB_MoveRelearner);
 
     InitMoveRelearnerBackgroundLayers();
@@ -529,7 +530,23 @@ static void DoMoveRelearnerMain(void)
                 }
                 else
                 {
-                    sMoveRelearnerStruct->state = MENU_STATE_PRINT_TRYING_TO_LEARN_PROMPT;
+                    // sMoveRelearnerStruct->state = MENU_STATE_PRINT_TRYING_TO_LEARN_PROMPT;
+
+                    u16 moveId = GetMonData(&gPlayerParty[sMoveRelearnerStruct->partyMon], MON_DATA_MOVE1 + sMoveRelearnerStruct->moveSlot);
+                    u8 oldPP;
+
+                    StringCopy(gStringVar3, gMoveNames[moveId]);
+                    RemoveMonPPBonus(&gPlayerParty[sMoveRelearnerStruct->partyMon], sMoveRelearnerStruct->moveSlot);
+                    oldPP = GetMonData(&gPlayerParty[sMoveRelearnerStruct->partyMon], MON_DATA_PP1 + GetMoveSlotToReplace(), NULL);
+                    SetMonMoveSlot(&gPlayerParty[sMoveRelearnerStruct->partyMon], GetCurrentSelectedMove(), sMoveRelearnerStruct->moveSlot);
+                    if (GetMonData(&gPlayerParty[sMoveRelearnerStruct->partyMon], MON_DATA_PP1 + GetMoveSlotToReplace(), NULL) > oldPP)
+                        SetMonData(&gPlayerParty[sMoveRelearnerStruct->partyMon], MON_DATA_PP1 + GetMoveSlotToReplace(), &oldPP);
+                    StringCopy(gStringVar2, gMoveNames[GetCurrentSelectedMove()]);
+                    PrintMessageWithPlaceholders(gText_MoveRelearnerAndPoof);
+                    sMoveRelearnerStruct->state = MENU_STATE_DOUBLE_FANFARE_FORGOT_MOVE;
+                    gSpecialVar_0x8004 = TRUE;
+
+
                 }
             }
             else if (selection == MENU_B_PRESSED || selection == 1)
@@ -679,16 +696,18 @@ static void DoMoveRelearnerMain(void)
     case MENU_STATE_RETURN_TO_FIELD:
         if (!gPaletteFade.active)
         {
-            FreeMoveRelearnerResources();
 			if (FlagGet(FLAG_PARTY_MOVES))
 			{
-				CB2_ReturnToPartyMenuFromSummaryScreen();
-				FlagClear(FLAG_PARTY_MOVES);
+				// CB2_ReturnToPartyMenuFromSummaryScreen();
+                ShowPokemonSummaryScreen(SUMMARY_MODE_FROM_TUTOR, gPlayerParty, sMoveRelearnerStruct->partyMon, gPlayerPartyCount - 1, CB2_ReturnToPartyMenuFromSummaryScreen);
+				// ShowSelectMovePokemonSummaryScreen(gPlayerParty, sMoveRelearnerStruct->partyMon, gPlayerPartyCount - 1, CB2_InitLearnMoveReturnFromSelectMove, GetCurrentSelectedMove());
+                FlagClear(FLAG_PARTY_MOVES);
 			}
 			else
 			{
 				SetMainCallback2(CB2_ReturnToField);
 			}
+            FreeMoveRelearnerResources();
         }
         break;
     case MENU_STATE_FADE_FROM_SUMMARY_SCREEN:

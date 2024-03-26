@@ -5,6 +5,8 @@
 #define BINDING_TURNS "2 to 5"
 #endif
 
+// 23 character limit per line
+
 static const u8 sNullDescription[] = _(
     "");
 
@@ -13,28 +15,30 @@ static const u8 sPoundDescription[] = _(
     "forelegs or tail.");
 
 static const u8 sKarateChopDescription[] = _(
-    "A chopping attack with a\n"
-    "high critical-hit ratio.");
+    "A chopping attack with\n"
+    "a high critical-hit\n"
+    "ratio.");
 
 static const u8 sDoubleSlapDescription[] = _(
-    "Repeatedly slaps the foe\n"
-    "2 to 5 times.");
+    "Repeatedly slaps the\n"
+    "foe 2 to 5 times.");
 
 static const u8 sCometPunchDescription[] = _(
-    "Repeatedly punches the foe\n"
-    "2 to 5 times.");
+    "Repeatedly punches the\n"
+    "foe 2 to 5 times.");
 
 static const u8 sMegaPunchDescription[] = _(
-    "A strong punch thrown with\n"
-    "incredible power.");
+    "A strong punch thrown\n"
+    "with incredible power.");
 
 static const u8 sPayDayDescription[] = _(
-    "Throws coins at the foe.\n"
-    "Money is recovered after.");
+    "Throws coins at the\n"
+    "foe. Money is recovered\n"
+    "after.");
 
 static const u8 sFirePunchDescription[] = _(
-    "A fiery punch that may burn\n"
-    "the foe.");
+    "A fiery punch that may\n"
+    "burn the foe.");
 
 static const u8 sIcePunchDescription[] = _(
     "An icy punch that may\n"
@@ -45,24 +49,28 @@ static const u8 sIcePunchDescription[] = _(
 #endif
 
 static const u8 sThunderPunchDescription[] = _(
-    "An electrified punch that\n"
-    "may paralyze the foe.");
+    "An electrified punch\n"
+    "that may paralyze the\n"
+    "foe.");
 
 static const u8 sScratchDescription[] = _(
     "Scratches the foe with\n"
     "sharp claws.");
 
 static const u8 sViseGripDescription[] = _(
-    "Grips the foe with large and\n"
-    "powerful pincers.");
+    "Grips the foe with\n"
+    "large and powerful\n"
+    "pincers.");
 
 static const u8 sGuillotineDescription[] = _(
-    "A powerful pincer attack\n"
-    "that may cause fainting.");
+    "A powerful pincer\n"
+    "attack that may\n"
+    "cause fainting.");
 
 static const u8 sRazorWindDescription[] = _(
-    "A 2-turn move that strikes\n"
-    "the foe on the 2nd turn.");
+    "A 2-turn move that\n"
+    "strikes the foe on\n"
+    "the 2nd turn.");
 
 static const u8 sSwordsDanceDescription[] = _(
     "A fighting dance that\n"
@@ -73,48 +81,56 @@ static const u8 sCutDescription[] = _(
     "scythes, claws, etc.");
 
 static const u8 sGustDescription[] = _(
-    "Strikes the foe with a gust\n"
-    "of wind whipped up by wings.");
+    "Strikes the foe with a\n"
+    "gust of wind whipped\n"
+    "up by wings.");
 
 static const u8 sWingAttackDescription[] = _(
-    "Strikes the foe with wings\n"
-    "spread wide.");
+    "Strikes the foe with\n"
+    "wings spread wide.");
 
 static const u8 sWhirlwindDescription[] = _(
-    "Blows away the foe with\n"
-    "wind and ends the battle.");
+    "Blows away the foe\n"
+    "with wind and ends\n"
+    "the battle.");
 
 static const u8 sFlyDescription[] = _(
-    "Flies up on the first turn,\n"
-    "then strikes the next turn.");
+    "Flies up on the first\n"
+    "turn, then strikes the\n"
+    "next turn.");
 
 static const u8 sBindDescription[] = _(
-    "Binds and squeezes the foe\n"
-    "for "BINDING_TURNS" turns.");
+    "Binds and squeezes the\n"
+    "foe for 4 or 5 turns.");
 
 static const u8 sSlamDescription[] = _(
-    "Slams the foe with a long\n"
-    "tail, vine, etc.");
+    "Slams the foe with a\n"
+    "long tail, vine, etc.");
 
 static const u8 sVineWhipDescription[] = _(
     "Strikes the foe with\n"
-    "slender, whiplike vines.");
+    "slender, whiplike\n"
+    "vines.");
 
 static const u8 sStompDescription[] = _(
-    "Stomps the enemy with a big\n"
-    "foot. May cause flinching.");
+    "Stomps the enemy with a\n"
+    "big foot. May cause\n"
+    "flinching.");
 
 static const u8 sDoubleKickDescription[] = _(
     "A double-kicking attack\n"
-    "that strikes the foe twice.");
+    "that strikes the foe\n"
+    "twice.");
 
 static const u8 sMegaKickDescription[] = _(
-    "An extremely powerful kick\n"
-    "with intense force.");
+    "An extremely powerful\n"
+    "kick with intense\n"
+    "force.");
 
 static const u8 sJumpKickDescription[] = _(
-    "A strong jumping kick. May\n"
-    "miss and hurt the kicker.");
+    "A strong jumping kick.\n"
+    "May miss and hurt the\n"
+    "kicker.");
 
 static const u8 sRollingKickDescription[] = _(
     "A fast kick delivered from\n"
@@ -141,8 +157,8 @@ static const u8 sHornDrillDescription[] = _(
     "uses a horn like a drill.");
 
 static const u8 sTackleDescription[] = _(
-    "Charges the foe with a full-\n"
-    "body tackle.");
+    "Charges the foe with a\n"
+    "full-body tackle.");
 
 static const u8 sBodySlamDescription[] = _(
     "A full-body slam that may\n"
@@ -486,7 +502,8 @@ static const u8 sFocusEnergyDescription[] = _(
 
 static const u8 sBideDescription[] = _(
     "Endures attack for 2\n"
-    "turns to retaliate double.");
+    "turns to retaliate\n"
+    "double.");
 
 static const u8 sMetronomeDescription[] = _(
     "Waggles a finger to use any\n"
