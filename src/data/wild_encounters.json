@@ -30180,32 +30180,32 @@
                 "min_level": 2,
                 "max_level": 2,
                 "species": "SPECIES_MINCCINO",
-                "tera_type1": "TYPE_POISON",
-                "tera_type2": "TYPE_FIRE",
+                "tera_type1": "TYPE_NORMAL",
+                "tera_type2": "TYPE_NORMAL",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 2,
                 "max_level": 2,
                 "species": "SPECIES_MURKROW",
-                "tera_type1": "TYPE_WATER",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_DARK",
+                "tera_type2": "TYPE_FLYING",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 2,
                 "max_level": 2,
                 "species": "SPECIES_MINCCINO",
-                "tera_type1": "TYPE_GRASS",
-                "tera_type2": "TYPE_NORMAL",
-                "item": "ITEM_POKE_BALL"
+                "tera_type1": "TYPE_NORMAL",
+                "tera_type2": "TYPE_POISON",
+                "item": "ITEM_NONE"
               },
               {
                 "min_level": 3,
                 "max_level": 3,
                 "species": "SPECIES_MURKROW",
-                "tera_type1": "TYPE_DRAGON",
-                "tera_type2": "TYPE_ELECTRIC",
+                "tera_type1": "TYPE_DARK",
+                "tera_type2": "TYPE_POISON",
                 "item": "ITEM_NONE"
               },
               {
@@ -30220,7 +30220,7 @@
                 "min_level": 3,
                 "max_level": 3,
                 "species": "SPECIES_SKITTY",
-                "tera_type1": "TYPE_NORMAL",
+                "tera_type1": "TYPE_FAIRY",
                 "tera_type2": "TYPE_NORMAL",
                 "item": "ITEM_NONE"
               },
@@ -30236,40 +30236,40 @@
                 "min_level": 3,
                 "max_level": 3,
                 "species": "SPECIES_AIPOM",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_FIGHTING",
+                "tera_type2": "TYPE_FIGHTING",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 2,
                 "max_level": 2,
                 "species": "SPECIES_CROAGUNK",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_POISON",
+                "tera_type2": "TYPE_FIGHTING",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 2,
                 "max_level": 2,
                 "species": "SPECIES_SNUBBULL",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_FAIRY",
+                "tera_type2": "TYPE_DARK",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 3,
                 "max_level": 3,
                 "species": "SPECIES_CROAGUNK",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_POISON",
+                "tera_type2": "TYPE_DARK",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 3,
                 "max_level": 3,
                 "species": "SPECIES_SNUBBULL",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_FAIRY",
+                "tera_type2": "TYPE_DARK",
                 "item": "ITEM_NONE"
               }
             ]
@@ -30289,8 +30289,8 @@
                 "min_level": 2,
                 "max_level": 2,
                 "species": "SPECIES_MURKROW",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_DARK",
+                "tera_type2": "TYPE_FLYING",
                 "item": "ITEM_NONE"
               },
               {
@@ -30298,15 +30298,15 @@
                 "max_level": 2,
                 "species": "SPECIES_MINCCINO",
                 "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type2": "TYPE_POISON",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 3,
                 "max_level": 3,
                 "species": "SPECIES_MURKROW",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_DARK",
+                "tera_type2": "TYPE_POISON",
                 "item": "ITEM_NONE"
               },
               {
@@ -30321,7 +30321,7 @@
                 "min_level": 3,
                 "max_level": 3,
                 "species": "SPECIES_SKITTY",
-                "tera_type1": "TYPE_NORMAL",
+                "tera_type1": "TYPE_FAIRY",
                 "tera_type2": "TYPE_NORMAL",
                 "item": "ITEM_NONE"
               },
@@ -30337,40 +30337,40 @@
                 "min_level": 3,
                 "max_level": 3,
                 "species": "SPECIES_AIPOM",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_FIGHTING",
+                "tera_type2": "TYPE_FIGHTING",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 2,
                 "max_level": 2,
                 "species": "SPECIES_CROAGUNK",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_POISON",
+                "tera_type2": "TYPE_FIGHTING",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 2,
                 "max_level": 2,
                 "species": "SPECIES_SNUBBULL",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_FAIRY",
+                "tera_type2": "TYPE_DARK",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 3,
                 "max_level": 3,
                 "species": "SPECIES_CROAGUNK",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_POISON",
+                "tera_type2": "TYPE_DARK",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 3,
                 "max_level": 3,
                 "species": "SPECIES_SNUBBULL",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_FAIRY",
+                "tera_type2": "TYPE_DARK",
                 "item": "ITEM_NONE"
               }
             ]
@@ -30386,15 +30386,15 @@
                 "min_level": 4,
                 "max_level": 4,
                 "species": "SPECIES_CUTIEFLY",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_BUG",
+                "tera_type2": "TYPE_FAIRY",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 4,
                 "max_level": 4,
                 "species": "SPECIES_RUFFLET",
-                "tera_type1": "TYPE_NORMAL",
+                "tera_type1": "TYPE_FLYING",
                 "tera_type2": "TYPE_NORMAL",
                 "item": "ITEM_NONE"
               },
@@ -30402,55 +30402,55 @@
                 "min_level": 4,
                 "max_level": 4,
                 "species": "SPECIES_CUTIEFLY",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_BUG",
+                "tera_type2": "TYPE_FLYING",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 4,
                 "max_level": 4,
                 "species": "SPECIES_RUFFLET",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_FLYING",
+                "tera_type2": "TYPE_STEEL",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 4,
                 "max_level": 4,
                 "species": "SPECIES_JOLTIK",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_BUG",
+                "tera_type2": "TYPE_ELECTRIC",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 4,
                 "max_level": 4,
                 "species": "SPECIES_JOLTIK",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_BUG",
+                "tera_type2": "TYPE_ELECTRIC",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 4,
                 "max_level": 4,
                 "species": "SPECIES_FLABEBE",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_FAIRY",
+                "tera_type2": "TYPE_GRASS",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 4,
                 "max_level": 4,
                 "species": "SPECIES_FLABEBE",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_FAIRY",
+                "tera_type2": "TYPE_GRASS",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 4,
                 "max_level": 4,
                 "species": "SPECIES_PETILIL",
-                "tera_type1": "TYPE_NORMAL",
+                "tera_type1": "TYPE_GRASS",
                 "tera_type2": "TYPE_NORMAL",
                 "item": "ITEM_NONE"
               },
@@ -30458,24 +30458,24 @@
                 "min_level": 4,
                 "max_level": 4,
                 "species": "SPECIES_FERROSEED",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_GRASS",
+                "tera_type2": "TYPE_STEEL",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 4,
                 "max_level": 4,
                 "species": "SPECIES_PETILIL",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_GRASS",
+                "tera_type2": "TYPE_GRASS",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 4,
                 "max_level": 4,
                 "species": "SPECIES_FERROSEED",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_GRASS",
+                "tera_type2": "TYPE_STEEL",
                 "item": "ITEM_NONE"
               }
             ]
@@ -30487,15 +30487,15 @@
                 "min_level": 4,
                 "max_level": 4,
                 "species": "SPECIES_CUTIEFLY",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_BUG",
+                "tera_type2": "TYPE_FAIRY",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 4,
                 "max_level": 4,
                 "species": "SPECIES_RUFFLET",
-                "tera_type1": "TYPE_NORMAL",
+                "tera_type1": "TYPE_FLYING",
                 "tera_type2": "TYPE_NORMAL",
                 "item": "ITEM_NONE"
               },
@@ -30503,55 +30503,55 @@
                 "min_level": 4,
                 "max_level": 4,
                 "species": "SPECIES_CUTIEFLY",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_BUG",
+                "tera_type2": "TYPE_FLYING",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 4,
                 "max_level": 4,
                 "species": "SPECIES_RUFFLET",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_FLYING",
+                "tera_type2": "TYPE_STEEL",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 4,
                 "max_level": 4,
                 "species": "SPECIES_JOLTIK",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_BUG",
+                "tera_type2": "TYPE_ELECTRIC",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 4,
                 "max_level": 4,
                 "species": "SPECIES_JOLTIK",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_BUG",
+                "tera_type2": "TYPE_ELECTRIC",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 4,
                 "max_level": 4,
                 "species": "SPECIES_FLABEBE",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_FAIRY",
+                "tera_type2": "TYPE_GRASS",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 4,
                 "max_level": 4,
                 "species": "SPECIES_FLABEBE",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_FAIRY",
+                "tera_type2": "TYPE_GRASS",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 4,
                 "max_level": 4,
                 "species": "SPECIES_PETILIL",
-                "tera_type1": "TYPE_NORMAL",
+                "tera_type1": "TYPE_GRASS",
                 "tera_type2": "TYPE_NORMAL",
                 "item": "ITEM_NONE"
               },
@@ -30559,24 +30559,24 @@
                 "min_level": 4,
                 "max_level": 4,
                 "species": "SPECIES_FERROSEED",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_GRASS",
+                "tera_type2": "TYPE_STEEL",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 4,
                 "max_level": 4,
                 "species": "SPECIES_PETILIL",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_GRASS",
+                "tera_type2": "TYPE_GRASS",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 4,
                 "max_level": 4,
                 "species": "SPECIES_FERROSEED",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_GRASS",
+                "tera_type2": "TYPE_STEEL",
                 "item": "ITEM_NONE"
               }
             ]
@@ -30600,24 +30600,24 @@
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_YANMA",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_BUG",
+                "tera_type2": "TYPE_FLYING",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_SKITTY",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_GHOST",
+                "tera_type2": "TYPE_DRAGON",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_YANMA",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_BUG",
+                "tera_type2": "TYPE_FLYING",
                 "item": "ITEM_NONE"
               },
               {
@@ -30625,7 +30625,7 @@
                 "max_level": 5,
                 "species": "SPECIES_MINCCINO",
                 "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type2": "TYPE_DRAGON",
                 "item": "ITEM_NONE"
               },
               {
@@ -30633,55 +30633,55 @@
                 "max_level": 5,
                 "species": "SPECIES_MINCCINO",
                 "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type2": "TYPE_GHOST",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_MURKROW",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_DARK",
+                "tera_type2": "TYPE_FLYING",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_MURKROW",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_DARK",
+                "tera_type2": "TYPE_GRASS",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_GOOMY",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_DRAGON",
+                "tera_type2": "TYPE_GRASS",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_PHANTUMP",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_GHOST",
+                "tera_type2": "TYPE_GRASS",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_GOOMY",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_DRAGON",
+                "tera_type2": "TYPE_DRAGON",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_PHANTUMP",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_BUG",
+                "tera_type2": "TYPE_GRASS",
                 "item": "ITEM_NONE"
               }
             ]
@@ -30701,24 +30701,24 @@
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_YANMA",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_BUG",
+                "tera_type2": "TYPE_FLYING",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_SKITTY",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_GHOST",
+                "tera_type2": "TYPE_DRAGON",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_YANMA",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_BUG",
+                "tera_type2": "TYPE_FLYING",
                 "item": "ITEM_NONE"
               },
               {
@@ -30726,7 +30726,7 @@
                 "max_level": 5,
                 "species": "SPECIES_MINCCINO",
                 "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type2": "TYPE_DRAGON",
                 "item": "ITEM_NONE"
               },
               {
@@ -30734,55 +30734,55 @@
                 "max_level": 5,
                 "species": "SPECIES_MINCCINO",
                 "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type2": "TYPE_GHOST",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_MURKROW",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_DARK",
+                "tera_type2": "TYPE_FLYING",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_MURKROW",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_DARK",
+                "tera_type2": "TYPE_GRASS",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_GOOMY",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_DRAGON",
+                "tera_type2": "TYPE_GRASS",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_PHANTUMP",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_GHOST",
+                "tera_type2": "TYPE_GRASS",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_GOOMY",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_DRAGON",
+                "tera_type2": "TYPE_DRAGON",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_PHANTUMP",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_BUG",
+                "tera_type2": "TYPE_GRASS",
                 "item": "ITEM_NONE"
               }
             ]
@@ -30798,8 +30798,8 @@
                 "min_level": 6,
                 "max_level": 6,
                 "species": "SPECIES_NATU",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_PSYCHIC",
+                "tera_type2": "TYPE_FLYING",
                 "item": "ITEM_NONE"
               },
               {
@@ -30807,15 +30807,15 @@
                 "max_level": 6,
                 "species": "SPECIES_AIPOM",
                 "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type2": "TYPE_ROCK",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 6,
                 "max_level": 6,
                 "species": "SPECIES_NATU",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_PSYCHIC",
+                "tera_type2": "TYPE_BUG",
                 "item": "ITEM_NONE"
               },
               {
@@ -30823,71 +30823,71 @@
                 "max_level": 6,
                 "species": "SPECIES_AIPOM",
                 "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type2": "TYPE_ICE",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 6,
                 "max_level": 6,
                 "species": "SPECIES_CUTIEFLY",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_GRASS",
+                "tera_type2": "TYPE_FLYING",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 6,
                 "max_level": 6,
                 "species": "SPECIES_CUTIEFLY",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_BUG",
+                "tera_type2": "TYPE_PSYCHIC",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 6,
                 "max_level": 6,
                 "species": "SPECIES_ROCKRUFF",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_ROCK",
+                "tera_type2": "TYPE_BUG",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 6,
                 "max_level": 6,
                 "species": "SPECIES_ROCKRUFF",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_ROCK",
+                "tera_type2": "TYPE_PSYCHIC",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 6,
                 "max_level": 6,
                 "species": "SPECIES_MORELULL",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_FAIRY",
+                "tera_type2": "TYPE_GRASS",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 6,
                 "max_level": 6,
                 "species": "SPECIES_VULPIX_ALOLAN",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_ICE",
+                "tera_type2": "TYPE_GRASS",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 6,
                 "max_level": 6,
                 "species": "SPECIES_MORELULL",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_FAIRY",
+                "tera_type2": "TYPE_GRASS",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 6,
                 "max_level": 6,
                 "species": "SPECIES_VULPIX_ALOLAN",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_ICE",
+                "tera_type2": "TYPE_ICE",
                 "item": "ITEM_NONE"
               }
             ]
@@ -30899,8 +30899,8 @@
                 "min_level": 6,
                 "max_level": 6,
                 "species": "SPECIES_NATU",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_PSYCHIC",
+                "tera_type2": "TYPE_FLYING",
                 "item": "ITEM_NONE"
               },
               {
@@ -30908,15 +30908,15 @@
                 "max_level": 6,
                 "species": "SPECIES_AIPOM",
                 "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type2": "TYPE_ROCK",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 6,
                 "max_level": 6,
                 "species": "SPECIES_NATU",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_PSYCHIC",
+                "tera_type2": "TYPE_BUG",
                 "item": "ITEM_NONE"
               },
               {
@@ -30924,71 +30924,71 @@
                 "max_level": 6,
                 "species": "SPECIES_AIPOM",
                 "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type2": "TYPE_ICE",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 6,
                 "max_level": 6,
                 "species": "SPECIES_CUTIEFLY",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_GRASS",
+                "tera_type2": "TYPE_FLYING",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 6,
                 "max_level": 6,
                 "species": "SPECIES_CUTIEFLY",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_BUG",
+                "tera_type2": "TYPE_PSYCHIC",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 6,
                 "max_level": 6,
                 "species": "SPECIES_ROCKRUFF",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_ROCK",
+                "tera_type2": "TYPE_BUG",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 6,
                 "max_level": 6,
                 "species": "SPECIES_ROCKRUFF",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_ROCK",
+                "tera_type2": "TYPE_PSYCHIC",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 6,
                 "max_level": 6,
                 "species": "SPECIES_MORELULL",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_FAIRY",
+                "tera_type2": "TYPE_GRASS",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 6,
                 "max_level": 6,
                 "species": "SPECIES_VULPIX_ALOLAN",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_ICE",
+                "tera_type2": "TYPE_GRASS",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 6,
                 "max_level": 6,
                 "species": "SPECIES_MORELULL",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_FAIRY",
+                "tera_type2": "TYPE_GRASS",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 6,
                 "max_level": 6,
                 "species": "SPECIES_VULPIX_ALOLAN",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_ICE",
+                "tera_type2": "TYPE_ICE",
                 "item": "ITEM_NONE"
               }
             ]
@@ -31004,15 +31004,15 @@
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_VANILLITE",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_ICE",
+                "tera_type2": "TYPE_ELECTRIC",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_MILCERY",
-                "tera_type1": "TYPE_NORMAL",
+                "tera_type1": "TYPE_FAIRY",
                 "tera_type2": "TYPE_NORMAL",
                 "item": "ITEM_NONE"
               },
@@ -31020,7 +31020,23 @@
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_VANILLITE",
-                "tera_type1": "TYPE_NORMAL",
+                "tera_type1": "TYPE_ICE",
+                "tera_type2": "TYPE_ICE",
+                "item": "ITEM_NONE"
+              },
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_STUFFUL",
+                "tera_type1": "TYPE_FIGHTING",
+                "tera_type2": "TYPE_ICE",
+                "item": "ITEM_NONE"
+              },
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_STUFFUL",
+                "tera_type1": "TYPE_FIGHTING",
                 "tera_type2": "TYPE_NORMAL",
                 "item": "ITEM_NONE"
               },
@@ -31028,31 +31044,23 @@
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_STUFFUL",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
-                "item": "ITEM_NONE"
-              },
-              {
-                "min_level": 5,
-                "max_level": 5,
-                "species": "SPECIES_STUFFUL",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
-                "item": "ITEM_NONE"
-              },
-              {
-                "min_level": 5,
-                "max_level": 5,
-                "species": "SPECIES_STUFFUL",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_FIGHTING",
+                "tera_type2": "TYPE_ELECTRIC",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_VANILLITE",
-                "tera_type1": "TYPE_NORMAL",
+                "tera_type1": "TYPE_ICE",
+                "tera_type2": "TYPE_ELECTRIC",
+                "item": "ITEM_NONE"
+              },
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_MILCERY",
+                "tera_type1": "TYPE_FAIRY",
                 "tera_type2": "TYPE_NORMAL",
                 "item": "ITEM_NONE"
               },
@@ -31060,40 +31068,32 @@
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_MILCERY",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
-                "item": "ITEM_NONE"
-              },
-              {
-                "min_level": 5,
-                "max_level": 5,
-                "species": "SPECIES_MILCERY",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_FAIRY",
+                "tera_type2": "TYPE_ELECTRIC",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_STUFFUL",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_FIGHTING",
+                "tera_type2": "TYPE_ELECTRIC",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_MILCERY",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_FAIRY",
+                "tera_type2": "TYPE_ICE",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_STUFFUL",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_FIGHTING",
+                "tera_type2": "TYPE_FAIRY",
                 "item": "ITEM_NONE"
               }
             ]
@@ -31105,15 +31105,15 @@
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_VANILLITE",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_ICE",
+                "tera_type2": "TYPE_ELECTRIC",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_MILCERY",
-                "tera_type1": "TYPE_NORMAL",
+                "tera_type1": "TYPE_FAIRY",
                 "tera_type2": "TYPE_NORMAL",
                 "item": "ITEM_NONE"
               },
@@ -31121,7 +31121,23 @@
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_VANILLITE",
-                "tera_type1": "TYPE_NORMAL",
+                "tera_type1": "TYPE_ICE",
+                "tera_type2": "TYPE_ICE",
+                "item": "ITEM_NONE"
+              },
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_STUFFUL",
+                "tera_type1": "TYPE_FIGHTING",
+                "tera_type2": "TYPE_ICE",
+                "item": "ITEM_NONE"
+              },
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_STUFFUL",
+                "tera_type1": "TYPE_FIGHTING",
                 "tera_type2": "TYPE_NORMAL",
                 "item": "ITEM_NONE"
               },
@@ -31129,31 +31145,23 @@
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_STUFFUL",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
-                "item": "ITEM_NONE"
-              },
-              {
-                "min_level": 5,
-                "max_level": 5,
-                "species": "SPECIES_STUFFUL",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
-                "item": "ITEM_NONE"
-              },
-              {
-                "min_level": 5,
-                "max_level": 5,
-                "species": "SPECIES_STUFFUL",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_FIGHTING",
+                "tera_type2": "TYPE_ELECTRIC",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_VANILLITE",
-                "tera_type1": "TYPE_NORMAL",
+                "tera_type1": "TYPE_ICE",
+                "tera_type2": "TYPE_ELECTRIC",
+                "item": "ITEM_NONE"
+              },
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_MILCERY",
+                "tera_type1": "TYPE_FAIRY",
                 "tera_type2": "TYPE_NORMAL",
                 "item": "ITEM_NONE"
               },
@@ -31161,40 +31169,32 @@
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_MILCERY",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
-                "item": "ITEM_NONE"
-              },
-              {
-                "min_level": 5,
-                "max_level": 5,
-                "species": "SPECIES_MILCERY",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_FAIRY",
+                "tera_type2": "TYPE_ELECTRIC",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_STUFFUL",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_FIGHTING",
+                "tera_type2": "TYPE_ELECTRIC",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_MILCERY",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_FAIRY",
+                "tera_type2": "TYPE_ICE",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_STUFFUL",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_FIGHTING",
+                "tera_type2": "TYPE_FAIRY",
                 "item": "ITEM_NONE"
               }
             ]
@@ -31210,96 +31210,96 @@
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_SANDYGAST",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_GROUND",
+                "tera_type2": "TYPE_DRAGON",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_SANDILE",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_GROUND",
+                "tera_type2": "TYPE_WATER",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_SANDYGAST",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_GROUND",
+                "tera_type2": "TYPE_GHOST",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_SANDILE",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_GROUND",
+                "tera_type2": "TYPE_ELECTRIC",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_TYMPOLE",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_WATER",
+                "tera_type2": "TYPE_DRAGON",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_SANDYGAST",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_GROUND",
+                "tera_type2": "TYPE_ELECTRIC",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_TYMPOLE",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_WATER",
+                "tera_type2": "TYPE_GROUND",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_TYMPOLE",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_WATER",
+                "tera_type2": "TYPE_GHOST",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_NOIBAT",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_DRAGON",
+                "tera_type2": "TYPE_GHOST",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_DWEBBLE",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_WATER",
+                "tera_type2": "TYPE_DARK",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_NOIBAT",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_DRAGON",
+                "tera_type2": "TYPE_DARK",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_DWEBBLE",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_WATER",
+                "tera_type2": "TYPE_ELECTRIC",
                 "item": "ITEM_NONE"
               }
             ]
@@ -31311,96 +31311,96 @@
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_SANDYGAST",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_GROUND",
+                "tera_type2": "TYPE_DRAGON",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_SANDILE",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_GROUND",
+                "tera_type2": "TYPE_WATER",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_SANDYGAST",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_GROUND",
+                "tera_type2": "TYPE_GHOST",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_SANDILE",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_GROUND",
+                "tera_type2": "TYPE_ELECTRIC",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_TYMPOLE",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_WATER",
+                "tera_type2": "TYPE_DRAGON",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_SANDYGAST",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_GROUND",
+                "tera_type2": "TYPE_ELECTRIC",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_TYMPOLE",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_WATER",
+                "tera_type2": "TYPE_GROUND",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_TYMPOLE",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_WATER",
+                "tera_type2": "TYPE_GHOST",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_NOIBAT",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_DRAGON",
+                "tera_type2": "TYPE_GHOST",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_DWEBBLE",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_WATER",
+                "tera_type2": "TYPE_DARK",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_NOIBAT",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_DRAGON",
+                "tera_type2": "TYPE_DARK",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_DWEBBLE",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_WATER",
+                "tera_type2": "TYPE_ELECTRIC",
                 "item": "ITEM_NONE"
               }
             ]
@@ -31416,96 +31416,96 @@
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_MAGNEMITE",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_STEEL",
+                "tera_type2": "TYPE_ELECTRIC",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_GEODUDE_ALOLAN",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_ELECTRIC",
+                "tera_type2": "TYPE_ROCK",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_MAGNEMITE",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_ELECTRIC",
+                "tera_type2": "TYPE_ROCK",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_GEODUDE_ALOLAN",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_ELECTRIC",
+                "tera_type2": "TYPE_PSYCHIC",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_TYNAMO",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_ELECTRIC",
+                "tera_type2": "TYPE_ROCK",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_SALANDIT",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_POISON",
+                "tera_type2": "TYPE_FIRE",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_TYNAMO",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_ELECTRIC",
+                "tera_type2": "TYPE_FIRE",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_BUDEW",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_GRASS",
+                "tera_type2": "TYPE_POISON",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_SLOWPOKE_GALARIAN",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_GRASS",
+                "tera_type2": "TYPE_PSYCHIC",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_ZUBAT",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_FIRE",
+                "tera_type2": "TYPE_FLYING",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_SLOWPOKE_GALARIAN",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_POISON",
+                "tera_type2": "TYPE_PSYCHIC",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_ZUBAT",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_POISON",
+                "tera_type2": "TYPE_FLYING",
                 "item": "ITEM_NONE"
               }
             ]
@@ -31517,96 +31517,96 @@
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_MAGNEMITE",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_STEEL",
+                "tera_type2": "TYPE_ELECTRIC",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_GEODUDE_ALOLAN",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_ELECTRIC",
+                "tera_type2": "TYPE_ROCK",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_MAGNEMITE",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_ELECTRIC",
+                "tera_type2": "TYPE_ROCK",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_GEODUDE_ALOLAN",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_ELECTRIC",
+                "tera_type2": "TYPE_PSYCHIC",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_TYNAMO",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_ELECTRIC",
+                "tera_type2": "TYPE_ROCK",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_SALANDIT",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_POISON",
+                "tera_type2": "TYPE_FIRE",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_TYNAMO",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_ELECTRIC",
+                "tera_type2": "TYPE_FIRE",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_BUDEW",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_GRASS",
+                "tera_type2": "TYPE_POISON",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_SLOWPOKE_GALARIAN",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_GRASS",
+                "tera_type2": "TYPE_PSYCHIC",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_ZUBAT",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_FIRE",
+                "tera_type2": "TYPE_FLYING",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_SLOWPOKE_GALARIAN",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_POISON",
+                "tera_type2": "TYPE_PSYCHIC",
                 "item": "ITEM_NONE"
               },
               {
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_ZUBAT",
-                "tera_type1": "TYPE_NORMAL",
-                "tera_type2": "TYPE_NORMAL",
+                "tera_type1": "TYPE_POISON",
+                "tera_type2": "TYPE_FLYING",
                 "item": "ITEM_NONE"
               }
             ]

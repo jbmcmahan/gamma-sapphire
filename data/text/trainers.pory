@@ -218,13 +218,6 @@ script EventScript_Gamma_Grace {
 	end
 }
 
-script EventScript_Gamma_Kate {
-	trainerbattle_single(TRAINER_GAMMA_KATE, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
-	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
-	setflag(FLAG_CHAPTER_3)
-	end
-}
-
 script EventScript_Gamma_Aqua_Grunt_1 {
 	trainerbattle_single(TRAINER_GAMMA_AQUA_GRUNT_1, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
 	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
@@ -240,16 +233,227 @@ script EventScript_Gamma_Aqua_Grunt_2 {
 script EventScript_Gamma_Wattson {
 	trainerbattle_single(TRAINER_GAMMA_WATTSON, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
 	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
+	setflag(FLAG_CHAPTER_3)
 	end
 }
 
 
 // Chapter 4
+
+script EventScript_Gamma_Henri {
+	trainerbattle_single(TRAINER_GAMMA_HENRI, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
+	end
+}
+
+script EventScript_Gamma_Ida {
+	trainerbattle_single(TRAINER_GAMMA_IDA, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
+	end
+}
+
+script EventScript_Gamma_Julian {
+	trainerbattle_single(TRAINER_GAMMA_JULIAN, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
+	end
+}
+
+script EventScript_Gamma_Kate {
+	trainerbattle_single(TRAINER_GAMMA_KATE, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
+	end
+}
+
+script EventScript_Gamma_Larry {
+	trainerbattle_single(TRAINER_GAMMA_LARRY, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
+	end
+}
+
+script EventScript_Gamma_Mindy {
+	trainerbattle_single(TRAINER_GAMMA_MINDY, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
+	end
+}
+script EventScript_Gamma_Nicholas {
+	trainerbattle_single(TRAINER_GAMMA_NICHOLAS, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
+	end
+}
+script EventScript_Gamma_Odette {
+	trainerbattle_single(TRAINER_GAMMA_ODETTE, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
+	end
+}
+script EventScript_Gamma_Peter {
+	trainerbattle_single(TRAINER_GAMMA_PETER, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
+	end
+}
+script EventScript_Gamma_Rose {
+	trainerbattle_single(TRAINER_GAMMA_ROSE, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
+	end
+}
+script EventScript_Gamma_Sam {
+	trainerbattle_single(TRAINER_GAMMA_SAM, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
+	end
+}
+script EventScript_Gamma_Teresa {
+	trainerbattle_single(TRAINER_GAMMA_TERESA, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
+	end
+}
+script EventScript_Gamma_Victor {
+	trainerbattle_single(TRAINER_GAMMA_VICTOR, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
+	end
+}
+script EventScript_Gamma_Wanda {
+	trainerbattle_single(TRAINER_GAMMA_WANDA, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
+	end
+}
+script EventScript_Gamma_Arthur {
+	trainerbattle_single(TRAINER_GAMMA_ARTHUR, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
+	end
+}
+script EventScript_Gamma_Bertha {
+	trainerbattle_single(TRAINER_GAMMA_BERTHA, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
+	end
+}
+script EventScript_Gamma_Cristobal {
+	trainerbattle_single(TRAINER_GAMMA_CRISTOBAL, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
+	end
+}
+script EventScript_Gamma_Dolly {
+	trainerbattle_single(TRAINER_GAMMA_DOLLY, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
+	end
+}
+script EventScript_Gamma_Edouard {
+	trainerbattle_single(TRAINER_GAMMA_EDOUARD, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
+	end
+}
+script EventScript_Gamma_Fay {
+	trainerbattle_single(TRAINER_GAMMA_FAY, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
+	end
+}
+script EventScript_Gamma_Gonzalo {
+	trainerbattle_single(TRAINER_GAMMA_GONZALO, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
+	end
+}
+script EventScript_Gamma_Hanna {
+	trainerbattle_single(TRAINER_GAMMA_HANNA, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
+	end
+}
+script EventScript_Gamma_Isaias {
+	trainerbattle_single(TRAINER_GAMMA_ISAIAS, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
+	end
+}
+script EventScript_Gamma_Josephine {
+	trainerbattle_single(TRAINER_GAMMA_JOSEPHINE, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
+	end
+}
+script EventScript_Gamma_Kyle {
+	trainerbattle_single(TRAINER_GAMMA_KYLE, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
+	end
+}
+script EventScript_Gamma_Laura {
+	trainerbattle_single(TRAINER_GAMMA_LAURA, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
+	end
+}
+script EventScript_Gamma_Marco {
+	trainerbattle_single(TRAINER_GAMMA_MARCO, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
+	end
+}
+script EventScript_Gamma_Nana {
+	trainerbattle_single(TRAINER_GAMMA_NANA, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
+	end
+}
+script EventScript_Gamma_Omar {
+	trainerbattle_single(TRAINER_GAMMA_OMAR, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
+	end
+}
+script EventScript_Gamma_Paulette {
+	trainerbattle_single(TRAINER_GAMMA_PAULETTE, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
+	end
+}
+script EventScript_Gamma_Rene {
+	trainerbattle_single(TRAINER_GAMMA_RENE, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
+	end
+}
+script EventScript_Gamma_Sally {
+	trainerbattle_single(TRAINER_GAMMA_SALLY, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
+	end
+}
+script EventScript_Gamma_Teddy {
+	trainerbattle_single(TRAINER_GAMMA_TEDDY, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
+	end
+}
+script EventScript_Gamma_Vicky {
+	trainerbattle_single(TRAINER_GAMMA_VICKY, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
+	end
+}
+script EventScript_Gamma_Wilfred {
+	trainerbattle_single(TRAINER_GAMMA_WILFRED, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
+	end
+}
+script EventScript_Gamma_Andrea {
+	trainerbattle_single(TRAINER_GAMMA_ANDREA, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
+	end
+}
+script EventScript_Gamma_Barry {
+	trainerbattle_single(TRAINER_GAMMA_BARRY, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
+	end
+}
+script EventScript_Gamma_Chantal {
+	trainerbattle_single(TRAINER_GAMMA_CHANTAL, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
+	end
+}
+script EventScript_Gamma_Dorain {
+	trainerbattle_single(TRAINER_GAMMA_DORAIN, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
+	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
+	end
+}
+
+
+
+
+
+
+
+
 script EventScript_Gamma_Anabel_1 {
 	trainerbattle_single(TRAINER_GAMMA_ANABEL_1, Route103_Text_HannarIntro, Route103_Text_HannarDefeated)
 	msgbox(Route103_Text_HannarPostBattle, MSGBOX_AUTOCLOSE)
 	end
 }
+
 
 // Chapter 5
 script EventScript_Gamma_Phoebe {
