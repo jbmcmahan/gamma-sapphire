@@ -16,7 +16,7 @@
     {
       "map": "MAP_CHAPTER3A",
       "offset": 0,
-      "direction": "left"
+      "direction": "down"
     }
   ],
   "object_events": [

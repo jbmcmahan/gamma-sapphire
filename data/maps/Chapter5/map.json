@@ -14,19 +14,14 @@
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": [
     {
-      "map": "MAP_CHAPTER6",
-      "offset": 0,
-      "direction": "up"
-    },
-    {
-      "map": "MAP_CHAPTER4",
-      "offset": 0,
+      "map": "MAP_CHAPTER5A",
+      "offset": 5,
       "direction": "down"
     },
     {
-      "map": "MAP_CHAPTER5A",
-      "offset": 5,
-      "direction": "right"
+      "map": "MAP_CHAPTER4B",
+      "offset": 0,
+      "direction": "up"
     }
   ],
   "object_events": [

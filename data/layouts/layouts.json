@@ -4414,7 +4414,7 @@
     {
       "id": "LAYOUT_CHAPTER4A",
       "name": "Chapter4a_Layout",
-      "width": 10,
+      "width": 20,
       "height": 10,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Petalburg",
@@ -4424,8 +4424,8 @@
     {
       "id": "LAYOUT_CHAPTER4B",
       "name": "Chapter4b_Layout",
-      "width": 10,
-      "height": 10,
+      "width": 20,
+      "height": 20,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Petalburg",
       "border_filepath": "data/layouts/Chapter4b/border.bin",
@@ -4434,7 +4434,7 @@
     {
       "id": "LAYOUT_CHAPTER3A",
       "name": "Chapter3a_Layout",
-      "width": 10,
+      "width": 20,
       "height": 10,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Petalburg",
@@ -4454,8 +4454,8 @@
     {
       "id": "LAYOUT_CHAPTER5A",
       "name": "Chapter5a_Layout",
-      "width": 10,
-      "height": 10,
+      "width": 20,
+      "height": 20,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Petalburg",
       "border_filepath": "data/layouts/Chapter5a/border.bin",
@@ -4474,10 +4474,10 @@
     {
       "id": "LAYOUT_CHAPTER5C",
       "name": "Chapter5c_Layout",
-      "width": 10,
-      "height": 10,
+      "width": 30,
+      "height": 40,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Petalburg",
+      "secondary_tileset": "gTileset_Pacifidlog",
       "border_filepath": "data/layouts/Chapter5c/border.bin",
       "blockdata_filepath": "data/layouts/Chapter5c/map.bin"
     },
@@ -4964,10 +4964,10 @@
     {
       "id": "LAYOUT_CHAPTER2A",
       "name": "Chapter2a_Layout",
-      "width": 20,
-      "height": 20,
+      "width": 50,
+      "height": 80,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Petalburg",
+      "secondary_tileset": "gTileset_Mauville",
       "border_filepath": "data/layouts/Chapter2a/border.bin",
       "blockdata_filepath": "data/layouts/Chapter2a/map.bin"
     },
@@ -5004,17 +5004,17 @@
     {
       "id": "LAYOUT_CHAPTER2",
       "name": "Chapter2_Layout",
-      "width": 20,
+      "width": 40,
       "height": 20,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Petalburg",
+      "secondary_tileset": "gTileset_Mauville",
       "border_filepath": "data/layouts/Chapter2/border.bin",
       "blockdata_filepath": "data/layouts/Chapter2/map.bin"
     },
     {
       "id": "LAYOUT_CHAPTER3",
       "name": "Chapter3_Layout",
-      "width": 20,
+      "width": 40,
       "height": 20,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Petalburg",
@@ -5027,7 +5027,7 @@
       "width": 20,
       "height": 20,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Petalburg",
+      "secondary_tileset": "gTileset_Mauville",
       "border_filepath": "data/layouts/Chapter4/border.bin",
       "blockdata_filepath": "data/layouts/Chapter4/map.bin"
     },

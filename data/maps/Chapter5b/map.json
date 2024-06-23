@@ -16,12 +16,12 @@
     {
       "map": "MAP_CHAPTER5A",
       "offset": 0,
-      "direction": "left"
+      "direction": "up"
     },
     {
       "map": "MAP_CHAPTER5C",
       "offset": 0,
-      "direction": "right"
+      "direction": "down"
     }
   ],
   "object_events": [
