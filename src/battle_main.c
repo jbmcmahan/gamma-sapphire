@@ -2052,7 +2052,7 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
                 else if (partyData[i].gender == TRAINER_MON_FEMALE)
                     personalityValue = (personalityValue & 0xFFFFFF00) | GeneratePersonalityForGender(MON_FEMALE, partyData[i].species);
                 if (partyData[i].nature != 0)
-                    ModifyPersonalityForNature(&personalityValue, partyData[i].nature - 1);
+                    ModifyPersonalityForNature(&personalityValue, partyData[i].nature);
                 // if (partyData[i].isShiny)
                 // {
                 //     otIdType = OT_ID_PRESET;
