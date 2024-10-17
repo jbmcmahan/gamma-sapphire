@@ -170,6 +170,7 @@ bool32 ShouldUseWishAromatherapy(u8 battlerAtk, u8 battlerDef, u16 move);
 
 // party logic
 s32 AI_CalcPartyMonDamage(u16 move, u8 battlerAtk, u8 battlerDef, struct Pokemon *mon);
+s32 AI_PartyWhoStrikesFirst(u8 battlerAI, u8 battler2, u16 moveConsidered, struct Pokemon *mon);
 s32 CountUsablePartyMons(u8 battlerId);
 bool32 IsPartyFullyHealedExceptBattler(u8 battler);
 bool32 PartyHasMoveSplit(u8 battlerId, u8 split);

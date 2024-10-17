@@ -3504,6 +3504,47 @@ s32 AI_CalcPartyMonDamage(u16 move, u8 battlerAtk, u8 battlerDef, struct Pokemon
     return dmg;
 }
 
+s32 AI_PartyWhoStrikesFirst(u8 battlerAI, u8 battler2, u16 moveConsidered, struct Pokemon *mon)
+{
+    u32 fasterAI = 0, fasterPlayer = 0, i;
+    s32 result = AI_IS_FASTER;
+    s8 prioAI = 0;
+    s8 prioBattler2 = 0;
+    u16 *battler2Moves = GetMovesArray(battler2);
+    struct BattlePokemon *battleMons = Alloc(sizeof(struct BattlePokemon) * MAX_BATTLERS_COUNT);
+
+    // Save existing battle mons
+    for (i = 0; i < MAX_BATTLERS_COUNT; i++)
+        battleMons[i] = gBattleMons[i];
+
+    PokemonToBattleMon(mon, &gBattleMons[battlerAI]);
+
+    // Check move priorities and mon speeds.
+    prioAI = GetMovePriority(battlerAI, moveConsidered);
+    for (i = 0; i < MAX_MON_MOVES; i++)
+    {
+        if (battler2Moves[i] == 0 || battler2Moves[i] == 0xFFFF)
+            continue;
+
+        prioBattler2 = GetMovePriority(battler2, battler2Moves[i]);
+        if (prioBattler2 > prioAI) {
+            result = AI_IS_SLOWER;
+            break;
+        }
+        else if (prioBattler2 == prioAI && GetWhoStrikesFirst(battlerAI, battler2, TRUE) == 1) {
+            result = AI_IS_SLOWER;
+            break;
+        }
+    }
+
+    // return BattleMons to normal
+    for (i = 0; i < MAX_BATTLERS_COUNT; i++)
+        gBattleMons[i] = battleMons[i];
+    Free(battleMons);
+
+    return result;
+}
+
 s32 CountUsablePartyMons(u8 battlerId)
 {
     s32 battlerOnField1, battlerOnField2, i, ret;

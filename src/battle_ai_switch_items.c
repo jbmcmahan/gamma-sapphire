@@ -911,6 +911,45 @@ static u32 GetBestMonDmg(struct Pokemon *party, int firstId, int lastId, u8 inva
     return bestMonId;
 }
 
+static u32 GetFastMon(struct Pokemon *party, int firstId, int lastId, u8 invalidMons, u32 opposingBattler) {
+    int i, j;
+    int bestMonId = PARTY_SIZE;
+
+    for (i = firstId; i < lastId; i++)
+    {
+        if (gBitTable[i] & invalidMons)
+            continue;
+
+        for (j = 0; j < MAX_MON_MOVES; j++)
+        {
+            u32 move = GetMonData(&party[i], MON_DATA_MOVE1 + j);
+            s32 priority = AI_PartyWhoStrikesFirst(gActiveBattler, opposingBattler, move, &party[i]);
+
+            if (priority == AI_IS_FASTER)
+            {
+                bestMonId = i;
+                return bestMonId;
+            }
+        }
+    }
+    return bestMonId;
+}
+
+static u32 GetBadMon(struct Pokemon *party, int firstId, int lastId, u8 invalidMons, u32 opposingBattler) {
+    int i, j;
+    int bestMonId = PARTY_SIZE;
+
+    for (i = firstId; i < lastId; i++)
+    {
+        if (gBitTable[i] & invalidMons)
+            continue;
+
+        bestMonId = i;
+        return bestMonId;
+    }
+    return bestMonId;
+}
+
 u8 GetMostSuitableMonToSwitchInto(void)
 {
     u32 opposingBattler = 0;
@@ -979,15 +1018,11 @@ u8 GetMostSuitableMonToSwitchInto(void)
         }
     }
 
-    bestMonId = GetBestMonBatonPass(party, firstId, lastId, invalidMons, aliveCount);
+    bestMonId = GetFastMon(party, firstId, lastId, invalidMons, opposingBattler);
     if (bestMonId != PARTY_SIZE)
         return bestMonId;
 
-    bestMonId = GetBestMonTypeMatchup(party, firstId, lastId, invalidMons, opposingBattler);
-    if (bestMonId != PARTY_SIZE)
-        return bestMonId;
-
-    bestMonId = GetBestMonDmg(party, firstId, lastId, invalidMons, opposingBattler);
+    bestMonId = GetBadMon(party, firstId, lastId, invalidMons, opposingBattler);
     if (bestMonId != PARTY_SIZE)
         return bestMonId;
 
