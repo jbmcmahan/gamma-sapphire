@@ -67,4 +67,6 @@
 #define AI_FLAG_SAFARI                (1 << 30)
 #define AI_FLAG_FIRST_BATTLE          (1 << 31)
 
+#define AI_SCORE_DEFAULT 100 // Default score for all AI moves.
+
 #endif // GUARD_CONSTANTS_BATTLE_AI_H

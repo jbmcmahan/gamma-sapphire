@@ -3948,6 +3948,18 @@ bool32 IsAceMon(u32 battlerId, u32 monPartyId)
     return FALSE;
 }
 
+u32 GetMoveSlot(u16 *moves, u32 move)
+{
+    u32 i;
+
+    for (i = 0; i < MAX_MON_MOVES; i++)
+    {
+        if (moves[i] == move)
+            break;
+    }
+    return i;
+}
+
 bool32 AI_IsBattlerAsleepOrComatose(u8 battlerId)
 {
     return ((gBattleMons[battlerId].status1 & STATUS1_SLEEP)
